@@ -2,7 +2,7 @@
 <xs:schema xmlns:tools="http://schemas.android.com/tools" attributeFormDefault="qualified" targetNamespace="http://schemas.android.com/tools" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation>v25</xs:documentation>
-    <xs:documentation>27/7/2017 12:32:45 AM</xs:documentation>
+    <xs:documentation>29/7/2017 1:37:05 PM</xs:documentation>
   </xs:annotation>
   <xs:attribute name="layout">
     <xs:annotation>
@@ -19,6 +19,7 @@
             <xs:enumeration value="@layout/place_autocomplete_item_prediction" />
             <xs:enumeration value="@layout/place_autocomplete_progress" />
             <xs:enumeration value="@layout/signup" />
+            <xs:enumeration value="@layout/tripconfirmation_1" />
             <xs:enumeration value="@android:layout/activity_list_item" />
             <xs:enumeration value="@android:layout/browser_link_context_header" />
             <xs:enumeration value="@android:layout/expandable_list_content" />
@@ -74,6 +75,7 @@
             <xs:enumeration value="@layout/place_autocomplete_item_prediction" />
             <xs:enumeration value="@layout/place_autocomplete_progress" />
             <xs:enumeration value="@layout/signup" />
+            <xs:enumeration value="@layout/tripconfirmation_1" />
             <xs:enumeration value="@android:layout/activity_list_item" />
             <xs:enumeration value="@android:layout/browser_link_context_header" />
             <xs:enumeration value="@android:layout/expandable_list_content" />
@@ -129,6 +131,7 @@
             <xs:enumeration value="@layout/place_autocomplete_item_prediction" />
             <xs:enumeration value="@layout/place_autocomplete_progress" />
             <xs:enumeration value="@layout/signup" />
+            <xs:enumeration value="@layout/tripconfirmation_1" />
             <xs:enumeration value="@android:layout/activity_list_item" />
             <xs:enumeration value="@android:layout/browser_link_context_header" />
             <xs:enumeration value="@android:layout/expandable_list_content" />
@@ -184,6 +187,7 @@
             <xs:enumeration value="@layout/place_autocomplete_item_prediction" />
             <xs:enumeration value="@layout/place_autocomplete_progress" />
             <xs:enumeration value="@layout/signup" />
+            <xs:enumeration value="@layout/tripconfirmation_1" />
             <xs:enumeration value="@android:layout/activity_list_item" />
             <xs:enumeration value="@android:layout/browser_link_context_header" />
             <xs:enumeration value="@android:layout/expandable_list_content" />

@@ -1,4 +1,3 @@
-c:\users\weikei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\CHARE_System.csprojResolveAssemblyReference.cache
 c:\users\weikei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\XbdMerge\Xamarin.Android.Support.Compat.dll
 c:\users\weikei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\XbdMerge\Xamarin.Android.Support.Core.UI.dll
 c:\users\weikei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\XbdMerge\Xamarin.Android.Support.Core.Utils.dll
@@ -50,5 +49,7 @@ c:\users\weikei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\
 c:\users\weikei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\drawable\angle.xml
 c:\users\weikei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\R.cs.flag
 c:\users\weikei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\uploadflags.txt
-c:\users\weikei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\bin\Debug\CHARE_System.dll.mdb
-c:\users\weikei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\android\assets\CHARE_System.dll.mdb
+C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\tripconfirmation_1.xml
+C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\bin\Debug\CHARE_System.dll.mdb
+C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\android\assets\CHARE_System.dll.mdb
+C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\CHARE_System.csprojResolveAssemblyReference.cache

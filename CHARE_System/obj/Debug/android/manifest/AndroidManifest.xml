@@ -19,6 +19,7 @@
       </intent-filter>
     </activity>
     <activity android:label="SignupActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.SignupActivity" />
+    <activity android:label="TripConfirmation_1" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.TripConfirmation_1" />
     <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="CHARE_System.CHARE_System.mono.MonoRuntimeProvider.__mono_init__" />
     <!--suppress ExportedReceiver-->
     <receiver android:name="mono.android.Seppuku">

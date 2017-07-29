@@ -40,10 +40,7 @@ namespace CHARE_System
         // Variables for Google Direction API
         // Sample htt://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood4&key=YOUR_API_KEY
 
-        private const string strGoogleDirectionAPIOri = "https://maps.googleapis.com/maps/api/directions/json?origin=";
-        private const string strGoogleDirectionAPIDest = "&destination=";
-        // Google API Key allow HTTP Referrers
-        private const string strGoogleApiKey = "&key=AIzaSyBxXCmp-C6i5LwwRSTuvzIjD9_roPjJ4EI";
+       
 
         PlaceAutocompleteFragment originAutocompleteFragment;
         PlaceAutocompleteFragment destAutocompleteFragment;
@@ -71,29 +68,17 @@ namespace CHARE_System
             locationManager.RequestLocationUpdates(LocationManager.GpsProvider, MIN_TIME, MIN_DISTANCE, this); //You can also use LocationManager.GPS_PROVIDER and LocationManager.PASSIVE_PROVIDER     
         }
 
-        private async void OnDestinationSelected(object sender, PlaceSelectedEventArgs e)
-        {            
+        private void OnDestinationSelected(object sender, PlaceSelectedEventArgs e)
+        {          
             // Set destination latlng to destLatLng.
             destLatLng = e.Place.LatLng;
-            // Add destination marker to Google Map
-            mMap.AddMarker(new MarkerOptions().SetPosition(destLatLng).SetTitle("Destination"));
 
-            // Combine Google Direction API string 
-            string url = strGoogleDirectionAPIOri + originLatLng.Latitude.ToString() + "," + originLatLng.Longitude.ToString() +
-                strGoogleDirectionAPIDest + destLatLng.Latitude.ToString() + "," + destLatLng.Longitude.ToString() + strGoogleApiKey;
-
-            string strGoogleDirection = await fnDownloadString(url);
-
-            var googleDirectionAPIRoute = JsonConvert.DeserializeObject<RootObject>(strGoogleDirection);
-            string encodedPoints = googleDirectionAPIRoute.routes[0].overview_polyline.points;
-            var lstDecodedPoints = FnDecodePolylinePoints(encodedPoints);
-            //convert list of location point to array of latlng type
-            var latLngPoints = lstDecodedPoints.ToArray();
-            var polylineoption = new PolylineOptions();
-            polylineoption.InvokeColor(Android.Graphics.Color.SkyBlue);
-            polylineoption.Geodesic(true);
-            polylineoption.Add(latLngPoints);
-            mMap.AddPolyline(polylineoption);
+            Intent intent = new Intent(this, typeof(TripConfirmation_1));
+            intent.PutExtra("originLat", originLatLng.Latitude.ToString());
+            intent.PutExtra("originLng", originLatLng.Longitude.ToString());
+            intent.PutExtra("destLat", destLatLng.Latitude.ToString());
+            intent.PutExtra("destLng", destLatLng.Longitude.ToString());
+            StartActivity(intent);           
         }
 
         private void OnOriginSelected(object sender, PlaceSelectedEventArgs e)
@@ -158,83 +143,9 @@ namespace CHARE_System
 
         public void OnStatusChanged(string provider, [GeneratedEnum] Availability status, Bundle extras){}
 
-        List<LatLng> FnDecodePolylinePoints(string encodedPoints)
-        {
-            if (string.IsNullOrEmpty(encodedPoints))
-                return null;
-            var poly = new List<LatLng>();
-            char[] polylinechars = encodedPoints.ToCharArray();
-            int index = 0;
+        
 
-            int currentLat = 0;
-            int currentLng = 0;
-            int next5bits;
-            int sum;
-            int shifter;
-
-            while (index < polylinechars.Length)
-            {
-                // calculate next latitude
-                sum = 0;
-                shifter = 0;
-                do
-                {
-                    next5bits = (int)polylinechars[index++] - 63;
-                    sum |= (next5bits & 31) << shifter;
-                    shifter += 5;
-                } while (next5bits >= 32 && index < polylinechars.Length);
-
-                if (index >= polylinechars.Length)
-                    break;
-
-                currentLat += (sum & 1) == 1 ? ~(sum >> 1) : (sum >> 1);
-
-                //calculate next longitude
-                sum = 0;
-                shifter = 0;
-                do
-                {
-                    next5bits = (int)polylinechars[index++] - 63;
-                    sum |= (next5bits & 31) << shifter;
-                    shifter += 5;
-                } while (next5bits >= 32 && index < polylinechars.Length);
-
-                if (index >= polylinechars.Length && next5bits >= 32)
-                    break;
-
-                currentLng += (sum & 1) == 1 ? ~(sum >> 1) : (sum >> 1);
-                LatLng p = new LatLng(Convert.ToDouble(currentLat) / 100000.0, Convert.ToDouble(currentLng) / 100000.0);
-                poly.Add(p);
-            }
-
-            return poly;
-        }
-
-        async Task<string> fnDownloadString(string strUri)
-        {
-            WebClient webclient = new WebClient();
-            string strResultData;
-            try
-            {                
-                strResultData = await webclient.DownloadStringTaskAsync(new Uri(strUri));
-                Console.WriteLine(strResultData);
-            }
-            catch
-            {
-                strResultData = "Exception";
-                RunOnUiThread(() =>
-                {
-                    Toast.MakeText(this, "Unable to connect to server!!!", ToastLength.Short).Show();
-                });
-            }
-            finally
-            {
-                webclient.Dispose();
-                webclient = null;
-            }
-
-            return strResultData;
-        }
+        
     }
 }
 

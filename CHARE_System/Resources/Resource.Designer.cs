@@ -377,6 +377,9 @@ namespace CHARE_System
 			// aapt resource value: 0x7f08000a
 			public const int auto = 2131230730;
 			
+			// aapt resource value: 0x7f080025
+			public const int btn_tripcon_continue = 2131230757;
+			
 			// aapt resource value: 0x7f08000b
 			public const int dark = 2131230731;
 			
@@ -395,8 +398,11 @@ namespace CHARE_System
 			// aapt resource value: 0x7f08000c
 			public const int light = 2131230732;
 			
+			// aapt resource value: 0x7f080026
+			public const int listview_background_shape = 2131230758;
+			
 			// aapt resource value: 0x7f080021
-			public const int listview_background_shape = 2131230753;
+			public const int lnlyt_tripcon_continue = 2131230753;
 			
 			// aapt resource value: 0x7f080020
 			public const int loginlink = 2131230752;
@@ -464,6 +470,15 @@ namespace CHARE_System
 			// aapt resource value: 0x7f080012
 			public const int test_main_content = 2131230738;
 			
+			// aapt resource value: 0x7f080023
+			public const int textview_cost = 2131230755;
+			
+			// aapt resource value: 0x7f080022
+			public const int textview_distance = 2131230754;
+			
+			// aapt resource value: 0x7f080024
+			public const int textview_time = 2131230756;
+			
 			// aapt resource value: 0x7f08000d
 			public const int usrusr = 2131230733;
 			
@@ -519,6 +534,9 @@ namespace CHARE_System
 			
 			// aapt resource value: 0x7f030006
 			public const int Signup = 2130903046;
+			
+			// aapt resource value: 0x7f030007
+			public const int TripConfirmation_1 = 2130903047;
 			
 			static Layout()
 			{
