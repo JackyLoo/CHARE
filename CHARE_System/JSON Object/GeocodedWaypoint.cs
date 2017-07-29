@@ -131,7 +131,7 @@ namespace CHARE_System
         public List<object> waypoint_order { get; set; }
     }
 
-    public class RootObject
+    public class GoogleDirectionAPI
     {
         public List<GeocodedWaypoint> geocoded_waypoints { get; set; }
         public List<Route> routes { get; set; }
