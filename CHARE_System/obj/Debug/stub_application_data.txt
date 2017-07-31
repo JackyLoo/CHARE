@@ -1,2 +1,0 @@
-android.app.Application
-CHARE_System.CHARE_System

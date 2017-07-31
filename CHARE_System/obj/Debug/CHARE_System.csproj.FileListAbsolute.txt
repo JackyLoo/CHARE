@@ -50,6 +50,8 @@ c:\users\weikei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\
 c:\users\weikei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\R.cs.flag
 c:\users\weikei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\uploadflags.txt
 C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\tripconfirmation_1.xml
-C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\bin\Debug\CHARE_System.dll.mdb
-C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\android\assets\CHARE_System.dll.mdb
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\CHARE_System.csprojResolveAssemblyReference.cache
+C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\tripconfirmation_2.xml
+C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\drawable\right_arrow2.png
+C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\drawable\right_arrow_small.png
+C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\test.xml

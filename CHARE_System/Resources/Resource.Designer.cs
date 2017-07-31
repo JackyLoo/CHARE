@@ -350,10 +350,16 @@ namespace CHARE_System
 			public const int profilebackground = 2130837540;
 			
 			// aapt resource value: 0x7f020025
-			public const int timg = 2130837541;
+			public const int right_arrow2 = 2130837541;
 			
 			// aapt resource value: 0x7f020026
-			public const int user = 2130837542;
+			public const int right_arrow_small = 2130837542;
+			
+			// aapt resource value: 0x7f020027
+			public const int timg = 2130837543;
+			
+			// aapt resource value: 0x7f020028
+			public const int user = 2130837544;
 			
 			static Drawable()
 			{
@@ -377,8 +383,17 @@ namespace CHARE_System
 			// aapt resource value: 0x7f08000a
 			public const int auto = 2131230730;
 			
-			// aapt resource value: 0x7f080025
-			public const int btn_tripcon_continue = 2131230757;
+			// aapt resource value: 0x7f08002d
+			public const int btn_tripcon_comfirm = 2131230765;
+			
+			// aapt resource value: 0x7f080028
+			public const int btn_tripcon_continue = 2131230760;
+			
+			// aapt resource value: 0x7f080022
+			public const int button1 = 2131230754;
+			
+			// aapt resource value: 0x7f080023
+			public const int button2 = 2131230755;
 			
 			// aapt resource value: 0x7f08000b
 			public const int dark = 2131230731;
@@ -398,14 +413,17 @@ namespace CHARE_System
 			// aapt resource value: 0x7f08000c
 			public const int light = 2131230732;
 			
-			// aapt resource value: 0x7f080026
-			public const int listview_background_shape = 2131230758;
+			// aapt resource value: 0x7f08002e
+			public const int listview_background_shape = 2131230766;
 			
-			// aapt resource value: 0x7f080021
-			public const int lnlyt_tripcon_continue = 2131230753;
+			// aapt resource value: 0x7f080024
+			public const int lnlyt_tripcon_continue = 2131230756;
 			
 			// aapt resource value: 0x7f080020
 			public const int loginlink = 2131230752;
+			
+			// aapt resource value: 0x7f080021
+			public const int mLlayoutBottomButtons = 2131230753;
 			
 			// aapt resource value: 0x7f08001e
 			public const int mail = 2131230750;
@@ -464,20 +482,32 @@ namespace CHARE_System
 			// aapt resource value: 0x7f080008
 			public const int standard = 2131230728;
 			
+			// aapt resource value: 0x7f08002c
+			public const int switch_femaleonly = 2131230764;
+			
+			// aapt resource value: 0x7f08002b
+			public const int switch_repeat = 2131230763;
+			
 			// aapt resource value: 0x7f080004
 			public const int terrain = 2131230724;
 			
 			// aapt resource value: 0x7f080012
 			public const int test_main_content = 2131230738;
 			
-			// aapt resource value: 0x7f080023
-			public const int textview_cost = 2131230755;
+			// aapt resource value: 0x7f080029
+			public const int textview_arrivetime = 2131230761;
 			
-			// aapt resource value: 0x7f080022
-			public const int textview_distance = 2131230754;
+			// aapt resource value: 0x7f080026
+			public const int textview_cost = 2131230758;
 			
-			// aapt resource value: 0x7f080024
-			public const int textview_time = 2131230756;
+			// aapt resource value: 0x7f08002a
+			public const int textview_day = 2131230762;
+			
+			// aapt resource value: 0x7f080025
+			public const int textview_distance = 2131230757;
+			
+			// aapt resource value: 0x7f080027
+			public const int textview_time = 2131230759;
 			
 			// aapt resource value: 0x7f08000d
 			public const int usrusr = 2131230733;
@@ -536,7 +566,13 @@ namespace CHARE_System
 			public const int Signup = 2130903046;
 			
 			// aapt resource value: 0x7f030007
-			public const int TripConfirmation_1 = 2130903047;
+			public const int test = 2130903047;
+			
+			// aapt resource value: 0x7f030008
+			public const int TripConfirmation_1 = 2130903048;
+			
+			// aapt resource value: 0x7f030009
+			public const int TripConfirmation_2 = 2130903049;
 			
 			static Layout()
 			{

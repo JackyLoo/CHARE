@@ -330,23 +330,29 @@ containing a value of this type.
         public static final int powered_by_google_dark=0x7f020022;
         public static final int powered_by_google_light=0x7f020023;
         public static final int profilebackground=0x7f020024;
-        public static final int timg=0x7f020025;
-        public static final int user=0x7f020026;
+        public static final int right_arrow2=0x7f020025;
+        public static final int right_arrow_small=0x7f020026;
+        public static final int timg=0x7f020027;
+        public static final int user=0x7f020028;
     }
     public static final class id {
         public static final int adjust_height=0x7f080005;
         public static final int adjust_width=0x7f080006;
         public static final int auto=0x7f08000a;
-        public static final int btn_tripcon_continue=0x7f080025;
+        public static final int btn_tripcon_comfirm=0x7f08002d;
+        public static final int btn_tripcon_continue=0x7f080028;
+        public static final int button1=0x7f080022;
+        public static final int button2=0x7f080023;
         public static final int dark=0x7f08000b;
         public static final int fname=0x7f08001d;
         public static final int googlemap=0x7f080011;
         public static final int hybrid=0x7f080000;
         public static final int icon_only=0x7f080007;
         public static final int light=0x7f08000c;
-        public static final int listview_background_shape=0x7f080026;
-        public static final int lnlyt_tripcon_continue=0x7f080021;
+        public static final int listview_background_shape=0x7f08002e;
+        public static final int lnlyt_tripcon_continue=0x7f080024;
         public static final int loginlink=0x7f080020;
+        public static final int mLlayoutBottomButtons=0x7f080021;
         public static final int mail=0x7f08001e;
         public static final int none=0x7f080001;
         public static final int normal=0x7f080002;
@@ -366,11 +372,15 @@ containing a value of this type.
         public static final int signupbtn=0x7f08001f;
         public static final int signuplink=0x7f080010;
         public static final int standard=0x7f080008;
+        public static final int switch_femaleonly=0x7f08002c;
+        public static final int switch_repeat=0x7f08002b;
         public static final int terrain=0x7f080004;
         public static final int test_main_content=0x7f080012;
-        public static final int textview_cost=0x7f080023;
-        public static final int textview_distance=0x7f080022;
-        public static final int textview_time=0x7f080024;
+        public static final int textview_arrivetime=0x7f080029;
+        public static final int textview_cost=0x7f080026;
+        public static final int textview_day=0x7f08002a;
+        public static final int textview_distance=0x7f080025;
+        public static final int textview_time=0x7f080027;
         public static final int usrusr=0x7f08000d;
         public static final int wide=0x7f080009;
     }
@@ -385,7 +395,9 @@ containing a value of this type.
         public static final int place_autocomplete_item_prediction=0x7f030004;
         public static final int place_autocomplete_progress=0x7f030005;
         public static final int signup=0x7f030006;
-        public static final int tripconfirmation_1=0x7f030007;
+        public static final int test=0x7f030007;
+        public static final int tripconfirmation_1=0x7f030008;
+        public static final int tripconfirmation_2=0x7f030009;
     }
     public static final class string {
         public static final int ApplicationName=0x7f060014;

@@ -36,11 +36,12 @@ namespace CHARE_System
         private TextView txtviewDistance;
         private TextView txtviewDuration;
         private TextView txtviewCost;
+        private Button btnCon;
 
         private const double dblCostPerKM = 0.0003;
         private const string strCurrenty = "RM";
 
-        public async void OnMapReady(GoogleMap googleMap)
+        public async void OnMapReady(GoogleMap googleMap) 
         {
             mMap = googleMap;
 
@@ -84,7 +85,7 @@ namespace CHARE_System
             double cost = Math.Round(dblCostPerKM * googleDirectionMatrix.rows[0].elements[0].distance.value,2);
 
             // ## Not a good way of adding one zero e.g RM19.2 to RM19.20
-            txtviewCost.Text = strCurrenty + cost.ToString() + "0";
+            txtviewCost.Text = strCurrenty + cost.ToString() + "0"; 
         }
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -106,6 +107,17 @@ namespace CHARE_System
             txtviewDistance = (TextView)FindViewById(Resource.Id.textview_distance);
             txtviewDuration = (TextView)FindViewById(Resource.Id.textview_time);
             txtviewCost = (TextView)FindViewById(Resource.Id.textview_cost);
+
+            btnCon = (Button)FindViewById(Resource.Id.btn_tripcon_continue);
+            btnCon.Click += (sender, e) =>
+            {
+                Intent intent = new Intent(this, typeof(TripConfirmation_2));
+                intent.PutExtra("originLat", originLatLng.Latitude.ToString());
+                intent.PutExtra("originLng", originLatLng.Longitude.ToString());
+                intent.PutExtra("destLat", destLatLng.Latitude.ToString());
+                intent.PutExtra("destLng", destLatLng.Longitude.ToString());
+                StartActivity(intent);
+            };
         }
 
         List<LatLng> FnDecodePolylinePoints(string encodedPoints)

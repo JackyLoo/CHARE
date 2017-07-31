@@ -2,7 +2,7 @@
 <xs:schema xmlns:app="http://schemas.android.com/apk/res-auto" attributeFormDefault="qualified" targetNamespace="http://schemas.android.com/apk/res-auto" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation>v25</xs:documentation>
-    <xs:documentation>29/7/2017 9:44:35 PM</xs:documentation>
+    <xs:documentation>31/7/2017 12:06:11 PM</xs:documentation>
   </xs:annotation>
   <xs:attribute name="buttonSize">
     <xs:annotation>
@@ -52,6 +52,8 @@
             <xs:enumeration value="@drawable/powered_by_google_dark" />
             <xs:enumeration value="@drawable/powered_by_google_light" />
             <xs:enumeration value="@drawable/profilebackground" />
+            <xs:enumeration value="@drawable/right_arrow_small" />
+            <xs:enumeration value="@drawable/right_arrow2" />
             <xs:enumeration value="@drawable/timg" />
             <xs:enumeration value="@drawable/user" />
             <xs:enumeration value="@android:drawable/alert_dark_frame" />
@@ -327,6 +329,8 @@
             <xs:enumeration value="@drawable/powered_by_google_dark" />
             <xs:enumeration value="@drawable/powered_by_google_light" />
             <xs:enumeration value="@drawable/profilebackground" />
+            <xs:enumeration value="@drawable/right_arrow_small" />
+            <xs:enumeration value="@drawable/right_arrow2" />
             <xs:enumeration value="@drawable/timg" />
             <xs:enumeration value="@drawable/user" />
             <xs:enumeration value="@android:drawable/alert_dark_frame" />
@@ -599,6 +603,8 @@
             <xs:enumeration value="@drawable/powered_by_google_dark" />
             <xs:enumeration value="@drawable/powered_by_google_light" />
             <xs:enumeration value="@drawable/profilebackground" />
+            <xs:enumeration value="@drawable/right_arrow_small" />
+            <xs:enumeration value="@drawable/right_arrow2" />
             <xs:enumeration value="@drawable/timg" />
             <xs:enumeration value="@drawable/user" />
             <xs:enumeration value="@string/ApplicationName" />
