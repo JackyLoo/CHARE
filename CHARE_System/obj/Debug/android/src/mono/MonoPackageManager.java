@@ -99,7 +99,10 @@ class MonoPackageManager_Resources {
 	public static final String[] Assemblies = new String[]{
 		/* We need to ensure that "CHARE_System.dll" comes first in this list. */
 		"CHARE_System.dll",
+		"AndroidSwitchBackport.dll",
+		"BetterPickers.dll",
 		"Newtonsoft.Json.dll",
+		"NineOldAndroids.dll",
 		"Xamarin.Android.Support.Compat.dll",
 		"Xamarin.Android.Support.Core.UI.dll",
 		"Xamarin.Android.Support.Core.Utils.dll",

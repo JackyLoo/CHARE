@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="300dip"
+    android:background="#ffffff">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="10dp">
+            <TableRow>
+                <ToggleButton
+                    android:id="@+id/togglebtn_mon"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/toggle_mon"
+                    android:layout_margin="5dp"
+                    android:layout_column="1"
+                    android:textOff=""
+                    android:textOn="" />
+                <ToggleButton
+                    android:id="@+id/togglebtn_tue"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/toggle_tue"
+                    android:layout_margin="5dp"
+                    android:layout_column="2"
+                    android:textOff=""
+                    android:textOn="" />
+                <ToggleButton
+                    android:id="@+id/togglebtn_wed"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/toggle_wed"
+                    android:layout_margin="5dp"
+                    android:layout_column="3"
+                    android:textOff=""
+                    android:textOn="" />
+            </TableRow>
+            <TableRow>
+                <ToggleButton
+                    android:id="@+id/togglebtn_thu"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/toggle_thu"
+                    android:layout_margin="5dp"
+                    android:layout_column="1"
+                    android:textOff=""
+                    android:textOn="" />
+                <ToggleButton
+                    android:id="@+id/togglebtn_fri"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/toggle_fri"
+                    android:layout_margin="5dp"
+                    android:layout_column="2"
+                    android:textOff=""
+                    android:textOn="" />
+                <ToggleButton
+                    android:id="@+id/togglebtn_sat"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/toggle_sat"
+                    android:layout_margin="5dp"
+                    android:layout_column="3"
+                    android:textOff=""
+                    android:textOn="" />
+            </TableRow>
+            <TableRow>
+                <ToggleButton
+                    android:id="@+id/togglebtn_sun"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/toggle_sun"
+                    android:layout_margin="5dp"
+                    android:layout_column="1"
+                    android:textOff=""
+                    android:textOn="" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|bottom"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:id="@+id/btn_tripcon_day_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Confirm" />
+    </LinearLayout>
+</RelativeLayout>

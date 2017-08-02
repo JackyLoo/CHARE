@@ -2,15 +2,19 @@ package md5e8fccd3fcd8f74a82435f3bbd25804a2;
 
 
 public class TripConfirmation_2
-	extends android.app.Activity
+	extends android.support.v4.app.FragmentActivity
 	implements
-		mono.android.IGCUserPeer
+		mono.android.IGCUserPeer,
+		com.doomonafireball.betterpickers.recurrencepicker.RecurrencePickerDialog.OnRecurrenceSetListener,
+		android.app.TimePickerDialog.OnTimeSetListener
 {
 /** @hide */
 	public static final String __md_methods;
 	static {
 		__md_methods = 
 			"n_onCreate:(Landroid/os/Bundle;)V:GetOnCreate_Landroid_os_Bundle_Handler\n" +
+			"n_onRecurrenceSet:(Ljava/lang/String;)V:GetOnRecurrenceSet_Ljava_lang_String_Handler:BetterPickers.RecurrencePickers.RecurrencePickerDialog/IOnRecurrenceSetListenerInvoker, BetterPickers\n" +
+			"n_onTimeSet:(Landroid/widget/TimePicker;II)V:GetOnTimeSet_Landroid_widget_TimePicker_IIHandler:Android.App.TimePickerDialog/IOnTimeSetListenerInvoker, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\n" +
 			"";
 		mono.android.Runtime.register ("CHARE_System.TripConfirmation_2, CHARE_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", TripConfirmation_2.class, __md_methods);
 	}
@@ -30,6 +34,22 @@ public class TripConfirmation_2
 	}
 
 	private native void n_onCreate (android.os.Bundle p0);
+
+
+	public void onRecurrenceSet (java.lang.String p0)
+	{
+		n_onRecurrenceSet (p0);
+	}
+
+	private native void n_onRecurrenceSet (java.lang.String p0);
+
+
+	public void onTimeSet (android.widget.TimePicker p0, int p1, int p2)
+	{
+		n_onTimeSet (p0, p1, p2);
+	}
+
+	private native void n_onTimeSet (android.widget.TimePicker p0, int p1, int p2);
 
 	private java.util.ArrayList refList;
 	public void monodroidAddReference (java.lang.Object obj)

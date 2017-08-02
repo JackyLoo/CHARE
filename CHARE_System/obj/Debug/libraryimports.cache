@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Paths>
   <ManifestDocuments>
+    <ManifestDocument>obj\Debug\__library_projects__\AndroidSwitchBackport\library_project_imports\AndroidManifest.xml</ManifestDocument>
+    <ManifestDocument>obj\Debug\__library_projects__\BetterPickers\library_project_imports\AndroidManifest.xml</ManifestDocument>
+    <ManifestDocument>obj\Debug\__library_projects__\BetterPickers\library_project_imports\aapt\AndroidManifest.xml</ManifestDocument>
     <ManifestDocument>obj\Debug\__library_projects__\Xamarin.Android.Support.Compat\library_project_imports\AndroidManifest.xml</ManifestDocument>
     <ManifestDocument>obj\Debug\__library_projects__\Xamarin.Android.Support.Core.UI\library_project_imports\AndroidManifest.xml</ManifestDocument>
     <ManifestDocument>obj\Debug\__library_projects__\Xamarin.Android.Support.Core.Utils\library_project_imports\AndroidManifest.xml</ManifestDocument>
@@ -15,6 +18,9 @@
   </ManifestDocuments>
   <NativeLibraries />
   <Jars>
+    <Jar>obj\Debug\__library_projects__\AndroidSwitchBackport\library_project_imports\bin\classes.jar</Jar>
+    <Jar>obj\Debug\__library_projects__\BetterPickers\library_project_imports\bin\classes.jar</Jar>
+    <Jar>obj\Debug\__library_projects__\NineOldAndroids\library_project_imports\NineOldAndroids.jar</Jar>
     <Jar>obj\Debug\__library_projects__\Xamarin.Android.Support.Compat\library_project_imports\classes.jar</Jar>
     <Jar>obj\Debug\__library_projects__\Xamarin.Android.Support.Core.UI\library_project_imports\classes.jar</Jar>
     <Jar>obj\Debug\__library_projects__\Xamarin.Android.Support.Core.Utils\library_project_imports\classes.jar</Jar>
