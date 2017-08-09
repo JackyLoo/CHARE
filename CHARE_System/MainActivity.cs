@@ -16,40 +16,39 @@ using System.Net;
 using Android.Widget;
 using Newtonsoft.Json;
 using System.IO;
+using CHARE_REST_API.Models;
 
 // ## Check before final deployment
 
 
 namespace CHARE_System
 {
-    [Activity(Label = "CHARE_App", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "CHARE_App")]
+    //[Activity(Label = "CHARE_App", MainLauncher = true, Icon = "@drawable/icon")]
 
     // implement ILocationListener for 
     public class MainActivity : Activity, IOnMapReadyCallback, ILocationListener
-    {
-
-        private GoogleMap mMap;
+    {                
         private LatLng originLatLng;
         private LatLng destLatLng;
 
+        private GoogleMap mMap;
+        
         // ILocationListener : Variables for auto change camera to user location
         private LocationManager locationManager;
         private const long MIN_TIME = 400;
         private const float MIN_DISTANCE = 1000;
 
         // Variables for Google Direction API
-        // Sample htt://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood4&key=YOUR_API_KEY
-
-       
-
+        // Sample htt://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood4&key=YOUR_API_KEY       
         PlaceAutocompleteFragment originAutocompleteFragment;
         PlaceAutocompleteFragment destAutocompleteFragment;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            SetContentView(Resource.Layout.Main);
-
+            SetContentView(Resource.Layout.Main);                        
+            
             originAutocompleteFragment = (PlaceAutocompleteFragment)
                 FragmentManager.FindFragmentById(Resource.Id.place_autocomplete_origin_fragment);
             originAutocompleteFragment.SetHint("Enter the origin");            
@@ -65,19 +64,22 @@ namespace CHARE_System
 
             locationManager = (LocationManager)GetSystemService(Context.LocationService);
             locationManager.RequestLocationUpdates(LocationManager.NetworkProvider, MIN_TIME, MIN_DISTANCE, this); //You can also use LocationManager.GPS_PROVIDER and LocationManager.PASSIVE_PROVIDER     
-            locationManager.RequestLocationUpdates(LocationManager.GpsProvider, MIN_TIME, MIN_DISTANCE, this); //You can also use LocationManager.GPS_PROVIDER and LocationManager.PASSIVE_PROVIDER     
+            locationManager.RequestLocationUpdates(LocationManager.GpsProvider, MIN_TIME, MIN_DISTANCE, this); //You can also use LocationManager.GPS_PROVIDER and LocationManager.PASSIVE_PROVIDER                 
         }
 
         private void OnDestinationSelected(object sender, PlaceSelectedEventArgs e)
         {          
-            // Set destination latlng to destLatLng.
+            // Set destination latlng to iDestLatLng.
             destLatLng = e.Place.LatLng;
+            
+            // Instantiate trip 
+            Trip trip = new Trip();
+            trip.origin = originLatLng.Latitude.ToString() + "," + originLatLng.Longitude.ToString();
+            trip.destination = destLatLng.Latitude.ToString() + "," + destLatLng.Longitude.ToString();
 
             Intent intent = new Intent(this, typeof(TripConfirmation_1));
-            intent.PutExtra("originLat", originLatLng.Latitude.ToString());
-            intent.PutExtra("originLng", originLatLng.Longitude.ToString());
-            intent.PutExtra("destLat", destLatLng.Latitude.ToString());
-            intent.PutExtra("destLng", destLatLng.Longitude.ToString());
+            intent.PutExtra("Member", Intent.GetStringExtra("Member"));
+            intent.PutExtra("Trip", JsonConvert.SerializeObject(trip));
             StartActivity(intent);           
         }
 
@@ -126,7 +128,7 @@ namespace CHARE_System
                 mMap.AnimateCamera(cameraUpdate);
                                                           
                 locationManager.RemoveUpdates(this);
-            }
+            }   
             catch (IOException e)
             {
                 // TODO Auto-generated catch block
@@ -141,11 +143,7 @@ namespace CHARE_System
 
         public void OnProviderEnabled(string provider){}
 
-        public void OnStatusChanged(string provider, [GeneratedEnum] Availability status, Bundle extras){}
-
-        
-
-        
+        public void OnStatusChanged(string provider, [GeneratedEnum] Availability status, Bundle extras){}                
     }
 }
 

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="Hello">Hello World, Click Me!</string>
-    <string name="ApplicationName">CHARE_System</string>
-    <string name="GoogleKey">AIzaSyD3O4_PEgObUtgmyDo2ldpr_SuFFeNjUTo</string>
+  <string name="Hello">Hello World, Click Me!</string>
+  <string name="ApplicationName">CHARE_System</string>
+  <string name="GoogleKey">AIzaSyD3O4_PEgObUtgmyDo2ldpr_SuFFeNjUTo</string>
+  <string name="AzureAPI">http://charerestapi.azurewebsites.net/api/</string>
+  <string name="RestAPIBaseAddress">http://charerestapi.azurewebsites.net/</string>
+  
 </resources>

@@ -8,19 +8,19 @@
   <uses-permission android:name="android.permission.CAMERA" />
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-  <application android:label="CHARE_System" android:name="android.app.Application" android:allowBackup="true" android:debuggable="true">
+  <application android:label="CHARE_System" android:name="android.app.Application" android:allowBackup="true" android:icon="@drawable/icon" android:debuggable="true">
     <meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/GoogleKey" />
     <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
-    <activity android:label="LoginActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.LoginActivity" />
-    <activity android:icon="@drawable/icon" android:label="CHARE_App" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.MainActivity">
+    <activity android:icon="@drawable/icon" android:label="LoginActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.LoginActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
+    <activity android:label="CHARE_App" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.MainActivity" />
     <activity android:label="SignupActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.SignupActivity" />
-    <activity android:label="TripConfirmation_1" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.TripConfirmation_1" />
-    <activity android:label="TripConfirmation_2" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.TripConfirmation_2" />
+    <activity android:label="Route Details" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.TripConfirmation_1" />
+    <activity android:label="Set Route" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.TripConfirmation_2" />
     <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="CHARE_System.CHARE_System.mono.MonoRuntimeProvider.__mono_init__" />
     <!--suppress ExportedReceiver-->
     <receiver android:name="mono.android.Seppuku">

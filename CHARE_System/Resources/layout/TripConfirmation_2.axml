@@ -71,27 +71,6 @@
             android:layout_height="1dp"
             android:layout_marginBottom="10dp"
             android:background="#565656" />
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#ffffff"
-            android:layout_marginBottom="6dp">
-            <TextView
-                android:text="Repeat Weekly"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="#000000"
-                android:layout_margin="10px" />
-            <Switch
-                android:id="@+id/switch_repeat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:layout_margin="10px" />
-        </LinearLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"

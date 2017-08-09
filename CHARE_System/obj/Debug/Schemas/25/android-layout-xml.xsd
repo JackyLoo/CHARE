@@ -5,7 +5,7 @@
   <xs:import schemaLocation="schemas.android.com.tools.xsd" namespace="http://schemas.android.com/tools" />
   <xs:annotation>
     <xs:documentation>v25</xs:documentation>
-    <xs:documentation>31/7/2017 12:14:47 PM</xs:documentation>
+    <xs:documentation>9/8/2017 8:23:35 PM</xs:documentation>
   </xs:annotation>
   <xs:group name="any-view">
     <xs:choice>
@@ -82,6 +82,39 @@
       <xs:element ref="RadioGroup" />
       <xs:element ref="TextSwitcher" />
       <xs:element ref="fragment" />
+      <xs:element ref="org.jraf.android.backport.switchwidget.Switch" />
+      <xs:element ref="com.doomonafireball.betterpickers.widget.ZeroTopPaddingTextView" />
+      <xs:element ref="com.doomonafireball.betterpickers.widget.UnderlinePageIndicatorPicker" />
+      <xs:element ref="com.doomonafireball.betterpickers.widget.PickerLinearLayout" />
+      <xs:element ref="com.doomonafireball.betterpickers.widget.AutoScrollHorizontalScrollView" />
+      <xs:element ref="com.doomonafireball.betterpickers.widget.AccessibleTextView" />
+      <xs:element ref="com.doomonafireball.betterpickers.widget.AccessibleLinearLayout" />
+      <xs:element ref="com.doomonafireball.betterpickers.timezonepicker.TimeZonePickerView" />
+      <xs:element ref="com.doomonafireball.betterpickers.timepicker.TimerView" />
+      <xs:element ref="com.doomonafireball.betterpickers.timepicker.TimePicker" />
+      <xs:element ref="com.doomonafireball.betterpickers.recurrencepicker.WeekButton" />
+      <xs:element ref="com.doomonafireball.betterpickers.recurrencepicker.LinearLayoutWithMaxWidth" />
+      <xs:element ref="com.doomonafireball.betterpickers.radialtimepicker.RadialTextsView" />
+      <xs:element ref="com.doomonafireball.betterpickers.radialtimepicker.RadialSelectorView" />
+      <xs:element ref="com.doomonafireball.betterpickers.radialtimepicker.RadialPickerLayout" />
+      <xs:element ref="com.doomonafireball.betterpickers.radialtimepicker.CircleView" />
+      <xs:element ref="com.doomonafireball.betterpickers.radialtimepicker.AmPmCirclesView" />
+      <xs:element ref="com.doomonafireball.betterpickers.numberpicker.NumberView" />
+      <xs:element ref="com.doomonafireball.betterpickers.numberpicker.NumberPickerErrorTextView" />
+      <xs:element ref="com.doomonafireball.betterpickers.numberpicker.NumberPicker" />
+      <xs:element ref="com.doomonafireball.betterpickers.hmspicker.HmsView" />
+      <xs:element ref="com.doomonafireball.betterpickers.hmspicker.HmsPicker" />
+      <xs:element ref="com.doomonafireball.betterpickers.expirationpicker.ExpirationView" />
+      <xs:element ref="com.doomonafireball.betterpickers.expirationpicker.ExpirationPicker" />
+      <xs:element ref="com.doomonafireball.betterpickers.datepicker.DateView" />
+      <xs:element ref="com.doomonafireball.betterpickers.datepicker.DatePicker" />
+      <xs:element ref="com.doomonafireball.betterpickers.calendardatepicker.YearPickerView" />
+      <xs:element ref="com.doomonafireball.betterpickers.calendardatepicker.TextViewWithCircularIndicator" />
+      <xs:element ref="com.doomonafireball.betterpickers.calendardatepicker.SimpleMonthView" />
+      <xs:element ref="com.doomonafireball.betterpickers.calendardatepicker.SimpleDayPickerView" />
+      <xs:element ref="com.doomonafireball.betterpickers.calendardatepicker.MonthView" />
+      <xs:element ref="com.doomonafireball.betterpickers.calendardatepicker.DayPickerView" />
+      <xs:element ref="com.doomonafireball.betterpickers.calendardatepicker.AccessibleDateAnimator" />
       <xs:element ref="com.google.android.gms.common.SignInButton" />
       <xs:element ref="com.google.android.gms.maps.StreetViewPanoramaView" />
       <xs:element ref="com.google.android.gms.maps.MapView" />
@@ -306,29 +339,7 @@
     <xs:attribute ref="android:pointerIcon" />
     <xs:attribute ref="android:forceHasOverlappingRendering" />
     <xs:attribute ref="tools:visibility" />
-    <xs:attribute ref="android:layout_toLeftOf" />
-    <xs:attribute ref="android:layout_toRightOf" />
-    <xs:attribute ref="android:layout_above" />
-    <xs:attribute ref="android:layout_below" />
-    <xs:attribute ref="android:layout_alignBaseline" />
-    <xs:attribute ref="android:layout_alignLeft" />
-    <xs:attribute ref="android:layout_alignTop" />
-    <xs:attribute ref="android:layout_alignRight" />
-    <xs:attribute ref="android:layout_alignBottom" />
-    <xs:attribute ref="android:layout_alignParentLeft" />
-    <xs:attribute ref="android:layout_alignParentTop" />
-    <xs:attribute ref="android:layout_alignParentRight" />
-    <xs:attribute ref="android:layout_alignParentBottom" />
-    <xs:attribute ref="android:layout_centerInParent" />
-    <xs:attribute ref="android:layout_centerHorizontal" />
-    <xs:attribute ref="android:layout_centerVertical" />
-    <xs:attribute ref="android:layout_alignWithParentIfMissing" />
-    <xs:attribute ref="android:layout_toStartOf" />
-    <xs:attribute ref="android:layout_toEndOf" />
-    <xs:attribute ref="android:layout_alignStart" />
-    <xs:attribute ref="android:layout_alignEnd" />
-    <xs:attribute ref="android:layout_alignParentStart" />
-    <xs:attribute ref="android:layout_alignParentEnd" />
+    <xs:attribute ref="android:layout_gravity" />
     <xs:attribute ref="android:layout_width" />
     <xs:attribute ref="android:layout_height" />
     <xs:attribute ref="android:layout_margin" />
@@ -1422,29 +1433,7 @@
     <xs:attribute ref="android:fragmentAllowEnterTransitionOverlap" />
     <xs:attribute ref="android:fragmentAllowReturnTransitionOverlap" />
     <xs:attribute ref="tools:layout" />
-    <xs:attribute ref="android:layout_toLeftOf" />
-    <xs:attribute ref="android:layout_toRightOf" />
-    <xs:attribute ref="android:layout_above" />
-    <xs:attribute ref="android:layout_below" />
-    <xs:attribute ref="android:layout_alignBaseline" />
-    <xs:attribute ref="android:layout_alignLeft" />
-    <xs:attribute ref="android:layout_alignTop" />
-    <xs:attribute ref="android:layout_alignRight" />
-    <xs:attribute ref="android:layout_alignBottom" />
-    <xs:attribute ref="android:layout_alignParentLeft" />
-    <xs:attribute ref="android:layout_alignParentTop" />
-    <xs:attribute ref="android:layout_alignParentRight" />
-    <xs:attribute ref="android:layout_alignParentBottom" />
-    <xs:attribute ref="android:layout_centerInParent" />
-    <xs:attribute ref="android:layout_centerHorizontal" />
-    <xs:attribute ref="android:layout_centerVertical" />
-    <xs:attribute ref="android:layout_alignWithParentIfMissing" />
-    <xs:attribute ref="android:layout_toStartOf" />
-    <xs:attribute ref="android:layout_toEndOf" />
-    <xs:attribute ref="android:layout_alignStart" />
-    <xs:attribute ref="android:layout_alignEnd" />
-    <xs:attribute ref="android:layout_alignParentStart" />
-    <xs:attribute ref="android:layout_alignParentEnd" />
+    <xs:attribute ref="android:layout_gravity" />
     <xs:attribute ref="android:layout_width" />
     <xs:attribute ref="android:layout_height" />
     <xs:attribute ref="android:layout_margin" />
@@ -1455,6 +1444,345 @@
     <xs:attribute ref="android:layout_marginStart" />
     <xs:attribute ref="android:layout_marginEnd" />
     <xs:attribute ref="android:style" />
+  </xs:complexType>
+  <xs:element name="org.jraf.android.backport.switchwidget.Switch" type="org.jraf.android.backport.switchwidget.Switch">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: Jraf.Android.Backport.Switchwidget.Switch</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="org.jraf.android.backport.switchwidget.Switch">
+    <xs:complexContent mixed="false">
+      <xs:extension base="CompoundButton">
+        <xs:attribute ref="app:asb_thumb" />
+        <xs:attribute ref="app:asb_track" />
+        <xs:attribute ref="app:asb_textOn" />
+        <xs:attribute ref="app:asb_textOff" />
+        <xs:attribute ref="app:asb_thumbTextPadding" />
+        <xs:attribute ref="app:asb_switchTextAppearance" />
+        <xs:attribute ref="app:asb_switchMinWidth" />
+        <xs:attribute ref="app:asb_switchPadding" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.widget.ZeroTopPaddingTextView" type="com.doomonafireball.betterpickers.widget.ZeroTopPaddingTextView">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.Widgets.ZeroTopPaddingTextView</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.widget.ZeroTopPaddingTextView">
+    <xs:complexContent mixed="false">
+      <xs:extension base="TextView" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.widget.UnderlinePageIndicatorPicker" type="com.doomonafireball.betterpickers.widget.UnderlinePageIndicatorPicker">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.Widgets.UnderlinePageIndicatorPicker</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.widget.UnderlinePageIndicatorPicker">
+    <xs:complexContent mixed="false">
+      <xs:extension base="View" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.widget.PickerLinearLayout" type="com.doomonafireball.betterpickers.widget.PickerLinearLayout">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.Widgets.PickerLinearLayout</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.widget.PickerLinearLayout">
+    <xs:complexContent mixed="false">
+      <xs:extension base="LinearLayout" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.widget.AutoScrollHorizontalScrollView" type="com.doomonafireball.betterpickers.widget.AutoScrollHorizontalScrollView">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.Widgets.AutoScrollHorizontalScrollView</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.widget.AutoScrollHorizontalScrollView">
+    <xs:complexContent mixed="false">
+      <xs:extension base="HorizontalScrollView" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.widget.AccessibleTextView" type="com.doomonafireball.betterpickers.widget.AccessibleTextView">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.Widgets.AccessibleTextView</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.widget.AccessibleTextView">
+    <xs:complexContent mixed="false">
+      <xs:extension base="TextView" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.widget.AccessibleLinearLayout" type="com.doomonafireball.betterpickers.widget.AccessibleLinearLayout">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.Widgets.AccessibleLinearLayout</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.widget.AccessibleLinearLayout">
+    <xs:complexContent mixed="false">
+      <xs:extension base="LinearLayout" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.timezonepicker.TimeZonePickerView" type="com.doomonafireball.betterpickers.timezonepicker.TimeZonePickerView">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.TimeZonePickers.TimeZonePickerView</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.timezonepicker.TimeZonePickerView">
+    <xs:complexContent mixed="false">
+      <xs:extension base="LinearLayout" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.timepicker.TimerView" type="com.doomonafireball.betterpickers.timepicker.TimerView">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.TimePickers.TimerView</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.timepicker.TimerView">
+    <xs:complexContent mixed="false">
+      <xs:extension base="LinearLayout" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.timepicker.TimePicker" type="com.doomonafireball.betterpickers.timepicker.TimePicker">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.TimePickers.TimePicker</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.timepicker.TimePicker">
+    <xs:complexContent mixed="false">
+      <xs:extension base="LinearLayout" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.recurrencepicker.WeekButton" type="com.doomonafireball.betterpickers.recurrencepicker.WeekButton">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.RecurrencePickers.WeekButton</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.recurrencepicker.WeekButton">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ToggleButton" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.recurrencepicker.LinearLayoutWithMaxWidth" type="com.doomonafireball.betterpickers.recurrencepicker.LinearLayoutWithMaxWidth">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.RecurrencePickers.LinearLayoutWithMaxWidth</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.recurrencepicker.LinearLayoutWithMaxWidth">
+    <xs:complexContent mixed="false">
+      <xs:extension base="LinearLayout" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.radialtimepicker.RadialTextsView" type="com.doomonafireball.betterpickers.radialtimepicker.RadialTextsView">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.RadialTimePickers.RadialTextsView</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.radialtimepicker.RadialTextsView">
+    <xs:complexContent mixed="false">
+      <xs:extension base="View" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.radialtimepicker.RadialSelectorView" type="com.doomonafireball.betterpickers.radialtimepicker.RadialSelectorView">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.RadialTimePickers.RadialSelectorView</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.radialtimepicker.RadialSelectorView">
+    <xs:complexContent mixed="false">
+      <xs:extension base="View" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.radialtimepicker.RadialPickerLayout" type="com.doomonafireball.betterpickers.radialtimepicker.RadialPickerLayout">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.RadialTimePickers.RadialPickerLayout</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.radialtimepicker.RadialPickerLayout">
+    <xs:complexContent mixed="false">
+      <xs:extension base="FrameLayout" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.radialtimepicker.CircleView" type="com.doomonafireball.betterpickers.radialtimepicker.CircleView">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.RadialTimePickers.CircleView</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.radialtimepicker.CircleView">
+    <xs:complexContent mixed="false">
+      <xs:extension base="View" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.radialtimepicker.AmPmCirclesView" type="com.doomonafireball.betterpickers.radialtimepicker.AmPmCirclesView">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.RadialTimePickers.AmPmCirclesView</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.radialtimepicker.AmPmCirclesView">
+    <xs:complexContent mixed="false">
+      <xs:extension base="View" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.numberpicker.NumberView" type="com.doomonafireball.betterpickers.numberpicker.NumberView">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.NumberPickers.NumberView</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.numberpicker.NumberView">
+    <xs:complexContent mixed="false">
+      <xs:extension base="LinearLayout" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.numberpicker.NumberPickerErrorTextView" type="com.doomonafireball.betterpickers.numberpicker.NumberPickerErrorTextView">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.NumberPickers.NumberPickerErrorTextView</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.numberpicker.NumberPickerErrorTextView">
+    <xs:complexContent mixed="false">
+      <xs:extension base="TextView" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.numberpicker.NumberPicker" type="com.doomonafireball.betterpickers.numberpicker.NumberPicker">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.NumberPickers.NumberPicker</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.numberpicker.NumberPicker">
+    <xs:complexContent mixed="false">
+      <xs:extension base="LinearLayout" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.hmspicker.HmsView" type="com.doomonafireball.betterpickers.hmspicker.HmsView">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.HmsPickers.HmsView</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.hmspicker.HmsView">
+    <xs:complexContent mixed="false">
+      <xs:extension base="LinearLayout" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.hmspicker.HmsPicker" type="com.doomonafireball.betterpickers.hmspicker.HmsPicker">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.HmsPickers.HmsPicker</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.hmspicker.HmsPicker">
+    <xs:complexContent mixed="false">
+      <xs:extension base="LinearLayout" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.expirationpicker.ExpirationView" type="com.doomonafireball.betterpickers.expirationpicker.ExpirationView">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.ExpirationPickers.ExpirationView</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.expirationpicker.ExpirationView">
+    <xs:complexContent mixed="false">
+      <xs:extension base="LinearLayout" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.expirationpicker.ExpirationPicker" type="com.doomonafireball.betterpickers.expirationpicker.ExpirationPicker">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.ExpirationPickers.ExpirationPicker</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.expirationpicker.ExpirationPicker">
+    <xs:complexContent mixed="false">
+      <xs:extension base="LinearLayout" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.datepicker.DateView" type="com.doomonafireball.betterpickers.datepicker.DateView">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.DatePickers.DateView</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.datepicker.DateView">
+    <xs:complexContent mixed="false">
+      <xs:extension base="LinearLayout" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.datepicker.DatePicker" type="com.doomonafireball.betterpickers.datepicker.DatePicker">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.DatePickers.DatePicker</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.datepicker.DatePicker">
+    <xs:complexContent mixed="false">
+      <xs:extension base="LinearLayout" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.calendardatepicker.YearPickerView" type="com.doomonafireball.betterpickers.calendardatepicker.YearPickerView">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.CalendarDatePickers.YearPickerView</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.calendardatepicker.YearPickerView">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ListView" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.calendardatepicker.TextViewWithCircularIndicator" type="com.doomonafireball.betterpickers.calendardatepicker.TextViewWithCircularIndicator">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.CalendarDatePickers.TextViewWithCircularIndicator</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.calendardatepicker.TextViewWithCircularIndicator">
+    <xs:complexContent mixed="false">
+      <xs:extension base="TextView" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.calendardatepicker.SimpleMonthView" type="com.doomonafireball.betterpickers.calendardatepicker.SimpleMonthView">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.CalendarDatePickers.SimpleMonthView</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.calendardatepicker.SimpleMonthView">
+    <xs:complexContent mixed="false">
+      <xs:extension base="View" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.calendardatepicker.SimpleDayPickerView" type="com.doomonafireball.betterpickers.calendardatepicker.SimpleDayPickerView">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.CalendarDatePickers.SimpleDayPickerView</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.calendardatepicker.SimpleDayPickerView">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ListView" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.calendardatepicker.MonthView" type="com.doomonafireball.betterpickers.calendardatepicker.MonthView">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.CalendarDatePickers.MonthView</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.calendardatepicker.MonthView">
+    <xs:complexContent mixed="false">
+      <xs:extension base="View" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.calendardatepicker.DayPickerView" type="com.doomonafireball.betterpickers.calendardatepicker.DayPickerView">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.CalendarDatePickers.DayPickerView</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.calendardatepicker.DayPickerView">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ListView" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="com.doomonafireball.betterpickers.calendardatepicker.AccessibleDateAnimator" type="com.doomonafireball.betterpickers.calendardatepicker.AccessibleDateAnimator">
+    <xs:annotation>
+      <xs:documentation>Runtime Type: BetterPickers.CalendarDatePickers.AccessibleDateAnimator</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="com.doomonafireball.betterpickers.calendardatepicker.AccessibleDateAnimator">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ViewAnimator" />
+    </xs:complexContent>
   </xs:complexType>
   <xs:element name="com.google.android.gms.common.SignInButton" type="com.google.android.gms.common.SignInButton">
     <xs:annotation>

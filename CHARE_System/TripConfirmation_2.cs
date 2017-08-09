@@ -18,27 +18,31 @@ using Android.Text;
 using Android.Icu.Util;
 using static Android.App.TimePickerDialog;
 using System.Globalization;
+using CHARE_REST_API.Models;
+using System.Threading.Tasks;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using Newtonsoft.Json;
 
 namespace CHARE_System
 {
-    [Activity(Label = "TripConfirmation_2")]
-    public class TripConfirmation_2 : FragmentActivity, RecurrencePickerDialog.IOnRecurrenceSetListener, 
+    [Activity(Label = "Set Route")]
+    public class TripConfirmation_2 : FragmentActivity, 
         IOnTimeSetListener
     {
-        private Button btnConfirm;
-        private TextView tvArriveTime;
-        private TextView tvDay;
-        private Switch switchRepeat;
-        private Switch switchFemaleOnly;
-
+        // Intent Putextra Data
+        private Member iMember;
+        private Trip iTrip;
+        
         private LatLng originLatLng;
         private LatLng destLatLng;
 
-        private EventRecurrence er = new EventRecurrence();
-        private string mRrule;
-
-        int hour, minute;        
-
+        // Views
+        private Button btnConfirm;
+        private TextView tvArriveTime;
+        private TextView tvDay;        
+        private Switch switchFemaleOnly;
+                                
         private ToggleButton tbtnMon;
         private ToggleButton tbtnTue;
         private ToggleButton tbtnWed;
@@ -47,10 +51,16 @@ namespace CHARE_System
         private ToggleButton tbtnSat;
         private ToggleButton tbtnSun;
         private Button btnDayConfirm;
+        private bool[] arrCheckedDay;
+
+        private int hour, minute;
+        private TimeSpan onTimeSet ;
         private string strPickedDays = "";
 
+        private HttpClient client;
+
         struct CustomPair
-        {
+        {            
             public int key;
             public string value;
 
@@ -60,71 +70,88 @@ namespace CHARE_System
                 this.value = value;
             }
         }
-
-        public void OnRecurrenceSet(string rrule)
-        {
-            mRrule = rrule;
-            if (mRrule != null)
-            {
-                er.Parse(mRrule);
-            }
-
-            Resources r = Resources;
-            String repeatString = "";
-            bool enabled;
-            if (!TextUtils.IsEmpty(mRrule))
-            {
-                repeatString = EventRecurrenceFormatter.GetRepeatString(this, r, er, true);
-            }
-
-            Console.WriteLine("=============================================================");
-            Console.WriteLine(mRrule + "\n" + repeatString);
-            Console.WriteLine("=============================================================");
-
-        }
-
+       
         public void OnTimeSet(TimePicker view, int hourOfDay, int minute)
         {
+            // Set global hour and minute to selected time for tracking
             this.hour = hourOfDay;
             this.minute = minute;
 
+            // Convert time to second
             int totalInSecond = (hourOfDay * 3600) + (minute * 60);
-            TimeSpan pickedTime = TimeSpan.FromSeconds(totalInSecond);
-            string strTime = DateTime.ParseExact(pickedTime.ToString(@"hh\:mm"), "HH:mm", null).ToString("hh:mm tt", 
+            // Create timespan from the total second
+            onTimeSet = TimeSpan.FromSeconds(totalInSecond);
+            // Parse timespan to the time formate of e.g 12:00 AM
+            string strTime = DateTime.ParseExact(onTimeSet.ToString(@"hh\:mm"), "HH:mm", null).ToString("hh:mm tt", 
                 CultureInfo.GetCultureInfo("en-US"));
-           
+            
             tvArriveTime.Text = strTime;
-            Console.WriteLine("=============================================");
-            Console.WriteLine("Hour = " + hourOfDay);
-            Console.WriteLine("Mins = " + minute);
-            Console.WriteLine("=============================================");
+        }
+
+        override
+        public bool OnOptionsItemSelected(IMenuItem item)
+        {           
+            Finish();
+            return true;
+        }
+
+        private void BtnConfirm_Click(Object sender, EventArgs e)
+        {
+            // Assign user input and request POST to REST API            
+
+            iTrip.arriveTime = onTimeSet.ToString();
+            iTrip.days = tvDay.Text.ToString();
+
+            if (switchFemaleOnly.Checked)
+                iTrip.femaleOnly = "Yes";
+            else
+                iTrip.femaleOnly = "No";
+
+            if (tvArriveTime.Text.ToString().Equals("Set time"))
+                Toast.MakeText(this, "Set arrive time", ToastLength.Long).Show();
+            else if (tvDay.Text.ToString().Equals("Set days") || tvDay.Text.ToString().Trim() == "")
+                Toast.MakeText(this, "Select day", ToastLength.Long).Show();
+            else
+            {
+                iTrip.MemberID = iMember.MemberID;
+                var json = JsonConvert.SerializeObject(iTrip);
+                Console.WriteLine("========================= 1 =========================");
+                Console.WriteLine(json.ToString());
+                Console.WriteLine("========================= 2 =========================");                
+                CreateTripAsync(iTrip);
+            }
         }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.TripConfirmation_2);
+            SetContentView(Resource.Layout.TripConfirmation_2);            
+
+            ActionBar ab = ActionBar;
+            ab.SetDisplayHomeAsUpEnabled(true);
+
+            client = new HttpClient();
+            client.BaseAddress = new Uri(GetString(Resource.String.RestAPIBaseAddress));
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            iMember = JsonConvert.DeserializeObject<Member>(Intent.GetStringExtra("Member"));
+            iTrip = JsonConvert.DeserializeObject<Trip>(Intent.GetStringExtra("Trip"));
+            
+            var o = iTrip.origin.Split(',');
+            var d = iTrip.destination.Split(',');
+
+            originLatLng = new LatLng(Double.Parse(o[0]), Double.Parse(o[1]));
+            destLatLng = new LatLng(Double.Parse(d[0]), Double.Parse(d[1]));
+
+            arrCheckedDay = new bool[7];
+            SetDayArrayBool(false);
 
             btnConfirm = (Button)FindViewById(Resource.Id.btn_tripcon_comfirm);
-
             tvArriveTime = (TextView)FindViewById(Resource.Id.textview_arrivetime);
             tvDay = (TextView)FindViewById(Resource.Id.textview_day);
-            switchRepeat = (Switch)FindViewById(Resource.Id.switch_repeat);
             switchFemaleOnly = (Switch)FindViewById(Resource.Id.switch_femaleonly);
-
             
-            btnConfirm.Click += (sender, e) =>
-            {
-                /*
-                Intent intent = new Intent(this, typeof(TripConfirmation_2));
-                intent.PutExtra("originLat", originLatLng.Latitude.ToString());
-                intent.PutExtra("originLng", originLatLng.Longitude.ToString());
-                intent.PutExtra("destLat", destLatLng.Latitude.ToString());
-                intent.PutExtra("destLng", destLatLng.Longitude.ToString());
-                StartActivity(intent);
-                */
-            };
-
             Android.Icu.Util.Calendar mcurrentTime = Android.Icu.Util.Calendar.Instance;
             hour = mcurrentTime.Get(Android.Icu.Util.Calendar.HourOfDay);
             minute = mcurrentTime.Get(Android.Icu.Util.Calendar.Minute);
@@ -152,28 +179,67 @@ namespace CHARE_System
                 tbtnSat = (ToggleButton)dialog.FindViewById(Resource.Id.togglebtn_sat);
                 tbtnSun = (ToggleButton)dialog.FindViewById(Resource.Id.togglebtn_sun);
 
+                var tbtnList = new List<ToggleButton>
+                {
+                    tbtnMon,
+                    tbtnTue,
+                    tbtnWed,
+                    tbtnThu,
+                    tbtnFri,
+                    tbtnSat,
+                    tbtnSun
+                };
+
+                for (int i = 0; i < tbtnList.Count; i++)
+                {
+                    if (arrCheckedDay[i])
+                        tbtnList[i].Checked = true;
+                }
+
                 btnDayConfirm = (Button)dialog.FindViewById(Resource.Id.btn_tripcon_day_confirm);
                 btnDayConfirm.Click += (sender2, e2) =>
                 {
                     var listDay = new List<KeyValuePair<bool, string>>();
                     List<CustomPair> listDays = new List<CustomPair>();
+                    SetDayArrayBool(false);
 
                     strPickedDays = "";
 
                     if (tbtnMon.Checked)
+                    {
                         listDays.Add(new CustomPair(1, "Mon"));
+                        arrCheckedDay[0] = true;
+                    }
                     if (tbtnTue.Checked)
+                    {
                         listDays.Add(new CustomPair(2, "Tue"));
+                        arrCheckedDay[1] = true;
+                    }
                     if (tbtnWed.Checked)
+                    {
                         listDays.Add(new CustomPair(3, "Wed"));
+                        arrCheckedDay[2] = true;
+                    }
                     if (tbtnThu.Checked)
+                    {
                         listDays.Add(new CustomPair(4, "Thu"));
+                        arrCheckedDay[3] = true;
+                    }
                     if (tbtnFri.Checked)
+                    {
                         listDays.Add(new CustomPair(5, "Fri"));
+                        arrCheckedDay[4] = true;
+                    }
                     if (tbtnSat.Checked)
+                    {
                         listDays.Add(new CustomPair(6, "Sat"));
+                        arrCheckedDay[5] = true;
+                    }
                     if (tbtnSun.Checked)
+                    {
                         listDays.Add(new CustomPair(7, "Sun"));
+                        arrCheckedDay[6] = true;
+                    }
 
                     for (int i = 0; i < listDays.Count(); i++)
                     {
@@ -188,15 +254,31 @@ namespace CHARE_System
                 dialog.Show();
             };
 
+            btnConfirm.Click += BtnConfirm_Click;
+        }
 
+        private void SetDayArrayBool(bool b)
+        {
+            for (int i = 0; i < arrCheckedDay.Length; i += 2)
+            {
+                arrCheckedDay[i] = b;
+            }
+        }
 
-            double originLat = Convert.ToDouble(Intent.GetStringExtra("originLat") ?? "Data not available");
-            double originLng = Convert.ToDouble(Intent.GetStringExtra("originLng") ?? "Data not available");
-            double destLat = Convert.ToDouble(Intent.GetStringExtra("destLat") ?? "Data not available");
-            double destLng = Convert.ToDouble(Intent.GetStringExtra("destLng") ?? "Data not available");
-
-            originLatLng = new LatLng(originLat, originLng);
-            destLatLng = new LatLng(destLat, destLng);            
+        async void CreateTripAsync(Trip product)
+        {            
+            HttpResponseMessage response = await client.PostAsJsonAsync("api/Trips", product);
+            Console.WriteLine("================ 1 ================ ");
+            //response.EnsureSuccessStatusCode();
+            Console.WriteLine("Response code " + response.StatusCode.ToString());
+            Console.WriteLine("Response code 2 " + response.RequestMessage.ToString());
+            Console.WriteLine("Response code 3 " + response.Content.ToString());
+            Console.WriteLine("================ 2 ================ ");
+            if (response.IsSuccessStatusCode)
+                Toast.MakeText(this, "Trip created.", ToastLength.Short).Show();
+            else
+                Toast.MakeText(this, "Failed to create trip.", ToastLength.Short).Show();
+            this.Finish();
         }
     }
 }
