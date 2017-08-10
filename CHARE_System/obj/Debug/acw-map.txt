@@ -1,3 +1,7 @@
+CHARE_System.InitialActivity, CHARE_System;md5e8fccd3fcd8f74a82435f3bbd25804a2.InitialActivity
+CHARE_System.InitialActivity, CHARE_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5e8fccd3fcd8f74a82435f3bbd25804a2.InitialActivity
+CHARE_System.InitialActivity;md5e8fccd3fcd8f74a82435f3bbd25804a2.InitialActivity
+chare_system.InitialActivity;md5e8fccd3fcd8f74a82435f3bbd25804a2.InitialActivity
 CHARE_System.LoginActivity, CHARE_System;md5e8fccd3fcd8f74a82435f3bbd25804a2.LoginActivity
 CHARE_System.LoginActivity, CHARE_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5e8fccd3fcd8f74a82435f3bbd25804a2.LoginActivity
 CHARE_System.LoginActivity;md5e8fccd3fcd8f74a82435f3bbd25804a2.LoginActivity

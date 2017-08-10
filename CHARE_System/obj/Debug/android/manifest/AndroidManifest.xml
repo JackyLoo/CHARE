@@ -8,17 +8,18 @@
   <uses-permission android:name="android.permission.CAMERA" />
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-  <application android:label="CHARE_System" android:name="android.app.Application" android:allowBackup="true" android:debuggable="true">
+  <application android:label="CHARE_System" android:name="android.app.Application" android:allowBackup="true" android:icon="@drawable/icon" android:debuggable="true">
     <meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/GoogleKey" />
     <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
-    <activity android:label="LoginActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.LoginActivity" />
-    <activity android:label="CHARE_App" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.MainActivity" />
-    <activity android:icon="@drawable/icon" android:label="SignupActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.SignupActivity">
+    <activity android:icon="@drawable/icon" android:label="CHARE" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.InitialActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
+    <activity android:label="LoginActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.LoginActivity" />
+    <activity android:label="CHARE_App" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.MainActivity" />
+    <activity android:label="SignupActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.SignupActivity" />
     <activity android:label="SignupCarActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.SignupCarActivity" />
     <activity android:label="Route Details" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.TripConfirmation_1" />
     <activity android:label="Set Route" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.TripConfirmation_2" />

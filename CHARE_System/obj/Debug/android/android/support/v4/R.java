@@ -1012,10 +1012,12 @@ containing a value of this type.
     }
     public static final class string {
         public static final int ApplicationName=0x7f06005a;
-        public static final int AzureAPI=0x7f06005c;
-        public static final int GoogleKey=0x7f06005b;
+        public static final int AzureAPI=0x7f06005e;
+        public static final int GoogleKey=0x7f06005d;
         public static final int Hello=0x7f060059;
-        public static final int RestAPIBaseAddress=0x7f06005d;
+        public static final int PreferenceFileName=0x7f06005b;
+        public static final int PreferenceSavedMember=0x7f06005c;
+        public static final int RestAPIBaseAddress=0x7f06005f;
         public static final int acessibility_recurrence_choose_end_date_description=0x7f060013;
         public static final int ampm_circle_radius_multiplier=0x7f060014;
         public static final int circle_radius_multiplier=0x7f060015;

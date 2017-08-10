@@ -17,8 +17,8 @@ using System.Threading.Tasks;
 
 namespace CHARE_System
 {
-    [Activity(Label = "SignupActivity", MainLauncher = true, Icon = "@drawable/icon")]
-    //[Activity(Label = "SignupActivity")]
+    //[Activity(Label = "SignupActivity", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "SignupActivity")]
     public class SignupActivity : Activity
     {
         private ProgressDialog progress;

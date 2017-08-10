@@ -1822,17 +1822,23 @@ namespace CHARE_System
 			// aapt resource value: 0x7f06005a
 			public const int ApplicationName = 2131099738;
 			
-			// aapt resource value: 0x7f06005c
-			public const int AzureAPI = 2131099740;
+			// aapt resource value: 0x7f06005e
+			public const int AzureAPI = 2131099742;
 			
-			// aapt resource value: 0x7f06005b
-			public const int GoogleKey = 2131099739;
+			// aapt resource value: 0x7f06005d
+			public const int GoogleKey = 2131099741;
 			
 			// aapt resource value: 0x7f060059
 			public const int Hello = 2131099737;
 			
-			// aapt resource value: 0x7f06005d
-			public const int RestAPIBaseAddress = 2131099741;
+			// aapt resource value: 0x7f06005b
+			public const int PreferenceFileName = 2131099739;
+			
+			// aapt resource value: 0x7f06005c
+			public const int PreferenceSavedMember = 2131099740;
+			
+			// aapt resource value: 0x7f06005f
+			public const int RestAPIBaseAddress = 2131099743;
 			
 			// aapt resource value: 0x7f060013
 			public const int acessibility_recurrence_choose_end_date_description = 2131099667;

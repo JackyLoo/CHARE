@@ -47,8 +47,8 @@ namespace CHARE_System
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            SetContentView(Resource.Layout.Main);                        
-            
+            SetContentView(Resource.Layout.Main);            
+
             originAutocompleteFragment = (PlaceAutocompleteFragment)
                 FragmentManager.FindFragmentById(Resource.Id.place_autocomplete_origin_fragment);
             originAutocompleteFragment.SetHint("Enter the origin");            
