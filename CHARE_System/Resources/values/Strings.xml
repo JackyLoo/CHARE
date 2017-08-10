@@ -5,5 +5,24 @@
   <string name="GoogleKey">AIzaSyD3O4_PEgObUtgmyDo2ldpr_SuFFeNjUTo</string>
   <string name="AzureAPI">http://charerestapi.azurewebsites.net/api/</string>
   <string name="RestAPIBaseAddress">http://charerestapi.azurewebsites.net/</string>
-  
+  <string-array name="car_color_array">
+    <item>Black</item>
+    <item>Blue</item>
+    <item>Brown</item>
+    <item>Green</item>
+    <item>Grey</item>
+    <item>Red</item>
+    <item>Silver</item>
+    <item>White</item>    
+  </string-array>
+  <string-array name="signup_gender">
+    <item>--Select Gender--</item>
+    <item>Male</item>
+    <item>Female</item>
+  </string-array>
+  <string-array name="signup_account_type">
+    <item>--Select Account Type--</item>
+    <item>Driver</item>
+    <item>Passenger</item>
+  </string-array>
 </resources>

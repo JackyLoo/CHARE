@@ -37,6 +37,9 @@ namespace CHARE_System
 			// aapt resource value: 0x7f080001
 			public const int backup_country_names = 2131230721;
 			
+			// aapt resource value: 0x7f08000c
+			public const int car_color_array = 2131230732;
+			
 			// aapt resource value: 0x7f080002
 			public const int recurrence_freq = 2131230722;
 			
@@ -60,6 +63,12 @@ namespace CHARE_System
 			
 			// aapt resource value: 0x7f080009
 			public const int repeat_by_nth_wed = 2131230729;
+			
+			// aapt resource value: 0x7f08000e
+			public const int signup_account_type = 2131230734;
+			
+			// aapt resource value: 0x7f08000d
+			public const int signup_gender = 2131230733;
 			
 			// aapt resource value: 0x7f08000a
 			public const int timezone_rename_ids = 2131230730;
@@ -1116,29 +1125,35 @@ namespace CHARE_System
 			// aapt resource value: 0x7f09000d
 			public const int auto = 2131296269;
 			
-			// aapt resource value: 0x7f090099
-			public const int btn_tripcon_comfirm = 2131296409;
+			// aapt resource value: 0x7f0900a0
+			public const int btn_tripcon_comfirm = 2131296416;
 			
-			// aapt resource value: 0x7f090095
-			public const int btn_tripcon_continue = 2131296405;
+			// aapt resource value: 0x7f09009c
+			public const int btn_tripcon_continue = 2131296412;
 			
 			// aapt resource value: 0x7f09002d
 			public const int btn_tripcon_day_confirm = 2131296301;
 			
-			// aapt resource value: 0x7f090082
-			public const int button1 = 2131296386;
+			// aapt resource value: 0x7f090089
+			public const int button1 = 2131296393;
 			
-			// aapt resource value: 0x7f090083
-			public const int button2 = 2131296387;
+			// aapt resource value: 0x7f09008a
+			public const int button2 = 2131296394;
 			
 			// aapt resource value: 0x7f09001b
 			public const int cancel_button = 2131296283;
 			
+			// aapt resource value: 0x7f090083
+			public const int carmake = 2131296387;
+			
+			// aapt resource value: 0x7f090086
+			public const int carplate = 2131296390;
+			
 			// aapt resource value: 0x7f09005c
 			public const int center_view = 2131296348;
 			
-			// aapt resource value: 0x7f09008f
-			public const int clear_search = 2131296399;
+			// aapt resource value: 0x7f090096
+			public const int clear_search = 2131296406;
 			
 			// aapt resource value: 0x7f09000e
 			public const int dark = 2131296270;
@@ -1233,9 +1248,6 @@ namespace CHARE_System
 			// aapt resource value: 0x7f09003b
 			public const int first = 2131296315;
 			
-			// aapt resource value: 0x7f09007b
-			public const int fname = 2131296379;
-			
 			// aapt resource value: 0x7f09003e
 			public const int fourth = 2131296318;
 			
@@ -1269,11 +1281,11 @@ namespace CHARE_System
 			// aapt resource value: 0x7f090033
 			public const int hours_ones = 2131296307;
 			
-			// aapt resource value: 0x7f090089
-			public const int hours_seperator = 2131296393;
+			// aapt resource value: 0x7f090090
+			public const int hours_seperator = 2131296400;
 			
-			// aapt resource value: 0x7f090088
-			public const int hours_tens = 2131296392;
+			// aapt resource value: 0x7f09008f
+			public const int hours_tens = 2131296399;
 			
 			// aapt resource value: 0x7f090003
 			public const int hybrid = 2131296259;
@@ -1293,14 +1305,14 @@ namespace CHARE_System
 			// aapt resource value: 0x7f09006d
 			public const int intervalPreText = 2131296365;
 			
-			// aapt resource value: 0x7f090084
-			public const int key_left = 2131296388;
+			// aapt resource value: 0x7f09008b
+			public const int key_left = 2131296395;
 			
-			// aapt resource value: 0x7f090085
-			public const int key_middle = 2131296389;
+			// aapt resource value: 0x7f09008c
+			public const int key_middle = 2131296396;
 			
-			// aapt resource value: 0x7f090086
-			public const int key_right = 2131296390;
+			// aapt resource value: 0x7f09008d
+			public const int key_right = 2131296397;
 			
 			// aapt resource value: 0x7f090024
 			public const int keyboard_indicator = 2131296292;
@@ -1317,23 +1329,20 @@ namespace CHARE_System
 			// aapt resource value: 0x7f090067
 			public const int line = 2131296359;
 			
-			// aapt resource value: 0x7f09009a
-			public const int listview_background_shape = 2131296410;
+			// aapt resource value: 0x7f0900a1
+			public const int listview_background_shape = 2131296417;
 			
-			// aapt resource value: 0x7f090091
-			public const int lnlyt_tripcon_continue = 2131296401;
+			// aapt resource value: 0x7f090098
+			public const int lnlyt_tripcon_continue = 2131296408;
 			
-			// aapt resource value: 0x7f09008d
-			public const int location = 2131296397;
+			// aapt resource value: 0x7f090094
+			public const int location = 2131296404;
 			
-			// aapt resource value: 0x7f090080
-			public const int loginlink = 2131296384;
+			// aapt resource value: 0x7f090082
+			public const int loginlink = 2131296386;
 			
-			// aapt resource value: 0x7f090081
-			public const int mLlayoutBottomButtons = 2131296385;
-			
-			// aapt resource value: 0x7f09007c
-			public const int mail = 2131296380;
+			// aapt resource value: 0x7f090088
+			public const int mLlayoutBottomButtons = 2131296392;
 			
 			// aapt resource value: 0x7f090050
 			public const int minus_label = 2131296336;
@@ -1419,9 +1428,6 @@ namespace CHARE_System
 			// aapt resource value: 0x7f090078
 			public const int postEndCount = 2131296376;
 			
-			// aapt resource value: 0x7f09007e
-			public const int pswrd = 2131296382;
-			
 			// aapt resource value: 0x7f090073
 			public const int repeatMonthlyByNthDayOfMonth = 2131296371;
 			
@@ -1434,8 +1440,8 @@ namespace CHARE_System
 			// aapt resource value: 0x7f090006
 			public const int satellite = 2131296262;
 			
-			// aapt resource value: 0x7f09008e
-			public const int searchBox = 2131296398;
+			// aapt resource value: 0x7f090095
+			public const int searchBox = 2131296405;
 			
 			// aapt resource value: 0x7f09003c
 			public const int second = 2131296316;
@@ -1458,8 +1464,35 @@ namespace CHARE_System
 			// aapt resource value: 0x7f090042
 			public const int signinbtn = 2131296322;
 			
+			// aapt resource value: 0x7f090080
+			public const int signup_account_type = 2131296384;
+			
+			// aapt resource value: 0x7f090085
+			public const int signup_carcolor = 2131296389;
+			
+			// aapt resource value: 0x7f090084
+			public const int signup_carmodel = 2131296388;
+			
+			// aapt resource value: 0x7f09007d
+			public const int signup_con_pswrd = 2131296381;
+			
 			// aapt resource value: 0x7f09007f
-			public const int signupbtn = 2131296383;
+			public const int signup_gender = 2131296383;
+			
+			// aapt resource value: 0x7f09007c
+			public const int signup_password = 2131296380;
+			
+			// aapt resource value: 0x7f09007e
+			public const int signup_phone = 2131296382;
+			
+			// aapt resource value: 0x7f09007b
+			public const int signup_username = 2131296379;
+			
+			// aapt resource value: 0x7f090081
+			public const int signupbtn = 2131296385;
+			
+			// aapt resource value: 0x7f090087
+			public const int signupcarbtn = 2131296391;
 			
 			// aapt resource value: 0x7f090043
 			public const int signuplink = 2131296323;
@@ -1473,8 +1506,8 @@ namespace CHARE_System
 			// aapt resource value: 0x7f09005a
 			public const int switchWidget = 2131296346;
 			
-			// aapt resource value: 0x7f090098
-			public const int switch_femaleonly = 2131296408;
+			// aapt resource value: 0x7f09009f
+			public const int switch_femaleonly = 2131296415;
 			
 			// aapt resource value: 0x7f090007
 			public const int terrain = 2131296263;
@@ -1482,20 +1515,20 @@ namespace CHARE_System
 			// aapt resource value: 0x7f090045
 			public const int test_main_content = 2131296325;
 			
-			// aapt resource value: 0x7f090096
-			public const int textview_arrivetime = 2131296406;
+			// aapt resource value: 0x7f09009d
+			public const int textview_arrivetime = 2131296413;
 			
-			// aapt resource value: 0x7f090093
-			public const int textview_cost = 2131296403;
+			// aapt resource value: 0x7f09009a
+			public const int textview_cost = 2131296410;
 			
-			// aapt resource value: 0x7f090097
-			public const int textview_day = 2131296407;
+			// aapt resource value: 0x7f09009e
+			public const int textview_day = 2131296414;
 			
-			// aapt resource value: 0x7f090092
-			public const int textview_distance = 2131296402;
+			// aapt resource value: 0x7f090099
+			public const int textview_distance = 2131296409;
 			
-			// aapt resource value: 0x7f090094
-			public const int textview_time = 2131296404;
+			// aapt resource value: 0x7f09009b
+			public const int textview_time = 2131296411;
 			
 			// aapt resource value: 0x7f09003d
 			public const int third = 2131296317;
@@ -1506,8 +1539,8 @@ namespace CHARE_System
 			// aapt resource value: 0x7f090065
 			public const int time_display_background = 2131296357;
 			
-			// aapt resource value: 0x7f09008c
-			public const int time_offset = 2131296396;
+			// aapt resource value: 0x7f090093
+			public const int time_offset = 2131296403;
 			
 			// aapt resource value: 0x7f090066
 			public const int time_picker = 2131296358;
@@ -1515,14 +1548,14 @@ namespace CHARE_System
 			// aapt resource value: 0x7f090064
 			public const int time_picker_dialog = 2131296356;
 			
-			// aapt resource value: 0x7f09008b
-			public const int time_zone = 2131296395;
+			// aapt resource value: 0x7f090092
+			public const int time_zone = 2131296402;
 			
-			// aapt resource value: 0x7f090087
-			public const int timer_time_text = 2131296391;
+			// aapt resource value: 0x7f09008e
+			public const int timer_time_text = 2131296398;
 			
-			// aapt resource value: 0x7f090090
-			public const int timezonelist = 2131296400;
+			// aapt resource value: 0x7f090097
+			public const int timezonelist = 2131296407;
 			
 			// aapt resource value: 0x7f09002a
 			public const int togglebtn_fri = 2131296298;
@@ -1545,11 +1578,8 @@ namespace CHARE_System
 			// aapt resource value: 0x7f090028
 			public const int togglebtn_wed = 2131296296;
 			
-			// aapt resource value: 0x7f09007d
-			public const int usrusr = 2131296381;
-			
-			// aapt resource value: 0x7f09008a
-			public const int value = 2131296394;
+			// aapt resource value: 0x7f090091
+			public const int value = 2131296401;
 			
 			// aapt resource value: 0x7f090070
 			public const int weekGroup = 2131296368;
@@ -1701,40 +1731,43 @@ namespace CHARE_System
 			public const int Signup = 2130903075;
 			
 			// aapt resource value: 0x7f030024
-			public const int test = 2130903076;
+			public const int Signup_Car = 2130903076;
 			
 			// aapt resource value: 0x7f030025
-			public const int three_keys_view = 2130903077;
+			public const int test = 2130903077;
 			
 			// aapt resource value: 0x7f030026
-			public const int three_keys_view_leftright = 2130903078;
+			public const int three_keys_view = 2130903078;
 			
 			// aapt resource value: 0x7f030027
-			public const int three_keys_view_right_drawable = 2130903079;
+			public const int three_keys_view_leftright = 2130903079;
 			
 			// aapt resource value: 0x7f030028
-			public const int three_keys_view_text = 2130903080;
+			public const int three_keys_view_right_drawable = 2130903080;
 			
 			// aapt resource value: 0x7f030029
-			public const int time_picker_dialog = 2130903081;
+			public const int three_keys_view_text = 2130903081;
 			
 			// aapt resource value: 0x7f03002a
-			public const int time_picker_view = 2130903082;
+			public const int time_picker_dialog = 2130903082;
 			
 			// aapt resource value: 0x7f03002b
-			public const int time_zone_filter_item = 2130903083;
+			public const int time_picker_view = 2130903083;
 			
 			// aapt resource value: 0x7f03002c
-			public const int time_zone_item = 2130903084;
+			public const int time_zone_filter_item = 2130903084;
 			
 			// aapt resource value: 0x7f03002d
-			public const int timezonepickerview = 2130903085;
+			public const int time_zone_item = 2130903085;
 			
 			// aapt resource value: 0x7f03002e
-			public const int TripConfirmation_1 = 2130903086;
+			public const int timezonepickerview = 2130903086;
 			
 			// aapt resource value: 0x7f03002f
-			public const int TripConfirmation_2 = 2130903087;
+			public const int TripConfirmation_1 = 2130903087;
+			
+			// aapt resource value: 0x7f030030
+			public const int TripConfirmation_2 = 2130903088;
 			
 			static Layout()
 			{

@@ -21,11 +21,13 @@ using System.Runtime.Serialization;
 
 namespace CHARE_System
 {
-    [Activity(Label = "LoginActivity", MainLauncher = true, Icon = "@drawable/icon")]
-    //[Activity(Label = "LoginActivity")]
+    //[Activity(Label = "LoginActivity", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "LoginActivity")]
 
     public class LoginActivity : Activity
     {
+        private ProgressDialog progress;
+
         private EditText etUsername;
         private EditText etPassword;
         
@@ -33,7 +35,13 @@ namespace CHARE_System
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Login);
-            
+
+            progress = new ProgressDialog(this);
+            progress.Indeterminate = true;
+            progress.SetProgressStyle(ProgressDialogStyle.Spinner);
+            progress.SetMessage("Login Account...");
+            progress.SetCancelable(false);
+
             TextView signBtn = FindViewById<TextView>(Resource.Id.signinbtn);
             etUsername = FindViewById<EditText>(Resource.Id.et_login_username);
             etPassword = FindViewById<EditText>(Resource.Id.et_login_password);
@@ -76,7 +84,18 @@ namespace CHARE_System
             else
             {
                 string url = GetString(Resource.String.AzureAPI) + "Members?username=" + etUsername.Text.ToString() + "&password=" + etPassword.Text.ToString();
+
+                RunOnUiThread(() =>
+                {
+                    progress.Show();
+                });
+
                 string downloadedString = await fnDownloadString(url);
+
+                RunOnUiThread(() =>
+                {
+                    progress.Dismiss();
+                });
 
                 if (downloadedString.Equals("Exception"))
                     Toast.MakeText(this, "Invalid username or password", ToastLength.Long).Show();

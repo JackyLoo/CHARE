@@ -33,57 +33,11 @@ namespace CHARE_REST_API.Models
         public int duration { get; set; }
     }
 
-    public class Member1
-    {
-        public List<object> Ratings { get; set; }
-        public List<object> Requests { get; set; }
-        public List<object> Requests1 { get; set; }
-        public List<Trip> Trips { get; set; }
-        public List<object> Vehicles { get; set; }
-        public int MemberID { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
-        public string gender { get; set; }
-        public string phoneno { get; set; }
-        public string type { get; set; }
-    }
-
-    public class Member2
-    {
-        public List<object> Ratings { get; set; }
-        public List<object> Requests { get; set; }
-        public List<object> Requests1 { get; set; }
-        public List<object> Trips { get; set; }
-        public List<object> Vehicles { get; set; }
-        public int MemberID { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
-        public string gender { get; set; }
-        public string phoneno { get; set; }
-        public string type { get; set; }
-    }
-
-    public class Trip1
-    {
-        public Member2 Member { get; set; }
-        public List<object> Routes { get; set; }
-        public List<object> Requests { get; set; }
-        public List<object> Requests1 { get; set; }
-        public int TripID { get; set; }
-        public int MemberID { get; set; }
-        public string origin { get; set; }
-        public string destination { get; set; }
-        public string arriveTime { get; set; }
-        public string femaleOnly { get; set; }
-        public int cost { get; set; }
-        public int distance { get; set; }
-        public string days { get; set; }
-    }
-
+    
     public class Request
     {
-        public Member1 Member1 { get; set; }
-        public Trip1 Trip1 { get; set; }
+        public Member Member1 { get; set; }
+        public Trip Trip1 { get; set; }
         public int RequestID { get; set; }
         public int SenderID { get; set; }
         public int DriverID { get; set; }
@@ -99,21 +53,18 @@ namespace CHARE_REST_API.Models
     }
 
     public class Vehicle
-    {
-        public CarModel CarModel { get; set; }
+    {        
         public int VehicleID { get; set; }
-        public int MemberID { get; set; }
-        public int CarModelID { get; set; }
+        public int MemberID { get; set; }        
         public int availableSeat { get; set; }
+        public string make { get; set; }
+        public string model { get; set; }
+        public string color { get; set; }
+        public string plateNo { get; set; }        
     }
 
     public class Member
-    {
-        public List<Rating> Ratings { get; set; }
-        public List<Request> Requests { get; set; }
-        public List<object> Requests1 { get; set; }
-        public List<object> Trips { get; set; }
-        public List<Vehicle> Vehicles { get; set; }
+    {        
         public int MemberID { get; set; }
         public string username { get; set; }
         public string password { get; set; }

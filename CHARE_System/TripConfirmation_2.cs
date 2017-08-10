@@ -70,58 +70,7 @@ namespace CHARE_System
                 this.value = value;
             }
         }
-       
-        public void OnTimeSet(TimePicker view, int hourOfDay, int minute)
-        {
-            // Set global hour and minute to selected time for tracking
-            this.hour = hourOfDay;
-            this.minute = minute;
-
-            // Convert time to second
-            int totalInSecond = (hourOfDay * 3600) + (minute * 60);
-            // Create timespan from the total second
-            onTimeSet = TimeSpan.FromSeconds(totalInSecond);
-            // Parse timespan to the time formate of e.g 12:00 AM
-            string strTime = DateTime.ParseExact(onTimeSet.ToString(@"hh\:mm"), "HH:mm", null).ToString("hh:mm tt", 
-                CultureInfo.GetCultureInfo("en-US"));
-            
-            tvArriveTime.Text = strTime;
-        }
-
-        override
-        public bool OnOptionsItemSelected(IMenuItem item)
-        {           
-            Finish();
-            return true;
-        }
-
-        private void BtnConfirm_Click(Object sender, EventArgs e)
-        {
-            // Assign user input and request POST to REST API            
-
-            iTrip.arriveTime = onTimeSet.ToString();
-            iTrip.days = tvDay.Text.ToString();
-
-            if (switchFemaleOnly.Checked)
-                iTrip.femaleOnly = "Yes";
-            else
-                iTrip.femaleOnly = "No";
-
-            if (tvArriveTime.Text.ToString().Equals("Set time"))
-                Toast.MakeText(this, "Set arrive time", ToastLength.Long).Show();
-            else if (tvDay.Text.ToString().Equals("Set days") || tvDay.Text.ToString().Trim() == "")
-                Toast.MakeText(this, "Select day", ToastLength.Long).Show();
-            else
-            {
-                iTrip.MemberID = iMember.MemberID;
-                var json = JsonConvert.SerializeObject(iTrip);
-                Console.WriteLine("========================= 1 =========================");
-                Console.WriteLine(json.ToString());
-                Console.WriteLine("========================= 2 =========================");                
-                CreateTripAsync(iTrip);
-            }
-        }
-
+               
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -255,6 +204,57 @@ namespace CHARE_System
             };
 
             btnConfirm.Click += BtnConfirm_Click;
+        }
+
+        public void OnTimeSet(TimePicker view, int hourOfDay, int minute)
+        {
+            // Set global hour and minute to selected time for tracking
+            this.hour = hourOfDay;
+            this.minute = minute;
+
+            // Convert time to second
+            int totalInSecond = (hourOfDay * 3600) + (minute * 60);
+            // Create timespan from the total second
+            onTimeSet = TimeSpan.FromSeconds(totalInSecond);
+            // Parse timespan to the time formate of e.g 12:00 AM
+            string strTime = DateTime.ParseExact(onTimeSet.ToString(@"hh\:mm"), "HH:mm", null).ToString("hh:mm tt",
+                CultureInfo.GetCultureInfo("en-US"));
+
+            tvArriveTime.Text = strTime;
+        }
+
+        override
+        public bool OnOptionsItemSelected(IMenuItem item)
+        {
+            Finish();
+            return true;
+        }
+
+        private void BtnConfirm_Click(Object sender, EventArgs e)
+        {
+            // Assign user input and request POST to REST API            
+
+            iTrip.arriveTime = onTimeSet.ToString();
+            iTrip.days = tvDay.Text.ToString();
+
+            if (switchFemaleOnly.Checked)
+                iTrip.femaleOnly = "Yes";
+            else
+                iTrip.femaleOnly = "No";
+
+            if (tvArriveTime.Text.ToString().Equals("Set time"))
+                Toast.MakeText(this, "Set arrive time", ToastLength.Long).Show();
+            else if (tvDay.Text.ToString().Equals("Set days") || tvDay.Text.ToString().Trim() == "")
+                Toast.MakeText(this, "Select day", ToastLength.Long).Show();
+            else
+            {
+                iTrip.MemberID = iMember.MemberID;
+                var json = JsonConvert.SerializeObject(iTrip);
+                Console.WriteLine("========================= 1 =========================");
+                Console.WriteLine(json.ToString());
+                Console.WriteLine("========================= 2 =========================");
+                CreateTripAsync(iTrip);
+            }
         }
 
         private void SetDayArrayBool(bool b)

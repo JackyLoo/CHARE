@@ -52,6 +52,7 @@ C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\
 C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\drawable\toggle_thu.xml
 C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\drawable\toggle_tue.xml
 C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\drawable\toggle_wed.xml
+C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\signup_car.xml
 C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\main.xml
 C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\values\strings.xml
 C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\drawable\icon.png

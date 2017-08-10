@@ -23,6 +23,8 @@ namespace CHARE_System
     [Activity(Label = "Route Details")]
     public class TripConfirmation_1 : Activity, IOnMapReadyCallback
     {
+        private ProgressDialog progress;
+
         // Intent Putextra Data
         private Trip iTrip;
 
@@ -40,65 +42,11 @@ namespace CHARE_System
         private TextView txtviewDistance;
         private TextView txtviewDuration;
         private TextView txtviewCost;
-        private Button btnCon;
+        private Button btnContinue;
         
         private const double dblCostPerKM = 0.0003;
         private const string strCurrenty = "RM";
-
-        public async void OnMapReady(GoogleMap googleMap) 
-        {
-            mMap = googleMap;
-
-            LatLngBounds.Builder builder = new LatLngBounds.Builder();
-            builder.Include(originLatLng);
-            builder.Include(destLatLng);
-            LatLngBounds bounds = builder.Build();
-
-            int padding = 100; // offset from edges of the map in pixels
-            CameraUpdate cu = CameraUpdateFactory.NewLatLngBounds(bounds, padding);
-
-            // Add markers to oriign and destination
-            mMap.AddMarker(new MarkerOptions().SetPosition(originLatLng).SetTitle("Origin"));
-            mMap.AddMarker(new MarkerOptions().SetPosition(destLatLng).SetTitle("Destination"));
-
-            // Combine Google Direction API string 
-            string urlGoogleDirection = strGoogleDirectionAPIOri + iTrip.origin +
-                strGoogleDirectionAPIDest + iTrip.destination + strGoogleApiKey;
-
-            string strGoogleDirection = await fnDownloadString(urlGoogleDirection);   
-
-            var googleDirectionAPIRoute = JsonConvert.DeserializeObject<GoogleDirectionAPI>(strGoogleDirection);
-            string encodedPoints = googleDirectionAPIRoute.routes[0].overview_polyline.points;
-            var lstDecodedPoints = FnDecodePolylinePoints(encodedPoints);
-            //convert list of location point to array of latlng type
-
-            var latLngPoints = lstDecodedPoints.ToArray();
-            var polylineoption = new PolylineOptions();
-            polylineoption.InvokeColor(Android.Graphics.Color.SkyBlue);
-            polylineoption.Geodesic(true);
-            polylineoption.Add(latLngPoints);
-            mMap.AddPolyline(polylineoption);
-            mMap.AnimateCamera(cu);
-            
-            string urlGoogleMatrix = strGoogleMatrixAPIOri + iTrip.origin +
-                                        strGoogleMatrixAPIDest + iTrip.destination + strGoogleApiKey;
-            string strGoogleMatrix = await fnDownloadString(urlGoogleMatrix);
-            var googleDirectionMatrix = JsonConvert.DeserializeObject<GoogleDistanceMatrixAPI>(strGoogleMatrix);
-            
-            txtviewDistance.Text = googleDirectionMatrix.rows[0].elements[0].distance.text.ToString();
-            txtviewDuration.Text = googleDirectionMatrix.rows[0].elements[0].duration.text.ToString();
-            double cost = Math.Round(dblCostPerKM * googleDirectionMatrix.rows[0].elements[0].distance.value,2);
-           
-            txtviewCost.Text = string.Format("RM{0:0.00}", cost);
-        }
-
-        override
-        public bool OnOptionsItemSelected(IMenuItem item)
-        {
-            Finish();
-            return true;
-        }
-
+        
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -107,7 +55,13 @@ namespace CHARE_System
             ActionBar ab = ActionBar;
             ab.SetDisplayHomeAsUpEnabled(true);
 
-            iTrip= JsonConvert.DeserializeObject<Trip>(Intent.GetStringExtra("Trip"));
+            progress = new ProgressDialog(this);
+            progress.Indeterminate = true;
+            progress.SetProgressStyle(ProgressDialogStyle.Spinner);
+            progress.SetMessage("Loading...");
+            progress.SetCancelable(false);
+
+            iTrip = JsonConvert.DeserializeObject<Trip>(Intent.GetStringExtra("Trip"));
             var o = iTrip.origin.Split(',');
             var d = iTrip.destination.Split(',');
 
@@ -121,8 +75,8 @@ namespace CHARE_System
             txtviewDuration = (TextView)FindViewById(Resource.Id.textview_time);
             txtviewCost = (TextView)FindViewById(Resource.Id.textview_cost);
 
-            btnCon = (Button)FindViewById(Resource.Id.btn_tripcon_continue);
-            btnCon.Click += (sender, e) =>
+            btnContinue = (Button)FindViewById(Resource.Id.btn_tripcon_continue);
+            btnContinue.Click += (sender, e) =>
             {
                 // D = Digit
                 // Parse string "DD.D km" to int "DD"
@@ -153,6 +107,70 @@ namespace CHARE_System
                 intent.PutExtra("Trip", JsonConvert.SerializeObject(iTrip));                
                 StartActivity(intent);
             };
+        }
+
+        public async void OnMapReady(GoogleMap googleMap)
+        {
+            mMap = googleMap;
+
+            LatLngBounds.Builder builder = new LatLngBounds.Builder();
+            builder.Include(originLatLng);
+            builder.Include(destLatLng);
+            LatLngBounds bounds = builder.Build();
+
+            int padding = 100; // offset from edges of the map in pixels
+            CameraUpdate cu = CameraUpdateFactory.NewLatLngBounds(bounds, padding);
+
+            // Add markers to oriign and destination
+            mMap.AddMarker(new MarkerOptions().SetPosition(originLatLng).SetTitle("Origin"));
+            mMap.AddMarker(new MarkerOptions().SetPosition(destLatLng).SetTitle("Destination"));
+
+            // Combine Google Direction API string 
+            string urlGoogleDirection = strGoogleDirectionAPIOri + iTrip.origin +
+                strGoogleDirectionAPIDest + iTrip.destination + strGoogleApiKey;
+
+            string strGoogleDirection = await fnDownloadString(urlGoogleDirection);
+
+            var googleDirectionAPIRoute = JsonConvert.DeserializeObject<GoogleDirectionAPI>(strGoogleDirection);
+            string encodedPoints = googleDirectionAPIRoute.routes[0].overview_polyline.points;
+            var lstDecodedPoints = FnDecodePolylinePoints(encodedPoints);
+            //convert list of location point to array of latlng type
+
+            var latLngPoints = lstDecodedPoints.ToArray();
+            var polylineoption = new PolylineOptions();
+            polylineoption.InvokeColor(Android.Graphics.Color.SkyBlue);
+            polylineoption.Geodesic(true);
+            polylineoption.Add(latLngPoints);
+            mMap.AddPolyline(polylineoption);
+            mMap.AnimateCamera(cu);
+
+            string urlGoogleMatrix = strGoogleMatrixAPIOri + iTrip.origin +
+                                        strGoogleMatrixAPIDest + iTrip.destination + strGoogleApiKey;
+
+            RunOnUiThread(() =>
+            {
+                progress.Show();
+            });
+            string strGoogleMatrix = await fnDownloadString(urlGoogleMatrix);
+            RunOnUiThread(() =>
+            {
+                progress.Dismiss();
+            });
+
+            var googleDirectionMatrix = JsonConvert.DeserializeObject<GoogleDistanceMatrixAPI>(strGoogleMatrix);
+
+            txtviewDistance.Text = googleDirectionMatrix.rows[0].elements[0].distance.text.ToString();
+            txtviewDuration.Text = googleDirectionMatrix.rows[0].elements[0].duration.text.ToString();
+            double cost = Math.Round(dblCostPerKM * googleDirectionMatrix.rows[0].elements[0].distance.value, 2);
+
+            txtviewCost.Text = string.Format("RM{0:0.00}", cost);
+        }
+
+        override
+        public bool OnOptionsItemSelected(IMenuItem item)
+        {
+            Finish();
+            return true;
         }
 
         List<LatLng> FnDecodePolylinePoints(string encodedPoints)
