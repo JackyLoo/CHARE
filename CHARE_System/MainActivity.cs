@@ -1,23 +1,23 @@
 ﻿using Android.App;
+using Android.Content;
 using Android.Gms.Location.Places.UI;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using Android.Locations;
 using Android.OS;
+using Android.Runtime;
+using Android.Support.V7.App;
+using Android.Views;
+using CHARE_REST_API.Models;
+using Mikepenz.MaterialDrawer;
+using Mikepenz.MaterialDrawer.Models;
+using Mikepenz.MaterialDrawer.Models.Interfaces;
+using Mikepenz.Typeface;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Android.Runtime;
-using Android.Content;
-using Android.Gms.Common.Apis;
-using Android.Gms.Location.Places;
-using System.Threading.Tasks;
-using System.Net;
-using Android.Widget;
-using Newtonsoft.Json;
 using System.IO;
-using CHARE_REST_API.Models;
-
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 // ## Check before final deployment
 
 
@@ -27,8 +27,13 @@ namespace CHARE_System
     //[Activity(Label = "CHARE_App", MainLauncher = true, Icon = "@drawable/icon")]
 
     // implement ILocationListener for 
-    public class MainActivity : Activity, IOnMapReadyCallback, ILocationListener
-    {                
+    public class MainActivity : ActionBarActivity, IOnMapReadyCallback, ILocationListener, Drawer.IOnDrawerItemClickListener, AccountHeader.IOnAccountHeaderListener
+    {
+        private Member user;
+
+        // Navigation Bar
+        AccountHeader headerResult = null;
+
         private LatLng originLatLng;
         private LatLng destLatLng;
 
@@ -47,7 +52,57 @@ namespace CHARE_System
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            SetContentView(Resource.Layout.Main);            
+            SetContentView(Resource.Layout.Main);
+
+            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
+
+            // Deserialize the member object
+            ISharedPreferences pref = GetSharedPreferences(GetString(Resource.String.PreferenceFileName), FileCreationMode.Private);
+            var member = pref.GetString(GetString(Resource.String.PreferenceSavedMember), "");
+            user = JsonConvert.DeserializeObject<Member>(member);
+
+            var profile = new ProfileDrawerItem();
+            profile.WithName(user.username);
+            profile.WithIcon(Resource.Drawable.logo);
+            profile.WithIdentifier(100);
+            headerResult = new AccountHeaderBuilder()
+                .WithActivity(this)
+                .WithHeaderBackground(Resource.Drawable.profilebackground)
+                .AddProfiles(profile)
+                .WithOnAccountHeaderListener(this)
+                .WithSavedInstance(bundle)
+                .Build();
+
+            var header = new PrimaryDrawerItem();
+            header.WithName(Resource.String.Drawer_Item_Trips);
+            header.WithIcon(GoogleMaterial.Icon.GmdDirectionsCar);
+            header.WithIdentifier(1);
+
+            var secondaryDrawer = new SecondaryDrawerItem();
+            secondaryDrawer.WithName(Resource.String.Drawer_Item_About);
+            secondaryDrawer.WithIcon(GoogleMaterial.Icon.GmdInfo);
+            secondaryDrawer.WithIdentifier(2);
+
+            var logoutDrawer = new SecondaryDrawerItem();
+            secondaryDrawer.WithName(Resource.String.Drawer_Item_Logout);
+            secondaryDrawer.WithIcon(GoogleMaterial.Icon.GmdSettingsPower);
+            secondaryDrawer.WithIdentifier(3);
+
+            //create the drawer and remember the `Drawer` result object
+            Drawer result = new DrawerBuilder()
+                .WithActivity(this)
+                .WithToolbar(toolbar)
+                .WithAccountHeader(headerResult)
+                .AddDrawerItems(
+                    header,
+                    new DividerDrawerItem(),
+                    secondaryDrawer,
+                    logoutDrawer
+                )
+                .WithOnDrawerItemClickListener(this)
+
+            .Build();
 
             originAutocompleteFragment = (PlaceAutocompleteFragment)
                 FragmentManager.FindFragmentById(Resource.Id.place_autocomplete_origin_fragment);
@@ -66,7 +121,7 @@ namespace CHARE_System
             locationManager.RequestLocationUpdates(LocationManager.NetworkProvider, MIN_TIME, MIN_DISTANCE, this); //You can also use LocationManager.GPS_PROVIDER and LocationManager.PASSIVE_PROVIDER     
             locationManager.RequestLocationUpdates(LocationManager.GpsProvider, MIN_TIME, MIN_DISTANCE, this); //You can also use LocationManager.GPS_PROVIDER and LocationManager.PASSIVE_PROVIDER                 
         }
-
+        
         private void OnDestinationSelected(object sender, PlaceSelectedEventArgs e)
         {          
             // Set destination latlng to iDestLatLng.
@@ -143,7 +198,38 @@ namespace CHARE_System
 
         public void OnProviderEnabled(string provider){}
 
-        public void OnStatusChanged(string provider, [GeneratedEnum] Availability status, Bundle extras){}                
+        public void OnStatusChanged(string provider, [GeneratedEnum] Availability status, Bundle extras){}
+
+        public bool OnItemClick(View view, int position, IDrawerItem drawerItem)
+        {
+            if (drawerItem != null)
+            {
+                switch (position)
+                {
+                    case 1:
+
+                        break;
+                    case 2:
+
+                        break;
+                    case 3:
+                        GetSharedPreferences(GetString(Resource.String.PreferenceFileName), FileCreationMode.Private)
+                        .Edit()
+                        .Clear()                        
+                        .Commit();
+                        Intent intent = new Intent(this, typeof(LoginActivity));
+                        StartActivity(intent);
+                        Finish();
+                        break;
+                }
+            }
+            return false;
+        }
+
+        public bool OnProfileChanged(View view, IProfile profile, bool current)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

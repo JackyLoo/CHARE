@@ -99,8 +99,10 @@ class MonoPackageManager_Resources {
 	public static final String[] Assemblies = new String[]{
 		/* We need to ensure that "CHARE_System.dll" comes first in this list. */
 		"CHARE_System.dll",
+		"android-iconics.dll",
 		"AndroidSwitchBackport.dll",
-		"BetterPickers.dll",
+		"material-drawer.dll",
+		"materialize-library.dll",
 		"Newtonsoft.Json.dll",
 		"NineOldAndroids.dll",
 		"System.Net.Http.Extensions.dll",
@@ -115,12 +117,13 @@ class MonoPackageManager_Resources {
 		"Xamarin.Android.Support.Media.Compat.dll",
 		"Xamarin.Android.Support.v4.dll",
 		"Xamarin.Android.Support.v7.AppCompat.dll",
+		"Xamarin.Android.Support.v7.RecyclerView.dll",
 		"Xamarin.Android.Support.Vector.Drawable.dll",
-		"Xamarin.GooglePlayServices.Base.dll",
 		"Xamarin.GooglePlayServices.Basement.dll",
+		"Xamarin.GooglePlayServices.Tasks.dll",
+		"Xamarin.GooglePlayServices.Base.dll",
 		"Xamarin.GooglePlayServices.Maps.dll",
 		"Xamarin.GooglePlayServices.Places.dll",
-		"Xamarin.GooglePlayServices.Tasks.dll",
 	};
 	public static final String[] Dependencies = new String[]{
 	};

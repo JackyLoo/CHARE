@@ -4,6 +4,9 @@
   <string name="ApplicationName">CHARE_System</string>
   <string name="PreferenceFileName">PreferenceFile</string>
   <string name="PreferenceSavedMember">PreferenceMember</string>
+  <string name="Drawer_Item_Trips">Trips</string>
+  <string name="Drawer_Item_About">About</string>
+  <string name="Drawer_Item_Logout">Logout</string>
   <string name="GoogleKey">AIzaSyD3O4_PEgObUtgmyDo2ldpr_SuFFeNjUTo</string>
   <string name="AzureAPI">http://charerestapi.azurewebsites.net/api/</string>
   <string name="RestAPIBaseAddress">http://charerestapi.azurewebsites.net/</string>

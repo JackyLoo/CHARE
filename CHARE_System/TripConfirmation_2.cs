@@ -11,7 +11,6 @@ using Android.Views;
 using Android.Widget;
 using Android.Gms.Maps.Model;
 using Android.Support.V4.App;
-using BetterPickers.RecurrencePickers;
 using Android.Text.Format;
 using Android.Content.Res;
 using Android.Text;
