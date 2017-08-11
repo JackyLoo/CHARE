@@ -4,12 +4,15 @@
     <ManifestDocument>obj\Debug\__library_projects__\AndroidSwitchBackport\library_project_imports\AndroidManifest.xml</ManifestDocument>
     <ManifestDocument>obj\Debug\__library_projects__\BetterPickers\library_project_imports\AndroidManifest.xml</ManifestDocument>
     <ManifestDocument>obj\Debug\__library_projects__\BetterPickers\library_project_imports\aapt\AndroidManifest.xml</ManifestDocument>
+    <ManifestDocument>obj\Debug\__library_projects__\Xamarin.Android.Support.Animated.Vector.Drawable\library_project_imports\AndroidManifest.xml</ManifestDocument>
     <ManifestDocument>obj\Debug\__library_projects__\Xamarin.Android.Support.Compat\library_project_imports\AndroidManifest.xml</ManifestDocument>
     <ManifestDocument>obj\Debug\__library_projects__\Xamarin.Android.Support.Core.UI\library_project_imports\AndroidManifest.xml</ManifestDocument>
     <ManifestDocument>obj\Debug\__library_projects__\Xamarin.Android.Support.Core.Utils\library_project_imports\AndroidManifest.xml</ManifestDocument>
     <ManifestDocument>obj\Debug\__library_projects__\Xamarin.Android.Support.Fragment\library_project_imports\AndroidManifest.xml</ManifestDocument>
     <ManifestDocument>obj\Debug\__library_projects__\Xamarin.Android.Support.Media.Compat\library_project_imports\AndroidManifest.xml</ManifestDocument>
     <ManifestDocument>obj\Debug\__library_projects__\Xamarin.Android.Support.v4\library_project_imports\AndroidManifest.xml</ManifestDocument>
+    <ManifestDocument>obj\Debug\__library_projects__\Xamarin.Android.Support.v7.AppCompat\library_project_imports\AndroidManifest.xml</ManifestDocument>
+    <ManifestDocument>obj\Debug\__library_projects__\Xamarin.Android.Support.Vector.Drawable\library_project_imports\AndroidManifest.xml</ManifestDocument>
     <ManifestDocument>obj\Debug\__library_projects__\Xamarin.GooglePlayServices.Base\library_project_imports\AndroidManifest.xml</ManifestDocument>
     <ManifestDocument>obj\Debug\__library_projects__\Xamarin.GooglePlayServices.Basement\library_project_imports\AndroidManifest.xml</ManifestDocument>
     <ManifestDocument>obj\Debug\__library_projects__\Xamarin.GooglePlayServices.Maps\library_project_imports\AndroidManifest.xml</ManifestDocument>
@@ -21,12 +24,16 @@
     <Jar>obj\Debug\__library_projects__\AndroidSwitchBackport\library_project_imports\bin\classes.jar</Jar>
     <Jar>obj\Debug\__library_projects__\BetterPickers\library_project_imports\bin\classes.jar</Jar>
     <Jar>obj\Debug\__library_projects__\NineOldAndroids\library_project_imports\NineOldAndroids.jar</Jar>
-    <Jar>obj\Debug\__library_projects__\Xamarin.Android.Support.Compat\library_project_imports\classes.jar</Jar>
-    <Jar>obj\Debug\__library_projects__\Xamarin.Android.Support.Core.UI\library_project_imports\classes.jar</Jar>
-    <Jar>obj\Debug\__library_projects__\Xamarin.Android.Support.Core.Utils\library_project_imports\classes.jar</Jar>
-    <Jar>obj\Debug\__library_projects__\Xamarin.Android.Support.Fragment\library_project_imports\classes.jar</Jar>
-    <Jar>obj\Debug\__library_projects__\Xamarin.Android.Support.Media.Compat\library_project_imports\classes.jar</Jar>
-    <Jar>obj\Debug\__library_projects__\Xamarin.Android.Support.v4\library_project_imports\classes.jar</Jar>
+    <Jar>obj\Debug\__library_projects__\Xamarin.Android.Support.Animated.Vector.Drawable\library_project_imports\bin\classes.jar</Jar>
+    <Jar>obj\Debug\__library_projects__\Xamarin.Android.Support.Annotations\library_project_imports\support-annotations.jar</Jar>
+    <Jar>obj\Debug\__library_projects__\Xamarin.Android.Support.Compat\library_project_imports\bin\classes.jar</Jar>
+    <Jar>obj\Debug\__library_projects__\Xamarin.Android.Support.Core.UI\library_project_imports\bin\classes.jar</Jar>
+    <Jar>obj\Debug\__library_projects__\Xamarin.Android.Support.Core.Utils\library_project_imports\bin\classes.jar</Jar>
+    <Jar>obj\Debug\__library_projects__\Xamarin.Android.Support.Fragment\library_project_imports\bin\classes.jar</Jar>
+    <Jar>obj\Debug\__library_projects__\Xamarin.Android.Support.Media.Compat\library_project_imports\bin\classes.jar</Jar>
+    <Jar>obj\Debug\__library_projects__\Xamarin.Android.Support.v4\library_project_imports\bin\classes.jar</Jar>
+    <Jar>obj\Debug\__library_projects__\Xamarin.Android.Support.v7.AppCompat\library_project_imports\bin\classes.jar</Jar>
+    <Jar>obj\Debug\__library_projects__\Xamarin.Android.Support.Vector.Drawable\library_project_imports\bin\classes.jar</Jar>
     <Jar>obj\Debug\__library_projects__\Xamarin.GooglePlayServices.Base\library_project_imports\classes.jar</Jar>
     <Jar>obj\Debug\__library_projects__\Xamarin.GooglePlayServices.Basement\library_project_imports\classes.jar</Jar>
     <Jar>obj\Debug\__library_projects__\Xamarin.GooglePlayServices.Maps\library_project_imports\classes.jar</Jar>

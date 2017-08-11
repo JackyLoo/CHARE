@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright (C) 2012 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,6 +14,6 @@
      limitations under the License.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.google.android.gms.location">
-    <uses-sdk android:minSdkVersion="14"/>
-    <application/>
+    <uses-sdk android:minSdkVersion="14" />
+    <application />
 </manifest>

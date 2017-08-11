@@ -31,6 +31,15 @@
         <category android:name="mono.android.intent.category.SEPPUKU.CHARE_System.CHARE_System" />
       </intent-filter>
     </receiver>
+    <meta-data android:name="android.support.VERSION" android:value="25.4.0" />
+    <meta-data android:name="android.support.VERSION" android:value="25.4.0" />
+    <meta-data android:name="android.support.VERSION" android:value="25.4.0" />
+    <meta-data android:name="android.support.VERSION" android:value="25.4.0" />
+    <meta-data android:name="android.support.VERSION" android:value="25.4.0" />
+    <meta-data android:name="android.support.VERSION" android:value="25.4.0" />
+    <meta-data android:name="android.support.VERSION" android:value="25.4.0" />
+    <meta-data android:name="android.support.VERSION" android:value="25.4.0" />
+    <meta-data android:name="android.support.VERSION" android:value="25.4.0" />
     <activity android:name="com.google.android.gms.common.api.GoogleApiActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar" android:exported="false" />
     <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
   </application>
