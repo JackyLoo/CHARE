@@ -52,7 +52,7 @@ namespace CHARE_System
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            SetContentView(Resource.Layout.Main);
+            SetContentView(Resource.Layout.Main);            
 
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
@@ -133,7 +133,7 @@ namespace CHARE_System
             trip.destination = destLatLng.Latitude.ToString() + "," + destLatLng.Longitude.ToString();
 
             Intent intent = new Intent(this, typeof(TripConfirmation_1));
-            intent.PutExtra("Member", Intent.GetStringExtra("Member"));
+            intent.PutExtra("Member", JsonConvert.SerializeObject(user));
             intent.PutExtra("Trip", JsonConvert.SerializeObject(trip));
             StartActivity(intent);           
         }
@@ -190,8 +190,7 @@ namespace CHARE_System
                 Console.WriteLine("======================= error =============================");
                 Console.WriteLine(e.ToString());
                 Console.WriteLine("====================================================");                               
-            }
-           
+            }           
         }
 
         public void OnProviderDisabled(string provider){}

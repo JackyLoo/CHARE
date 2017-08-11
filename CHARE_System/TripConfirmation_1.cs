@@ -44,12 +44,13 @@ namespace CHARE_System
         private TextView txtviewCost;
         private Button btnContinue;
         
-        private const double dblCostPerKM = 0.0003;
-        private const string strCurrenty = "RM";
+        private const double dblCostPerKM = 0.0003;        
         
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            SetTheme(Android.Resource.Style.ThemeDeviceDefault);
             base.OnCreate(savedInstanceState);
+            
             SetContentView(Resource.Layout.TripConfirmation_1);
 
             ActionBar ab = ActionBar;
@@ -60,6 +61,11 @@ namespace CHARE_System
             progress.SetProgressStyle(ProgressDialogStyle.Spinner);
             progress.SetMessage("Loading...");
             progress.SetCancelable(false);
+
+            RunOnUiThread(() =>
+            {
+                progress.Show();
+            });
 
             iTrip = JsonConvert.DeserializeObject<Trip>(Intent.GetStringExtra("Trip"));
             var o = iTrip.origin.Split(',');
@@ -146,11 +152,7 @@ namespace CHARE_System
 
             string urlGoogleMatrix = strGoogleMatrixAPIOri + iTrip.origin +
                                         strGoogleMatrixAPIDest + iTrip.destination + strGoogleApiKey;
-
-            RunOnUiThread(() =>
-            {
-                progress.Show();
-            });
+            
             string strGoogleMatrix = await fnDownloadString(urlGoogleMatrix);
             RunOnUiThread(() =>
             {

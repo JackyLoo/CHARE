@@ -72,6 +72,7 @@ namespace CHARE_System
                
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            SetTheme(Android.Resource.Style.ThemeDeviceDefault);
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.TripConfirmation_2);            
 
