@@ -89,7 +89,8 @@ namespace CHARE_System
                     
                     Intent intent = new Intent(this, typeof(MainActivity));
                     intent.PutExtra("Member", JsonConvert.SerializeObject(member));
-                    StartActivity(intent);                   
+                    StartActivity(intent);
+                    Finish();
                 }                                              
             }
         }

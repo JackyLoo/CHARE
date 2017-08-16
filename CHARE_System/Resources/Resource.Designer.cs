@@ -83,6 +83,9 @@ namespace CHARE_System
 			// aapt resource value: 0x7f0c0001
 			public const int signup_gender = 2131492865;
 			
+			// aapt resource value: 0x7f0c0003
+			public const int trip_available_seat = 2131492867;
+			
 			static Array()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -3563,20 +3566,23 @@ namespace CHARE_System
 			// aapt resource value: 0x7f090036
 			public const int bottom = 2131296310;
 			
-			// aapt resource value: 0x7f0900cb
-			public const int btn_tripcon_comfirm = 2131296459;
+			// aapt resource value: 0x7f0900cf
+			public const int btn_tripcon_comfirm = 2131296463;
 			
-			// aapt resource value: 0x7f0900c7
-			public const int btn_tripcon_continue = 2131296455;
+			// aapt resource value: 0x7f0900c9
+			public const int btn_tripcon_continue = 2131296457;
 			
 			// aapt resource value: 0x7f090071
 			public const int btn_tripcon_day_confirm = 2131296369;
 			
-			// aapt resource value: 0x7f0900c1
-			public const int button1 = 2131296449;
+			// aapt resource value: 0x7f0900ab
+			public const int btn_tripcon_seat_confirm = 2131296427;
 			
-			// aapt resource value: 0x7f0900c2
-			public const int button2 = 2131296450;
+			// aapt resource value: 0x7f0900c3
+			public const int button1 = 2131296451;
+			
+			// aapt resource value: 0x7f0900c4
+			public const int button2 = 2131296452;
 			
 			// aapt resource value: 0x7f090042
 			public const int buttonPanel = 2131296322;
@@ -3584,11 +3590,11 @@ namespace CHARE_System
 			// aapt resource value: 0x7f090097
 			public const int cancel_action = 2131296407;
 			
-			// aapt resource value: 0x7f0900bb
-			public const int carmake = 2131296443;
+			// aapt resource value: 0x7f0900bd
+			public const int carmake = 2131296445;
 			
-			// aapt resource value: 0x7f0900be
-			public const int carplate = 2131296446;
+			// aapt resource value: 0x7f0900c0
+			public const int carplate = 2131296448;
 			
 			// aapt resource value: 0x7f090052
 			public const int checkbox = 2131296338;
@@ -3695,17 +3701,17 @@ namespace CHARE_System
 			// aapt resource value: 0x7f09003f
 			public const int list_item = 2131296319;
 			
-			// aapt resource value: 0x7f0900cc
-			public const int listview_background_shape = 2131296460;
+			// aapt resource value: 0x7f0900da
+			public const int listview_background_shape = 2131296474;
 			
-			// aapt resource value: 0x7f0900c3
-			public const int lnlyt_tripcon_continue = 2131296451;
+			// aapt resource value: 0x7f0900c5
+			public const int lnlyt_tripcon_continue = 2131296453;
 			
-			// aapt resource value: 0x7f0900ba
-			public const int loginlink = 2131296442;
+			// aapt resource value: 0x7f0900bc
+			public const int loginlink = 2131296444;
 			
-			// aapt resource value: 0x7f0900c0
-			public const int mLlayoutBottomButtons = 2131296448;
+			// aapt resource value: 0x7f0900c2
+			public const int mLlayoutBottomButtons = 2131296450;
 			
 			// aapt resource value: 0x7f09007d
 			public const int material_drawer_account_header = 2131296381;
@@ -3824,11 +3830,14 @@ namespace CHARE_System
 			// aapt resource value: 0x7f09009b
 			public const int notification_main_column_container = 2131296411;
 			
+			// aapt resource value: 0x7f0900aa
+			public const int numberPicker_seat = 2131296426;
+			
 			// aapt resource value: 0x7f090044
 			public const int parentPanel = 2131296324;
 			
-			// aapt resource value: 0x7f0900ac
-			public const int place_autocomplete_clear_button = 2131296428;
+			// aapt resource value: 0x7f0900ae
+			public const int place_autocomplete_clear_button = 2131296430;
 			
 			// aapt resource value: 0x7f09007a
 			public const int place_autocomplete_destination_fragment = 2131296378;
@@ -3836,26 +3845,26 @@ namespace CHARE_System
 			// aapt resource value: 0x7f090079
 			public const int place_autocomplete_origin_fragment = 2131296377;
 			
-			// aapt resource value: 0x7f0900ae
-			public const int place_autocomplete_powered_by_google = 2131296430;
-			
 			// aapt resource value: 0x7f0900b0
-			public const int place_autocomplete_prediction_primary_text = 2131296432;
+			public const int place_autocomplete_powered_by_google = 2131296432;
+			
+			// aapt resource value: 0x7f0900b2
+			public const int place_autocomplete_prediction_primary_text = 2131296434;
+			
+			// aapt resource value: 0x7f0900b3
+			public const int place_autocomplete_prediction_secondary_text = 2131296435;
 			
 			// aapt resource value: 0x7f0900b1
-			public const int place_autocomplete_prediction_secondary_text = 2131296433;
+			public const int place_autocomplete_progress = 2131296433;
 			
-			// aapt resource value: 0x7f0900af
-			public const int place_autocomplete_progress = 2131296431;
-			
-			// aapt resource value: 0x7f0900aa
-			public const int place_autocomplete_search_button = 2131296426;
-			
-			// aapt resource value: 0x7f0900ab
-			public const int place_autocomplete_search_input = 2131296427;
+			// aapt resource value: 0x7f0900ac
+			public const int place_autocomplete_search_button = 2131296428;
 			
 			// aapt resource value: 0x7f0900ad
-			public const int place_autocomplete_separator = 2131296429;
+			public const int place_autocomplete_search_input = 2131296429;
+			
+			// aapt resource value: 0x7f0900af
+			public const int place_autocomplete_separator = 2131296431;
 			
 			// aapt resource value: 0x7f090006
 			public const int progress_circular = 2131296262;
@@ -3935,41 +3944,44 @@ namespace CHARE_System
 			// aapt resource value: 0x7f090074
 			public const int signinbtn = 2131296372;
 			
-			// aapt resource value: 0x7f0900b8
-			public const int signup_account_type = 2131296440;
-			
-			// aapt resource value: 0x7f0900bd
-			public const int signup_carcolor = 2131296445;
-			
-			// aapt resource value: 0x7f0900bc
-			public const int signup_carmodel = 2131296444;
-			
-			// aapt resource value: 0x7f0900b5
-			public const int signup_con_pswrd = 2131296437;
-			
-			// aapt resource value: 0x7f0900b7
-			public const int signup_gender = 2131296439;
-			
-			// aapt resource value: 0x7f0900b4
-			public const int signup_password = 2131296436;
-			
-			// aapt resource value: 0x7f0900b6
-			public const int signup_phone = 2131296438;
-			
-			// aapt resource value: 0x7f0900b3
-			public const int signup_username = 2131296435;
-			
-			// aapt resource value: 0x7f0900b9
-			public const int signupbtn = 2131296441;
+			// aapt resource value: 0x7f0900ba
+			public const int signup_account_type = 2131296442;
 			
 			// aapt resource value: 0x7f0900bf
-			public const int signupcarbtn = 2131296447;
+			public const int signup_carcolor = 2131296447;
+			
+			// aapt resource value: 0x7f0900be
+			public const int signup_carmodel = 2131296446;
+			
+			// aapt resource value: 0x7f0900b7
+			public const int signup_con_pswrd = 2131296439;
+			
+			// aapt resource value: 0x7f0900b9
+			public const int signup_gender = 2131296441;
+			
+			// aapt resource value: 0x7f0900b6
+			public const int signup_password = 2131296438;
+			
+			// aapt resource value: 0x7f0900b8
+			public const int signup_phone = 2131296440;
+			
+			// aapt resource value: 0x7f0900b5
+			public const int signup_username = 2131296437;
+			
+			// aapt resource value: 0x7f0900bb
+			public const int signupbtn = 2131296443;
+			
+			// aapt resource value: 0x7f0900c1
+			public const int signupcarbtn = 2131296449;
 			
 			// aapt resource value: 0x7f090075
 			public const int signuplink = 2131296373;
 			
 			// aapt resource value: 0x7f090043
 			public const int spacer = 2131296323;
+			
+			// aapt resource value: 0x7f0900ce
+			public const int spinner_seat = 2131296462;
 			
 			// aapt resource value: 0x7f090008
 			public const int split_action_bar = 2131296264;
@@ -3995,11 +4007,11 @@ namespace CHARE_System
 			// aapt resource value: 0x7f090066
 			public const int submit_area = 2131296358;
 			
-			// aapt resource value: 0x7f0900b2
-			public const int switchWidget = 2131296434;
+			// aapt resource value: 0x7f0900b4
+			public const int switchWidget = 2131296436;
 			
-			// aapt resource value: 0x7f0900ca
-			public const int switch_femaleonly = 2131296458;
+			// aapt resource value: 0x7f0900cc
+			public const int switch_femaleonly = 2131296460;
 			
 			// aapt resource value: 0x7f090020
 			public const int tabMode = 2131296288;
@@ -4022,20 +4034,20 @@ namespace CHARE_System
 			// aapt resource value: 0x7f090048
 			public const int textSpacerNoTitle = 2131296328;
 			
-			// aapt resource value: 0x7f0900c8
-			public const int textview_arrivetime = 2131296456;
+			// aapt resource value: 0x7f0900ca
+			public const int textview_arrivetime = 2131296458;
 			
-			// aapt resource value: 0x7f0900c5
-			public const int textview_cost = 2131296453;
+			// aapt resource value: 0x7f0900c7
+			public const int textview_cost = 2131296455;
 			
-			// aapt resource value: 0x7f0900c9
-			public const int textview_day = 2131296457;
-			
-			// aapt resource value: 0x7f0900c4
-			public const int textview_distance = 2131296452;
+			// aapt resource value: 0x7f0900cb
+			public const int textview_day = 2131296459;
 			
 			// aapt resource value: 0x7f0900c6
-			public const int textview_time = 2131296454;
+			public const int textview_distance = 2131296454;
+			
+			// aapt resource value: 0x7f0900c8
+			public const int textview_time = 2131296456;
 			
 			// aapt resource value: 0x7f09009e
 			public const int time = 2131296414;
@@ -4078,6 +4090,39 @@ namespace CHARE_System
 			
 			// aapt resource value: 0x7f09004d
 			public const int topPanel = 2131296333;
+			
+			// aapt resource value: 0x7f0900cd
+			public const int trip_linearlyt_seat = 2131296461;
+			
+			// aapt resource value: 0x7f0900d9
+			public const int trip_listview = 2131296473;
+			
+			// aapt resource value: 0x7f0900d8
+			public const int trip_row_button = 2131296472;
+			
+			// aapt resource value: 0x7f0900d7
+			public const int trip_row_cost = 2131296471;
+			
+			// aapt resource value: 0x7f0900d4
+			public const int trip_row_day = 2131296468;
+			
+			// aapt resource value: 0x7f0900d3
+			public const int trip_row_destination = 2131296467;
+			
+			// aapt resource value: 0x7f0900d6
+			public const int trip_row_duration = 2131296470;
+			
+			// aapt resource value: 0x7f0900d0
+			public const int trip_row_female = 2131296464;
+			
+			// aapt resource value: 0x7f0900d1
+			public const int trip_row_origin = 2131296465;
+			
+			// aapt resource value: 0x7f0900d5
+			public const int trip_row_time = 2131296469;
+			
+			// aapt resource value: 0x7f0900d2
+			public const int trip_row_to = 2131296466;
 			
 			// aapt resource value: 0x7f090009
 			public const int up = 2131296265;
@@ -4328,52 +4373,64 @@ namespace CHARE_System
 			public const int notification_template_part_time = 2130903103;
 			
 			// aapt resource value: 0x7f030040
-			public const int place_autocomplete_fragment = 2130903104;
+			public const int NumberPickerDialog = 2130903104;
 			
 			// aapt resource value: 0x7f030041
-			public const int place_autocomplete_item_powered_by_google = 2130903105;
+			public const int place_autocomplete_fragment = 2130903105;
 			
 			// aapt resource value: 0x7f030042
-			public const int place_autocomplete_item_prediction = 2130903106;
+			public const int place_autocomplete_item_powered_by_google = 2130903106;
 			
 			// aapt resource value: 0x7f030043
-			public const int place_autocomplete_progress = 2130903107;
+			public const int place_autocomplete_item_prediction = 2130903107;
 			
 			// aapt resource value: 0x7f030044
-			public const int preference = 2130903108;
+			public const int place_autocomplete_progress = 2130903108;
 			
 			// aapt resource value: 0x7f030045
-			public const int preference_widget_switch = 2130903109;
+			public const int preference = 2130903109;
 			
 			// aapt resource value: 0x7f030046
-			public const int select_dialog_item_material = 2130903110;
+			public const int preference_widget_switch = 2130903110;
 			
 			// aapt resource value: 0x7f030047
-			public const int select_dialog_multichoice_material = 2130903111;
+			public const int select_dialog_item_material = 2130903111;
 			
 			// aapt resource value: 0x7f030048
-			public const int select_dialog_singlechoice_material = 2130903112;
+			public const int select_dialog_multichoice_material = 2130903112;
 			
 			// aapt resource value: 0x7f030049
-			public const int Signup = 2130903113;
+			public const int select_dialog_singlechoice_material = 2130903113;
 			
 			// aapt resource value: 0x7f03004a
-			public const int Signup_Car = 2130903114;
+			public const int Signup = 2130903114;
 			
 			// aapt resource value: 0x7f03004b
-			public const int support_simple_spinner_dropdown_item = 2130903115;
+			public const int Signup_Car = 2130903115;
 			
 			// aapt resource value: 0x7f03004c
-			public const int test = 2130903116;
+			public const int Spinner_Seat = 2130903116;
 			
 			// aapt resource value: 0x7f03004d
-			public const int Tool_Bar = 2130903117;
+			public const int support_simple_spinner_dropdown_item = 2130903117;
 			
 			// aapt resource value: 0x7f03004e
-			public const int TripConfirmation_1 = 2130903118;
+			public const int test = 2130903118;
 			
 			// aapt resource value: 0x7f03004f
-			public const int TripConfirmation_2 = 2130903119;
+			public const int Tool_Bar = 2130903119;
+			
+			// aapt resource value: 0x7f030050
+			public const int TripConfirmation_1 = 2130903120;
+			
+			// aapt resource value: 0x7f030051
+			public const int TripConfirmation_2 = 2130903121;
+			
+			// aapt resource value: 0x7f030052
+			public const int TripDetailsRow = 2130903122;
+			
+			// aapt resource value: 0x7f030053
+			public const int TripListView = 2130903123;
 			
 			static Layout()
 			{

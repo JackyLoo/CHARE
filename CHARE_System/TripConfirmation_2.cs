@@ -1,27 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
+using Android.Gms.Maps.Model;
 using Android.OS;
-using Android.Runtime;
+using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
-using Android.Gms.Maps.Model;
-using Android.Support.V4.App;
-using Android.Text.Format;
-using Android.Content.Res;
-using Android.Text;
-using Android.Icu.Util;
-using static Android.App.TimePickerDialog;
-using System.Globalization;
 using CHARE_REST_API.Models;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using Newtonsoft.Json;
+using static Android.App.TimePickerDialog;
 
 namespace CHARE_System
 {
@@ -29,6 +21,8 @@ namespace CHARE_System
     public class TripConfirmation_2 : FragmentActivity, 
         IOnTimeSetListener
     {
+        private ProgressDialog progress;
+
         // Intent Putextra Data
         private Member iMember;
         private Trip iTrip;
@@ -36,12 +30,14 @@ namespace CHARE_System
         private LatLng originLatLng;
         private LatLng destLatLng;
 
-        // Views
-        private Button btnConfirm;
+        // Views        
         private TextView tvArriveTime;
         private TextView tvDay;        
         private Switch switchFemaleOnly;
-                                
+        private LinearLayout seatLayout;
+        private TextView tvSeat;
+        private Button btnConfirm;
+
         private ToggleButton tbtnMon;
         private ToggleButton tbtnTue;
         private ToggleButton tbtnWed;
@@ -51,6 +47,9 @@ namespace CHARE_System
         private ToggleButton tbtnSun;
         private Button btnDayConfirm;
         private bool[] arrCheckedDay;
+
+        private Spinner spinnerSeat;        
+        private Button btnSeatConfirm;
 
         private int hour, minute;
         private TimeSpan onTimeSet ;
@@ -79,6 +78,12 @@ namespace CHARE_System
             ActionBar ab = ActionBar;
             ab.SetDisplayHomeAsUpEnabled(true);
 
+            progress = new ProgressDialog(this);
+            progress.Indeterminate = true;
+            progress.SetProgressStyle(ProgressDialogStyle.Spinner);
+            progress.SetMessage("Loading...");
+            progress.SetCancelable(false);
+
             client = new HttpClient();
             client.BaseAddress = new Uri(GetString(Resource.String.RestAPIBaseAddress));
             client.DefaultRequestHeaders.Accept.Clear();
@@ -87,20 +92,28 @@ namespace CHARE_System
             iMember = JsonConvert.DeserializeObject<Member>(Intent.GetStringExtra("Member"));
             iTrip = JsonConvert.DeserializeObject<Trip>(Intent.GetStringExtra("Trip"));
             
-            var o = iTrip.origin.Split(',');
-            var d = iTrip.destination.Split(',');
+            var o = iTrip.originLatLng.Split(',');
+            var d = iTrip.destinationLatLng.Split(',');
 
             originLatLng = new LatLng(Double.Parse(o[0]), Double.Parse(o[1]));
             destLatLng = new LatLng(Double.Parse(d[0]), Double.Parse(d[1]));
 
             arrCheckedDay = new bool[7];
             SetDayArrayBool(false);
-
-            btnConfirm = (Button)FindViewById(Resource.Id.btn_tripcon_comfirm);
+            
             tvArriveTime = (TextView)FindViewById(Resource.Id.textview_arrivetime);
             tvDay = (TextView)FindViewById(Resource.Id.textview_day);
             switchFemaleOnly = (Switch)FindViewById(Resource.Id.switch_femaleonly);
-            
+            seatLayout = (LinearLayout)FindViewById(Resource.Id.trip_linearlyt_seat);
+            spinnerSeat = (Spinner)FindViewById(Resource.Id.spinner_seat);            
+            btnConfirm = (Button)FindViewById(Resource.Id.btn_tripcon_comfirm);
+
+            // Set available seat string array to adapter
+            var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.trip_available_seat,
+                Resource.Layout.Spinner_Seat);
+            adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+            spinnerSeat.Adapter = adapter;
+
             Android.Icu.Util.Calendar mcurrentTime = Android.Icu.Util.Calendar.Instance;
             hour = mcurrentTime.Get(Android.Icu.Util.Calendar.HourOfDay);
             minute = mcurrentTime.Get(Android.Icu.Util.Calendar.Minute);
@@ -203,6 +216,9 @@ namespace CHARE_System
                 dialog.Show();
             };
 
+            if (iMember.type.Equals("Passenger"))
+                seatLayout.Visibility = ViewStates.Invisible;
+
             btnConfirm.Click += BtnConfirm_Click;
         }
 
@@ -216,6 +232,7 @@ namespace CHARE_System
             int totalInSecond = (hourOfDay * 3600) + (minute * 60);
             // Create timespan from the total second
             onTimeSet = TimeSpan.FromSeconds(totalInSecond);
+            
             // Parse timespan to the time formate of e.g 12:00 AM
             string strTime = DateTime.ParseExact(onTimeSet.ToString(@"hh\:mm"), "HH:mm", null).ToString("hh:mm tt",
                 CultureInfo.GetCultureInfo("en-US"));
@@ -231,9 +248,8 @@ namespace CHARE_System
         }
 
         private void BtnConfirm_Click(Object sender, EventArgs e)
-        {
+        {            
             // Assign user input and request POST to REST API            
-
             iTrip.arriveTime = onTimeSet.ToString();
             iTrip.days = tvDay.Text.ToString();
 
@@ -248,12 +264,30 @@ namespace CHARE_System
                 Toast.MakeText(this, "Select day", ToastLength.Long).Show();
             else
             {
-                iTrip.MemberID = iMember.MemberID;
-                var json = JsonConvert.SerializeObject(iTrip);
-                Console.WriteLine("========================= 1 =========================");
-                Console.WriteLine(json.ToString());
-                Console.WriteLine("========================= 2 =========================");
-                CreateTripAsync(iTrip);
+                TripDriver tripDriver;
+                TripPassenger tripPassenger;
+
+                if (iMember.type.Equals("Driver"))
+                {
+                    tripDriver = new TripDriver(iTrip);
+                    tripDriver.DriverID = iMember.MemberID;
+                    tripDriver.availableSeat = int.Parse(spinnerSeat.SelectedItem.ToString());
+                    var json = JsonConvert.SerializeObject(tripDriver);
+                    Console.WriteLine("========================= 1 =========================");
+                    Console.WriteLine(json.ToString());
+                    Console.WriteLine("========================= 2 =========================");
+                    CreateTripDriverAsync(tripDriver);
+                }
+                else
+                {
+                    tripPassenger = new TripPassenger(iTrip);
+                    tripPassenger.PassengerID = iMember.MemberID;
+                    var json = JsonConvert.SerializeObject(tripPassenger);
+                    Console.WriteLine("========================= 1 =========================");
+                    Console.WriteLine(json.ToString());
+                    Console.WriteLine("========================= 2 =========================");
+                    CreateTripPassAsync(tripPassenger);
+                }               
             }
         }
 
@@ -265,20 +299,66 @@ namespace CHARE_System
             }
         }
 
-        async void CreateTripAsync(Trip product)
-        {            
-            HttpResponseMessage response = await client.PostAsJsonAsync("api/Trips", product);
+        async void CreateTripDriverAsync(TripDriver trip)
+        {
+            RunOnUiThread(() =>
+            {
+                progress.Show();
+            });
+
+            HttpResponseMessage response = await client.PostAsJsonAsync("api/TripDrivers", trip);
             Console.WriteLine("================ 1 ================ ");
             //response.EnsureSuccessStatusCode();
             Console.WriteLine("Response code " + response.StatusCode.ToString());
             Console.WriteLine("Response code 2 " + response.RequestMessage.ToString());
             Console.WriteLine("Response code 3 " + response.Content.ToString());
             Console.WriteLine("================ 2 ================ ");
+
             if (response.IsSuccessStatusCode)
                 Toast.MakeText(this, "Trip created.", ToastLength.Short).Show();
             else
                 Toast.MakeText(this, "Failed to create trip.", ToastLength.Short).Show();
-            this.Finish();
+
+            RunOnUiThread(() =>
+            {
+                progress.Dismiss();
+            });
+
+            Intent intent = new Intent(this, typeof(MainActivity));
+            intent.PutExtra("Member", JsonConvert.SerializeObject(iMember));
+            StartActivity(intent);
+            Finish();
+        }
+
+        async void CreateTripPassAsync(TripPassenger trip)
+        {
+            RunOnUiThread(() =>
+            {
+                progress.Show();
+            });
+            
+            HttpResponseMessage response = await client.PostAsJsonAsync("api/TripPassengers", trip);
+            Console.WriteLine("================ 1 ================ ");
+            //response.EnsureSuccessStatusCode();
+            Console.WriteLine("Response code " + response.StatusCode.ToString());
+            Console.WriteLine("Response code 2 " + response.RequestMessage.ToString());
+            Console.WriteLine("Response code 3 " + response.Content.ToString());
+            Console.WriteLine("================ 2 ================ ");
+
+            if (response.IsSuccessStatusCode)
+                Toast.MakeText(this, "Trip created.", ToastLength.Short).Show();
+            else
+                Toast.MakeText(this, "Failed to create trip.", ToastLength.Short).Show();
+
+            RunOnUiThread(() =>
+            {
+                progress.Dismiss();
+            });
+
+            Intent intent = new Intent(this, typeof(MainActivity));
+            intent.PutExtra("Member", JsonConvert.SerializeObject(iMember));
+            StartActivity(intent);
+            Finish();
         }
     }
 }

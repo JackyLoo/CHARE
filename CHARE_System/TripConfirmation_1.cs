@@ -25,6 +25,8 @@ namespace CHARE_System
     {
         private ProgressDialog progress;
 
+        private Member iMember;
+
         // Intent Putextra Data
         private Trip iTrip;
 
@@ -44,8 +46,9 @@ namespace CHARE_System
         private TextView txtviewCost;
         private Button btnContinue;
         
-        private const double dblCostPerKM = 0.0003;        
-        
+        private const double dblPassengerCostKM = 0.0003;
+        private const double dblDriverCostKM = 0.0010;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             SetTheme(Android.Resource.Style.ThemeDeviceDefault);
@@ -67,9 +70,11 @@ namespace CHARE_System
                 progress.Show();
             });
 
+            iMember = JsonConvert.DeserializeObject<Member>(Intent.GetStringExtra("Member"));
+
             iTrip = JsonConvert.DeserializeObject<Trip>(Intent.GetStringExtra("Trip"));
-            var o = iTrip.origin.Split(',');
-            var d = iTrip.destination.Split(',');
+            var o = iTrip.originLatLng.Split(',');
+            var d = iTrip.destinationLatLng.Split(',');
 
             originLatLng =  new LatLng(Double.Parse(o[0]), Double.Parse(o[1]));
             destLatLng = new LatLng(Double.Parse(d[0]), Double.Parse(d[1]));
@@ -85,13 +90,14 @@ namespace CHARE_System
             btnContinue.Click += (sender, e) =>
             {
                 // D = Digit
-                // Parse string "DD.D km" to int "DD"
-                iTrip.distance = int.Parse(txtviewDistance.Text.ToString().
-                    Substring(0,txtviewDistance.Text.ToString().Length - 3));
-
+                // Parse string "DD.D km" to int "DD"                
+                iTrip.distance = (int)Math.Round(Double.Parse(txtviewDistance.Text.ToString().
+                    Substring(0, txtviewDistance.Text.ToString().Length - 3), System.Globalization.CultureInfo.InvariantCulture), 0);
+                
                 // Convert text duration to total in second
                 string duration = txtviewDuration.Text.ToString();
                 int totalInSecond;
+                // If duration is more than 6
                 if (duration.Length > 8)
                 {
                     int hour = int.Parse(duration.Substring(0, duration.Length - 14));
@@ -100,13 +106,17 @@ namespace CHARE_System
                 }
                 else
                 {
-                    int min = int.Parse(duration.Substring(0, 5).Trim());
+                    int min = int.Parse(duration.Substring(0, duration.Length - 5).Trim());
                     totalInSecond = min * 60;
                 }
 
                 iTrip.duration = totalInSecond;                
                 iTrip.cost = Double.Parse(txtviewCost.Text.ToString().Substring(2, txtviewCost.Text.ToString().Length - 2),
-                    System.Globalization.CultureInfo.InvariantCulture);
+                System.Globalization.CultureInfo.InvariantCulture);                
+
+                iTrip.distanceStr = txtviewDistance.Text.ToString();
+                iTrip.durationStr = txtviewDuration.Text.ToString();
+                iTrip.costStr = txtviewCost.Text.ToString();                
 
                 Intent intent = new Intent(this, typeof(TripConfirmation_2));
                 intent.PutExtra("Member", Intent.GetStringExtra("Member"));
@@ -163,7 +173,12 @@ namespace CHARE_System
 
             txtviewDistance.Text = googleDirectionMatrix.rows[0].elements[0].distance.text.ToString();
             txtviewDuration.Text = googleDirectionMatrix.rows[0].elements[0].duration.text.ToString();
-            double cost = Math.Round(dblCostPerKM * googleDirectionMatrix.rows[0].elements[0].distance.value, 2);
+
+            double cost;
+            if (iMember.type.Equals("Driver"))
+                cost = Math.Round(dblDriverCostKM * googleDirectionMatrix.rows[0].elements[0].distance.value, 2);
+            else
+                cost = Math.Round(dblPassengerCostKM * googleDirectionMatrix.rows[0].elements[0].distance.value, 2);
 
             txtviewCost.Text = string.Format("RM{0:0.00}", cost);
         }

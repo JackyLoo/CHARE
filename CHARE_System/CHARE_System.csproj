@@ -137,6 +137,7 @@
     <Compile Include="JSON Object\GeocodedWaypoint.cs" />
     <Compile Include="JSON Object\GoogleDistanceMatrix.cs" />
     <Compile Include="JSON Object\Trip.cs" />
+    <Compile Include="JSON Object\TripDetails.cs" />
     <Compile Include="LoginActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -145,6 +146,8 @@
     <Compile Include="SignupCarActivity.cs" />
     <Compile Include="TripConfirmation_1.cs" />
     <Compile Include="TripConfirmation_2.cs" />
+    <Compile Include="TripListViewActivity.cs" />
+    <Compile Include="TripListViewAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -172,7 +175,9 @@
     <AndroidResource Include="Resources\layout\test.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\DayPickerDialog.axml" />
+    <AndroidResource Include="Resources\layout\DayPickerDialog.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\drawable\toggle_fri.axml" />
     <AndroidResource Include="Resources\drawable\toggle_mon.axml" />
     <AndroidResource Include="Resources\drawable\toggle_sat.axml" />
@@ -184,6 +189,18 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Tool_Bar.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\TripListView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\TripDetailsRow.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\NumberPickerDialog.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Spinner_Seat.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

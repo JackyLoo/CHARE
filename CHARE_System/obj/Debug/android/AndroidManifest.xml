@@ -23,6 +23,7 @@
     <activity android:label="SignupCarActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.SignupCarActivity" />
     <activity android:label="Route Details" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.TripConfirmation_1" />
     <activity android:label="Set Route" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.TripConfirmation_2" />
+    <activity android:label="TripListViewActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.TripListViewActivity" />
     <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="CHARE_System.CHARE_System.mono.MonoRuntimeProvider.__mono_init__" />
     <!--suppress ExportedReceiver-->
     <receiver android:name="mono.android.Seppuku">
