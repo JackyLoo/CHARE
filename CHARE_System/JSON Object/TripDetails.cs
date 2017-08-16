@@ -14,10 +14,17 @@ using CHARE_REST_API.Models;
 namespace CHARE_System.JSON_Object
 {
     class TripDetails
-    {               
+    {
         public Member Member { get; set; }
-        public int TripID { get; set; }
-        public int MemberID { get; set; }
+        public TripDriver TripDriver { get; set; }
+        public int TripPassengerID { get; set; }
+        public int PassengerID { get; set; }
+        public int? TripDriverID { get; set; }
+        
+        public int DriverID { get; set; }
+        public string PassengerIDs { get; set; }
+        public int availableSeat { get; set; }
+
         public string origin { get; set; }
         public string destination { get; set; }
         public string originLatLng { get; set; }
@@ -25,11 +32,12 @@ namespace CHARE_System.JSON_Object
         public string arriveTime { get; set; }
         public string femaleOnly { get; set; }
         public double cost { get; set; }
-        public int distance { get; set; }
+        public double distance { get; set; }
         public string days { get; set; }
         public int duration { get; set; }
         public string costStr { get; set; }
         public string durationStr { get; set; }
         public string distanceStr { get; set; }
+  
     }
 }

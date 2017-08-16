@@ -1,0 +1,185 @@
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
+using CHARE_REST_API.Models;
+using Newtonsoft.Json;
+using System.Reflection;
+using Newtonsoft.Json.Linq;
+
+namespace CHARE_REST_API.Controllers
+{
+    public class TripsController : ApiController
+    {
+        private CHAREEntities db = new CHAREEntities();
+        
+        // GET: api/Trips
+        public IQueryable GetTrips()
+        {
+            /*
+            var obj = new { trips = db.Trips};
+            string json = JsonConvert.SerializeObject(obj);
+            */
+
+            return db.TripPassengers;
+        }
+
+        string Serialize<T>(T o)
+        {
+            var attr = o.GetType().GetCustomAttribute(typeof(JsonObjectAttribute)) as JsonObjectAttribute;
+
+            var jv = JValue.FromObject(o);
+
+            return new JObject(new JProperty(attr.Title, jv)).ToString();
+        }
+
+        /*
+        // GET: api/Trips/5
+        [ResponseType(typeof(Trip))]
+        public IHttpActionResult GetTrip(int id)
+        {
+            Trip trip = db.Trips.Find(id);
+            if (trip == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(trip);
+
+        }
+        */
+
+        // GET: api/Trips/5
+        [ResponseType(typeof(TripPassenger))]
+        public IHttpActionResult GetTrip(int id)
+        {
+            Console.WriteLine("=====");
+            Console.WriteLine(id);
+            //var trips = from t in db.Trips where t.MemberID == id select *;
+            var trip = db.TripPassengers.Where(t => t.PassengerID == id );            
+            if (trip == null)
+            {
+                return NotFound();
+            }
+            
+            return Ok(trip);
+        }
+
+        // GET: api/Trips/5
+        [ResponseType(typeof(TripPassenger))]
+        public IHttpActionResult GetTrip(int id, string type)
+        {
+            var memberTrip = (from b in db.TripPassengers where b.PassengerID == id select b.TripPassengerID.ToString());
+            var arr = Array.ConvertAll(memberTrip.ToArray(), int.Parse);
+            
+
+            //var request = from a in db.Requests where arr.Contains(a.DriverID) select a;
+            //var trips = from t in db.Trips where t.MemberID == id select *;
+            var trip = db.TripPassengers.Where(t => t.PassengerID == id);
+            //IQueryable request;
+            if (type.Equals("Driver"))
+            {
+                //request = db.Requests.Where(r => r.DriverID == (from a in db.Trips where a.MemberID == id select a.TripID));
+                //var memberTrip = from b in db.Trips where b.MemberID == id select b.TripID.ToString();
+
+                //request = from a in db.Requests where  memberTrip.Contains(a.DriverID) select a;
+                
+            }
+            else
+
+                
+            if (trip == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(memberTrip);
+        }
+
+        // PUT: api/Trips/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutTrip(int id, TripPassenger trip)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != trip.TripPassengerID)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(trip).State = System.Data.Entity.EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TripExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        // POST: api/Trips
+        [ResponseType(typeof(TripPassenger))]
+        public IHttpActionResult PostTrip(TripPassenger trip)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.TripPassengers.Add(trip);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = trip.TripPassengerID }, trip);
+        }
+
+        // DELETE: api/Trips/5
+        [ResponseType(typeof(TripPassenger))]
+        public IHttpActionResult DeleteTrip(int id)
+        {
+            TripPassenger trip = db.TripPassengers.Find(id);
+            if (trip == null)
+            {
+                return NotFound();
+            }
+
+            db.TripPassengers.Remove(trip);
+            db.SaveChanges();
+
+            return Ok(trip);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private bool TripExists(int id)
+        {
+            return db.TripPassengers.Count(e => e.TripPassengerID == id) > 0;
+        }
+    }
+}

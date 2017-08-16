@@ -8,6 +8,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Support.V7.App;
 using Android.Views;
+using Android.Widget;
 using CHARE_REST_API.Models;
 using Mikepenz.MaterialDrawer;
 using Mikepenz.MaterialDrawer.Models;
@@ -166,7 +167,7 @@ namespace CHARE_System
             try
             {
                 IList<Address> addresses = await geocoder.GetFromLocationAsync(e.Place.LatLng.Latitude, e.Place.LatLng.Longitude, 1);                
-                CameraUpdate cameraUpdate = CameraUpdateFactory.NewLatLngZoom(originLatLng, 20);
+                CameraUpdate cameraUpdate = CameraUpdateFactory.NewLatLngZoom(originLatLng, 18);
                 mMap.AddMarker(new MarkerOptions().SetPosition(originLatLng).SetTitle("Origin"));
                 mMap.AnimateCamera(cameraUpdate);
             }
@@ -191,7 +192,7 @@ namespace CHARE_System
             // Zoom camera to the device's location
             LatLng latLng = new LatLng(location.Latitude, location.Longitude);
             originLatLng = latLng;
-            CameraUpdate cameraUpdate = CameraUpdateFactory.NewLatLngZoom(latLng, 15);            
+            CameraUpdate cameraUpdate = CameraUpdateFactory.NewLatLngZoom(latLng, 18);    
             // Move camera to user current location
             mMap.AddMarker(new MarkerOptions().SetPosition(originLatLng).SetTitle("Origin"));
             mMap.MoveCamera(cameraUpdate);
@@ -227,13 +228,18 @@ namespace CHARE_System
                 switch (position)
                 {                    
                     case 1:
+                        Toast.MakeText(this, "1 Clicked", ToastLength.Long).Show();
                         intent = new Intent(this, typeof(TripListViewActivity));
                         StartActivity(intent);
                         break;
-                    case 2:
-
+                    case 3:
+                        Toast.MakeText(this, "3 Clicked", ToastLength.Long).Show();
                         break;
                     case 4:
+                        Toast.MakeText(this, "4 Clicked", ToastLength.Long).Show();
+                        break;
+                    case 5:
+                        Toast.MakeText(this, "5 Clicked", ToastLength.Long).Show();
                         GetSharedPreferences(GetString(Resource.String.PreferenceFileName), FileCreationMode.Private)
                         .Edit()
                         .Clear()                        

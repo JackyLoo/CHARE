@@ -34,11 +34,7 @@ namespace CHARE_System
             SetContentView(Resource.Layout.TripListView);
 
             listView = FindViewById<ListView>(Resource.Id.trip_listview);
-
-            ISharedPreferences pref = GetSharedPreferences(GetString(Resource.String.PreferenceFileName), FileCreationMode.Private);
-            var member = pref.GetString(GetString(Resource.String.PreferenceSavedMember), "");
-            user = JsonConvert.DeserializeObject<Member>(member);
-
+                        
             client = new HttpClient();
             client.BaseAddress = new Uri(GetString(Resource.String.RestAPIBaseAddress));
             client.DefaultRequestHeaders.Accept.Clear();
@@ -49,33 +45,46 @@ namespace CHARE_System
             progress.SetProgressStyle(Android.App.ProgressDialogStyle.Spinner);
             progress.SetMessage("Loading Trips.....");
             progress.SetCancelable(false);
+            
+            ISharedPreferences pref = GetSharedPreferences(GetString(Resource.String.PreferenceFileName), FileCreationMode.Private);
+            var member = pref.GetString(GetString(Resource.String.PreferenceSavedMember), "");
+            user = JsonConvert.DeserializeObject<Member>(member);
 
             RunOnUiThread(() =>
             {
                 progress.Show();
             });
-
-            LoadTripDetails();                                                
+            Console.WriteLine("===== Start");            
+            if (user.type.Equals("Driver"))
+                LoadTripDetails("api/TripDrivers?id=");
+            else
+                LoadTripDetails("api/TripPassengers?id=");
+            Console.WriteLine("===== End");
         }
-        async void LoadTripDetails()
+        async void LoadTripDetails(string path)
         {
-            var models = await GetTripsAsync("api/Trips?id="+user.MemberID);
+            Console.WriteLine("===== Loading");
+            var models = await GetTripsAsync(path+user.MemberID);
+            Console.WriteLine("Models " +models);
             RunOnUiThread(() =>
             {
                 progress.Dismiss();
             });            
             listTrips = JsonConvert.DeserializeObject<List<TripDetails>>(models);                                               
-            listView.Adapter = new TripListViewAdapter(listTrips);                        
+            listView.Adapter = new TripListViewAdapter(listTrips);
+            Console.WriteLine("===== Finish Loading");
         }
 
         async Task<string> GetTripsAsync(string path)
         {
+            Console.WriteLine("===== GetTripsAsync Start");
             var make = "";
             HttpResponseMessage response = await client.GetAsync(path);
             if (response.IsSuccessStatusCode)
             {
                 make = await response.Content.ReadAsStringAsync();
             }
+            Console.WriteLine("===== GetTripsAsync End");
             return make;
         }
     }
