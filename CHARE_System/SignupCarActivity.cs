@@ -13,7 +13,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using static Android.Widget.AdapterView;
-using CHARE_REST_API.Models;
+using CHARE_REST_API.JSON_Object;
 using Newtonsoft.Json;
 
 namespace CHARE_System

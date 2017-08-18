@@ -9,20 +9,23 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using CHARE_REST_API.Models;
+using CHARE_REST_API.JSON_Object;
 using Android.Gms.Common.Images;
 using CHARE_System.JSON_Object;
 using System.Globalization;
+using Newtonsoft.Json;
 
 namespace CHARE_System
 {
     class TripListViewAdapter : BaseAdapter<TripDetails>
     {
         List<TripDetails> trips;
+        private static Context context;
 
-        public TripListViewAdapter(List<TripDetails> trips)
+        public TripListViewAdapter(Context c, List<TripDetails> trips)
         {
             this.trips = trips;
+            context = c;
         }
 
         public override TripDetails this[int position]
@@ -90,7 +93,10 @@ namespace CHARE_System
 
                 // Check if is female only
                 if (trips[position].femaleOnly.Equals("No"))
+                {
+                    holder.Female.SetHeight(0);
                     holder.Female.Visibility = ViewStates.Invisible;
+                }
                 
                 holder.Origin.Text = trips[position].origin;
                 holder.Dest.Text = trips[position].destination;
@@ -99,15 +105,36 @@ namespace CHARE_System
                 holder.Duration.Text = " • Approx " + trips[position].durationStr;
                 holder.Cost.Text = trips[position].costStr;
 
-                if (trips[position].TripDriverID.Equals(null))
-                    holder.mButton.Text = "Search Driver";
-                else
+                if (trips[position].Requests.Count <= 0)
+                {
+                    if (trips[position].TripDriverID.Equals(null))
+                        holder.mButton.Text = "Search Driver";
+                }                 
+                else if (trips[position].Requests[0].status.Equals("Pending"))
+                    holder.mButton.Text = "Cancel Request";
+                else if (trips[position].Requests[0].status.Equals("Accepted"))
                     holder.mButton.Text = "View Driver";
+                else if (trips[position].Requests[0].status.Equals("Rejected"))
+                    holder.mButton.Text = "Search Driver";
 
                 holder.mButton.Click += (sender, e) =>
                 {
-
-
+                    if (holder.mButton.Text.Equals("Search Driver"))
+                    {
+                        //Intent intent = new Intent(context, typeof(DriverListViewActivity)).SetFlags(ActivityFlags.NewTask);
+                        Intent intent = new Intent(context, typeof(DriverListViewActivity));
+                        intent.AddFlags(ActivityFlags.ReorderToFront);
+                        intent.PutExtra("Trip", JsonConvert.SerializeObject(trips[position]));
+                        context.StartActivity(intent);
+                    }
+                    else if (holder.mButton.Text.Equals("Cancel Request"))
+                    {
+                        holder.mButton.Text = "Cancel Request";
+                    }
+                    else if (trips[position].Requests[0].status.Equals("Accepted"))
+                        holder.mButton.Text = "View Driver";
+                    else if (trips[position].Requests[0].status.Equals("Rejected"))
+                        holder.mButton.Text = "Search Driver";
                 };
             }
 

@@ -16,7 +16,7 @@ using Newtonsoft.Json;
 using System.Net;
 using CHARE_System.JSON_Object;
 using static CHARE_System.JSON_Object.GoogleDistanceMatrix;
-using CHARE_REST_API.Models;
+using CHARE_REST_API.JSON_Object;
 
 namespace CHARE_System
 {

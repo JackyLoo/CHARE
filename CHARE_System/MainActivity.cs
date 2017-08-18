@@ -9,7 +9,7 @@ using Android.Runtime;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
-using CHARE_REST_API.Models;
+using CHARE_REST_API.JSON_Object;
 using Mikepenz.MaterialDrawer;
 using Mikepenz.MaterialDrawer.Models;
 using Mikepenz.MaterialDrawer.Models.Interfaces;
@@ -52,7 +52,7 @@ namespace CHARE_System
         PlaceAutocompleteFragment originAutocompleteFragment;
         PlaceAutocompleteFragment destAutocompleteFragment;
 
-        private string selectedOrigin;        
+        private string originTxt;        
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -145,7 +145,7 @@ namespace CHARE_System
             Trip trip = new Trip();
             trip.originLatLng= originLatLng.Latitude.ToString() + "," + originLatLng.Longitude.ToString();
             trip.destinationLatLng = destLatLng.Latitude.ToString() + "," + destLatLng.Longitude.ToString();
-            trip.origin = selectedOrigin;
+            trip.origin = originTxt;
             trip.destination = e.Place.NameFormatted.ToString();
 
             Intent intent = new Intent(this, typeof(TripConfirmation_1));
@@ -154,32 +154,16 @@ namespace CHARE_System
             StartActivity(intent);           
         }
         
-        private async void OnOriginSelectedAsync(object sender, PlaceSelectedEventArgs e)
+        private void OnOriginSelectedAsync(object sender, PlaceSelectedEventArgs e)
         {
             mMap.Clear();
-            selectedOrigin = e.Place.NameFormatted.ToString();
+            originTxt = e.Place.NameFormatted.ToString();
             originLatLng = e.Place.LatLng;
-            await OnOriginSelectedAsync(e);
-        }
 
-        private async System.Threading.Tasks.Task OnOriginSelectedAsync(PlaceSelectedEventArgs e)
-        {
-            try
-            {
-                IList<Address> addresses = await geocoder.GetFromLocationAsync(e.Place.LatLng.Latitude, e.Place.LatLng.Longitude, 1);                
-                CameraUpdate cameraUpdate = CameraUpdateFactory.NewLatLngZoom(originLatLng, 18);
-                mMap.AddMarker(new MarkerOptions().SetPosition(originLatLng).SetTitle("Origin"));
-                mMap.AnimateCamera(cameraUpdate);
-            }
-            catch (IOException ex)
-            {
-                // TODO Auto-generated catch block
-                Console.WriteLine("======================= error =============================");
-                Console.WriteLine(ex.ToString());
-                Console.WriteLine("====================================================");
-            }
-
-        }
+            CameraUpdate cameraUpdate = CameraUpdateFactory.NewLatLngZoom(originLatLng, 18);
+            mMap.AddMarker(new MarkerOptions().SetPosition(originLatLng).SetTitle("Origin"));
+            mMap.AnimateCamera(cameraUpdate);            
+        }        
 
         public void OnMapReady(GoogleMap googleMap)
         {
@@ -200,7 +184,7 @@ namespace CHARE_System
             {                               
                 // Get current location address and set to origin textfield                       
                 IList<Address> addresses = geocoder.GetFromLocation(location.Latitude, location.Longitude, 1);
-                selectedOrigin = addresses[0].SubLocality;
+                originTxt = addresses[0].SubLocality;
                 // ## Set user current latlng to Origin  
                 originAutocompleteFragment.SetText(addresses[0].GetAddressLine(0));
                 locationManager.RemoveUpdates(this);

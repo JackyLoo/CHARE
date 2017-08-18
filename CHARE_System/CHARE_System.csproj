@@ -133,6 +133,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DriverListViewActivity.cs" />
+    <Compile Include="DriverListViewAdapter.cs" />
     <Compile Include="InitialActivity.cs" />
     <Compile Include="JSON Object\GeocodedWaypoint.cs" />
     <Compile Include="JSON Object\GoogleDistanceMatrix.cs" />
@@ -201,6 +203,12 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Spinner_Seat.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\DriverDetailsRow.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\DriverListView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

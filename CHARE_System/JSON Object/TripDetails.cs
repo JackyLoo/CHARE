@@ -9,12 +9,13 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using CHARE_REST_API.Models;
 
-namespace CHARE_System.JSON_Object
+namespace CHARE_REST_API.JSON_Object
 {
     class TripDetails
     {
+        public List<Request> Requests { get; set; }
+
         public Member Member { get; set; }
         public TripDriver TripDriver { get; set; }
         public int TripPassengerID { get; set; }

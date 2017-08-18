@@ -9,7 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using CHARE_REST_API.Models;
+using CHARE_REST_API.JSON_Object;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Headers;

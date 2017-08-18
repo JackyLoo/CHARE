@@ -14,7 +14,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using CHARE_System.JSON_Object;
-using CHARE_REST_API.Models;
+using CHARE_REST_API.JSON_Object;
 
 namespace CHARE_System
 {
@@ -30,11 +30,14 @@ namespace CHARE_System
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            SetTheme(Android.Resource.Style.ThemeDeviceDefault);                        
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.TripListView);
+            ActionBar ab = ActionBar;
+            ab.SetDisplayHomeAsUpEnabled(true);
 
             listView = FindViewById<ListView>(Resource.Id.trip_listview);
-                        
+
             client = new HttpClient();
             client.BaseAddress = new Uri(GetString(Resource.String.RestAPIBaseAddress));
             client.DefaultRequestHeaders.Accept.Clear();
@@ -71,7 +74,7 @@ namespace CHARE_System
                 progress.Dismiss();
             });            
             listTrips = JsonConvert.DeserializeObject<List<TripDetails>>(models);                                               
-            listView.Adapter = new TripListViewAdapter(listTrips);
+            listView.Adapter = new TripListViewAdapter(this, listTrips);
             Console.WriteLine("===== Finish Loading");
         }
 
@@ -86,6 +89,12 @@ namespace CHARE_System
             }
             Console.WriteLine("===== GetTripsAsync End");
             return make;
+        }
+        override
+        public bool OnOptionsItemSelected(IMenuItem item)
+        {
+            Finish();
+            return true;
         }
     }
 }

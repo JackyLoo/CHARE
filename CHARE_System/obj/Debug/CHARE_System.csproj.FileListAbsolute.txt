@@ -1,3 +1,8 @@
+C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\XbdMerge\Xamarin.GooglePlayServices.Basement.dll
+C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\XbdMerge\Xamarin.GooglePlayServices.Tasks.dll
+C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\XbdMerge\Xamarin.GooglePlayServices.Base.dll
+C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\XbdMerge\Xamarin.GooglePlayServices.Maps.dll
+C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\XbdMerge\Xamarin.GooglePlayServices.Places.dll
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\bin\Debug\CHARE_System.dll.config
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\bin\Debug\CHARE_System.dll
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\bin\Debug\CHARE_System.pdb
@@ -32,12 +37,6 @@ C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\bin\Debug\System.Net.Http.Extensions.xml
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\bin\Debug\System.Net.Http.Formatting.xml
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\bin\Debug\System.Net.Http.Primitives.xml
-C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\CHARE_System.csprojResolveAssemblyReference.cache
-C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\XbdMerge\Xamarin.GooglePlayServices.Basement.dll
-C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\XbdMerge\Xamarin.GooglePlayServices.Tasks.dll
-C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\XbdMerge\Xamarin.GooglePlayServices.Base.dll
-C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\XbdMerge\Xamarin.GooglePlayServices.Maps.dll
-C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\XbdMerge\Xamarin.GooglePlayServices.Places.dll
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\CHARE_System.dll
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\CHARE_System.pdb
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\android\bin\CHARE_System.CHARE_System.apk
@@ -59,6 +58,9 @@ C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\triplistview.xml
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\tripdetailsrow.xml
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\numberpickerdialog.xml
+C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\spinner_seat.xml
+C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\driverdetailsrow.xml
+C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\driverlistview.xml
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\main.xml
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\values\strings.xml
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\drawable\icon.png
@@ -95,6 +97,6 @@ C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\values-v21\styles.xml
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\R.cs.flag
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\uploadflags.txt
+C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\CHARE_System.csprojResolveAssemblyReference.cache
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\bin\Debug\CHARE_System.dll.mdb
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\android\assets\CHARE_System.dll.mdb
-C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\spinner_seat.xml

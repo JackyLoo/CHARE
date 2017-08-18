@@ -5,7 +5,7 @@ using Android.OS;
 using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
-using CHARE_REST_API.Models;
+using CHARE_REST_API.JSON_Object;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

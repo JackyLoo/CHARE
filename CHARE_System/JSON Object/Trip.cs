@@ -7,10 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CHARE_REST_API.Models
+namespace CHARE_REST_API.JSON_Object
 {
     using System;
     using System.Collections.Generic;
+
+    public class Request
+    {
+        public Request(){ status = "Pending"; }
+        public int RequestID { get; set; }
+        public int SenderID { get; set; }
+        public int DriverID { get; set; }
+        public string status { get; set; }
+    }
 
     public class Rating
     {
@@ -86,8 +95,7 @@ namespace CHARE_REST_API.Models
         public int DriverID { get; set; }
         public string PassengerIDs { get; set; }
         public int availableSeat { get; set; }
-    }
-    
+    }   
 
     public class CarModel
     {

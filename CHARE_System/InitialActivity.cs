@@ -11,7 +11,7 @@ using Android.Views;
 using Android.Widget;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using CHARE_REST_API.Models;
+using CHARE_REST_API.JSON_Object;
 using Newtonsoft.Json;
 
 namespace CHARE_System
