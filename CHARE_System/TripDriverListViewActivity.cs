@@ -9,18 +9,17 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using CHARE_REST_API.JSON_Object;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using CHARE_System.JSON_Object;
-using CHARE_REST_API.JSON_Object;
+using System.Net.Http.Headers;
+using CHARE_System.Class;
 
 namespace CHARE_System
 {
-    //[Activity(Label = "TripListViewActivity", MainLauncher = true, Icon = "@drawable/icon")]
-    [Activity(Label = "TripListViewActivity")]
-    public class TripListViewActivity : Activity
+    [Activity(Label = "TripDriverListViewActivity")]
+    public class TripDriverListViewActivity : Activity
     {
         private Member user;
         private ProgressDialog progress;
@@ -30,13 +29,12 @@ namespace CHARE_System
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            SetTheme(Android.Resource.Style.ThemeDeviceDefault);                        
+            SetTheme(Android.Resource.Style.ThemeDeviceDefault);
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.TripListView);
+            SetContentView(Resource.Layout.TripPassListView);
             ActionBar ab = ActionBar;
             ab.SetDisplayHomeAsUpEnabled(true);
-
-            listView = FindViewById<ListView>(Resource.Id.trip_listview);
+            listView = FindViewById<ListView>(Resource.Id.trip_pass_listview);
 
             client = new HttpClient();
             client.BaseAddress = new Uri(GetString(Resource.String.RestAPIBaseAddress));
@@ -48,7 +46,7 @@ namespace CHARE_System
             progress.SetProgressStyle(Android.App.ProgressDialogStyle.Spinner);
             progress.SetMessage("Loading Trips.....");
             progress.SetCancelable(false);
-            
+
             ISharedPreferences pref = GetSharedPreferences(GetString(Resource.String.PreferenceFileName), FileCreationMode.Private);
             var member = pref.GetString(GetString(Resource.String.PreferenceSavedMember), "");
             user = JsonConvert.DeserializeObject<Member>(member);
@@ -57,39 +55,24 @@ namespace CHARE_System
             {
                 progress.Show();
             });
-            Console.WriteLine("===== Start");            
-            if (user.type.Equals("Driver"))
-                LoadTripDetails("api/TripDrivers?id=");
-            else
-                LoadTripDetails("api/TripPassengers?id=");
+            Console.WriteLine("===== Start");
+            LoadTripDetails(user.MemberID);
             Console.WriteLine("===== End");
         }
-        async void LoadTripDetails(string path)
+        async void LoadTripDetails(int id)
         {
             Console.WriteLine("===== Loading");
-            var models = await GetTripsAsync(path+user.MemberID);
-            Console.WriteLine("Models " +models);
+            var models = await RESTClient.GetTripDriverAsync(this,id);
+            Console.WriteLine("Models " + models);
             RunOnUiThread(() =>
             {
                 progress.Dismiss();
-            });            
-            listTrips = JsonConvert.DeserializeObject<List<TripDetails>>(models);                                               
-            listView.Adapter = new TripListViewAdapter(this, listTrips);
+            });
+            listTrips = JsonConvert.DeserializeObject<List<TripDetails>>(models);
+            listView.Adapter = new TripDriverListViewAdapter(this, listTrips);
             Console.WriteLine("===== Finish Loading");
         }
-
-        async Task<string> GetTripsAsync(string path)
-        {
-            Console.WriteLine("===== GetTripsAsync Start");
-            var make = "";
-            HttpResponseMessage response = await client.GetAsync(path);
-            if (response.IsSuccessStatusCode)
-            {
-                make = await response.Content.ReadAsStringAsync();
-            }
-            Console.WriteLine("===== GetTripsAsync End");
-            return make;
-        }
+        
         override
         public bool OnOptionsItemSelected(IMenuItem item)
         {

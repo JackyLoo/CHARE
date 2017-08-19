@@ -133,6 +133,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\RESTClient.cs" />
     <Compile Include="DriverListViewActivity.cs" />
     <Compile Include="DriverListViewAdapter.cs" />
     <Compile Include="InitialActivity.cs" />
@@ -148,8 +149,10 @@
     <Compile Include="SignupCarActivity.cs" />
     <Compile Include="TripConfirmation_1.cs" />
     <Compile Include="TripConfirmation_2.cs" />
-    <Compile Include="TripListViewActivity.cs" />
-    <Compile Include="TripListViewAdapter.cs" />
+    <Compile Include="TripDriverListViewActivity.cs" />
+    <Compile Include="TripDriverListViewAdapter.cs" />
+    <Compile Include="TripPassListViewActivity.cs" />
+    <Compile Include="TripPassListViewAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -193,10 +196,10 @@
     <AndroidResource Include="Resources\layout\Tool_Bar.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\TripListView.axml">
+    <AndroidResource Include="Resources\layout\TripPassListView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\TripDetailsRow.axml">
+    <AndroidResource Include="Resources\layout\TripPassDetailsRow.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\NumberPickerDialog.axml">
@@ -205,10 +208,16 @@
     <AndroidResource Include="Resources\layout\Spinner_Seat.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\DriverDetailsRow.axml">
+    <AndroidResource Include="Resources\layout\SearchDriverDetailsRow.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\DriverListView.axml">
+    <AndroidResource Include="Resources\layout\SearchDriverListView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\TripDriverListView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\TripDriverDetailsRow.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

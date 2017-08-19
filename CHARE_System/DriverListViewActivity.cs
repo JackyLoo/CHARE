@@ -16,6 +16,7 @@ using CHARE_System.JSON_Object;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using CHARE_System.Class;
 
 namespace CHARE_System
 {
@@ -33,7 +34,7 @@ namespace CHARE_System
         {
             SetTheme(Android.Resource.Style.ThemeDeviceDefault);
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.DriverListView);
+            SetContentView(Resource.Layout.SearchDriverListView);
             ActionBar ab = ActionBar;
             ab.SetDisplayHomeAsUpEnabled(true);
 
@@ -55,14 +56,14 @@ namespace CHARE_System
             RunOnUiThread(() =>
             {
                 progress.Show();
-            });            
-            
-            LoadTripDetails("api/TripDrivers?id="+passTrip.TripPassengerID+"&passengerTrip=null");                        
+            });
+
+            LoadTripDetails(passTrip.TripPassengerID);
         }
 
-        async void LoadTripDetails(string path)
+        async void LoadTripDetails(int id)
         {            
-            var models = await GetTripsAsync(path);           
+            var models = await RESTClient.SearchTripDriversAsync(this, id);           
             RunOnUiThread(() =>
             {
                 progress.Dismiss();
@@ -70,17 +71,7 @@ namespace CHARE_System
             listTrips = JsonConvert.DeserializeObject<List<TripDetails>>(models);
             listView.Adapter = new DriverListViewAdapter(this, listTrips, passTrip);
         }
-
-        async Task<string> GetTripsAsync(string path)
-        {            
-            var make = "";
-            HttpResponseMessage response = await client.GetAsync(path);
-            if (response.IsSuccessStatusCode)
-            {
-                make = await response.Content.ReadAsStringAsync();
-            }            
-            return make;
-        }
+       
         override
         public bool OnOptionsItemSelected(IMenuItem item)
         {

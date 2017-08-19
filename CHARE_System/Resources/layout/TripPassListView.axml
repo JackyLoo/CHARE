@@ -5,7 +5,7 @@
     android:layout_height="fill_parent"
     android:background="#efefef">
     <ListView
-        android:id="@+id/driver_listview"
+        android:id="@+id/trip_pass_listview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:fastScrollEnabled="true" />

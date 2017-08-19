@@ -55,12 +55,8 @@ C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\drawable\toggle_wed.xml
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\signup_car.xml
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\tool_bar.xml
-C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\triplistview.xml
-C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\tripdetailsrow.xml
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\numberpickerdialog.xml
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\spinner_seat.xml
-C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\driverdetailsrow.xml
-C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\driverlistview.xml
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\main.xml
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\values\strings.xml
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\drawable\icon.png
@@ -100,3 +96,9 @@ C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\CHARE_System.csprojResolveAssemblyReference.cache
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\bin\Debug\CHARE_System.dll.mdb
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\android\assets\CHARE_System.dll.mdb
+C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\trippasslistview.xml
+C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\trippassdetailsrow.xml
+C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\searchdriverdetailsrow.xml
+C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\searchdriverlistview.xml
+C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\tripdriverlistview.xml
+C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\tripdriverdetailsrow.xml

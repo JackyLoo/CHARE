@@ -213,7 +213,12 @@ namespace CHARE_System
                 {                    
                     case 1:
                         Toast.MakeText(this, "1 Clicked", ToastLength.Long).Show();
-                        intent = new Intent(this, typeof(TripListViewActivity));
+                        if(user.type.Equals("Passenger"))
+                            intent = new Intent(this, typeof(TripPassListViewActivity));
+                        else if (user.type.Equals("Driver"))
+                            intent = new Intent(this, typeof(TripDriverListViewActivity));
+                        else
+                            intent = new Intent(this, typeof(MainActivity));
                         StartActivity(intent);
                         break;
                     case 3:
