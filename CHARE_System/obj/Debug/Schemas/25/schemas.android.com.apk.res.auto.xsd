@@ -2,7 +2,7 @@
 <xs:schema xmlns:app="http://schemas.android.com/apk/res-auto" attributeFormDefault="qualified" targetNamespace="http://schemas.android.com/apk/res-auto" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation>v25</xs:documentation>
-    <xs:documentation>18/8/2017 3:49:58 PM</xs:documentation>
+    <xs:documentation>21/8/2017 2:37:31 PM</xs:documentation>
   </xs:annotation>
   <xs:attribute name="allowStacking">
     <xs:annotation>
@@ -650,6 +650,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -1065,6 +1066,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -1480,6 +1482,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -1895,6 +1898,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -2538,6 +2542,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -2998,6 +3003,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -3832,6 +3838,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -4344,6 +4351,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -4759,6 +4767,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -5316,6 +5325,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -5734,6 +5744,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -6149,6 +6160,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -8074,6 +8086,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -8717,6 +8730,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -9132,6 +9146,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -10011,6 +10026,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -10924,6 +10940,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -11837,6 +11854,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -12519,6 +12537,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -13149,6 +13168,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -13921,6 +13941,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -14551,6 +14572,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -15135,6 +15157,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -15692,6 +15715,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -16664,6 +16688,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -17079,6 +17104,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -17494,6 +17520,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -18096,6 +18123,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -18640,6 +18668,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -19055,6 +19084,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -19645,6 +19675,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -20202,6 +20233,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -21128,6 +21160,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -21999,6 +22032,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -24682,6 +24716,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -25608,6 +25643,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />
@@ -26553,6 +26589,7 @@
             <xs:enumeration value="@drawable/notification_tile_bg" />
             <xs:enumeration value="@drawable/notify_panel_notification_icon_bg" />
             <xs:enumeration value="@drawable/pasword" />
+            <xs:enumeration value="@drawable/person" />
             <xs:enumeration value="@drawable/places_ic_clear" />
             <xs:enumeration value="@drawable/places_ic_search" />
             <xs:enumeration value="@drawable/powered_by_google_dark" />

@@ -2,27 +2,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_above="@+id/mLlayoutBottomButtons" />
-    <LinearLayout
-        android:id="@+id/mLlayoutBottomButtons"
+    <TextView
+        android:id="@+id/network_notification"
+        android:visibility="gone"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="vertical">
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Button1" />
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Button2" />
-    </LinearLayout>
+        android:text="No Network Connectivity. Please check your internet connection."
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="#f74242"
+        android:textColor="#ffffff"
+        android:padding="10dp" />
+  <!--android:textColor="#ffffff"-->
+    <Button
+        android:id="@+id/testbtn"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Test"
+        android:layout_below="@id/network_notification" />
 </RelativeLayout>

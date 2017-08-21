@@ -8,7 +8,9 @@ public class MainActivity
 		com.google.android.gms.maps.OnMapReadyCallback,
 		android.location.LocationListener,
 		com.mikepenz.materialdrawer.Drawer.OnDrawerItemClickListener,
-		com.mikepenz.materialdrawer.AccountHeader.OnAccountHeaderListener
+		com.mikepenz.materialdrawer.AccountHeader.OnAccountHeaderListener,
+		android.content.DialogInterface.OnClickListener,
+		android.animation.Animator.AnimatorListener
 {
 /** @hide */
 	public static final String __md_methods;
@@ -22,6 +24,11 @@ public class MainActivity
 			"n_onStatusChanged:(Ljava/lang/String;ILandroid/os/Bundle;)V:GetOnStatusChanged_Ljava_lang_String_ILandroid_os_Bundle_Handler:Android.Locations.ILocationListenerInvoker, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\n" +
 			"n_onItemClick:(Landroid/view/View;ILcom/mikepenz/materialdrawer/model/interfaces/IDrawerItem;)Z:GetOnItemClick_Landroid_view_View_ILcom_mikepenz_materialdrawer_model_interfaces_IDrawerItem_Handler:Mikepenz.MaterialDrawer.Drawer/IOnDrawerItemClickListenerInvoker, material-drawer\n" +
 			"n_onProfileChanged:(Landroid/view/View;Lcom/mikepenz/materialdrawer/model/interfaces/IProfile;Z)Z:GetOnProfileChanged_Landroid_view_View_Lcom_mikepenz_materialdrawer_model_interfaces_IProfile_ZHandler:Mikepenz.MaterialDrawer.AccountHeader/IOnAccountHeaderListenerInvoker, material-drawer\n" +
+			"n_onClick:(Landroid/content/DialogInterface;I)V:GetOnClick_Landroid_content_DialogInterface_IHandler:Android.Content.IDialogInterfaceOnClickListenerInvoker, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\n" +
+			"n_onAnimationCancel:(Landroid/animation/Animator;)V:GetOnAnimationCancel_Landroid_animation_Animator_Handler:Android.Animation.Animator/IAnimatorListenerInvoker, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\n" +
+			"n_onAnimationEnd:(Landroid/animation/Animator;)V:GetOnAnimationEnd_Landroid_animation_Animator_Handler:Android.Animation.Animator/IAnimatorListenerInvoker, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\n" +
+			"n_onAnimationRepeat:(Landroid/animation/Animator;)V:GetOnAnimationRepeat_Landroid_animation_Animator_Handler:Android.Animation.Animator/IAnimatorListenerInvoker, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\n" +
+			"n_onAnimationStart:(Landroid/animation/Animator;)V:GetOnAnimationStart_Landroid_animation_Animator_Handler:Android.Animation.Animator/IAnimatorListenerInvoker, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\n" +
 			"";
 		mono.android.Runtime.register ("CHARE_System.MainActivity, CHARE_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", MainActivity.class, __md_methods);
 	}
@@ -97,6 +104,46 @@ public class MainActivity
 	}
 
 	private native boolean n_onProfileChanged (android.view.View p0, com.mikepenz.materialdrawer.model.interfaces.IProfile p1, boolean p2);
+
+
+	public void onClick (android.content.DialogInterface p0, int p1)
+	{
+		n_onClick (p0, p1);
+	}
+
+	private native void n_onClick (android.content.DialogInterface p0, int p1);
+
+
+	public void onAnimationCancel (android.animation.Animator p0)
+	{
+		n_onAnimationCancel (p0);
+	}
+
+	private native void n_onAnimationCancel (android.animation.Animator p0);
+
+
+	public void onAnimationEnd (android.animation.Animator p0)
+	{
+		n_onAnimationEnd (p0);
+	}
+
+	private native void n_onAnimationEnd (android.animation.Animator p0);
+
+
+	public void onAnimationRepeat (android.animation.Animator p0)
+	{
+		n_onAnimationRepeat (p0);
+	}
+
+	private native void n_onAnimationRepeat (android.animation.Animator p0);
+
+
+	public void onAnimationStart (android.animation.Animator p0)
+	{
+		n_onAnimationStart (p0);
+	}
+
+	private native void n_onAnimationStart (android.animation.Animator p0);
 
 	private java.util.ArrayList refList;
 	public void monodroidAddReference (java.lang.Object obj)

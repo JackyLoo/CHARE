@@ -75,7 +75,7 @@ namespace CHARE_System
             iTrip = JsonConvert.DeserializeObject<Trip>(Intent.GetStringExtra("Trip"));
             var o = iTrip.originLatLng.Split(',');
             var d = iTrip.destinationLatLng.Split(',');
-
+           
             originLatLng =  new LatLng(Double.Parse(o[0]), Double.Parse(o[1]));
             destLatLng = new LatLng(Double.Parse(d[0]), Double.Parse(d[1]));
 

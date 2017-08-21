@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tripPassDetailsRow_layout"
     android:orientation="horizontal"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -63,9 +64,9 @@
         android:paddingLeft="5dp"
         android:textColor="#111111" />
     <TextView
-        android:id="@+id/trip_row_time"
+        android:id="@+id/trip_row_distance"
         android:layout_below="@id/trip_row_day"
-        android:text="06:25AM"
+        android:text="33.0 KM"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -75,7 +76,7 @@
     <TextView
         android:id="@+id/trip_row_duration"
         android:layout_below="@id/trip_row_day"
-        android:layout_toRightOf="@id/trip_row_time"
+        android:layout_toRightOf="@id/trip_row_distance"
         android:text=" • Approx 31 mins"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="wrap_content"
@@ -84,8 +85,18 @@
         android:layout_marginTop="8dp"
         android:textColor="#111111" />
     <TextView
+        android:id="@+id/trip_row_time"
+        android:layout_below="@id/trip_row_distance"
+        android:text="06:25AM"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:textColor="#111111" />
+    <TextView
         android:id="@+id/trip_row_cost"
-        android:layout_below="@id/trip_row_day"
+        android:layout_below="@id/trip_row_distance"
         android:text="RM 11.90"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="wrap_content"

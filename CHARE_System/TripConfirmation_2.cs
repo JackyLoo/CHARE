@@ -21,23 +21,16 @@ namespace CHARE_System
     public class TripConfirmation_2 : FragmentActivity, 
         IOnTimeSetListener
     {
-        private ProgressDialog progress;
-
-        // Intent Putextra Data
+        private ProgressDialog progress;        
         private Member iMember;
-        private Trip iTrip;
-        
+        private Trip iTrip;        
         private LatLng originLatLng;
-        private LatLng destLatLng;
-
-        // Views        
+        private LatLng destLatLng;        
         private TextView tvArriveTime;
         private TextView tvDay;        
         private Switch switchFemaleOnly;
-        private LinearLayout seatLayout;
-        private TextView tvSeat;
+        private LinearLayout seatLayout;        
         private Button btnConfirm;
-
         private ToggleButton tbtnMon;
         private ToggleButton tbtnTue;
         private ToggleButton tbtnWed;
@@ -47,14 +40,10 @@ namespace CHARE_System
         private ToggleButton tbtnSun;
         private Button btnDayConfirm;
         private bool[] arrCheckedDay;
-
-        private Spinner spinnerSeat;        
-        private Button btnSeatConfirm;
-
+        private Spinner spinnerSeat;                
         private int hour, minute;
         private TimeSpan onTimeSet ;
         private string strPickedDays = "";
-
         private HttpClient client;
 
         struct CustomPair
@@ -207,7 +196,7 @@ namespace CHARE_System
                     {
                         strPickedDays += listDays[i].value;
                         if (i != (listDays.Count() - 1))
-                            strPickedDays += ",";
+                            strPickedDays += ", ";
                     }
                     tvDay.Text = strPickedDays;
                     dialog.Dismiss();
@@ -248,22 +237,26 @@ namespace CHARE_System
         }
 
         private void BtnConfirm_Click(Object sender, EventArgs e)
-        {            
-            // Assign user input and request POST to REST API            
-            iTrip.arriveTime = onTimeSet.ToString();
-            iTrip.days = tvDay.Text.ToString();
+        {
 
-            if (switchFemaleOnly.Checked)
-                iTrip.femaleOnly = "Yes";
-            else
-                iTrip.femaleOnly = "No";
-
-            if (tvArriveTime.Text.ToString().Equals("Set time"))
+            Android.Net.ConnectivityManager cm = (Android.Net.ConnectivityManager)this.GetSystemService(Context.ConnectivityService);
+            if (cm.ActiveNetworkInfo == null)
+                Toast.MakeText(this, "Network error. Try again later.", ToastLength.Long).Show();
+            else if (tvArriveTime.Text.ToString().Equals("Set time"))
                 Toast.MakeText(this, "Set arrive time", ToastLength.Long).Show();
             else if (tvDay.Text.ToString().Equals("Set days") || tvDay.Text.ToString().Trim() == "")
                 Toast.MakeText(this, "Select day", ToastLength.Long).Show();
             else
             {
+                // Assign user input and request POST to REST API            
+                iTrip.arriveTime = onTimeSet.ToString();
+                iTrip.days = tvDay.Text.ToString();
+
+                if (switchFemaleOnly.Checked)
+                    iTrip.femaleOnly = "Yes";
+                else
+                    iTrip.femaleOnly = "No";
+
                 TripDriver tripDriver;
                 TripPassenger tripPassenger;
 
@@ -293,7 +286,7 @@ namespace CHARE_System
 
         private void SetDayArrayBool(bool b)
         {
-            for (int i = 0; i < arrCheckedDay.Length; i += 2)
+            for (int i = 0; i < arrCheckedDay.Length; i++)
             {
                 arrCheckedDay[i] = b;
             }

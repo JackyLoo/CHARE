@@ -14,7 +14,7 @@ namespace CHARE_REST_API.JSON_Object
 
     public class Request
     {
-        public Request(){ status = "Pending"; }
+        public Request() { status = "Pending"; }
         public int RequestID { get; set; }
         public int SenderID { get; set; }
         public int DriverID { get; set; }
@@ -29,7 +29,7 @@ namespace CHARE_REST_API.JSON_Object
     }
 
     public class Trip
-    {                
+    {
         public string origin { get; set; }
         public string destination { get; set; }
         public string originLatLng { get; set; }
@@ -37,7 +37,7 @@ namespace CHARE_REST_API.JSON_Object
         public string arriveTime { get; set; }
         public string femaleOnly { get; set; }
         public double cost { get; set; }
-        public int distance { get; set; }
+        public double distance { get; set; }
         public string days { get; set; }
         public int duration { get; set; }
         public string costStr { get; set; }
@@ -48,6 +48,25 @@ namespace CHARE_REST_API.JSON_Object
     public class TripPassenger : Trip
     {
         public TripPassenger() { }
+        public TripPassenger(TripDetails t)
+        {
+            this.origin = t.origin;
+            this.destination = t.destination;
+            this.originLatLng = t.originLatLng;
+            this.destinationLatLng = t.destinationLatLng;
+            this.arriveTime = t.arriveTime;
+            this.femaleOnly = t.femaleOnly;
+            this.cost = t.cost;
+            this.distance = t.distance;
+            this.days = t.days;
+            this.duration = t.duration;
+            this.costStr = t.costStr;
+            this.durationStr = t.durationStr;
+            this.distanceStr = t.distanceStr;
+            TripDriverID = t.TripDriverID;
+            PassengerID = t.PassengerID;
+            TripPassengerID = t.TripPassengerID;
+        }
         public TripPassenger(Trip t)
         {
             this.origin = t.origin;
@@ -68,13 +87,33 @@ namespace CHARE_REST_API.JSON_Object
 
         public int TripPassengerID { get; set; }
         public int PassengerID { get; set; }
-        public int? TripDriverID { get; set; }                
+        public int? TripDriverID { get; set; }
     }
 
     public class TripDriver : Trip
     {
         public TripDriver() { }
 
+        public TripDriver(TripDetails t)
+        {
+            this.origin = t.origin;
+            this.destination = t.destination;
+            this.originLatLng = t.originLatLng;
+            this.destinationLatLng = t.destinationLatLng;
+            this.arriveTime = t.arriveTime;
+            this.femaleOnly = t.femaleOnly;
+            this.cost = t.cost;
+            this.distance = t.distance;
+            this.days = t.days;
+            this.duration = t.duration;
+            this.costStr = t.costStr;
+            this.durationStr = t.durationStr;
+            this.distanceStr = t.distanceStr;
+            TripDriverID = (int)t.TripDriverID;
+            DriverID = t.DriverID;
+            PassengerIDs = t.PassengerIDs;
+            availableSeat = t.availableSeat;
+        } 
         public TripDriver(Trip t)
         {
             this.origin = t.origin;
@@ -108,8 +147,7 @@ namespace CHARE_REST_API.JSON_Object
     public class Vehicle
     {        
         public int VehicleID { get; set; }
-        public int MemberID { get; set; }        
-        public int availableSeat { get; set; }
+        public int MemberID { get; set; }                
         public string make { get; set; }
         public string model { get; set; }
         public string color { get; set; }

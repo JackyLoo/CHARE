@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace CHARE_REST_API.JSON_Object
 {
-    class TripDetails
+    public class TripDetails
     {
         public List<Request> Requests { get; set; }
 
@@ -38,7 +38,6 @@ namespace CHARE_REST_API.JSON_Object
         public int duration { get; set; }
         public string costStr { get; set; }
         public string durationStr { get; set; }
-        public string distanceStr { get; set; }
-  
+        public string distanceStr { get; set; }  
     }
 }

@@ -34,35 +34,42 @@ namespace CHARE_System
             SetContentView(Resource.Layout.TripPassListView);
             ActionBar ab = ActionBar;
             ab.SetDisplayHomeAsUpEnabled(true);
-            listView = FindViewById<ListView>(Resource.Id.trip_pass_listview);
 
-            client = new HttpClient();
-            client.BaseAddress = new Uri(GetString(Resource.String.RestAPIBaseAddress));
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            progress = new Android.App.ProgressDialog(this);
-            progress.Indeterminate = true;
-            progress.SetProgressStyle(Android.App.ProgressDialogStyle.Spinner);
-            progress.SetMessage("Loading Trips.....");
-            progress.SetCancelable(false);
-
-            ISharedPreferences pref = GetSharedPreferences(GetString(Resource.String.PreferenceFileName), FileCreationMode.Private);
-            var member = pref.GetString(GetString(Resource.String.PreferenceSavedMember), "");
-            user = JsonConvert.DeserializeObject<Member>(member);
-
-            RunOnUiThread(() =>
+            Android.Net.ConnectivityManager cm = (Android.Net.ConnectivityManager)this.GetSystemService(Context.ConnectivityService);
+            if (cm.ActiveNetworkInfo == null)
+                Toast.MakeText(this, "Network error. Try again later.", ToastLength.Long).Show();
+            else
             {
-                progress.Show();
-            });
-            Console.WriteLine("===== Start");
-            LoadTripDetails(user.MemberID);
-            Console.WriteLine("===== End");
+                listView = FindViewById<ListView>(Resource.Id.trip_pass_listview);
+
+                client = new HttpClient();
+                client.BaseAddress = new Uri(GetString(Resource.String.RestAPIBaseAddress));
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                progress = new Android.App.ProgressDialog(this);
+                progress.Indeterminate = true;
+                progress.SetProgressStyle(Android.App.ProgressDialogStyle.Spinner);
+                progress.SetMessage("Loading Trips.....");
+                progress.SetCancelable(false);
+
+                ISharedPreferences pref = GetSharedPreferences(GetString(Resource.String.PreferenceFileName), FileCreationMode.Private);
+                var member = pref.GetString(GetString(Resource.String.PreferenceSavedMember), "");
+                user = JsonConvert.DeserializeObject<Member>(member);
+
+                RunOnUiThread(() =>
+                {
+                    progress.Show();
+                });
+                Console.WriteLine("===== Start");
+                LoadTripDetails(user.MemberID);
+                Console.WriteLine("===== End");
+            }
         }
         async void LoadTripDetails(int id)
         {
             Console.WriteLine("===== Loading");
-            var models = await RESTClient.GetTripDriverAsync(this,id);
+            var models = await RESTClient.GetTripDriverListAsync(this,id);
             Console.WriteLine("Models " + models);
             RunOnUiThread(() =>
             {

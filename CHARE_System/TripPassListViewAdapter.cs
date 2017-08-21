@@ -50,8 +50,8 @@ namespace CHARE_System
         public override long GetItemId(int position)
         {
             return position;
-        }        
-
+        }
+        
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             Console.WriteLine("===== GetView Start");
@@ -65,20 +65,22 @@ namespace CHARE_System
                 var dest = view.FindViewById<TextView>(Resource.Id.trip_row_destination);
                 var day = view.FindViewById<TextView>(Resource.Id.trip_row_day);
                 var arriveTime = view.FindViewById<TextView>(Resource.Id.trip_row_time);
+                var distance = view.FindViewById<TextView>(Resource.Id.trip_row_distance);
                 var duration = view.FindViewById<TextView>(Resource.Id.trip_row_duration);
                 var cost = view.FindViewById<TextView>(Resource.Id.trip_row_cost);
                 var button = view.FindViewById<TextView>(Resource.Id.trip_row_button);                               
 
                 view.Tag = new TripViewHolder() { Female = femaleOnly, Origin = origin, Dest = dest, Day = day,
-                    ArriveTime = arriveTime, Duration = duration, Cost = cost, mButton = button};
+                    ArriveTime = arriveTime, Distance = distance, Duration = duration, Cost = cost, mButton = button};
             }
                         
             var holder = (TripViewHolder)view.Tag;
+            
             // Convert time to hh:mm tt format
             var time = trips[position].arriveTime.Split(':');
             int totalInSecond = (int.Parse(time[0]) * 3600) + (int.Parse(time[1]) * 60);
             TimeSpan onTimeSet = TimeSpan.FromSeconds(totalInSecond);
-            string strTime = DateTime.ParseExact(onTimeSet.ToString(@"hh\:mm"), "HH:mm", null).ToString("hh:mm tt", CultureInfo.GetCultureInfo("en-US"));
+            string strTime = DateTime.ParseExact(onTimeSet.ToString(@"hh\:mm"), "HH:mm", null).ToString("hh:mm tt", CultureInfo.GetCultureInfo("en-US"));            
 
             // Convert "Mon,Tue,Wed..." to "Mon • Tue • Wed..." format
             string strDay = trips[position].days.Replace(",", " • ");
@@ -94,6 +96,7 @@ namespace CHARE_System
             holder.Dest.Text = trips[position].destination;
             holder.Day.Text = strDay;
             holder.ArriveTime.Text = strTime;
+            holder.Distance.Text = trips[position].distanceStr;
             holder.Duration.Text = " • Approx " + trips[position].durationStr;
             holder.Cost.Text = trips[position].costStr;
 
@@ -108,9 +111,12 @@ namespace CHARE_System
                 holder.mButton.Text = "View Driver";
             else if (trips[position].Requests[0].status.Equals("Rejected"))
                 holder.mButton.Text = "Search Driver";
-
+            
             holder.mButton.Click += async (sender, e) =>
             {
+                Android.Net.ConnectivityManager cm = (Android.Net.ConnectivityManager)context.GetSystemService(Context.ConnectivityService);
+                if (cm.ActiveNetworkInfo == null)
+                    Toast.MakeText(context, "Network error. Try again later.", ToastLength.Long).Show();
                 if (holder.mButton.Text.Equals("Search Driver"))
                 {
                     //Intent intent = new Intent(context, typeof(DriverListViewActivity)).SetFlags(ActivityFlags.NewTask);
@@ -130,7 +136,15 @@ namespace CHARE_System
                 else if (trips[position].Requests[0].status.Equals("Rejected"))
                     holder.mButton.Text = "Search Driver";
             };
-            
+
+            view.Click += (sender, e) =>
+            {
+                Intent intent = new Intent(context, typeof(TripPassDetailsRow_Edit));
+                if (holder.mButton.Text.Equals("Search Driver"))
+                    intent.PutExtra("Status", "OK");
+                intent.PutExtra("Trip", JsonConvert.SerializeObject(trips[position]));
+                ((Activity)context).StartActivityForResult(intent, 0);                
+            };
 
             Console.WriteLine("===== GetView End");
             return view;
@@ -144,6 +158,7 @@ namespace CHARE_System
         public TextView Dest { get; set; }
         public TextView Day { get; set; }
         public TextView ArriveTime { get; set; }
+        public TextView Distance { get; set; }
         public TextView Duration { get; set; }
         public TextView Cost { get; set; }
         public TextView mButton { get; set; }

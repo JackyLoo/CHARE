@@ -19,9 +19,10 @@ namespace CHARE_System
 {
     class TripDriverListViewAdapter : BaseAdapter<TripDetails>
     {
-        private List<TripDetails> trips;
         private static Context context;
+        private List<TripDetails> trips;        
         private HttpClient client;
+
         public TripDriverListViewAdapter(Context c, List<TripDetails> trips)
         {
             this.trips = trips;
@@ -63,6 +64,7 @@ namespace CHARE_System
                 var dest = view.FindViewById<TextView>(Resource.Id.trip_driver_row_destination);
                 var day = view.FindViewById<TextView>(Resource.Id.trip_driver_row_day);
                 var arriveTime = view.FindViewById<TextView>(Resource.Id.trip_driver_row_time);
+                var distance = view.FindViewById<TextView>(Resource.Id.trip_driver_row_distance);
                 var duration = view.FindViewById<TextView>(Resource.Id.trip_driver_row_duration);
                 var cost = view.FindViewById<TextView>(Resource.Id.trip_driver_row_cost);
                 var button = view.FindViewById<TextView>(Resource.Id.trip_driver_row_button);
@@ -74,6 +76,7 @@ namespace CHARE_System
                     Dest = dest,
                     Day = day,
                     ArriveTime = arriveTime,
+                    Distance = distance,
                     Duration = duration,
                     Cost = cost,
                     mButton = button
@@ -81,6 +84,7 @@ namespace CHARE_System
             }
 
             var holder = (TripDriverViewHolder)view.Tag;
+
             // Convert time to hh:mm tt format
             var time = trips[position].arriveTime.Split(':');
             int totalInSecond = (int.Parse(time[0]) * 3600) + (int.Parse(time[1]) * 60);
@@ -101,6 +105,7 @@ namespace CHARE_System
             holder.Dest.Text = trips[position].destination;
             holder.Day.Text = strDay;
             holder.ArriveTime.Text = strTime;
+            holder.Distance.Text = trips[position].distanceStr;
             holder.Duration.Text = " • Approx " + trips[position].durationStr;
             holder.Cost.Text = trips[position].costStr;
 
@@ -118,7 +123,10 @@ namespace CHARE_System
 
             holder.mButton.Click += async (sender, e) =>
             {
-                if (holder.mButton.Text.Equals("Search Driver"))
+                Android.Net.ConnectivityManager cm = (Android.Net.ConnectivityManager)context.GetSystemService(Context.ConnectivityService);
+                if (cm.ActiveNetworkInfo == null)
+                    Toast.MakeText(context, "Network error. Try again later.", ToastLength.Long).Show();
+                else if (holder.mButton.Text.Equals("Search Driver"))
                 {
                     //Intent intent = new Intent(context, typeof(DriverListViewActivity)).SetFlags(ActivityFlags.NewTask);
                     Intent intent = new Intent(context, typeof(DriverListViewActivity));
@@ -138,6 +146,19 @@ namespace CHARE_System
                     holder.mButton.Text = "Search Driver";
             };
 
+            view.Click += (sender, e) =>
+            {
+                Android.Net.ConnectivityManager cm = (Android.Net.ConnectivityManager)context.GetSystemService(Context.ConnectivityService);
+                if (cm.ActiveNetworkInfo == null)
+                    Toast.MakeText(context, "Network error. Try again later.", ToastLength.Long).Show();
+                else
+                {
+                    Intent intent = new Intent(context, typeof(TripDriverDetailsRow_Edit));
+                    intent.PutExtra("Trip", JsonConvert.SerializeObject(trips[position]));
+                    ((Activity)context).StartActivityForResult(intent, 0);
+                }
+            };
+
             Console.WriteLine("===== GetView End");
             return view;
         }
@@ -150,6 +171,7 @@ namespace CHARE_System
         public TextView Dest { get; set; }
         public TextView Day { get; set; }
         public TextView ArriveTime { get; set; }
+        public TextView Distance { get; set; }
         public TextView Duration { get; set; }
         public TextView Cost { get; set; }
         public TextView Seat { get; set; }

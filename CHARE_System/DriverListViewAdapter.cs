@@ -110,13 +110,19 @@ namespace CHARE_System
             holder.Duration.Text = " • Approx " + trips[position].durationStr;            
             holder.mButton.Click += async (sender, e) =>
             {
-                Request request = new Request();
-                request.SenderID = passTrip.TripPassengerID;
-                request.DriverID = (int)trips[position].TripDriverID;
-                await RESTClient.CreateRequestAsync(context, request);
-                Intent intent = new Intent(context, typeof(TripPassListViewActivity));
-                intent.AddFlags(ActivityFlags.ClearTop);
-                context.StartActivity(intent);                
+                Android.Net.ConnectivityManager cm = (Android.Net.ConnectivityManager)context.GetSystemService(Context.ConnectivityService);
+                if (cm.ActiveNetworkInfo == null)
+                    Toast.MakeText(context, "Network error. Try again later.", ToastLength.Long).Show();
+                else
+                {
+                    Request request = new Request();
+                    request.SenderID = passTrip.TripPassengerID;
+                    request.DriverID = (int)trips[position].TripDriverID;
+                    await RESTClient.CreateRequestAsync(context, request);
+                    Intent intent = new Intent(context, typeof(TripPassListViewActivity));
+                    intent.AddFlags(ActivityFlags.ClearTop);
+                    context.StartActivity(intent);
+                }
             };                        
             return view;
         }        

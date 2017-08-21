@@ -38,27 +38,32 @@ namespace CHARE_System
             ActionBar ab = ActionBar;
             ab.SetDisplayHomeAsUpEnabled(true);
 
-            passTrip = JsonConvert.DeserializeObject<TripDetails>(Intent.GetStringExtra("Trip"));                             
-
-            listView = FindViewById<ListView>(Resource.Id.driver_listview);
-
-            client = new HttpClient();
-            client.BaseAddress = new Uri(GetString(Resource.String.RestAPIBaseAddress));
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            progress = new Android.App.ProgressDialog(this);
-            progress.Indeterminate = true;
-            progress.SetProgressStyle(Android.App.ProgressDialogStyle.Spinner);
-            progress.SetMessage("Looking for drivers.....");
-            progress.SetCancelable(false);
-            
-            RunOnUiThread(() =>
+            Android.Net.ConnectivityManager cm = (Android.Net.ConnectivityManager)this.GetSystemService(Context.ConnectivityService);
+            if (cm.ActiveNetworkInfo == null)
+                Toast.MakeText(this, "Network error. Try again later.", ToastLength.Long).Show();
             {
-                progress.Show();
-            });
+                passTrip = JsonConvert.DeserializeObject<TripDetails>(Intent.GetStringExtra("Trip"));
 
-            LoadTripDetails(passTrip.TripPassengerID);
+                listView = FindViewById<ListView>(Resource.Id.driver_listview);
+
+                client = new HttpClient();
+                client.BaseAddress = new Uri(GetString(Resource.String.RestAPIBaseAddress));
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                progress = new Android.App.ProgressDialog(this);
+                progress.Indeterminate = true;
+                progress.SetProgressStyle(Android.App.ProgressDialogStyle.Spinner);
+                progress.SetMessage("Looking for drivers.....");
+                progress.SetCancelable(false);
+
+                RunOnUiThread(() =>
+                {
+                    progress.Show();
+                });
+
+                LoadTripDetails(passTrip.TripPassengerID);
+            }
         }
 
         async void LoadTripDetails(int id)

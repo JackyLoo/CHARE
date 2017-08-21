@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using static Android.Widget.AdapterView;
 using CHARE_REST_API.JSON_Object;
 using Newtonsoft.Json;
+using CHARE_System.Class;
 
 namespace CHARE_System
 {
@@ -60,29 +61,24 @@ namespace CHARE_System
             signupBtn = (TextView)FindViewById(Resource.Id.signupcarbtn);
             signupBtn.Click += async (sender, e) =>
             {
-                if (etCarplate.Text.ToString().Trim().Equals(""))
+                Android.Net.ConnectivityManager cm = (Android.Net.ConnectivityManager)this.GetSystemService(Context.ConnectivityService);
+                if (cm.ActiveNetworkInfo == null)
+                    Toast.MakeText(this, "Network error. Try again later.", ToastLength.Long).Show();
+                else if (etCarplate.Text.ToString().Trim().Equals(""))
                     etCarplate.SetError("Car plate no is required!", null);
                 else
-                {
-                    var url = await CreateAsync(iMember);
-                    iMember = await GetMemberAsync(url.PathAndQuery);
-
-                    Vehicle vehicle = new Vehicle();
+                {                                        
+                    Vehicle vehicle = new Vehicle();                    
                     vehicle.model = spnModel.SelectedItem.ToString();
                     vehicle.make = spnMake.SelectedItem.ToString();
                     vehicle.color = spnColor.SelectedItem.ToString();
-                    vehicle.plateNo = etCarplate.Text.ToString().Trim();
-                    vehicle.MemberID = iMember.MemberID;
-                   
-                    if (await CreateVehicleAsync(vehicle))
-                    {
-                        RunOnUiThread(() =>
-                        {
-                            progress.Dismiss();
-                        });
-                        var intent = new Intent(this, typeof(LoginActivity));
-                        StartActivity(intent);
-                    }
+                    vehicle.plateNo = etCarplate.Text.ToString().Trim();                    
+
+                    await RESTClient.CreateMemberVehicleAsync(this, iMember, vehicle);
+
+                    var intent = new Intent(this, typeof(LoginActivity));
+                    StartActivity(intent);
+
                     RunOnUiThread(() =>
                     {
                         progress.Dismiss();
@@ -90,80 +86,33 @@ namespace CHARE_System
                 }
 
             };
-
-            var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.car_color_array, Android.Resource.Layout.SimpleSpinnerItem);
+  
+            var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.car_color_array, Resource.Layout.Custom_Spinner_Signup);
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spnColor.Adapter = adapter;
 
             spnMake.ItemSelected += async (sender, e) =>
             {                                                
-                var make = await GetCarmodelAsync("api/CarModels?make=" + spnMake.SelectedItem.ToString().Trim());
-                var list = (make.Substring(1, make.Length - 2)).Replace('\"', ' ').Split(',');
-                Array.Sort(list);
-                ArrayAdapter<string> dataAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerItem, list);
+                var makeList = await RESTClient.GetCarmodelMakeAsync(this, spnMake.SelectedItem.ToString().Trim());                
+                Array.Sort(makeList);
+                ArrayAdapter<string> dataAdapter = new ArrayAdapter<string>(this, Resource.Layout.Custom_Spinner_Signup, makeList);
                 dataAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
                 spnModel.Adapter = dataAdapter;
-            };            
-            
-            InitializeMakeSpinner();
-            
-            var models = GetCarmodelAsync("api/CarModels");            
+            };
+
+            InitializeMakeSpinner();                        
         }
 
         async void InitializeMakeSpinner()
         {
-            var make = await GetCarmodelAsync("api/CarModels");
-            var list = (make.Substring(1, make.Length - 2)).Replace('\"', ' ').Split(',');
-            Array.Sort(list);                                    
-            ArrayAdapter<string> dataAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerItem, list);
+            var modelList = await RESTClient.GetCarmodelAsync(this);            
+            Array.Sort(modelList);                                    
+            ArrayAdapter<string> dataAdapter = new ArrayAdapter<string>(this, Resource.Layout.Custom_Spinner_Signup, modelList);
             dataAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spnMake.Adapter = dataAdapter;
         }
 
 
-        async Task<string> GetCarmodelAsync(string path)
-        {
-            var make = "";
-            HttpResponseMessage response = await client.GetAsync(path);
-            if (response.IsSuccessStatusCode)
-            {
-                make = await response.Content.ReadAsStringAsync();
-            }
-            return make;
-        }
-
-        async Task<Uri> CreateAsync(Member member)
-        {
-            HttpResponseMessage response = await client.PostAsJsonAsync("api/Members", member);
-            if (!response.IsSuccessStatusCode)                            
-                Toast.MakeText(this, "Failed to registered account.", ToastLength.Short).Show();
-
-            // return URI of the created resource.
-            return response.Headers.Location;
-        }
-
-        async Task<bool> CreateVehicleAsync(Vehicle vehicle)
-        {
-            HttpResponseMessage response = await client.PostAsJsonAsync("api/Vehicles", vehicle);
-            if (response.IsSuccessStatusCode)
-            {
-                Toast.MakeText(this, "Account registered successfully.", ToastLength.Short).Show();
-                return true;
-            }
-            else
-                Toast.MakeText(this, "Failed to registered account.", ToastLength.Short).Show();
-            return false;
-        }
-
-        async Task<Member> GetMemberAsync(string path)
-        {
-            Member member= null;
-            HttpResponseMessage response = await client.GetAsync(path);
-            if (response.IsSuccessStatusCode)
-            {
-                member = await response.Content.ReadAsAsync<Member>();
-            }
-            return member;
-        }
+  
     }
 }

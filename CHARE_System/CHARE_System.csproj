@@ -143,14 +143,18 @@
     <Compile Include="JSON Object\TripDetails.cs" />
     <Compile Include="LoginActivity.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="NetworkBroadcastReceiver.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignupActivity.cs" />
     <Compile Include="SignupCarActivity.cs" />
+    <Compile Include="Test.cs" />
     <Compile Include="TripConfirmation_1.cs" />
     <Compile Include="TripConfirmation_2.cs" />
+    <Compile Include="TripDriverDetailsRow_Edit.cs" />
     <Compile Include="TripDriverListViewActivity.cs" />
     <Compile Include="TripDriverListViewAdapter.cs" />
+    <Compile Include="TripPassDetailsRow_Edit.cs" />
     <Compile Include="TripPassListViewActivity.cs" />
     <Compile Include="TripPassListViewAdapter.cs" />
   </ItemGroup>
@@ -220,6 +224,12 @@
     <AndroidResource Include="Resources\layout\TripDriverDetailsRow.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\TripDetailsRow_Edit.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Custom_Spinner_Signup.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">
@@ -235,7 +245,9 @@
     <AndroidResource Include="Resources\drawable\Icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\AndroidManifest.xml" />
+    <None Include="Properties\AndroidManifest.xml">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\angle2.xml" />
@@ -329,6 +341,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values-v21\styles.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\person.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

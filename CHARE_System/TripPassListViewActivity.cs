@@ -20,7 +20,7 @@ using CHARE_System.Class;
 namespace CHARE_System
 {
     //[Activity(Label = "TripListViewActivity", MainLauncher = true, Icon = "@drawable/icon")]
-    [Activity(Label = "TripListViewActivity")]
+    [Activity(Label = "TripPassListViewActivity")]
     public class TripPassListViewActivity : Activity
     {
         private Member user;
@@ -31,41 +31,49 @@ namespace CHARE_System
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            
             SetTheme(Android.Resource.Style.ThemeDeviceDefault);
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.TripPassListView);
             ActionBar ab = ActionBar;
             ab.SetDisplayHomeAsUpEnabled(true);
 
-            listView = FindViewById<ListView>(Resource.Id.trip_pass_listview);
-
-            client = new HttpClient();
-            client.BaseAddress = new Uri(GetString(Resource.String.RestAPIBaseAddress));
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            progress = new Android.App.ProgressDialog(this);
-            progress.Indeterminate = true;
-            progress.SetProgressStyle(Android.App.ProgressDialogStyle.Spinner);
-            progress.SetMessage("Loading Trips.....");
-            progress.SetCancelable(false);
-            
-            ISharedPreferences pref = GetSharedPreferences(GetString(Resource.String.PreferenceFileName), FileCreationMode.Private);
-            var member = pref.GetString(GetString(Resource.String.PreferenceSavedMember), "");
-            user = JsonConvert.DeserializeObject<Member>(member);
-
-            RunOnUiThread(() =>
+            Android.Net.ConnectivityManager cm = (Android.Net.ConnectivityManager)this.GetSystemService(Context.ConnectivityService);
+            if (cm.ActiveNetworkInfo == null)
+                Toast.MakeText(this, "Network error. Try again later.", ToastLength.Long).Show();
+            else
             {
-                progress.Show();
-            });
-            
-            LoadTripDetails(user.MemberID);
-            Console.WriteLine("===== End");
+                listView = FindViewById<ListView>(Resource.Id.trip_pass_listview);
+
+                client = new HttpClient();
+                client.BaseAddress = new Uri(GetString(Resource.String.RestAPIBaseAddress));
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                progress = new Android.App.ProgressDialog(this);
+                progress.Indeterminate = true;
+                progress.SetProgressStyle(Android.App.ProgressDialogStyle.Spinner);
+                progress.SetMessage("Loading Trips.....");
+                progress.SetCancelable(false);
+
+                ISharedPreferences pref = GetSharedPreferences(GetString(Resource.String.PreferenceFileName), FileCreationMode.Private);
+                var member = pref.GetString(GetString(Resource.String.PreferenceSavedMember), "");
+                user = JsonConvert.DeserializeObject<Member>(member);
+
+                RunOnUiThread(() =>
+                {
+                    progress.Show();
+                });
+
+                LoadTripDetails(user.MemberID);
+                Console.WriteLine("===== End");
+            }
         }
+
         async void LoadTripDetails(int id)
         {
             Console.WriteLine("===== Loading");
-            var models = await RESTClient.GetTripPassengerAsync(id);
+            var models = await RESTClient.GetTripPassengerListAsync(id);
             Console.WriteLine("Models " +models);
             RunOnUiThread(() =>
             {
@@ -76,6 +84,17 @@ namespace CHARE_System
             Console.WriteLine("===== Finish Loading");
         }
         
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            Console.WriteLine("===== RequestCode");
+            Console.WriteLine("Code " + requestCode);
+            if (resultCode == 0)
+            {
+                this.Recreate();                
+            }
+        }
+
         override
         public bool OnOptionsItemSelected(IMenuItem item)
         {

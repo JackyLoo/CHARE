@@ -2,7 +2,7 @@
 <xs:schema xmlns:tools="http://schemas.android.com/tools" attributeFormDefault="qualified" targetNamespace="http://schemas.android.com/tools" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation>v25</xs:documentation>
-    <xs:documentation>18/8/2017 3:49:58 PM</xs:documentation>
+    <xs:documentation>21/8/2017 2:37:31 PM</xs:documentation>
   </xs:annotation>
   <xs:attribute name="layout">
     <xs:annotation>
@@ -39,9 +39,8 @@
             <xs:enumeration value="@layout/abc_search_dropdown_item_icons_2line" />
             <xs:enumeration value="@layout/abc_search_view" />
             <xs:enumeration value="@layout/abc_select_dialog_material" />
+            <xs:enumeration value="@layout/custom_spinner_signup" />
             <xs:enumeration value="@layout/daypickerdialog" />
-            <xs:enumeration value="@layout/driverdetailsrow" />
-            <xs:enumeration value="@layout/driverlistview" />
             <xs:enumeration value="@layout/login" />
             <xs:enumeration value="@layout/main" />
             <xs:enumeration value="@layout/material_drawer" />
@@ -85,6 +84,8 @@
             <xs:enumeration value="@layout/place_autocomplete_progress" />
             <xs:enumeration value="@layout/preference" />
             <xs:enumeration value="@layout/preference_widget_switch" />
+            <xs:enumeration value="@layout/searchdriverdetailsrow" />
+            <xs:enumeration value="@layout/searchdriverlistview" />
             <xs:enumeration value="@layout/select_dialog_item_material" />
             <xs:enumeration value="@layout/select_dialog_multichoice_material" />
             <xs:enumeration value="@layout/select_dialog_singlechoice_material" />
@@ -96,8 +97,11 @@
             <xs:enumeration value="@layout/tool_bar" />
             <xs:enumeration value="@layout/tripconfirmation_1" />
             <xs:enumeration value="@layout/tripconfirmation_2" />
-            <xs:enumeration value="@layout/tripdetailsrow" />
-            <xs:enumeration value="@layout/triplistview" />
+            <xs:enumeration value="@layout/tripdetailsrow_edit" />
+            <xs:enumeration value="@layout/tripdriverdetailsrow" />
+            <xs:enumeration value="@layout/tripdriverlistview" />
+            <xs:enumeration value="@layout/trippassdetailsrow" />
+            <xs:enumeration value="@layout/trippasslistview" />
             <xs:enumeration value="@android:layout/activity_list_item" />
             <xs:enumeration value="@android:layout/browser_link_context_header" />
             <xs:enumeration value="@android:layout/expandable_list_content" />
@@ -173,9 +177,8 @@
             <xs:enumeration value="@layout/abc_search_dropdown_item_icons_2line" />
             <xs:enumeration value="@layout/abc_search_view" />
             <xs:enumeration value="@layout/abc_select_dialog_material" />
+            <xs:enumeration value="@layout/custom_spinner_signup" />
             <xs:enumeration value="@layout/daypickerdialog" />
-            <xs:enumeration value="@layout/driverdetailsrow" />
-            <xs:enumeration value="@layout/driverlistview" />
             <xs:enumeration value="@layout/login" />
             <xs:enumeration value="@layout/main" />
             <xs:enumeration value="@layout/material_drawer" />
@@ -219,6 +222,8 @@
             <xs:enumeration value="@layout/place_autocomplete_progress" />
             <xs:enumeration value="@layout/preference" />
             <xs:enumeration value="@layout/preference_widget_switch" />
+            <xs:enumeration value="@layout/searchdriverdetailsrow" />
+            <xs:enumeration value="@layout/searchdriverlistview" />
             <xs:enumeration value="@layout/select_dialog_item_material" />
             <xs:enumeration value="@layout/select_dialog_multichoice_material" />
             <xs:enumeration value="@layout/select_dialog_singlechoice_material" />
@@ -230,8 +235,11 @@
             <xs:enumeration value="@layout/tool_bar" />
             <xs:enumeration value="@layout/tripconfirmation_1" />
             <xs:enumeration value="@layout/tripconfirmation_2" />
-            <xs:enumeration value="@layout/tripdetailsrow" />
-            <xs:enumeration value="@layout/triplistview" />
+            <xs:enumeration value="@layout/tripdetailsrow_edit" />
+            <xs:enumeration value="@layout/tripdriverdetailsrow" />
+            <xs:enumeration value="@layout/tripdriverlistview" />
+            <xs:enumeration value="@layout/trippassdetailsrow" />
+            <xs:enumeration value="@layout/trippasslistview" />
             <xs:enumeration value="@android:layout/activity_list_item" />
             <xs:enumeration value="@android:layout/browser_link_context_header" />
             <xs:enumeration value="@android:layout/expandable_list_content" />
@@ -307,9 +315,8 @@
             <xs:enumeration value="@layout/abc_search_dropdown_item_icons_2line" />
             <xs:enumeration value="@layout/abc_search_view" />
             <xs:enumeration value="@layout/abc_select_dialog_material" />
+            <xs:enumeration value="@layout/custom_spinner_signup" />
             <xs:enumeration value="@layout/daypickerdialog" />
-            <xs:enumeration value="@layout/driverdetailsrow" />
-            <xs:enumeration value="@layout/driverlistview" />
             <xs:enumeration value="@layout/login" />
             <xs:enumeration value="@layout/main" />
             <xs:enumeration value="@layout/material_drawer" />
@@ -353,6 +360,8 @@
             <xs:enumeration value="@layout/place_autocomplete_progress" />
             <xs:enumeration value="@layout/preference" />
             <xs:enumeration value="@layout/preference_widget_switch" />
+            <xs:enumeration value="@layout/searchdriverdetailsrow" />
+            <xs:enumeration value="@layout/searchdriverlistview" />
             <xs:enumeration value="@layout/select_dialog_item_material" />
             <xs:enumeration value="@layout/select_dialog_multichoice_material" />
             <xs:enumeration value="@layout/select_dialog_singlechoice_material" />
@@ -364,8 +373,11 @@
             <xs:enumeration value="@layout/tool_bar" />
             <xs:enumeration value="@layout/tripconfirmation_1" />
             <xs:enumeration value="@layout/tripconfirmation_2" />
-            <xs:enumeration value="@layout/tripdetailsrow" />
-            <xs:enumeration value="@layout/triplistview" />
+            <xs:enumeration value="@layout/tripdetailsrow_edit" />
+            <xs:enumeration value="@layout/tripdriverdetailsrow" />
+            <xs:enumeration value="@layout/tripdriverlistview" />
+            <xs:enumeration value="@layout/trippassdetailsrow" />
+            <xs:enumeration value="@layout/trippasslistview" />
             <xs:enumeration value="@android:layout/activity_list_item" />
             <xs:enumeration value="@android:layout/browser_link_context_header" />
             <xs:enumeration value="@android:layout/expandable_list_content" />
@@ -441,9 +453,8 @@
             <xs:enumeration value="@layout/abc_search_dropdown_item_icons_2line" />
             <xs:enumeration value="@layout/abc_search_view" />
             <xs:enumeration value="@layout/abc_select_dialog_material" />
+            <xs:enumeration value="@layout/custom_spinner_signup" />
             <xs:enumeration value="@layout/daypickerdialog" />
-            <xs:enumeration value="@layout/driverdetailsrow" />
-            <xs:enumeration value="@layout/driverlistview" />
             <xs:enumeration value="@layout/login" />
             <xs:enumeration value="@layout/main" />
             <xs:enumeration value="@layout/material_drawer" />
@@ -487,6 +498,8 @@
             <xs:enumeration value="@layout/place_autocomplete_progress" />
             <xs:enumeration value="@layout/preference" />
             <xs:enumeration value="@layout/preference_widget_switch" />
+            <xs:enumeration value="@layout/searchdriverdetailsrow" />
+            <xs:enumeration value="@layout/searchdriverlistview" />
             <xs:enumeration value="@layout/select_dialog_item_material" />
             <xs:enumeration value="@layout/select_dialog_multichoice_material" />
             <xs:enumeration value="@layout/select_dialog_singlechoice_material" />
@@ -498,8 +511,11 @@
             <xs:enumeration value="@layout/tool_bar" />
             <xs:enumeration value="@layout/tripconfirmation_1" />
             <xs:enumeration value="@layout/tripconfirmation_2" />
-            <xs:enumeration value="@layout/tripdetailsrow" />
-            <xs:enumeration value="@layout/triplistview" />
+            <xs:enumeration value="@layout/tripdetailsrow_edit" />
+            <xs:enumeration value="@layout/tripdriverdetailsrow" />
+            <xs:enumeration value="@layout/tripdriverlistview" />
+            <xs:enumeration value="@layout/trippassdetailsrow" />
+            <xs:enumeration value="@layout/trippasslistview" />
             <xs:enumeration value="@android:layout/activity_list_item" />
             <xs:enumeration value="@android:layout/browser_link_context_header" />
             <xs:enumeration value="@android:layout/expandable_list_content" />

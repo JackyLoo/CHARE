@@ -55,8 +55,11 @@ namespace CHARE_System
         }       
         
         private async void BtnLogin_Click(object sender, EventArgs e)
-        {           
-            if (etUsername.Text.ToString().Trim().Equals(""))
+        {
+            Android.Net.ConnectivityManager cm = (Android.Net.ConnectivityManager)this.GetSystemService(Context.ConnectivityService);
+            if (cm.ActiveNetworkInfo == null)                
+                Toast.MakeText(this, "Network error. Try again later.", ToastLength.Long).Show();
+            else if (etUsername.Text.ToString().Trim().Equals(""))
                 etUsername.SetError("Username is required!", null);
             else if (etPassword.Text.ToString().Trim().Equals(""))
                 etPassword.SetError("Password is required!", null);

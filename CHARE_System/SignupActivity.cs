@@ -51,11 +51,11 @@ namespace CHARE_System
             spnGender = (Spinner)FindViewById(Resource.Id.signup_gender);
             spnType = (Spinner)FindViewById(Resource.Id.signup_account_type);
 
-            var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.signup_gender, Android.Resource.Layout.SimpleSpinnerItem);
+            var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.signup_gender, Resource.Layout.Custom_Spinner_Signup);
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spnGender.Adapter = adapter;
 
-            adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.signup_account_type, Android.Resource.Layout.SimpleSpinnerItem);
+            adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.signup_account_type, Resource.Layout.Custom_Spinner_Signup);
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spnType.Adapter = adapter;
 
@@ -92,7 +92,10 @@ namespace CHARE_System
             TextView signBtn = FindViewById<TextView>(Resource.Id.signupbtn);
             signBtn.Click += async delegate
             {
-                if (etUsername.Text.ToString().Trim().Equals(""))
+                Android.Net.ConnectivityManager cm = (Android.Net.ConnectivityManager)this.GetSystemService(Context.ConnectivityService);
+                if (cm.ActiveNetworkInfo == null)
+                    Toast.MakeText(this, "Network error. Try again later.", ToastLength.Long).Show();
+                else if (etUsername.Text.ToString().Trim().Equals(""))
                 {
                     etUsername.SetError("Username is required!", null);
                     etUsername.RequestFocus();
