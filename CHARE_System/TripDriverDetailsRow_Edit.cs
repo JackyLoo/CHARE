@@ -134,7 +134,7 @@ namespace CHARE_System
 
             // Set available seat string array to adapter
             var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.trip_available_seat,
-                Resource.Layout.Spinner_Seat);
+                Resource.Layout.Custom_Spinner_Seat);
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spinnerSeat.Adapter = adapter;
             spinnerSeat.SetSelection(iTripDetail.availableSeat);

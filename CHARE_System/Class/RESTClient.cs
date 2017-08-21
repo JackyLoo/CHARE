@@ -89,7 +89,6 @@ namespace CHARE_System.Class
             {                
                 Toast.MakeText(c, "Member registered successfully.", ToastLength.Short).Show();
                 var url = response.Headers.Location;
-
                 Member m = null;
                 response = await client.GetAsync(url);
                 if (response.IsSuccessStatusCode)
@@ -120,6 +119,15 @@ namespace CHARE_System.Class
         }
 
         //TripDriver
+        public static async Task CreateTripDriverAsync(Context c, TripDriver tripDriver)
+        {
+            HttpResponseMessage response = await client.PostAsJsonAsync("api/TripDrivers", tripDriver);
+            if (response.IsSuccessStatusCode)
+                Toast.MakeText(c, "Trip successfully created.", ToastLength.Short).Show();
+            else
+                Toast.MakeText(c, "Failed to create driver's trip.", ToastLength.Short).Show();
+        }
+
         public static async Task<string> SearchTripDriversAsync(Context c, int tripPassengerID)
         {
             var make = "";
@@ -167,6 +175,15 @@ namespace CHARE_System.Class
         }
 
         //TripPassenger 
+        public static async Task CreateTripPassengerAsync(Context c, TripPassenger tripPassenger)
+        {
+            HttpResponseMessage response = await client.PostAsJsonAsync("api/TripPassengers", tripPassenger);
+            if (response.IsSuccessStatusCode)
+                Toast.MakeText(c, "Trip successfully created.", ToastLength.Short).Show();
+            else
+                Toast.MakeText(c, "Failed to create passenger's trip.", ToastLength.Short).Show();
+        }
+
         public static async Task<string> GetTripPassengerAsync(int id)
         {            
             var make = "";

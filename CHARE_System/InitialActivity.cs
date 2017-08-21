@@ -72,6 +72,7 @@ namespace CHARE_System
             {
                 Intent intent = new Intent(this, typeof(MainActivity));                
                 intent.PutExtra("Member", member);
+                intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask);
                 StartActivity(intent);
                 Finish();
             }

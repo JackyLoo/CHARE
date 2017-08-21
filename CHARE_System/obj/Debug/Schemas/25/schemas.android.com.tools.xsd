@@ -2,7 +2,7 @@
 <xs:schema xmlns:tools="http://schemas.android.com/tools" attributeFormDefault="qualified" targetNamespace="http://schemas.android.com/tools" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation>v25</xs:documentation>
-    <xs:documentation>21/8/2017 2:37:31 PM</xs:documentation>
+    <xs:documentation>21/8/2017 7:14:31 PM</xs:documentation>
   </xs:annotation>
   <xs:attribute name="layout">
     <xs:annotation>
@@ -39,6 +39,7 @@
             <xs:enumeration value="@layout/abc_search_dropdown_item_icons_2line" />
             <xs:enumeration value="@layout/abc_search_view" />
             <xs:enumeration value="@layout/abc_select_dialog_material" />
+            <xs:enumeration value="@layout/custom_spinner_seat" />
             <xs:enumeration value="@layout/custom_spinner_signup" />
             <xs:enumeration value="@layout/daypickerdialog" />
             <xs:enumeration value="@layout/login" />
@@ -91,7 +92,6 @@
             <xs:enumeration value="@layout/select_dialog_singlechoice_material" />
             <xs:enumeration value="@layout/signup" />
             <xs:enumeration value="@layout/signup_car" />
-            <xs:enumeration value="@layout/spinner_seat" />
             <xs:enumeration value="@layout/support_simple_spinner_dropdown_item" />
             <xs:enumeration value="@layout/test" />
             <xs:enumeration value="@layout/tool_bar" />
@@ -177,6 +177,7 @@
             <xs:enumeration value="@layout/abc_search_dropdown_item_icons_2line" />
             <xs:enumeration value="@layout/abc_search_view" />
             <xs:enumeration value="@layout/abc_select_dialog_material" />
+            <xs:enumeration value="@layout/custom_spinner_seat" />
             <xs:enumeration value="@layout/custom_spinner_signup" />
             <xs:enumeration value="@layout/daypickerdialog" />
             <xs:enumeration value="@layout/login" />
@@ -229,7 +230,6 @@
             <xs:enumeration value="@layout/select_dialog_singlechoice_material" />
             <xs:enumeration value="@layout/signup" />
             <xs:enumeration value="@layout/signup_car" />
-            <xs:enumeration value="@layout/spinner_seat" />
             <xs:enumeration value="@layout/support_simple_spinner_dropdown_item" />
             <xs:enumeration value="@layout/test" />
             <xs:enumeration value="@layout/tool_bar" />
@@ -315,6 +315,7 @@
             <xs:enumeration value="@layout/abc_search_dropdown_item_icons_2line" />
             <xs:enumeration value="@layout/abc_search_view" />
             <xs:enumeration value="@layout/abc_select_dialog_material" />
+            <xs:enumeration value="@layout/custom_spinner_seat" />
             <xs:enumeration value="@layout/custom_spinner_signup" />
             <xs:enumeration value="@layout/daypickerdialog" />
             <xs:enumeration value="@layout/login" />
@@ -367,7 +368,6 @@
             <xs:enumeration value="@layout/select_dialog_singlechoice_material" />
             <xs:enumeration value="@layout/signup" />
             <xs:enumeration value="@layout/signup_car" />
-            <xs:enumeration value="@layout/spinner_seat" />
             <xs:enumeration value="@layout/support_simple_spinner_dropdown_item" />
             <xs:enumeration value="@layout/test" />
             <xs:enumeration value="@layout/tool_bar" />
@@ -453,6 +453,7 @@
             <xs:enumeration value="@layout/abc_search_dropdown_item_icons_2line" />
             <xs:enumeration value="@layout/abc_search_view" />
             <xs:enumeration value="@layout/abc_select_dialog_material" />
+            <xs:enumeration value="@layout/custom_spinner_seat" />
             <xs:enumeration value="@layout/custom_spinner_signup" />
             <xs:enumeration value="@layout/daypickerdialog" />
             <xs:enumeration value="@layout/login" />
@@ -505,7 +506,6 @@
             <xs:enumeration value="@layout/select_dialog_singlechoice_material" />
             <xs:enumeration value="@layout/signup" />
             <xs:enumeration value="@layout/signup_car" />
-            <xs:enumeration value="@layout/spinner_seat" />
             <xs:enumeration value="@layout/support_simple_spinner_dropdown_item" />
             <xs:enumeration value="@layout/test" />
             <xs:enumeration value="@layout/tool_bar" />

@@ -58,7 +58,6 @@ C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\trippasslistview.xml
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\trippassdetailsrow.xml
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\numberpickerdialog.xml
-C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\spinner_seat.xml
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\searchdriverdetailsrow.xml
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\searchdriverlistview.xml
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\tripdriverlistview.xml
@@ -105,3 +104,4 @@ C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\android\assets\CHARE_System.dll.mdb
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\CHARE_System.csprojResolveAssemblyReference.cache
 C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\custom_spinner_signup.xml
+C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\custom_spinner_seat.xml

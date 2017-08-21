@@ -57,12 +57,18 @@ namespace CHARE_System
         private async void BtnLogin_Click(object sender, EventArgs e)
         {
             Android.Net.ConnectivityManager cm = (Android.Net.ConnectivityManager)this.GetSystemService(Context.ConnectivityService);
-            if (cm.ActiveNetworkInfo == null)                
+            if (cm.ActiveNetworkInfo == null)
                 Toast.MakeText(this, "Network error. Try again later.", ToastLength.Long).Show();
             else if (etUsername.Text.ToString().Trim().Equals(""))
+            {
                 etUsername.SetError("Username is required!", null);
+                etUsername.RequestFocus();
+            }
             else if (etPassword.Text.ToString().Trim().Equals(""))
+            {
                 etPassword.SetError("Password is required!", null);
+                etPassword.RequestFocus();
+            }
             else
             {
                 string url = GetString(Resource.String.AzureAPI) + "Members?username=" + etUsername.Text.ToString() + "&password=" + etPassword.Text.ToString();
@@ -84,17 +90,18 @@ namespace CHARE_System
                 else
                 {
                     var member = JsonConvert.DeserializeObject<Member>(downloadedString);
-                    
+
                     GetSharedPreferences(GetString(Resource.String.PreferenceFileName), FileCreationMode.Private)
-                        .Edit()                        
+                        .Edit()
                         .PutString(GetString(Resource.String.PreferenceSavedMember), JsonConvert.SerializeObject(member))
                         .Commit();
-                    
+
                     Intent intent = new Intent(this, typeof(MainActivity));
                     intent.PutExtra("Member", JsonConvert.SerializeObject(member));
+                    intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask);
                     StartActivity(intent);
                     Finish();
-                }                                              
+                }
             }
         }
         async Task<string> fnDownloadString(string strUri)

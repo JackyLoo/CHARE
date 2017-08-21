@@ -77,6 +77,7 @@ namespace CHARE_System
                     await RESTClient.CreateMemberVehicleAsync(this, iMember, vehicle);
 
                     var intent = new Intent(this, typeof(LoginActivity));
+                    intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask);
                     StartActivity(intent);
 
                     RunOnUiThread(() =>

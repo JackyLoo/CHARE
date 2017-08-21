@@ -133,6 +133,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\MapHelper.cs" />
     <Compile Include="Class\RESTClient.cs" />
     <Compile Include="DriverListViewActivity.cs" />
     <Compile Include="DriverListViewAdapter.cs" />
@@ -209,7 +210,7 @@
     <AndroidResource Include="Resources\layout\NumberPickerDialog.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\Spinner_Seat.axml">
+    <AndroidResource Include="Resources\layout\Custom_Spinner_Seat.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\SearchDriverDetailsRow.axml">

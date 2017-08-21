@@ -188,7 +188,7 @@ namespace CHARE_System
             
         }
 
-        public void ShowTimeDialog(Object sender, EventArgs e)
+        private void ShowTimeDialog(Object sender, EventArgs e)
         {
             TimePickerDialog mTimePicker;
             mTimePicker = new TimePickerDialog(this, Android.Resource.Style.ThemeHoloLightDialog, this,
@@ -197,7 +197,7 @@ namespace CHARE_System
             mTimePicker.Show();
         }
 
-        public void ShowDayDialog(Object sender, EventArgs e)
+        private void ShowDayDialog(Object sender, EventArgs e)
         {
             Dialog dialog = new Dialog(this);
             dialog.SetContentView(Resource.Layout.DayPickerDialog);
@@ -291,7 +291,7 @@ namespace CHARE_System
             dialog.Show();
         }
         
-        public async void UpdateTripDetail(Object sender, EventArgs e)
+        private async void UpdateTripDetail(Object sender, EventArgs e)
         {
             Android.Net.ConnectivityManager cm = (Android.Net.ConnectivityManager)context.GetSystemService(Context.ConnectivityService);
             if (cm.ActiveNetworkInfo == null)

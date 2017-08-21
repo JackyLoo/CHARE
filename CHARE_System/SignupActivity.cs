@@ -176,6 +176,7 @@ namespace CHARE_System
                                 progress.Dismiss();
                             });
                             var intent = new Intent(this, typeof(LoginActivity));
+                            intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask);
                             StartActivity(intent);
                         }
                         RunOnUiThread(() =>

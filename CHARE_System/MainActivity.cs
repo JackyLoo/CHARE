@@ -214,6 +214,7 @@ namespace CHARE_System
                 IList<Address> addresses = geocoder.GetFromLocation(location.Latitude, location.Longitude, 1);
                 originTxt = addresses[0].SubLocality;
                 // ## Set user current latlng to Origin  
+                Console.WriteLine("======================= Write to origin autocomplete fragment");
                 originAutocompleteFragment.SetText(addresses[0].GetAddressLine(0));
                 locationManager.RemoveUpdates(this);
             }
