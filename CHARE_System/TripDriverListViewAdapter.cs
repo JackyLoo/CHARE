@@ -59,6 +59,7 @@ namespace CHARE_System
             if (view == null)
             {
                 view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.TripDriverDetailsRow, parent, false);
+
                 var femaleOnly = view.FindViewById<TextView>(Resource.Id.trip_driver_row_female);
                 var origin = view.FindViewById<TextView>(Resource.Id.trip_driver_row_origin);
                 var dest = view.FindViewById<TextView>(Resource.Id.trip_driver_row_destination);

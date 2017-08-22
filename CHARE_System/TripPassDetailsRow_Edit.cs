@@ -34,14 +34,16 @@ namespace CHARE_System
         private const string strGoogleDirectionAPIOri = "https://maps.googleapis.com/maps/api/directions/json?origin=";
         private const string strGoogleDirectionAPIDest = "&destination=";
         private const string strGoogleApiKey = "&key=AIzaSyBxXCmp-C6i5LwwRSTuvzIjD9_roPjJ4EI";
+        private TextView tvDriver;
+        private TextView tvOrigin;
+        private TextView tvDest;
         private TextView txtviewDistance;
         private TextView txtviewDuration;
         private TextView txtviewCost;        
         private TextView tvArriveTime;
         private TextView tvDay;       
         private Switch switchFemaleOnly;
-        private Spinner spinnerSeat;
-        private TableRow seatLayout;
+        private Spinner spinnerSeat;        
         private Button btnUpdate;
         private ToggleButton tbtnMon;
         private ToggleButton tbtnTue;
@@ -98,24 +100,28 @@ namespace CHARE_System
             originLatLng = new LatLng(Double.Parse(o[0]), Double.Parse(o[1]));
             destLatLng = new LatLng(Double.Parse(d[0]), Double.Parse(d[1]));
 
-
             arrCheckedDay = new bool[7];
             SetDayArrayBool(false);
 
-            // Views Initialization
+            // Views Initialization  
+            LinearLayout memberLayout = (LinearLayout)FindViewById(Resource.Id.member_layout);
+            LinearLayout originLayout = (LinearLayout)FindViewById(Resource.Id.origin_layout);
+            LinearLayout destLayout = (LinearLayout)FindViewById(Resource.Id.dest_layout);
             LinearLayout upperLayout = (LinearLayout)FindViewById(Resource.Id.upperlayout);
             LinearLayout lowerLayout = (LinearLayout)FindViewById(Resource.Id.lowerlayout_btn);
             LinearLayout upperContainer  = (LinearLayout)FindViewById(Resource.Id.upper_container);
-            LinearLayout lowerContainer = (LinearLayout)FindViewById(Resource.Id.lower_container);            
-            TableLayout table = (TableLayout)FindViewById(Resource.Id.table1);
+            LinearLayout lowerContainer = (LinearLayout)FindViewById(Resource.Id.lower_container);
+            LinearLayout seatLayout = (LinearLayout)FindViewById(Resource.Id.availableSeat_layout);           
 
-            txtviewDistance = (TextView)FindViewById(Resource.Id.trip_pass_edit_distance);
-            txtviewDuration = (TextView)FindViewById(Resource.Id.trip_pass_edit_time);
-            txtviewCost = (TextView)FindViewById(Resource.Id.trip_pass_edit_cost);
+            tvDriver = (TextView)FindViewById(Resource.Id.textview_member);
+            tvOrigin = (TextView)FindViewById(Resource.Id.textview_origin);
+            tvDest = (TextView)FindViewById(Resource.Id.textview_dest);
+            txtviewDistance = (TextView)FindViewById(Resource.Id.textview_distance);
+            txtviewDuration = (TextView)FindViewById(Resource.Id.textview_time);
+            txtviewCost = (TextView)FindViewById(Resource.Id.textview_cost);
             tvArriveTime = (TextView)FindViewById(Resource.Id.textview_arrivetime);
             tvDay = (TextView)FindViewById(Resource.Id.textview_day);
-            switchFemaleOnly = (Switch)FindViewById(Resource.Id.switch_femaleonly);
-            seatLayout = (TableRow)FindViewById(Resource.Id.available_seat);
+            switchFemaleOnly = (Switch)FindViewById(Resource.Id.switch_femaleonly);            
             spinnerSeat = (Spinner)FindViewById(Resource.Id.spinner_seat);
             btnUpdate = (Button)FindViewById(Resource.Id.trip_pass_edit_edit_continue);
 
@@ -139,53 +145,53 @@ namespace CHARE_System
             hour = int.Parse(time[0]);
             minute = int.Parse(time[1]);
 
-            // Initialize view value
-            txtviewDistance.Text = iTripDetail.distanceStr;
+            // Initialize view value            
             txtviewCost.Text = iTripDetail.costStr;
             txtviewDuration.Text = iTripDetail.durationStr;
+            txtviewDistance.Text = iTripDetail.distanceStr;
             tvArriveTime.Text = strTime;
             tvDay.Text = iTripDetail.days;
             if (iTripDetail.femaleOnly.Equals("Yes"))
                 switchFemaleOnly.Checked = true;
             else
                 switchFemaleOnly.Checked = false;
-            
-            originAutocompleteFragment.SetHint("Enter the origin");
-            originAutocompleteFragment.SetText(iTripDetail.origin);
-            destAutocompleteFragment.SetHint("Enter the destination");
-            destAutocompleteFragment.SetText(iTripDetail.destination);
 
-            // Hide available seat table row which is for driver only
-            table.RemoveView(seatLayout);
-            
+            seatLayout.Visibility = ViewStates.Gone;
+            upperContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 5.8f);
+            lowerContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 4.2f);
+
             // Add click events if intent has pass "Status" to here
             // It is used to validate if trip is editable
             if (Intent.HasExtra("Status"))
             {
+                originAutocompleteFragment.SetHint("Enter the origin");
+                originAutocompleteFragment.SetText(iTripDetail.origin);
+                destAutocompleteFragment.SetHint("Enter the destination");
+                destAutocompleteFragment.SetText(iTripDetail.destination);
                 tvArriveTime.Click += ShowTimeDialog;
                 tvDay.Click += ShowDayDialog;
                 btnUpdate.Click += UpdateTripDetail;                
                 originAutocompleteFragment.PlaceSelected += OnOriginSelected;                
-                destAutocompleteFragment.PlaceSelected += OnDestinationSelected;            
-                // Change layout weight 
-                upperLayout.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 6.5f);
-                lowerLayout.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 3.5f);
+                destAutocompleteFragment.PlaceSelected += OnDestinationSelected;                                
             }
             else
             {
                 switchFemaleOnly.Enabled = false;
-                btnUpdate.Visibility = ViewStates.Invisible;                
-                //originAutocompleteFragment.View.Visibility = ViewStates.Invisible;
-                //destAutocompleteFragment.View.Visibility = ViewStates.Invisible;
-                originAutocompleteFragment.View.Enabled = false;
-                destAutocompleteFragment.View.Enabled = false;
-                
-                // Change layout weight 
-                upperContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FillParent, 0, 8.0f);
-                lowerContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 2.0f);
-            }
+                // Hide button layout
+                lowerLayout.Visibility = ViewStates.Gone;
+                originAutocompleteFragment.View.Visibility = ViewStates.Gone;
+                destAutocompleteFragment.View.Visibility = ViewStates.Gone;
+                memberLayout.Visibility = ViewStates.Visible;
+                originLayout.Visibility = ViewStates.Visible;                
+                destLayout.Visibility = ViewStates.Visible;
+                tvDriver.Text = iTripDetail.Requests[0].status;
+                tvOrigin.Text = iTripDetail.origin;
+                tvDest.Text = iTripDetail.destination;
 
-            
+                // Change layout weight 
+                upperContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FillParent, 0, 5.7f);
+                lowerContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 4.3f);
+            }            
         }
 
         private void ShowTimeDialog(Object sender, EventArgs e)

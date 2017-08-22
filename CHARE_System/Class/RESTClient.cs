@@ -131,15 +131,17 @@ namespace CHARE_System.Class
         public static async Task<string> SearchTripDriversAsync(Context c, int tripPassengerID)
         {
             var make = "";
-            HttpResponseMessage response = await client.GetAsync("api/TripDrivers?id=" + tripPassengerID + "&passengerTrip=null");
+            HttpResponseMessage response = await client.GetAsync("api/TripDrivers?id=" + tripPassengerID + "&type=Search");
             if (response.IsSuccessStatusCode)
             {
                 make = await response.Content.ReadAsStringAsync();
+                if(make==null)
+                    Toast.MakeText(c, "No available drivers at the moment. Try again later.", ToastLength.Short).Show();
             }
             else
             {
                 Toast.MakeText(c, "Unable to search drivers.", ToastLength.Short).Show();
-            }
+            }            
             return make;
         }
 
@@ -147,15 +149,17 @@ namespace CHARE_System.Class
         {
             Console.WriteLine("===== GetTripsAsync Start");
             var make = "";
-            HttpResponseMessage response = await client.GetAsync("api/TripDrivers?id=" + id);
+            HttpResponseMessage response = await client.GetAsync("api/TripDrivers?id=" + id+"&type=List");
+            
             if (response.IsSuccessStatusCode)
             {
                 make = await response.Content.ReadAsStringAsync();
+                if(make==null)
+                    Toast.MakeText(c, "You haven't created a trip yet. Create one today and get yourself a carpool partner", ToastLength.Short).Show();
             }
-            else
-            {
+            else            
                 Toast.MakeText(c, "Failed to load trips.", ToastLength.Short).Show();
-            }
+            
             Console.WriteLine("===== Test Load : "+ make.ToString());
             Console.WriteLine("===== GetTripsAsync End");
             return make;
@@ -209,17 +213,20 @@ namespace CHARE_System.Class
                 Toast.MakeText(c, "Failed to update.", ToastLength.Short).Show();            
         }
 
-        public static async Task<string> GetTripPassengerListAsync(int id)
-        {
-            Console.WriteLine("===== GetTripsAsync Start");
+        public static async Task<string> GetTripPassengerListAsync(Context c, int id)
+        {            
             var make = "";
-            HttpResponseMessage response = await client.GetAsync("api/TripPassengers?id="+id+"&x=List");
+            HttpResponseMessage response = await client.GetAsync("api/TripPassengers?id=" + id + "&type=List");
+
             if (response.IsSuccessStatusCode)
             {
                 make = await response.Content.ReadAsStringAsync();
+                if(make==null)
+                    Toast.MakeText(c, "You haven't created a trip yet. Create one today and get yourself a carpool partner", ToastLength.Short).Show();
             }
-            Console.WriteLine("===== GetTripsAsync End");
-            return make;
+            else            
+                Toast.MakeText(c, "Failed to load trips.", ToastLength.Short).Show();                                    
+            return make;            
         }
         // Request
         public static async Task DeleteRequestAsync(Context c, Request request)

@@ -15,6 +15,7 @@ namespace CHARE_REST_API.JSON_Object
     public class TripDetails
     {
         public List<Request> Requests { get; set; }
+        public List<TripPassenger> TripPassengers { get; set; }
 
         public Member Member { get; set; }
         public TripDriver TripDriver { get; set; }

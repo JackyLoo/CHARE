@@ -130,8 +130,7 @@
                     android:drawablePadding="12dp"
                     android:drawableRight="@drawable/right_arrow_small"
                     android:textColor="#000000"
-                    android:gravity="right"
-                    android:background="#f9f9f9"
+                    android:gravity="right"                    
                     android:layout_weight="1" />
             </LinearLayout>
         </LinearLayout>

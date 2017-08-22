@@ -73,7 +73,7 @@ namespace CHARE_System
         async void LoadTripDetails(int id)
         {
             Console.WriteLine("===== Loading");
-            var models = await RESTClient.GetTripPassengerListAsync(id);
+            var models = await RESTClient.GetTripPassengerListAsync(this, id);
             Console.WriteLine("Models " +models);
             RunOnUiThread(() =>
             {

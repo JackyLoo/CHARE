@@ -100,16 +100,19 @@ namespace CHARE_System
             // Views Initialization
             LinearLayout upperLayout = (LinearLayout)FindViewById(Resource.Id.upperlayout);
             LinearLayout lowerLayout = (LinearLayout)FindViewById(Resource.Id.lowerlayout_btn);
-            TableLayout table = (TableLayout)FindViewById(Resource.Id.table1);
-            txtviewDistance = (TextView)FindViewById(Resource.Id.trip_pass_edit_distance);
-            txtviewDuration = (TextView)FindViewById(Resource.Id.trip_pass_edit_time);
-            txtviewCost = (TextView)FindViewById(Resource.Id.trip_pass_edit_cost);
+            LinearLayout upperContainer = (LinearLayout)FindViewById(Resource.Id.upper_container);
+            LinearLayout lowerContainer = (LinearLayout)FindViewById(Resource.Id.lower_container);
+            LinearLayout seatLayout = (LinearLayout)FindViewById(Resource.Id.availableSeat_layout);
+
+            txtviewDistance = (TextView)FindViewById(Resource.Id.textview_distance);
+            txtviewDuration = (TextView)FindViewById(Resource.Id.textview_time);
+            txtviewCost = (TextView)FindViewById(Resource.Id.textview_cost);
             tvArriveTime = (TextView)FindViewById(Resource.Id.textview_arrivetime);
             tvDay = (TextView)FindViewById(Resource.Id.textview_day);
             switchFemaleOnly = (Switch)FindViewById(Resource.Id.switch_femaleonly);
-            seatLayout = (TableRow)FindViewById(Resource.Id.available_seat);
             spinnerSeat = (Spinner)FindViewById(Resource.Id.spinner_seat);
             btnUpdate = (Button)FindViewById(Resource.Id.trip_pass_edit_edit_continue);
+
 
             // Convert trip detail span time format into HH:mm tt formant
             string[] time = iTripDetail.arriveTime.Split(':');
