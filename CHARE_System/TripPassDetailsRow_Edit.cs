@@ -395,7 +395,7 @@ namespace CHARE_System
             string urlGoogleMatrix = strGoogleMatrixAPIOri + iTripDetail.origin +
                                         strGoogleMatrixAPIDest + iTripDetail.destination + strGoogleApiKey;
 
-            string strGoogleMatrix = await fnDownloadString(urlGoogleMatrix);
+            string strGoogleMatrix = await MapHelper.DownloadStringAsync(urlGoogleMatrix);
 
             var googleDirectionMatrix = JsonConvert.DeserializeObject<GoogleDistanceMatrixAPI>(strGoogleMatrix);
 
@@ -431,11 +431,11 @@ namespace CHARE_System
             string urlGoogleDirection = strGoogleDirectionAPIOri + iTripDetail.origin +
                 strGoogleDirectionAPIDest + iTripDetail.destination + strGoogleApiKey;
 
-            string strGoogleDirection = await fnDownloadString(urlGoogleDirection);
+            string strGoogleDirection = await MapHelper.DownloadStringAsync(urlGoogleDirection);
             var googleDirectionAPIRoute = JsonConvert.DeserializeObject<GoogleDirectionAPI>(strGoogleDirection);
 
             string encodedPoints = googleDirectionAPIRoute.routes[0].overview_polyline.points;
-            var lstDecodedPoints = FnDecodePolylinePoints(encodedPoints);
+            var lstDecodedPoints = MapHelper.DecodePolylinePoint(encodedPoints);
             //convert list of location point to array of latlng type
 
             var latLngPoints = lstDecodedPoints.ToArray();
@@ -460,84 +460,7 @@ namespace CHARE_System
         {
             Finish();
             return true;
-        }
-
-        List<LatLng> FnDecodePolylinePoints(string encodedPoints)
-        {
-            if (string.IsNullOrEmpty(encodedPoints))
-                return null;
-            var poly = new List<LatLng>();
-            char[] polylinechars = encodedPoints.ToCharArray();
-            int index = 0;
-
-            int currentLat = 0;
-            int currentLng = 0;
-            int next5bits;
-            int sum;
-            int shifter;
-
-            while (index < polylinechars.Length)
-            {
-                // calculate next latitude
-                sum = 0;
-                shifter = 0;
-                do
-                {
-                    next5bits = (int)polylinechars[index++] - 63;
-                    sum |= (next5bits & 31) << shifter;
-                    shifter += 5;
-                } while (next5bits >= 32 && index < polylinechars.Length);
-
-                if (index >= polylinechars.Length)
-                    break;
-
-                currentLat += (sum & 1) == 1 ? ~(sum >> 1) : (sum >> 1);
-
-                //calculate next longitude
-                sum = 0;
-                shifter = 0;
-                do
-                {
-                    next5bits = (int)polylinechars[index++] - 63;
-                    sum |= (next5bits & 31) << shifter;
-                    shifter += 5;
-                } while (next5bits >= 32 && index < polylinechars.Length);
-
-                if (index >= polylinechars.Length && next5bits >= 32)
-                    break;
-
-                currentLng += (sum & 1) == 1 ? ~(sum >> 1) : (sum >> 1);
-                LatLng p = new LatLng(Convert.ToDouble(currentLat) / 100000.0, Convert.ToDouble(currentLng) / 100000.0);
-                poly.Add(p);
-            }
-
-            return poly;
-        }
-
-        async Task<string> fnDownloadString(string strUri)
-        {
-            WebClient webclient = new WebClient();
-            string strResultData;
-            try
-            {
-                strResultData = await webclient.DownloadStringTaskAsync(new Uri(strUri));
-            }
-            catch
-            {
-                strResultData = "Exception";
-                RunOnUiThread(() =>
-                {
-                    Toast.MakeText(this, "Unable to connect to server!!!", ToastLength.Short).Show();
-                });
-            }
-            finally
-            {
-                webclient.Dispose();
-                webclient = null;
-            }
-
-            return strResultData;
-        }
+        }     
 
         public void OnMapReady(GoogleMap googleMap)
         {

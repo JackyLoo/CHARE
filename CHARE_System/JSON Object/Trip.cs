@@ -13,12 +13,14 @@ namespace CHARE_REST_API.JSON_Object
     using System.Collections.Generic;
 
     public class Request
-    {
+    {        
         public Request() { status = "Pending"; }
         public int RequestID { get; set; }
         public int SenderID { get; set; }
         public int DriverID { get; set; }
         public string status { get; set; }
+        public TripDriver TripDriver { get; set; }
+        public TripPassenger TripPassenger { get; set; }
     }
 
     public class Rating
@@ -30,6 +32,7 @@ namespace CHARE_REST_API.JSON_Object
 
     public class Trip
     {
+        public Member Member { get; set; }
         public string origin { get; set; }
         public string destination { get; set; }
         public string originLatLng { get; set; }
@@ -50,6 +53,7 @@ namespace CHARE_REST_API.JSON_Object
         public TripPassenger() { }
         public TripPassenger(TripDetails t)
         {
+            this.Member = t.Member;
             this.origin = t.origin;
             this.destination = t.destination;
             this.originLatLng = t.originLatLng;
@@ -96,6 +100,7 @@ namespace CHARE_REST_API.JSON_Object
 
         public TripDriver(TripDetails t)
         {
+            this.Member = t.Member;
             this.origin = t.origin;
             this.destination = t.destination;
             this.originLatLng = t.originLatLng;

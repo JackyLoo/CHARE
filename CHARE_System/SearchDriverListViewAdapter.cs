@@ -18,14 +18,14 @@ using CHARE_System.Class;
 
 namespace CHARE_System
 {
-    class DriverListViewAdapter : BaseAdapter<TripDetails>
+    class SearchDriverListViewAdapter : BaseAdapter<TripDetails>
     {
         private List<TripDetails> trips;
         private Context context;
         private HttpClient client;
         private TripDetails passTrip;        
 
-        public DriverListViewAdapter(Context c, List<TripDetails> trips, TripDetails passTrip)
+        public SearchDriverListViewAdapter(Context c, List<TripDetails> trips, TripDetails passTrip)
         {
             this.trips = trips;            
             this.passTrip = passTrip;
@@ -100,7 +100,7 @@ namespace CHARE_System
 
             // Check if is female only
             if (trips[position].femaleOnly.Equals("No"))
-                holder.Female.Visibility = ViewStates.Invisible;
+                holder.Female.Visibility = ViewStates.Gone;
 
             holder.Name.Text = trips[position].Member.username;
             holder.Origin.Text = trips[position].origin;

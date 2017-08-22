@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/row_layout"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:minWidth="25px"
+    android:minHeight="25px"
+    android:paddingBottom="4dp"
+    android:padding="20dp"
+    android:background="@android:color/white">
+    <TextView
+        android:id="@+id/female"
+        android:text="Female Only"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:textColor="#ffffff"
+        android:background="#54abee"
+        android:paddingRight="10dp"
+        android:paddingBottom="2dp"
+        android:paddingEnd="2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="5dp" />
+    <TextView
+        android:id="@+id/name"
+        android:layout_below="@id/female"
+        android:text="Jacky"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:textColor="#111111"
+        android:maxLength="30" />
+    <RatingBar
+        android:id="@+id/rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_toRightOf="@+id/name"
+        android:layout_below="@id/female"
+        android:numStars="5"
+        android:stepSize="1"
+        android:rating="5.0"
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp" />
+    <TextView
+        android:id="@+id/origin"
+        android:layout_below="@id/rating"
+        android:text="Taman Amansiara asddqwe asdasd qweq we "
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:textColor="#111111"
+        android:maxLength="33" />
+    <TextView
+        android:id="@+id/to"
+        android:layout_below="@id/origin"
+        android:text="---&gt;"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:layout_marginTop="2dp"
+        android:textColor="#111111" />
+    <TextView
+        android:id="@+id/destination"
+        android:layout_toRightOf="@id/to"
+        android:layout_below="@id/origin"
+        android:text="Asia Pacific University asdsad adsad ads asdd asdad asd"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:textColor="#111111"
+        android:maxLength="37" />
+    <TextView
+        android:id="@+id/day"
+        android:layout_marginTop="8dp"
+        android:layout_below="@id/destination"
+        android:text="Mon • Tue • Wed • Thu • Fri"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:textColor="#111111" />
+    <TextView
+        android:id="@+id/time"
+        android:layout_below="@id/day"
+        android:text="06:25AM"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:textColor="#111111" />
+    <TextView
+        android:id="@+id/duration"
+        android:layout_below="@id/day"
+        android:layout_toRightOf="@id/time"
+        android:text=" • Approx 31 mins"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:layout_marginTop="8dp"
+        android:textColor="#111111" />
+    <LinearLayout
+        android:layout_below="@id/time"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_marginTop="2dp"
+        android:weightSum="1">
+        <Button
+            android:id="@+id/button_accept"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/angle"
+            android:text="Accept"
+            android:textSize="16dp"
+            android:textColor="#fff"
+            android:layout_weight="0.5" />
+        <Button
+            android:id="@+id/button_reject"
+            android:layout_height="wrap_content"
+            android:background="@drawable/angle"
+            android:text="Reject"
+            android:textColor="#fff"
+            android:layout_weight="0.5"
+            android:layout_marginLeft="1dp"
+            android:textSize="16dp"
+            android:layout_width="0dp" />
+    </LinearLayout>
+</RelativeLayout>

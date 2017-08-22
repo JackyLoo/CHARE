@@ -111,40 +111,41 @@ namespace CHARE_System
             holder.Cost.Text = trips[position].costStr;
 
             if (trips[position].Requests.Count <= 0)
+                holder.mButton.Text = "No Request";
+            else
             {
-                if (trips[position].TripDriverID.Equals(null))
-                    holder.mButton.Text = "Search Driver";
+                bool hasPending = false;
+                foreach (Request r in trips[position].Requests)
+                {
+                    if (r.status.Equals("Pending"))
+                    {
+                        Console.WriteLine("===== Has pending");
+                        Console.WriteLine("Pending with "+r.RequestID);
+                        hasPending = true;
+                    }
+                }
+                if(hasPending)
+                    holder.mButton.Text = "View Request";
+                else
+                    holder.mButton.Text = "No Request";
             }
-            else if (trips[position].Requests[0].status.Equals("Pending"))
-                holder.mButton.Text = "Cancel Request";
-            else if (trips[position].Requests[0].status.Equals("Accepted"))
-                holder.mButton.Text = "View Driver";
-            else if (trips[position].Requests[0].status.Equals("Rejected"))
-                holder.mButton.Text = "Search Driver";
 
-            holder.mButton.Click += async (sender, e) =>
+            holder.mButton.Click += (sender, e) =>
             {
                 Android.Net.ConnectivityManager cm = (Android.Net.ConnectivityManager)context.GetSystemService(Context.ConnectivityService);
                 if (cm.ActiveNetworkInfo == null)
                     Toast.MakeText(context, "Network error. Try again later.", ToastLength.Long).Show();
-                else if (holder.mButton.Text.Equals("Search Driver"))
+                else if (holder.mButton.Text.Equals("No Request"))
                 {
-                    //Intent intent = new Intent(context, typeof(DriverListViewActivity)).SetFlags(ActivityFlags.NewTask);
-                    Intent intent = new Intent(context, typeof(DriverListViewActivity));
+                    Toast.MakeText(context, "There is no request yet. Try again later.", ToastLength.Long).Show();                    
+                }
+                else if (holder.mButton.Text.Equals("View Request"))
+                {
+                    Intent intent = new Intent(context, typeof(RequestListViewActivity));
                     intent.AddFlags(ActivityFlags.ReorderToFront);
                     intent.PutExtra("Trip", JsonConvert.SerializeObject(trips[position]));
                     context.StartActivity(intent);
-                }
-                else if (holder.mButton.Text.Equals("Cancel Request"))
-                {
-                    trips[position].Requests[0].status = "Cancelled";
-                    await RESTClient.DeleteRequestAsync(context, trips[position].Requests[0]);
-                    holder.mButton.Text = "Search Driver";
-                }
-                else if (trips[position].Requests[0].status.Equals("Accepted"))
-                    holder.mButton.Text = "View Driver";
-                else if (trips[position].Requests[0].status.Equals("Rejected"))
-                    holder.mButton.Text = "Search Driver";
+                }                
             };
 
             view.Click += (sender, e) =>

@@ -2,7 +2,7 @@
 <xs:schema xmlns:tools="http://schemas.android.com/tools" attributeFormDefault="qualified" targetNamespace="http://schemas.android.com/tools" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation>v25</xs:documentation>
-    <xs:documentation>22/8/2017 12:18:07 PM</xs:documentation>
+    <xs:documentation>22/8/2017 1:37:32 PM</xs:documentation>
   </xs:annotation>
   <xs:attribute name="layout">
     <xs:annotation>
@@ -85,6 +85,8 @@
             <xs:enumeration value="@layout/place_autocomplete_progress" />
             <xs:enumeration value="@layout/preference" />
             <xs:enumeration value="@layout/preference_widget_switch" />
+            <xs:enumeration value="@layout/requestdetailsrow" />
+            <xs:enumeration value="@layout/requestlistview" />
             <xs:enumeration value="@layout/searchdriverdetailsrow" />
             <xs:enumeration value="@layout/searchdriverlistview" />
             <xs:enumeration value="@layout/select_dialog_item_material" />
@@ -223,6 +225,8 @@
             <xs:enumeration value="@layout/place_autocomplete_progress" />
             <xs:enumeration value="@layout/preference" />
             <xs:enumeration value="@layout/preference_widget_switch" />
+            <xs:enumeration value="@layout/requestdetailsrow" />
+            <xs:enumeration value="@layout/requestlistview" />
             <xs:enumeration value="@layout/searchdriverdetailsrow" />
             <xs:enumeration value="@layout/searchdriverlistview" />
             <xs:enumeration value="@layout/select_dialog_item_material" />
@@ -361,6 +365,8 @@
             <xs:enumeration value="@layout/place_autocomplete_progress" />
             <xs:enumeration value="@layout/preference" />
             <xs:enumeration value="@layout/preference_widget_switch" />
+            <xs:enumeration value="@layout/requestdetailsrow" />
+            <xs:enumeration value="@layout/requestlistview" />
             <xs:enumeration value="@layout/searchdriverdetailsrow" />
             <xs:enumeration value="@layout/searchdriverlistview" />
             <xs:enumeration value="@layout/select_dialog_item_material" />
@@ -499,6 +505,8 @@
             <xs:enumeration value="@layout/place_autocomplete_progress" />
             <xs:enumeration value="@layout/preference" />
             <xs:enumeration value="@layout/preference_widget_switch" />
+            <xs:enumeration value="@layout/requestdetailsrow" />
+            <xs:enumeration value="@layout/requestlistview" />
             <xs:enumeration value="@layout/searchdriverdetailsrow" />
             <xs:enumeration value="@layout/searchdriverlistview" />
             <xs:enumeration value="@layout/select_dialog_item_material" />

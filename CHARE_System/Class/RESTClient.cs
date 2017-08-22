@@ -229,13 +229,35 @@ namespace CHARE_System.Class
             return make;            
         }
         // Request
-        public static async Task DeleteRequestAsync(Context c, Request request)
+        public static async Task<string> GetTripRequestListAsync(Context c, int id)
         {
-            HttpResponseMessage response = await client.DeleteAsync("api/Requests?id=" + request.RequestID);
+            var make = "";
+            HttpResponseMessage response = await client.GetAsync("api/Requests?id=" + id + "&type=List");
+
             if (response.IsSuccessStatusCode)
-                Toast.MakeText(c, "Cancelled request.", ToastLength.Short).Show();
+            {
+                make = await response.Content.ReadAsStringAsync();
+                if (make == null)
+                    Toast.MakeText(c, "There is no request yet. Try again later.", ToastLength.Short).Show();
+            }
             else
-                Toast.MakeText(c, "Failed to cancel request.", ToastLength.Short).Show();
+                Toast.MakeText(c, "Failed to load requests.", ToastLength.Short).Show();            
+            return make;
+        }
+
+        public static async Task UpdateRequestAsync(Context c, Request request)
+        {
+            HttpResponseMessage response = await client.PutAsJsonAsync("api/Requests?id=" +
+                request.RequestID, request);
+            if (response.IsSuccessStatusCode)
+            {
+                if(request.status.Equals("Rejected"))
+                    Toast.MakeText(c, "Request rejected.", ToastLength.Short).Show();
+                else if (request.status.Equals("Accepted"))
+                    Toast.MakeText(c, "Request accepted.", ToastLength.Short).Show();
+            }
+            else
+                Toast.MakeText(c, "Failed to update request.", ToastLength.Short).Show();
         }
 
         public static async Task CancelRequestAsync(Context c, Request request)
@@ -254,6 +276,15 @@ namespace CHARE_System.Class
                 Toast.MakeText(c, "Request sent.", ToastLength.Short).Show();
             else
                 Toast.MakeText(c, "Failed to send request.", ToastLength.Short).Show();
+        }
+
+        public static async Task DeleteRequestAsync(Context c, Request request)
+        {
+            HttpResponseMessage response = await client.DeleteAsync("api/Requests?id=" + request.RequestID);
+            if (response.IsSuccessStatusCode)
+                Toast.MakeText(c, "Cancelled request.", ToastLength.Short).Show();
+            else
+                Toast.MakeText(c, "Failed to cancel request.", ToastLength.Short).Show();
         }
     }
 }

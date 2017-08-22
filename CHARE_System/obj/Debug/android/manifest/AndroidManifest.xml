@@ -13,7 +13,8 @@
   <application android:label="CHARE_System" android:theme="@style/MyTheme" android:name="android.app.Application" android:allowBackup="true" android:debuggable="true">
     <meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/GoogleKey" />
     <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
-    <activity android:label="DriverListViewActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.DriverListViewActivity" />
+    <activity android:label="RequestListViewActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.RequestListViewActivity" />
+    <activity android:label="DriverListViewActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.SearchDriverListViewActivity" />
     <activity android:icon="@drawable/icon" android:label="CHARE" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.InitialActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />

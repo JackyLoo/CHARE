@@ -120,7 +120,7 @@ namespace CHARE_System
                 if (holder.mButton.Text.Equals("Search Driver"))
                 {
                     //Intent intent = new Intent(context, typeof(DriverListViewActivity)).SetFlags(ActivityFlags.NewTask);
-                    Intent intent = new Intent(context, typeof(DriverListViewActivity));
+                    Intent intent = new Intent(context, typeof(SearchDriverListViewActivity));
                     intent.AddFlags(ActivityFlags.ReorderToFront);
                     intent.PutExtra("Trip", JsonConvert.SerializeObject(trips[position]));
                     context.StartActivity(intent);
@@ -143,7 +143,7 @@ namespace CHARE_System
                 if (holder.mButton.Text.Equals("Search Driver"))
                     intent.PutExtra("Status", "OK");
                 intent.PutExtra("Trip", JsonConvert.SerializeObject(trips[position]));
-                ((Activity)context).StartActivityForResult(intent, 0);                
+                ((Activity)context).StartActivityForResult(intent, 0);
             };
 
             Console.WriteLine("===== GetView End");

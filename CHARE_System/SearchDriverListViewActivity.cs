@@ -1,27 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using CHARE_REST_API.JSON_Object;
-
-using System.Net.Http;
-using CHARE_System.JSON_Object;
-using System.Net.Http.Headers;
-using Newtonsoft.Json;
-using System.Threading.Tasks;
 using CHARE_System.Class;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace CHARE_System
 {
     [Activity(Label = "DriverListViewActivity")]
-    public class DriverListViewActivity : Activity
+    public class SearchDriverListViewActivity : Activity
     {
         private Member user;
         private ProgressDialog progress;
@@ -74,7 +67,7 @@ namespace CHARE_System
                 progress.Dismiss();
             });
             listTrips = JsonConvert.DeserializeObject<List<TripDetails>>(models);
-            listView.Adapter = new DriverListViewAdapter(this, listTrips, passTrip);
+            listView.Adapter = new SearchDriverListViewAdapter(this, listTrips, passTrip);
         }
        
         override

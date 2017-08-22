@@ -135,8 +135,10 @@
   <ItemGroup>
     <Compile Include="Class\MapHelper.cs" />
     <Compile Include="Class\RESTClient.cs" />
-    <Compile Include="DriverListViewActivity.cs" />
-    <Compile Include="DriverListViewAdapter.cs" />
+    <Compile Include="RequestListViewActivity.cs" />
+    <Compile Include="RequestListViewAdapter.cs" />
+    <Compile Include="SearchDriverListViewActivity.cs" />
+    <Compile Include="SearchDriverListViewAdapter.cs" />
     <Compile Include="InitialActivity.cs" />
     <Compile Include="JSON Object\GeocodedWaypoint.cs" />
     <Compile Include="JSON Object\GoogleDistanceMatrix.cs" />
@@ -229,6 +231,12 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Custom_Spinner_Signup.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\RequestListView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\RequestDetailsRow.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
