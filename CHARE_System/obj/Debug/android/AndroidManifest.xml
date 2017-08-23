@@ -15,17 +15,17 @@
     <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
     <activity android:label="RequestListViewActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.RequestListViewActivity" />
     <activity android:label="DriverListViewActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.SearchDriverListViewActivity" />
-    <activity android:icon="@drawable/icon" android:label="CHARE" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.InitialActivity">
+    <activity android:label="InitialActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.InitialActivity" />
+    <activity android:label="LoginActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.LoginActivity" />
+    <activity android:label="CHARE_App" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.MainActivity" />
+    <activity android:label="SignupActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.SignupActivity" />
+    <activity android:label="SignupCarActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.SignupCarActivity" />
+    <activity android:icon="@drawable/icon" android:label="Test" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.Test">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:label="LoginActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.LoginActivity" />
-    <activity android:label="CHARE_App" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.MainActivity" />
-    <activity android:label="SignupActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.SignupActivity" />
-    <activity android:label="SignupCarActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.SignupCarActivity" />
-    <activity android:label="Test" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.Test" />
     <activity android:label="Route Details" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.TripConfirmation_1" />
     <activity android:label="Set Route" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.TripConfirmation_2" />
     <activity android:label="TripDriverDetailsRow_Edit" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.TripDriverDetailsRow_Edit" />

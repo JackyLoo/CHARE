@@ -209,9 +209,6 @@
     <AndroidResource Include="Resources\layout\TripPassDetailsRow.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\NumberPickerDialog.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\Custom_Spinner_Seat.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -237,6 +234,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\RequestDetailsRow.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Custom_Dialog_Rating.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
