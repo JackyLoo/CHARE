@@ -160,12 +160,13 @@ namespace CHARE_System
                 Resource.Layout.Custom_Spinner_Seat);
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spinnerSeat.Adapter = adapter;            
-            spinnerSeat.SetSelection(iTripDetail.availableSeat-1);            
+            spinnerSeat.SetSelection(iTripDetail.availableSeat-1);
 
-            upperLayout.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 6.5f);
-            lowerLayout.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 3.5f);
-            upperContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 5.3f);
-            lowerContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 4.7f);
+
+            upperContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 5.7f);
+            lowerContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 4.3f);
+            //upperContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 5.3f);
+            //lowerContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 4.7f);
 
             // Add click events if intent has pass "Status" to here
             // It is used to validate if trip is editable
