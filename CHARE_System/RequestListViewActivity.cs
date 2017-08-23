@@ -46,7 +46,7 @@ namespace CHARE_System
                 progress = new Android.App.ProgressDialog(this);
                 progress.Indeterminate = true;
                 progress.SetProgressStyle(Android.App.ProgressDialogStyle.Spinner);
-                progress.SetMessage("Looking for drivers.....");
+                progress.SetMessage("Loading request...");
                 progress.SetCancelable(false);
 
                 RunOnUiThread(() =>

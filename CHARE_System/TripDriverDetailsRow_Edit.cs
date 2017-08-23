@@ -33,14 +33,17 @@ namespace CHARE_System
         private const string strGoogleDirectionAPIOri = "https://maps.googleapis.com/maps/api/directions/json?origin=";
         private const string strGoogleDirectionAPIDest = "&destination=";
         private const string strGoogleApiKey = "&key=AIzaSyBxXCmp-C6i5LwwRSTuvzIjD9_roPjJ4EI";
+        private TextView tvTitle;
+        private TextView tvPassenger;
+        private TextView tvOrigin;
+        private TextView tvDest;
         private TextView txtviewDistance;
         private TextView txtviewDuration;
         private TextView txtviewCost;
         private TextView tvArriveTime;
         private TextView tvDay;
         private Switch switchFemaleOnly;
-        private Spinner spinnerSeat;
-        private TableRow seatLayout;
+        private Spinner spinnerSeat;        
         private Button btnUpdate;
         private ToggleButton tbtnMon;
         private ToggleButton tbtnTue;
@@ -98,12 +101,19 @@ namespace CHARE_System
             SetDayArrayBool(false);
 
             // Views Initialization
+            LinearLayout memberLayout = (LinearLayout)FindViewById(Resource.Id.member_layout);
+            LinearLayout originLayout = (LinearLayout)FindViewById(Resource.Id.origin_layout);
+            LinearLayout destLayout = (LinearLayout)FindViewById(Resource.Id.dest_layout);
             LinearLayout upperLayout = (LinearLayout)FindViewById(Resource.Id.upperlayout);
             LinearLayout lowerLayout = (LinearLayout)FindViewById(Resource.Id.lowerlayout_btn);
             LinearLayout upperContainer = (LinearLayout)FindViewById(Resource.Id.upper_container);
             LinearLayout lowerContainer = (LinearLayout)FindViewById(Resource.Id.lower_container);
             LinearLayout seatLayout = (LinearLayout)FindViewById(Resource.Id.availableSeat_layout);
 
+            tvTitle = (TextView)FindViewById(Resource.Id.textview_member_title);
+            tvPassenger = (TextView)FindViewById(Resource.Id.textview_member);
+            tvOrigin = (TextView)FindViewById(Resource.Id.textview_origin);
+            tvDest = (TextView)FindViewById(Resource.Id.textview_dest);
             txtviewDistance = (TextView)FindViewById(Resource.Id.textview_distance);
             txtviewDuration = (TextView)FindViewById(Resource.Id.textview_time);
             txtviewCost = (TextView)FindViewById(Resource.Id.textview_cost);
@@ -113,6 +123,15 @@ namespace CHARE_System
             spinnerSeat = (Spinner)FindViewById(Resource.Id.spinner_seat);
             btnUpdate = (Button)FindViewById(Resource.Id.trip_pass_edit_edit_continue);
 
+            // Initialize map fragment and initialize the map system
+            MapFragment mapFragment = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.trip_pass_edit_googlemap);
+            mapFragment.GetMapAsync(this);
+
+            // Initialize google autocomplete text view
+            originAutocompleteFragment = (PlaceAutocompleteFragment)
+                FragmentManager.FindFragmentById(Resource.Id.trip_pass_edit_edit_origin_fragment);
+            destAutocompleteFragment = (PlaceAutocompleteFragment)
+                FragmentManager.FindFragmentById(Resource.Id.trip_pass_edit_edit_dest_fragment);
 
             // Convert trip detail span time format into HH:mm tt formant
             string[] time = iTripDetail.arriveTime.Split(':');
@@ -125,6 +144,7 @@ namespace CHARE_System
             minute = int.Parse(time[1]);
 
             // Initialize view value
+            tvTitle.Text = "Passenger(s)";
             txtviewDistance.Text = iTripDetail.distanceStr;
             txtviewCost.Text = iTripDetail.costStr;
             txtviewDuration.Text = iTripDetail.durationStr;
@@ -139,36 +159,69 @@ namespace CHARE_System
             var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.trip_available_seat,
                 Resource.Layout.Custom_Spinner_Seat);
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
-            spinnerSeat.Adapter = adapter;
-            spinnerSeat.SetSelection(iTripDetail.availableSeat);
+            spinnerSeat.Adapter = adapter;            
+            spinnerSeat.SetSelection(iTripDetail.availableSeat-1);            
+
+            upperLayout.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 6.5f);
+            lowerLayout.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 3.5f);
+            upperContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 5.3f);
+            lowerContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 4.7f);
 
             // Add click events if intent has pass "Status" to here
             // It is used to validate if trip is editable
             if (Intent.HasExtra("Status"))
             {
+                originAutocompleteFragment.SetHint("Enter the origin");
+                originAutocompleteFragment.SetText(iTripDetail.origin);
+                destAutocompleteFragment.SetHint("Enter the destination");
+                destAutocompleteFragment.SetText(iTripDetail.destination);
                 tvArriveTime.Click += ShowTimeDialog;
                 tvDay.Click += ShowDayDialog;
                 btnUpdate.Click += UpdateTripDetail;
+                originAutocompleteFragment.PlaceSelected += OnOriginSelected;
+                destAutocompleteFragment.PlaceSelected += OnDestinationSelected;
             }
             else
-                btnUpdate.Visibility = ViewStates.Invisible;
+            {
+                spinnerSeat.Enabled = false;
+                switchFemaleOnly.Enabled = false;
+                // Hide button layout
+                lowerLayout.Visibility = ViewStates.Gone;
+                originAutocompleteFragment.View.Visibility = ViewStates.Gone;
+                destAutocompleteFragment.View.Visibility = ViewStates.Gone;
+                memberLayout.Visibility = ViewStates.Visible;
+                originLayout.Visibility = ViewStates.Visible;
+                destLayout.Visibility = ViewStates.Visible;
+                
+                tvPassenger.Text = GetPassengerNames(iTripDetail.TripPassengers);
+                
+                tvOrigin.Text = iTripDetail.origin;
+                tvDest.Text = iTripDetail.destination;                
+                // Change layout weight 
+                upperContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FillParent, 0, 5.0f);
+                lowerContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 5.0f);
+                upperLayout.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 7.0f);
+                lowerLayout.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 3.0f);
+            }
 
-            // Initialize map fragment and initialize the map system
-            MapFragment mapFragment = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.trip_pass_edit_googlemap);
-            mapFragment.GetMapAsync(this);
+            
+        }
 
-            // Initialize google autocomplete text view
-            originAutocompleteFragment = (PlaceAutocompleteFragment)
-                FragmentManager.FindFragmentById(Resource.Id.trip_pass_edit_edit_origin_fragment);
-            originAutocompleteFragment.SetHint("Enter the origin");
-            originAutocompleteFragment.SetText(iTripDetail.origin);
-            originAutocompleteFragment.PlaceSelected += OnOriginSelected;
-
-            destAutocompleteFragment = (PlaceAutocompleteFragment)
-                FragmentManager.FindFragmentById(Resource.Id.trip_pass_edit_edit_dest_fragment);
-            destAutocompleteFragment.SetHint("Enter the destination");
-            destAutocompleteFragment.SetText(iTripDetail.destination);
-            destAutocompleteFragment.PlaceSelected += OnDestinationSelected;
+        private string GetPassengerNames(List<TripPassenger> list)
+        {
+            string names = "";
+            if (list == null)
+                names = "No passenger";
+            else
+            {                
+                for (int i = 0; i < iTripDetail.TripPassengers.Count(); i++)
+                {
+                    if (i != 0)
+                        names += ",";
+                    names += iTripDetail.TripPassengers[i].Member.username;
+                }
+            }
+            return names;
         }
 
         public void ShowTimeDialog(Object sender, EventArgs e)
@@ -269,11 +322,9 @@ namespace CHARE_System
                 {
                     tvDay.Text = strPickedDays;
                     dialog.Dismiss();
-                }
-
-
-                dialog.Show();
+                }                
             };
+            dialog.Show();
         }
 
         public async void UpdateTripDetail(Object sender, EventArgs e)
@@ -320,7 +371,8 @@ namespace CHARE_System
                 {
                     progress.Show();
                 });
-                await RESTClient.UpdateTripDriverAsync(this, iTripDetail);
+                TripDriver tripDriver = new TripDriver(iTripDetail);
+                await RESTClient.UpdateTripDriverAsync(this, tripDriver);
                 RunOnUiThread(() =>
                 {
                     progress.Dismiss();

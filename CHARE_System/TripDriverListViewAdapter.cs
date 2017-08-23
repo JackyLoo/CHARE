@@ -17,7 +17,7 @@ using Newtonsoft.Json;
 
 namespace CHARE_System
 {
-    class TripDriverListViewAdapter : BaseAdapter<TripDetails>
+    class TripDriverListViewAdapter : BaseAdapter<TripDetails>, IDialogInterfaceOnClickListener
     {
         private static Context context;
         private List<TripDetails> trips;        
@@ -69,6 +69,7 @@ namespace CHARE_System
                 var duration = view.FindViewById<TextView>(Resource.Id.trip_driver_row_duration);
                 var cost = view.FindViewById<TextView>(Resource.Id.trip_driver_row_cost);
                 var button = view.FindViewById<TextView>(Resource.Id.trip_driver_row_button);
+                var seat = view.FindViewById<TextView>(Resource.Id.trip_driver_row_seat);                
 
                 view.Tag = new TripDriverViewHolder()
                 {
@@ -80,6 +81,7 @@ namespace CHARE_System
                     Distance = distance,
                     Duration = duration,
                     Cost = cost,
+                    Seat = seat,
                     mButton = button
                 };
             }
@@ -109,6 +111,15 @@ namespace CHARE_System
             holder.Distance.Text = trips[position].distanceStr;
             holder.Duration.Text = " • Approx " + trips[position].durationStr;
             holder.Cost.Text = trips[position].costStr;
+
+            int totalPassenger = 0;
+            int totalSeat = trips[position].availableSeat;
+            if (trips[position].PassengerIDs != null)
+            {
+                string[] passengers = trips[position].PassengerIDs.Split(',');
+                totalPassenger = passengers.Count();                
+            }
+            holder.Seat.Text = totalPassenger + "/" + totalSeat;
 
             if (trips[position].Requests.Count <= 0)
                 holder.mButton.Text = "No Request";
@@ -144,7 +155,7 @@ namespace CHARE_System
                     Intent intent = new Intent(context, typeof(RequestListViewActivity));
                     intent.AddFlags(ActivityFlags.ReorderToFront);
                     intent.PutExtra("Trip", JsonConvert.SerializeObject(trips[position]));
-                    context.StartActivity(intent);
+                    ((Activity)context).StartActivityForResult(intent, 0);
                 }                
             };
 
@@ -153,16 +164,36 @@ namespace CHARE_System
                 Android.Net.ConnectivityManager cm = (Android.Net.ConnectivityManager)context.GetSystemService(Context.ConnectivityService);
                 if (cm.ActiveNetworkInfo == null)
                     Toast.MakeText(context, "Network error. Try again later.", ToastLength.Long).Show();
-                else
+                else 
                 {
                     Intent intent = new Intent(context, typeof(TripDriverDetailsRow_Edit));
+                    // Send intent extra to notify the trip is editable
+                    // Condition = no passenger in the trip yet AND no passenger send request for this trip
+                    if (totalPassenger == 0 && holder.mButton.Text.Equals("No Request"))
+                        intent.PutExtra("Status", "No Request");
                     intent.PutExtra("Trip", JsonConvert.SerializeObject(trips[position]));
                     ((Activity)context).StartActivityForResult(intent, 0);
-                }
+                }                
+            };
+
+            view.LongClick += (sender, e) =>
+            {
+                var ad = new Android.Support.V7.App.AlertDialog.Builder(context);
+                ad.SetTitle("No Connection");
+                ad.SetMessage("Looks like there's a problem with your network connection. Try again later.");
+                ad.SetCancelable(false);
+                ad.SetPositiveButton("OK", this);
+                Android.Support.V7.App.AlertDialog dialog = ad.Create();
+                dialog.Show();
             };
 
             Console.WriteLine("===== GetView End");
             return view;
+        }
+
+        public void OnClick(IDialogInterface dialog, int which)
+        {
+            Console.WriteLine("===which "+which);         
         }
     }
 

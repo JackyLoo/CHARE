@@ -111,9 +111,24 @@ namespace CHARE_System
                     Toast.MakeText(context, "Network error. Try again later.", ToastLength.Long).Show();
                 else
                 {
-                    requests[position].status = "Accepted";                                                     
-                    await RESTClient.UpdateRequestAsync(context, requests[position]);
-                    view.Visibility = ViewStates.Gone;
+                    if (requests[position].TripDriver.PassengerIDs != null)
+                    {
+                        string[] noOfPassenger = requests[position].TripDriver.PassengerIDs.Split(',');
+                        if (noOfPassenger.Count() >= requests[position].TripDriver.availableSeat)
+                            Toast.MakeText(context, "The available seat is full. ", ToastLength.Long).Show();
+                        else
+                        {
+                            requests[position].status = "Accepted";
+                            await RESTClient.AcceptRequestAsync(context, requests[position]);
+                            view.Visibility = ViewStates.Gone;
+                        }
+                    }
+                    else
+                    {
+                        requests[position].status = "Accepted";
+                        await RESTClient.AcceptRequestAsync(context, requests[position]);
+                        view.Visibility = ViewStates.Gone;
+                    }
                 }
             };
             holder.ButtonReject.Click += async (sender, e) =>
@@ -124,7 +139,7 @@ namespace CHARE_System
                 else
                 {
                     requests[position].status = "Rejected";
-                    await RESTClient.UpdateRequestAsync(context, requests[position]);
+                    await RESTClient.RejectRequestAsync(context, requests[position]);
                     view.Visibility = ViewStates.Gone;
                 }
             };

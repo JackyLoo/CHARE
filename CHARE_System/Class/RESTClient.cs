@@ -15,6 +15,7 @@ using System.Resources;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using CHARE_REST_API.JSON_Object;
+using Newtonsoft.Json;
 
 namespace CHARE_System.Class
 {
@@ -165,11 +166,16 @@ namespace CHARE_System.Class
             return make;
         }
 
-        public static async Task UpdateTripDriverAsync(Context c, TripDetails tripDetail)
+        public static async Task UpdateTripDriverAsync(TripDriver tripDriver)
         {
-            TripDriver tripDriver = new TripDriver(tripDetail);
-            Console.WriteLine("===== Updating");
-            Console.WriteLine("Arrive Time : " + tripDetail.arriveTime);
+            HttpResponseMessage response = await client.PutAsJsonAsync("api/TripDrivers?id=" +
+                tripDriver.TripDriverID, tripDriver);
+            if (!response.IsSuccessStatusCode)
+                Console.WriteLine("Error occur when updating trip driver");
+        }
+
+        public static async Task UpdateTripDriverAsync(Context c, TripDriver tripDriver)
+        {            
             HttpResponseMessage response = await client.PutAsJsonAsync("api/TripDrivers?id=" +
                 tripDriver.TripDriverID, tripDriver);
             if (response.IsSuccessStatusCode)
@@ -199,12 +205,16 @@ namespace CHARE_System.Class
             return make;
         }
 
-        public static async Task UpdateTripPassengerAsync(Context c, TripDetails tripDetail)
+        public static async Task UpdateTripPassengerAsync(TripPassenger tripPassenger)
         {
-            Console.WriteLine("===== Update Trip Passenger Start");
-            TripPassenger tripPassenger = new TripPassenger(tripDetail);
-            Console.WriteLine("===== Updating");
-            Console.WriteLine("Arrive Time : " + tripDetail.arriveTime);
+            HttpResponseMessage response = await client.PutAsJsonAsync("api/TripPassengers?id=" +
+                tripPassenger.TripPassengerID, tripPassenger);
+            if (!response.IsSuccessStatusCode)
+                Console.WriteLine("Error occur when updating trip driver");
+        }
+
+        public static async Task UpdateTripPassengerAsync(Context c, TripPassenger tripPassenger)
+        {            
             HttpResponseMessage response = await client.PutAsJsonAsync("api/TripPassengers?id=" + 
                 tripPassenger.TripPassengerID, tripPassenger);
             if (response.IsSuccessStatusCode)
@@ -243,19 +253,32 @@ namespace CHARE_System.Class
             else
                 Toast.MakeText(c, "Failed to load requests.", ToastLength.Short).Show();            
             return make;
+        }        
+       
+        public static async Task AcceptRequestAsync(Context c, Request request)
+        {
+            if(request.TripDriver.PassengerIDs != null)
+                request.TripDriver.PassengerIDs = request.TripDriver.PassengerIDs +","+request.TripPassenger.TripPassengerID.ToString();            
+            else
+                request.TripDriver.PassengerIDs = request.TripPassenger.TripPassengerID.ToString();
+            request.TripPassenger.TripDriverID = request.TripDriver.TripDriverID;
+            await UpdateTripDriverAsync(request.TripDriver);
+            await UpdateTripPassengerAsync(request.TripPassenger);
+
+            HttpResponseMessage response = await client.PutAsJsonAsync("api/Requests?id=" +
+                request.RequestID, request);
+            if (response.IsSuccessStatusCode)                          
+                Toast.MakeText(c, "Request accepted.", ToastLength.Short).Show();            
+            else
+                Toast.MakeText(c, "Failed to update request.", ToastLength.Short).Show();
         }
 
-        public static async Task UpdateRequestAsync(Context c, Request request)
+        public static async Task RejectRequestAsync(Context c, Request request)
         {
             HttpResponseMessage response = await client.PutAsJsonAsync("api/Requests?id=" +
                 request.RequestID, request);
-            if (response.IsSuccessStatusCode)
-            {
-                if(request.status.Equals("Rejected"))
-                    Toast.MakeText(c, "Request rejected.", ToastLength.Short).Show();
-                else if (request.status.Equals("Accepted"))
-                    Toast.MakeText(c, "Request accepted.", ToastLength.Short).Show();
-            }
+            if (response.IsSuccessStatusCode)                   
+               Toast.MakeText(c, "Request rejected.", ToastLength.Short).Show();                    
             else
                 Toast.MakeText(c, "Failed to update request.", ToastLength.Short).Show();
         }

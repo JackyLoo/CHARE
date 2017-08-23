@@ -337,7 +337,8 @@ namespace CHARE_System
                 {
                     progress.Show();
                 });
-                await RESTClient.UpdateTripPassengerAsync(context, iTripDetail);
+                TripPassenger tripPassenger = new TripPassenger(iTripDetail);
+                await RESTClient.UpdateTripPassengerAsync(context, tripPassenger);
                 RunOnUiThread(() =>
                 {
                     progress.Dismiss();
