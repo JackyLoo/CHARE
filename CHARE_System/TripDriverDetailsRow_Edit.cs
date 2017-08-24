@@ -44,7 +44,7 @@ namespace CHARE_System
         private TextView tvDay;
         private Switch switchFemaleOnly;
         private Spinner spinnerSeat;        
-        private Button btnUpdate;
+        private Button button;
         private ToggleButton tbtnMon;
         private ToggleButton tbtnTue;
         private ToggleButton tbtnWed;
@@ -121,7 +121,7 @@ namespace CHARE_System
             tvDay = (TextView)FindViewById(Resource.Id.textview_day);
             switchFemaleOnly = (Switch)FindViewById(Resource.Id.switch_femaleonly);
             spinnerSeat = (Spinner)FindViewById(Resource.Id.spinner_seat);
-            btnUpdate = (Button)FindViewById(Resource.Id.trip_pass_edit_edit_continue);
+            button = (Button)FindViewById(Resource.Id.trip_pass_edit_edit_continue);
 
             // Initialize map fragment and initialize the map system
             MapFragment mapFragment = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.trip_pass_edit_googlemap);
@@ -172,15 +172,41 @@ namespace CHARE_System
             // It is used to validate if trip is editable
             if (Intent.HasExtra("Status"))
             {
-                originAutocompleteFragment.SetHint("Enter the origin");
-                originAutocompleteFragment.SetText(iTripDetail.origin);
-                destAutocompleteFragment.SetHint("Enter the destination");
-                destAutocompleteFragment.SetText(iTripDetail.destination);
-                tvArriveTime.Click += ShowTimeDialog;
-                tvDay.Click += ShowDayDialog;
-                btnUpdate.Click += UpdateTripDetail;
-                originAutocompleteFragment.PlaceSelected += OnOriginSelected;
-                destAutocompleteFragment.PlaceSelected += OnDestinationSelected;
+                if (Intent.GetStringExtra("Status").Equals("Has Passenger"))
+                {
+                    spinnerSeat.Enabled = false;
+                    switchFemaleOnly.Enabled = false;
+                    // Hide button layout                    
+                    originAutocompleteFragment.View.Visibility = ViewStates.Gone;
+                    destAutocompleteFragment.View.Visibility = ViewStates.Gone;
+                    memberLayout.Visibility = ViewStates.Visible;
+                    originLayout.Visibility = ViewStates.Visible;
+                    destLayout.Visibility = ViewStates.Visible;
+
+                    tvPassenger.Text = GetPassengerNames(iTripDetail.TripPassengers);
+                    tvOrigin.Text = iTripDetail.origin;
+                    tvDest.Text = iTripDetail.destination;
+                    button.Text = "Start Route";
+                    
+
+                    // Change layout weight 
+                    upperContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FillParent, 0, 4.2f);
+                    lowerContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 5.8f);
+                    upperLayout.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 7.0f);
+                    lowerLayout.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 3.0f);
+                }
+                else
+                {
+                    originAutocompleteFragment.SetHint("Enter the origin");
+                    originAutocompleteFragment.SetText(iTripDetail.origin);
+                    destAutocompleteFragment.SetHint("Enter the destination");
+                    destAutocompleteFragment.SetText(iTripDetail.destination);
+                    tvArriveTime.Click += ShowTimeDialog;
+                    tvDay.Click += ShowDayDialog;
+                    button.Click += UpdateTripDetail;
+                    originAutocompleteFragment.PlaceSelected += OnOriginSelected;
+                    destAutocompleteFragment.PlaceSelected += OnDestinationSelected;
+                }
             }
             else
             {

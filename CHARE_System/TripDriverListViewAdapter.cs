@@ -171,6 +171,9 @@ namespace CHARE_System
                     // Condition = no passenger in the trip yet AND no passenger send request for this trip
                     if (totalPassenger == 0 && holder.mButton.Text.Equals("No Request"))
                         intent.PutExtra("Status", "No Request");
+                    else if (totalPassenger != 0 && holder.mButton.Text.Equals("No Request"))
+                        intent.PutExtra("Status", "Has Passenger");
+
                     intent.PutExtra("Trip", JsonConvert.SerializeObject(trips[position]));
                     ((Activity)context).StartActivityForResult(intent, 0);
                 }                
