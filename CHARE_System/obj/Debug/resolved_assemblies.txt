@@ -24,6 +24,7 @@ C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\android\assets\Xamarin.GooglePlayServices.Base.dll
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\android\assets\Xamarin.GooglePlayServices.Maps.dll
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\android\assets\Xamarin.GooglePlayServices.Places.dll
+C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\android\assets\Xamarin.GooglePlayServices.Location.dll
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\android\assets\Java.Interop.dll
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\android\assets\Microsoft.CSharp.dll
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\android\assets\Mono.Android.dll

@@ -308,7 +308,11 @@ namespace CHARE_System
         public void OnAnimationRepeat(Animator animation){}
 
         public void OnAnimationStart(Animator animation){}
+
+        protected override void OnDestroy()
+        {
+            UnregisterReceiver(receiver);            
+            base.OnDestroy();
+        }
     }
 }
-
-

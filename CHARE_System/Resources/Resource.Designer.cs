@@ -3485,8 +3485,8 @@ namespace CHARE_System
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0900ea
-			public const int Distance_layout = 2131296490;
+			// aapt resource value: 0x7f0900eb
+			public const int Distance_layout = 2131296491;
 			
 			// aapt resource value: 0x7f09009d
 			public const int action0 = 2131296413;
@@ -3551,6 +3551,9 @@ namespace CHARE_System
 			// aapt resource value: 0x7f09002c
 			public const int add = 2131296300;
 			
+			// aapt resource value: 0x7f0900de
+			public const int add_geofences_button = 2131296478;
+			
 			// aapt resource value: 0x7f090017
 			public const int adjust_height = 2131296279;
 			
@@ -3563,14 +3566,14 @@ namespace CHARE_System
 			// aapt resource value: 0x7f090031
 			public const int always = 2131296305;
 			
-			// aapt resource value: 0x7f0900e1
-			public const int arrivetime_layout = 2131296481;
+			// aapt resource value: 0x7f0900e2
+			public const int arrivetime_layout = 2131296482;
 			
 			// aapt resource value: 0x7f09001c
 			public const int auto = 2131296284;
 			
-			// aapt resource value: 0x7f0900e7
-			public const int availableSeat_layout = 2131296487;
+			// aapt resource value: 0x7f0900e8
+			public const int availableSeat_layout = 2131296488;
 			
 			// aapt resource value: 0x7f09002e
 			public const int beginning = 2131296302;
@@ -3584,11 +3587,11 @@ namespace CHARE_System
 			// aapt resource value: 0x7f09006e
 			public const int btn_submit = 2131296366;
 			
-			// aapt resource value: 0x7f0900f2
-			public const int btn_tripcon_comfirm = 2131296498;
+			// aapt resource value: 0x7f0900f3
+			public const int btn_tripcon_comfirm = 2131296499;
 			
-			// aapt resource value: 0x7f0900f0
-			public const int btn_tripcon_continue = 2131296496;
+			// aapt resource value: 0x7f0900f1
+			public const int btn_tripcon_continue = 2131296497;
 			
 			// aapt resource value: 0x7f090076
 			public const int btn_tripcon_day_confirm = 2131296374;
@@ -3629,8 +3632,8 @@ namespace CHARE_System
 			// aapt resource value: 0x7f090099
 			public const int content_layout = 2131296409;
 			
-			// aapt resource value: 0x7f0900ee
-			public const int cost_layout = 2131296494;
+			// aapt resource value: 0x7f0900ef
+			public const int cost_layout = 2131296495;
 			
 			// aapt resource value: 0x7f09004c
 			public const int custom = 2131296332;
@@ -3644,8 +3647,8 @@ namespace CHARE_System
 			// aapt resource value: 0x7f0900c1
 			public const int day = 2131296449;
 			
-			// aapt resource value: 0x7f0900e3
-			public const int day_layout = 2131296483;
+			// aapt resource value: 0x7f0900e4
+			public const int day_layout = 2131296484;
 			
 			// aapt resource value: 0x7f090059
 			public const int decor_content_parent = 2131296345;
@@ -3653,8 +3656,8 @@ namespace CHARE_System
 			// aapt resource value: 0x7f09003e
 			public const int default_activity_button = 2131296318;
 			
-			// aapt resource value: 0x7f0900fc
-			public const int dest_layout = 2131296508;
+			// aapt resource value: 0x7f0900fd
+			public const int dest_layout = 2131296509;
 			
 			// aapt resource value: 0x7f0900c0
 			public const int destination = 2131296448;
@@ -3722,8 +3725,8 @@ namespace CHARE_System
 			// aapt resource value: 0x7f0900bb
 			public const int female = 2131296443;
 			
-			// aapt resource value: 0x7f0900e5
-			public const int female_layout = 2131296485;
+			// aapt resource value: 0x7f0900e6
+			public const int female_layout = 2131296486;
 			
 			// aapt resource value: 0x7f09007e
 			public const int googlemap = 2131296382;
@@ -3779,20 +3782,20 @@ namespace CHARE_System
 			// aapt resource value: 0x7f0900c5
 			public const int listview = 2131296453;
 			
-			// aapt resource value: 0x7f090118
-			public const int listview_background_shape = 2131296536;
+			// aapt resource value: 0x7f090119
+			public const int listview_background_shape = 2131296537;
 			
-			// aapt resource value: 0x7f0900e9
-			public const int lnlyt_tripcon_continue = 2131296489;
+			// aapt resource value: 0x7f0900ea
+			public const int lnlyt_tripcon_continue = 2131296490;
 			
 			// aapt resource value: 0x7f0900d8
 			public const int loginlink = 2131296472;
 			
-			// aapt resource value: 0x7f0900e0
-			public const int lower_container = 2131296480;
+			// aapt resource value: 0x7f0900e1
+			public const int lower_container = 2131296481;
 			
-			// aapt resource value: 0x7f0900fe
-			public const int lowerlayout_btn = 2131296510;
+			// aapt resource value: 0x7f0900ff
+			public const int lowerlayout_btn = 2131296511;
 			
 			// aapt resource value: 0x7f09007c
 			public const int main_rlayout = 2131296380;
@@ -3890,8 +3893,8 @@ namespace CHARE_System
 			// aapt resource value: 0x7f0900a0
 			public const int media_actions = 2131296416;
 			
-			// aapt resource value: 0x7f0900f7
-			public const int member_layout = 2131296503;
+			// aapt resource value: 0x7f0900f8
+			public const int member_layout = 2131296504;
 			
 			// aapt resource value: 0x7f090030
 			public const int middle = 2131296304;
@@ -3926,8 +3929,8 @@ namespace CHARE_System
 			// aapt resource value: 0x7f0900be
 			public const int origin = 2131296446;
 			
-			// aapt resource value: 0x7f0900fa
-			public const int origin_layout = 2131296506;
+			// aapt resource value: 0x7f0900fb
+			public const int origin_layout = 2131296507;
 			
 			// aapt resource value: 0x7f090044
 			public const int parentPanel = 2131296324;
@@ -3979,6 +3982,9 @@ namespace CHARE_System
 			
 			// aapt resource value: 0x7f09006b
 			public const int ratingbar = 2131296363;
+			
+			// aapt resource value: 0x7f0900df
+			public const int remove_geofences_button = 2131296479;
 			
 			// aapt resource value: 0x7f0900a8
 			public const int right_icon = 2131296424;
@@ -4088,8 +4094,8 @@ namespace CHARE_System
 			// aapt resource value: 0x7f090043
 			public const int spacer = 2131296323;
 			
-			// aapt resource value: 0x7f0900e8
-			public const int spinner_seat = 2131296488;
+			// aapt resource value: 0x7f0900e9
+			public const int spinner_seat = 2131296489;
 			
 			// aapt resource value: 0x7f090008
 			public const int split_action_bar = 2131296264;
@@ -4118,8 +4124,8 @@ namespace CHARE_System
 			// aapt resource value: 0x7f0900b9
 			public const int switchWidget = 2131296441;
 			
-			// aapt resource value: 0x7f0900e6
-			public const int switch_femaleonly = 2131296486;
+			// aapt resource value: 0x7f0900e7
+			public const int switch_femaleonly = 2131296487;
 			
 			// aapt resource value: 0x7f090020
 			public const int tabMode = 2131296288;
@@ -4129,9 +4135,6 @@ namespace CHARE_System
 			
 			// aapt resource value: 0x7f09007f
 			public const int test_main_content = 2131296383;
-			
-			// aapt resource value: 0x7f0900de
-			public const int testbtn = 2131296478;
 			
 			// aapt resource value: 0x7f0900af
 			public const int text = 2131296431;
@@ -4145,38 +4148,38 @@ namespace CHARE_System
 			// aapt resource value: 0x7f090048
 			public const int textSpacerNoTitle = 2131296328;
 			
-			// aapt resource value: 0x7f0900e2
-			public const int textview_arrivetime = 2131296482;
+			// aapt resource value: 0x7f0900e3
+			public const int textview_arrivetime = 2131296483;
 			
-			// aapt resource value: 0x7f0900ef
-			public const int textview_cost = 2131296495;
+			// aapt resource value: 0x7f0900f0
+			public const int textview_cost = 2131296496;
 			
-			// aapt resource value: 0x7f0900e4
-			public const int textview_day = 2131296484;
+			// aapt resource value: 0x7f0900e5
+			public const int textview_day = 2131296485;
 			
-			// aapt resource value: 0x7f0900fd
-			public const int textview_dest = 2131296509;
+			// aapt resource value: 0x7f0900fe
+			public const int textview_dest = 2131296510;
 			
-			// aapt resource value: 0x7f0900eb
-			public const int textview_distance = 2131296491;
+			// aapt resource value: 0x7f0900ec
+			public const int textview_distance = 2131296492;
+			
+			// aapt resource value: 0x7f0900fa
+			public const int textview_member = 2131296506;
 			
 			// aapt resource value: 0x7f0900f9
-			public const int textview_member = 2131296505;
+			public const int textview_member_title = 2131296505;
 			
-			// aapt resource value: 0x7f0900f8
-			public const int textview_member_title = 2131296504;
+			// aapt resource value: 0x7f0900fc
+			public const int textview_origin = 2131296508;
 			
-			// aapt resource value: 0x7f0900fb
-			public const int textview_origin = 2131296507;
-			
-			// aapt resource value: 0x7f0900ed
-			public const int textview_time = 2131296493;
+			// aapt resource value: 0x7f0900ee
+			public const int textview_time = 2131296494;
 			
 			// aapt resource value: 0x7f0900a5
 			public const int time = 2131296421;
 			
-			// aapt resource value: 0x7f0900ec
-			public const int time_layout = 2131296492;
+			// aapt resource value: 0x7f0900ed
+			public const int time_layout = 2131296493;
 			
 			// aapt resource value: 0x7f090041
 			public const int title = 2131296321;
@@ -4220,101 +4223,101 @@ namespace CHARE_System
 			// aapt resource value: 0x7f09004d
 			public const int topPanel = 2131296333;
 			
+			// aapt resource value: 0x7f09010d
+			public const int tripPassDetailsRow_layout = 2131296525;
+			
 			// aapt resource value: 0x7f09010c
-			public const int tripPassDetailsRow_layout = 2131296524;
+			public const int trip_driver_listview = 2131296524;
 			
 			// aapt resource value: 0x7f09010b
-			public const int trip_driver_listview = 2131296523;
-			
-			// aapt resource value: 0x7f09010a
-			public const int trip_driver_row_button = 2131296522;
-			
-			// aapt resource value: 0x7f090108
-			public const int trip_driver_row_cost = 2131296520;
-			
-			// aapt resource value: 0x7f090104
-			public const int trip_driver_row_day = 2131296516;
-			
-			// aapt resource value: 0x7f090103
-			public const int trip_driver_row_destination = 2131296515;
-			
-			// aapt resource value: 0x7f090105
-			public const int trip_driver_row_distance = 2131296517;
-			
-			// aapt resource value: 0x7f090106
-			public const int trip_driver_row_duration = 2131296518;
-			
-			// aapt resource value: 0x7f090100
-			public const int trip_driver_row_female = 2131296512;
-			
-			// aapt resource value: 0x7f090101
-			public const int trip_driver_row_origin = 2131296513;
+			public const int trip_driver_row_button = 2131296523;
 			
 			// aapt resource value: 0x7f090109
-			public const int trip_driver_row_seat = 2131296521;
+			public const int trip_driver_row_cost = 2131296521;
+			
+			// aapt resource value: 0x7f090105
+			public const int trip_driver_row_day = 2131296517;
+			
+			// aapt resource value: 0x7f090104
+			public const int trip_driver_row_destination = 2131296516;
+			
+			// aapt resource value: 0x7f090106
+			public const int trip_driver_row_distance = 2131296518;
 			
 			// aapt resource value: 0x7f090107
-			public const int trip_driver_row_time = 2131296519;
+			public const int trip_driver_row_duration = 2131296519;
+			
+			// aapt resource value: 0x7f090101
+			public const int trip_driver_row_female = 2131296513;
 			
 			// aapt resource value: 0x7f090102
-			public const int trip_driver_row_to = 2131296514;
+			public const int trip_driver_row_origin = 2131296514;
 			
-			// aapt resource value: 0x7f0900f1
-			public const int trip_linearlyt_seat = 2131296497;
+			// aapt resource value: 0x7f09010a
+			public const int trip_driver_row_seat = 2131296522;
 			
-			// aapt resource value: 0x7f0900ff
-			public const int trip_pass_edit_edit_continue = 2131296511;
+			// aapt resource value: 0x7f090108
+			public const int trip_driver_row_time = 2131296520;
 			
-			// aapt resource value: 0x7f0900f4
-			public const int trip_pass_edit_edit_dest_fragment = 2131296500;
+			// aapt resource value: 0x7f090103
+			public const int trip_driver_row_to = 2131296515;
 			
-			// aapt resource value: 0x7f0900f3
-			public const int trip_pass_edit_edit_origin_fragment = 2131296499;
+			// aapt resource value: 0x7f0900f2
+			public const int trip_linearlyt_seat = 2131296498;
+			
+			// aapt resource value: 0x7f090100
+			public const int trip_pass_edit_edit_continue = 2131296512;
 			
 			// aapt resource value: 0x7f0900f5
-			public const int trip_pass_edit_googlemap = 2131296501;
+			public const int trip_pass_edit_edit_dest_fragment = 2131296501;
+			
+			// aapt resource value: 0x7f0900f4
+			public const int trip_pass_edit_edit_origin_fragment = 2131296500;
+			
+			// aapt resource value: 0x7f0900f6
+			public const int trip_pass_edit_googlemap = 2131296502;
+			
+			// aapt resource value: 0x7f090118
+			public const int trip_pass_listview = 2131296536;
 			
 			// aapt resource value: 0x7f090117
-			public const int trip_pass_listview = 2131296535;
+			public const int trip_row_button = 2131296535;
 			
 			// aapt resource value: 0x7f090116
-			public const int trip_row_button = 2131296534;
-			
-			// aapt resource value: 0x7f090115
-			public const int trip_row_cost = 2131296533;
-			
-			// aapt resource value: 0x7f090111
-			public const int trip_row_day = 2131296529;
-			
-			// aapt resource value: 0x7f090110
-			public const int trip_row_destination = 2131296528;
+			public const int trip_row_cost = 2131296534;
 			
 			// aapt resource value: 0x7f090112
-			public const int trip_row_distance = 2131296530;
+			public const int trip_row_day = 2131296530;
+			
+			// aapt resource value: 0x7f090111
+			public const int trip_row_destination = 2131296529;
 			
 			// aapt resource value: 0x7f090113
-			public const int trip_row_duration = 2131296531;
-			
-			// aapt resource value: 0x7f09010d
-			public const int trip_row_female = 2131296525;
-			
-			// aapt resource value: 0x7f09010e
-			public const int trip_row_origin = 2131296526;
+			public const int trip_row_distance = 2131296531;
 			
 			// aapt resource value: 0x7f090114
-			public const int trip_row_time = 2131296532;
+			public const int trip_row_duration = 2131296532;
+			
+			// aapt resource value: 0x7f09010e
+			public const int trip_row_female = 2131296526;
 			
 			// aapt resource value: 0x7f09010f
-			public const int trip_row_to = 2131296527;
+			public const int trip_row_origin = 2131296527;
+			
+			// aapt resource value: 0x7f090115
+			public const int trip_row_time = 2131296533;
+			
+			// aapt resource value: 0x7f090110
+			public const int trip_row_to = 2131296528;
 			
 			// aapt resource value: 0x7f090009
 			public const int up = 2131296265;
 			
-			// aapt resource value: 0x7f0900df
-			public const int upper_container = 2131296479;
+			// aapt resource value: 0x7f0900e0
+			public const int upper_container = 2131296480;
 			
-			// aapt resource value: 0x7f0900f6
-			public const int upperlayout = 2131296502;
+			// aapt resource value: 0x7f0900f7
+			public const int upperlayout = 2131296503;
 			
 			// aapt resource value: 0x7f090026
 			public const int useLogo = 2131296294;
@@ -4781,6 +4784,12 @@ namespace CHARE_System
 			// aapt resource value: 0x7f070025
 			public const int abc_toolbar_collapse_description = 2131165221;
 			
+			// aapt resource value: 0x7f070067
+			public const int action_settings = 2131165287;
+			
+			// aapt resource value: 0x7f07006a
+			public const int add_geofences = 2131165290;
+			
 			// aapt resource value: 0x7f070050
 			public const int app_name = 2131165264;
 			
@@ -4843,6 +4852,33 @@ namespace CHARE_System
 			
 			// aapt resource value: 0x7f070034
 			public const int define_materialize = 2131165236;
+			
+			// aapt resource value: 0x7f07006f
+			public const int geofence_not_available = 2131165295;
+			
+			// aapt resource value: 0x7f070070
+			public const int geofence_too_many_geofences = 2131165296;
+			
+			// aapt resource value: 0x7f070071
+			public const int geofence_too_many_pending_intents = 2131165297;
+			
+			// aapt resource value: 0x7f070074
+			public const int geofence_transition_entered = 2131165300;
+			
+			// aapt resource value: 0x7f070075
+			public const int geofence_transition_exited = 2131165301;
+			
+			// aapt resource value: 0x7f070073
+			public const int geofence_transition_invalid_type = 2131165299;
+			
+			// aapt resource value: 0x7f070077
+			public const int geofence_transition_notification_text = 2131165303;
+			
+			// aapt resource value: 0x7f07006c
+			public const int geofences_added = 2131165292;
+			
+			// aapt resource value: 0x7f07006d
+			public const int geofences_removed = 2131165293;
 			
 			// aapt resource value: 0x7f070052
 			public const int library_AndroidIconics_author = 2131165266;
@@ -4949,11 +4985,17 @@ namespace CHARE_System
 			// aapt resource value: 0x7f07004d
 			public const int material_drawer_open = 2131165261;
 			
+			// aapt resource value: 0x7f07006e
+			public const int not_connected = 2131165294;
+			
 			// aapt resource value: 0x7f070000
 			public const int place_autocomplete_clear_button = 2131165184;
 			
 			// aapt resource value: 0x7f070001
 			public const int place_autocomplete_search_hint = 2131165185;
+			
+			// aapt resource value: 0x7f07006b
+			public const int remove_geofences = 2131165291;
 			
 			// aapt resource value: 0x7f070026
 			public const int search_menu_title = 2131165222;
@@ -4966,6 +5008,18 @@ namespace CHARE_System
 			
 			// aapt resource value: 0x7f07004f
 			public const int switch_on = 2131165263;
+			
+			// aapt resource value: 0x7f070069
+			public const int title_activity_main = 2131165289;
+			
+			// aapt resource value: 0x7f070068
+			public const int title_activity_show_geofence_transitions = 2131165288;
+			
+			// aapt resource value: 0x7f070072
+			public const int unknown_geofence_error = 2131165298;
+			
+			// aapt resource value: 0x7f070076
+			public const int unknown_geofence_transition = 2131165302;
 			
 			static String()
 			{

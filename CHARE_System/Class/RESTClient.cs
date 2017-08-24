@@ -146,6 +146,17 @@ namespace CHARE_System.Class
             return make;
         }
 
+        public static async Task<string> GetTripDriverAsync(int id)
+        {
+            var make = "";
+            HttpResponseMessage response = await client.GetAsync("api/TripDrivers?id=" + id);
+            if (response.IsSuccessStatusCode)
+            {
+                make = await response.Content.ReadAsStringAsync();
+            }
+            return make;
+        }
+
         public static async Task<string> GetTripDriverListAsync(Context c, int id)
         {
             Console.WriteLine("===== GetTripsAsync Start");

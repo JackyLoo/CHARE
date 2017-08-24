@@ -16,8 +16,8 @@ using Newtonsoft.Json;
 
 namespace CHARE_System
 {
-    //[Activity(Label = "CHARE", MainLauncher = true, Icon = "@drawable/icon")]
-    [Activity(Label = "InitialActivity")]
+    [Activity(Label = "CHARE", MainLauncher = true, Icon = "@drawable/icon")]
+    //[Activity(Label = "InitialActivity")]
 
     public class InitialActivity : Activity
     {

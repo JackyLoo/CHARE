@@ -1,3 +1,7 @@
+CHARE_System.CommentDialogActivity, CHARE_System;md5e8fccd3fcd8f74a82435f3bbd25804a2.CommentDialogActivity
+CHARE_System.CommentDialogActivity, CHARE_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5e8fccd3fcd8f74a82435f3bbd25804a2.CommentDialogActivity
+CHARE_System.CommentDialogActivity;md5e8fccd3fcd8f74a82435f3bbd25804a2.CommentDialogActivity
+chare_system.CommentDialogActivity;md5e8fccd3fcd8f74a82435f3bbd25804a2.CommentDialogActivity
 CHARE_System.RequestListViewActivity, CHARE_System;md5e8fccd3fcd8f74a82435f3bbd25804a2.RequestListViewActivity
 CHARE_System.RequestListViewActivity, CHARE_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5e8fccd3fcd8f74a82435f3bbd25804a2.RequestListViewActivity
 CHARE_System.RequestListViewActivity;md5e8fccd3fcd8f74a82435f3bbd25804a2.RequestListViewActivity
@@ -90,6 +94,14 @@ CHARE_System.TripViewHolder, CHARE_System;md5e8fccd3fcd8f74a82435f3bbd25804a2.Tr
 CHARE_System.TripViewHolder, CHARE_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5e8fccd3fcd8f74a82435f3bbd25804a2.TripViewHolder
 CHARE_System.TripViewHolder;md5e8fccd3fcd8f74a82435f3bbd25804a2.TripViewHolder
 chare_system.TripViewHolder;md5e8fccd3fcd8f74a82435f3bbd25804a2.TripViewHolder
+CHARE_System.Class.GeofenBroadcastReceiver, CHARE_System;md541ca4e12fba73a4136b4b984fc3acd42.GeofenBroadcastReceiver
+CHARE_System.Class.GeofenBroadcastReceiver, CHARE_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md541ca4e12fba73a4136b4b984fc3acd42.GeofenBroadcastReceiver
+CHARE_System.Class.GeofenBroadcastReceiver;md541ca4e12fba73a4136b4b984fc3acd42.GeofenBroadcastReceiver
+chare_system.class.GeofenBroadcastReceiver;md541ca4e12fba73a4136b4b984fc3acd42.GeofenBroadcastReceiver
+CHARE_System.Class.GeofenceTransitionsIntentService, CHARE_System;md541ca4e12fba73a4136b4b984fc3acd42.GeofenceTransitionsIntentService
+CHARE_System.Class.GeofenceTransitionsIntentService, CHARE_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md541ca4e12fba73a4136b4b984fc3acd42.GeofenceTransitionsIntentService
+CHARE_System.Class.GeofenceTransitionsIntentService;md541ca4e12fba73a4136b4b984fc3acd42.GeofenceTransitionsIntentService
+chare_system.class.GeofenceTransitionsIntentService;md541ca4e12fba73a4136b4b984fc3acd42.GeofenceTransitionsIntentService
 Mikepenz.Typeface.CommunityMaterial, android-iconics;md570a27e9f2036f749384d933a1506ba01.CommunityMaterial
 Mikepenz.Typeface.CommunityMaterial, android-iconics, Version=1.0.1.0, Culture=neutral, PublicKeyToken=null;md570a27e9f2036f749384d933a1506ba01.CommunityMaterial
 Mikepenz.Typeface.CommunityMaterial;md570a27e9f2036f749384d933a1506ba01.CommunityMaterial
@@ -530,3 +542,11 @@ Android.Gms.Location.Places.UI.IPlaceSelectionListenerImplementor, Xamarin.Googl
 Android.Gms.Location.Places.UI.IPlaceSelectionListenerImplementor, Xamarin.GooglePlayServices.Places, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;mono.com.google.android.gms.location.places.ui.PlaceSelectionListenerImplementor
 Android.Gms.Location.Places.UI.IPlaceSelectionListenerImplementor;mono.com.google.android.gms.location.places.ui.PlaceSelectionListenerImplementor
 mono.com.google.android.gms.location.places.ui.PlaceSelectionListenerImplementor;mono.com.google.android.gms.location.places.ui.PlaceSelectionListenerImplementor
+Android.Gms.Location.LocationListener, Xamarin.GooglePlayServices.Location;md5c3f794aca97c55dc0e6d5992e563f700.LocationListener
+Android.Gms.Location.LocationListener, Xamarin.GooglePlayServices.Location, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5c3f794aca97c55dc0e6d5992e563f700.LocationListener
+Android.Gms.Location.LocationListener;md5c3f794aca97c55dc0e6d5992e563f700.LocationListener
+android.gms.location.LocationListener;md5c3f794aca97c55dc0e6d5992e563f700.LocationListener
+Android.Gms.Location.ILocationListenerImplementor, Xamarin.GooglePlayServices.Location;mono.com.google.android.gms.location.LocationListenerImplementor
+Android.Gms.Location.ILocationListenerImplementor, Xamarin.GooglePlayServices.Location, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;mono.com.google.android.gms.location.LocationListenerImplementor
+Android.Gms.Location.ILocationListenerImplementor;mono.com.google.android.gms.location.LocationListenerImplementor
+mono.com.google.android.gms.location.LocationListenerImplementor;mono.com.google.android.gms.location.LocationListenerImplementor
