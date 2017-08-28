@@ -163,8 +163,7 @@ namespace CHARE_System
         }
 
         private void OnDestinationSelected(object sender, PlaceSelectedEventArgs e)
-        {   
-            
+        {               
             // Set destination latlng to iDestLatLng.
             destLatLng = e.Place.LatLng;
             

@@ -58,8 +58,7 @@ namespace CHARE_System
         private int hour, minute, totalInSecond;
         private string strPickedDays;
         private TimeSpan onTimeSet;
-        private const double dblPassengerCostKM = 0.0003;
-        private const double dblDriverCostKM = 0.0010;
+        private const double dblPassengerCostKM = 0.0003;        
         PlaceAutocompleteFragment originAutocompleteFragment;
         PlaceAutocompleteFragment destAutocompleteFragment;
 
@@ -393,11 +392,9 @@ namespace CHARE_System
         private async void LoadTripInformation()
         {
             // Calculate distance and duration
-            string urlGoogleMatrix = strGoogleMatrixAPIOri + iTripDetail.origin +
-                                        strGoogleMatrixAPIDest + iTripDetail.destination + strGoogleApiKey;
-
+            string urlGoogleMatrix = MapHelper.GoogleDistanceMatrixAPIAddress(originLatLng.Latitude + "," + originLatLng.Longitude,
+                destLatLng.Latitude + "," + destLatLng.Longitude);
             string strGoogleMatrix = await MapHelper.DownloadStringAsync(urlGoogleMatrix);
-
             var googleDirectionMatrix = JsonConvert.DeserializeObject<GoogleDistanceMatrixAPI>(strGoogleMatrix);
 
             double cost;
@@ -429,12 +426,10 @@ namespace CHARE_System
             mMap.AddMarker(new MarkerOptions().SetPosition(destLatLng).SetTitle("Destination"));
 
             // Combine Google Direction API string 
-            string urlGoogleDirection = strGoogleDirectionAPIOri + iTripDetail.origin +
-                strGoogleDirectionAPIDest + iTripDetail.destination + strGoogleApiKey;
-
+            string urlGoogleDirection = MapHelper.GoogleDirectionAPIAddress(originLatLng.Latitude + "," + originLatLng.Longitude,
+                destLatLng.Latitude + "," + destLatLng.Longitude);
             string strGoogleDirection = await MapHelper.DownloadStringAsync(urlGoogleDirection);
             var googleDirectionAPIRoute = JsonConvert.DeserializeObject<GoogleDirectionAPI>(strGoogleDirection);
-
             string encodedPoints = googleDirectionAPIRoute.routes[0].overview_polyline.points;
             var lstDecodedPoints = MapHelper.DecodePolylinePoint(encodedPoints);
             //convert list of location point to array of latlng type

@@ -15,56 +15,44 @@ namespace CHARE_System.Class
 {
     class GeofenBroadcastReceiver : BroadcastReceiver
     {
-        private bool isConnected;
-        private NetworkListener listener;
+        private string transitionState;        
+        private GeofenceListener listener;
+        private string geofenceIds;
 
-        public interface NetworkListener
+        public interface GeofenceListener
         {
-            void OnNetworkChange();
+            void OnTransitionStateChange();
         }
 
-        public void SetListener(NetworkListener listener)
+        public void SetListener(GeofenceListener listener)
         {
             this.listener = listener;
         }
 
-        public GeofenBroadcastReceiver(Context context)
-        {
-            isConnected = true;
-            ConnectivityManager cm = (ConnectivityManager)context.GetSystemService(Context.ConnectivityService);
-            if (cm.ActiveNetworkInfo == null)
-            {
-                isConnected = false;
-            }
-            if (listener != null)
-            {
-                listener.OnNetworkChange();
-            }
+        public GeofenBroadcastReceiver()
+        {            
         }
 
         public override void OnReceive(Context context, Intent intent)
         {            
-
-            string message2 = intent.GetStringExtra("message2");
-            Console.WriteLine("===== Receiver receive message " + message2);
-
-            isConnected = true;
-            ConnectivityManager cm = (ConnectivityManager)context.GetSystemService(Context.ConnectivityService);
-            if (cm.ActiveNetworkInfo == null)
-            {
-                isConnected = false;
-            }
+            transitionState = intent.GetStringExtra("Transition");
+            geofenceIds = intent.GetStringExtra("GeofenceId");
+            Console.WriteLine("===== Receiver receive message " + transitionState);
+                                    
             if (listener != null)
-            {                
-                Console.WriteLine("===== Receiver receive message " + message2);
-                listener.OnNetworkChange();
-            }
-            Console.WriteLine("===== Receiver now is " + isConnected);
+            {                                
+                listener.OnTransitionStateChange();
+            }            
         }
 
-        public bool GetStatus()
+        public string GeofenceIDs()
         {
-            return isConnected;
+            return geofenceIds;
+        }
+
+        public string TransitionState()
+        {
+            return transitionState;
         }
     }
 }

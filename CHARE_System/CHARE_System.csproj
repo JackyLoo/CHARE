@@ -143,8 +143,10 @@
     <Compile Include="Class\MapHelper.cs" />
     <Compile Include="Class\RESTClient.cs" />
     <Compile Include="CommentDialogActivity.cs" />
+    <Compile Include="MapFragmentActivity.cs" />
     <Compile Include="RequestListViewActivity.cs" />
     <Compile Include="RequestListViewAdapter.cs" />
+    <Compile Include="RouteActivity.cs" />
     <Compile Include="SearchDriverListViewActivity.cs" />
     <Compile Include="SearchDriverListViewAdapter.cs" />
     <Compile Include="InitialActivity.cs" />
@@ -245,6 +247,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Custom_Dialog_Rating.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\MapViewFragment.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

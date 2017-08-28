@@ -12,11 +12,17 @@ using Android.Widget;
 using System.Threading.Tasks;
 using System.Net;
 using Android.Gms.Maps.Model;
+using CHARE_REST_API.JSON_Object;
 
 namespace CHARE_System.Class
 {
     class MapHelper
     {
+        private const string _GoogleDistanceMatrixAPIAddress = "https://maps.googleapis.com/maps/api/distancematrix/json";                
+        private const string _GoogleDirectionAPIAddress = "https://maps.googleapis.com/maps/api/directions/json";
+        private const string _GoogleAPIKey = "AIzaSyBxXCmp-C6i5LwwRSTuvzIjD9_roPjJ4EI";
+
+            //?origin=3.2718236,101.6489234&destination=3.1161034,101.6392469&waypoints=optimize:true|3.209876,101.659176|3.302183,101.598181&key=AIzaSyBxXCmp-C6i5LwwRSTuvzIjD9_roPjJ4EI";";
         public static List<LatLng> DecodePolylinePoint(string encodedPoints)
         {
             if (string.IsNullOrEmpty(encodedPoints))
@@ -89,6 +95,50 @@ namespace CHARE_System.Class
             }
 
             return strResultData;
+        }
+
+        public static async Task<string> DownloadStringAsync(TripDetails trips)
+        {
+            string waypoints = "";
+
+            foreach (TripPassenger tp in trips.TripPassengers)
+            {
+                waypoints += "|"+tp.originLatLng;
+            }
+            
+            string strUri = _GoogleDirectionAPIAddress + "?origin=" + trips.originLatLng + "&destination=" + trips.destinationLatLng + 
+                "&waypoints=optimize:true" + waypoints + "&key=" + _GoogleAPIKey;
+            Console.WriteLine("===== strUri " + strUri);
+            WebClient webclient = new WebClient();
+            string strResultData;
+            try
+            {
+                strResultData = await webclient.DownloadStringTaskAsync(new Uri(strUri));
+                Console.WriteLine(strResultData);
+            }
+            catch
+            {
+                strResultData = "Exception";
+            }
+            finally
+            {
+                webclient.Dispose();
+                webclient = null;
+            }
+
+            return strResultData;
+        }
+
+        public static string GoogleDirectionAPIAddress(string originLatLng, string destinationLatLng)
+        {
+            return _GoogleDirectionAPIAddress + "?origin=" + originLatLng + "&destination=" 
+                 + destinationLatLng + "&key=" + _GoogleAPIKey;
+        }
+
+        public static string GoogleDistanceMatrixAPIAddress(string originLatLng, string destinationLatLng)
+        {       
+            return _GoogleDistanceMatrixAPIAddress + "?origins=" + originLatLng + "&destinations="
+                 + destinationLatLng + "&key=" + _GoogleAPIKey;
         }
     }
 }

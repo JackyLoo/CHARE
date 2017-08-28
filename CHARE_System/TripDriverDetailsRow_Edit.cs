@@ -57,8 +57,7 @@ namespace CHARE_System
 
         private int hour, minute, totalInSecond;
         private string strPickedDays;
-        private TimeSpan onTimeSet;
-        private const double dblPassengerCostKM = 0.0003;
+        private TimeSpan onTimeSet;        
         private const double dblDriverCostKM = 0.0010;
         PlaceAutocompleteFragment originAutocompleteFragment;
         PlaceAutocompleteFragment destAutocompleteFragment;
@@ -95,7 +94,6 @@ namespace CHARE_System
             var d = iTripDetail.destinationLatLng.Split(',');
             originLatLng = new LatLng(Double.Parse(o[0]), Double.Parse(o[1]));
             destLatLng = new LatLng(Double.Parse(d[0]), Double.Parse(d[1]));
-
 
             arrCheckedDay = new bool[7];
             SetDayArrayBool(false);
@@ -187,13 +185,13 @@ namespace CHARE_System
                     tvOrigin.Text = iTripDetail.origin;
                     tvDest.Text = iTripDetail.destination;
                     button.Text = "Start Route";
-                    
+                    button.Click += StartRoute;
 
                     // Change layout weight 
-                    upperContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FillParent, 0, 4.2f);
-                    lowerContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 5.8f);
-                    upperLayout.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 7.0f);
-                    lowerLayout.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 3.0f);
+                    upperContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FillParent, 0, 4.0f);
+                    lowerContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 6.0f);
+                    upperLayout.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 7.5f);
+                    lowerLayout.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 2.5f);
                 }
                 else
                 {
@@ -354,7 +352,16 @@ namespace CHARE_System
             dialog.Show();
         }
 
-        public async void UpdateTripDetail(Object sender, EventArgs e)
+        public void StartRoute(Object sender, EventArgs e)
+        {            
+            Intent intent = new Intent(this, typeof(Test));
+            intent.PutExtra("Trip", Intent.GetStringExtra("Trip"));
+            intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask);
+            StartActivity(intent);
+            Finish();
+        }
+
+            public async void UpdateTripDetail(Object sender, EventArgs e)
         {
             Android.Net.ConnectivityManager cm = (Android.Net.ConnectivityManager)this.GetSystemService(Context.ConnectivityService);
             if (cm.ActiveNetworkInfo == null)
@@ -442,17 +449,17 @@ namespace CHARE_System
             // Set destination latlng to iDestLatLng.
             destLatLng = e.Place.LatLng;
             iTripDetail.destination = e.Place.NameFormatted.ToString();
-            LoadMap();
+            LoadMap(true);
         }
 
         private void OnOriginSelected(object sender, PlaceSelectedEventArgs e)
         {
             originLatLng = e.Place.LatLng;
             iTripDetail.origin = e.Place.NameFormatted.ToString();
-            LoadMap();
+            LoadMap(true);
         }
 
-        private async void LoadMap()
+        private async void LoadMap(bool loadTripInfo)
         {
             mMap.Clear();
 
@@ -474,9 +481,8 @@ namespace CHARE_System
             mMap.AddMarker(new MarkerOptions().SetPosition(destLatLng).SetTitle("Destination"));
 
             // Combine Google Direction API string 
-            string urlGoogleDirection = strGoogleDirectionAPIOri + iTripDetail.origin +
-                strGoogleDirectionAPIDest + iTripDetail.destination + strGoogleApiKey;
-
+            string urlGoogleDirection = MapHelper.GoogleDirectionAPIAddress(originLatLng.Latitude+","+ originLatLng.Longitude,
+                destLatLng.Latitude+","+destLatLng.Longitude);
             string strGoogleDirection = await MapHelper.DownloadStringAsync(urlGoogleDirection);
             var googleDirectionAPIRoute = JsonConvert.DeserializeObject<GoogleDirectionAPI>(strGoogleDirection);
 
@@ -492,12 +498,21 @@ namespace CHARE_System
             mMap.AddPolyline(polylineoption);
             mMap.AnimateCamera(cu);
 
+            if (loadTripInfo)
+                LoadTripInformation();            
+            RunOnUiThread(() =>
+            {
+                progress.Dismiss();
+            });
+            Console.WriteLine("===== LoadMap END");
+        }
+
+        private async void LoadTripInformation()
+        {
             // Calculate distance and duration
-            string urlGoogleMatrix = strGoogleMatrixAPIOri + iTripDetail.origin +
-                                        strGoogleMatrixAPIDest + iTripDetail.destination + strGoogleApiKey;
-
+            string urlGoogleMatrix = MapHelper.GoogleDistanceMatrixAPIAddress(originLatLng.Latitude + "," + originLatLng.Longitude,
+                destLatLng.Latitude + "," + destLatLng.Longitude);
             string strGoogleMatrix = await MapHelper.DownloadStringAsync(urlGoogleMatrix);
-
             var googleDirectionMatrix = JsonConvert.DeserializeObject<GoogleDistanceMatrixAPI>(strGoogleMatrix);
 
             double cost;
@@ -506,12 +521,6 @@ namespace CHARE_System
             txtviewDistance.Text = googleDirectionMatrix.rows[0].elements[0].distance.text.ToString();
             txtviewDuration.Text = googleDirectionMatrix.rows[0].elements[0].duration.text.ToString();
             txtviewCost.Text = string.Format("RM{0:0.00}", cost);
-
-            RunOnUiThread(() =>
-            {
-                progress.Dismiss();
-            });
-            Console.WriteLine("===== LoadMap END");
         }
 
         override
@@ -524,8 +533,8 @@ namespace CHARE_System
 
         public void OnMapReady(GoogleMap googleMap)
         {
-            mMap = googleMap;
-            LoadMap();
+            mMap = googleMap;            
+            LoadMap(false);
         }
     }
 }

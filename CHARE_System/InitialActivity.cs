@@ -70,8 +70,7 @@ namespace CHARE_System
             
             if (!member.Equals(""))
             {
-                Intent intent = new Intent(this, typeof(MainActivity));                
-                intent.PutExtra("Member", member);
+                Intent intent = new Intent(this, typeof(MainActivity));                                
                 intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask);
                 StartActivity(intent);
                 Finish();

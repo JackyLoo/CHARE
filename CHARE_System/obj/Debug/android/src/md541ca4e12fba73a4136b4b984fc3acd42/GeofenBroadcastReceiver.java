@@ -23,13 +23,6 @@ public class GeofenBroadcastReceiver
 			mono.android.TypeManager.Activate ("CHARE_System.Class.GeofenBroadcastReceiver, CHARE_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
 	}
 
-	public GeofenBroadcastReceiver (android.content.Context p0) throws java.lang.Throwable
-	{
-		super ();
-		if (getClass () == GeofenBroadcastReceiver.class)
-			mono.android.TypeManager.Activate ("CHARE_System.Class.GeofenBroadcastReceiver, CHARE_System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "Android.Content.Context, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=84e04ff9cfb79065", this, new java.lang.Object[] { p0 });
-	}
-
 
 	public void onReceive (android.content.Context p0, android.content.Intent p1)
 	{

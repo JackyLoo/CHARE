@@ -2,7 +2,7 @@
 <xs:schema xmlns:tools="http://schemas.android.com/tools" attributeFormDefault="qualified" targetNamespace="http://schemas.android.com/tools" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation>v25</xs:documentation>
-    <xs:documentation>24/8/2017 2:14:01 AM</xs:documentation>
+    <xs:documentation>28/8/2017 1:10:37 PM</xs:documentation>
   </xs:annotation>
   <xs:attribute name="layout">
     <xs:annotation>
@@ -45,6 +45,7 @@
             <xs:enumeration value="@layout/daypickerdialog" />
             <xs:enumeration value="@layout/login" />
             <xs:enumeration value="@layout/main" />
+            <xs:enumeration value="@layout/mapviewfragment" />
             <xs:enumeration value="@layout/material_drawer" />
             <xs:enumeration value="@layout/material_drawer_compact_header" />
             <xs:enumeration value="@layout/material_drawer_header" />
@@ -185,6 +186,7 @@
             <xs:enumeration value="@layout/daypickerdialog" />
             <xs:enumeration value="@layout/login" />
             <xs:enumeration value="@layout/main" />
+            <xs:enumeration value="@layout/mapviewfragment" />
             <xs:enumeration value="@layout/material_drawer" />
             <xs:enumeration value="@layout/material_drawer_compact_header" />
             <xs:enumeration value="@layout/material_drawer_header" />
@@ -325,6 +327,7 @@
             <xs:enumeration value="@layout/daypickerdialog" />
             <xs:enumeration value="@layout/login" />
             <xs:enumeration value="@layout/main" />
+            <xs:enumeration value="@layout/mapviewfragment" />
             <xs:enumeration value="@layout/material_drawer" />
             <xs:enumeration value="@layout/material_drawer_compact_header" />
             <xs:enumeration value="@layout/material_drawer_header" />
@@ -465,6 +468,7 @@
             <xs:enumeration value="@layout/daypickerdialog" />
             <xs:enumeration value="@layout/login" />
             <xs:enumeration value="@layout/main" />
+            <xs:enumeration value="@layout/mapviewfragment" />
             <xs:enumeration value="@layout/material_drawer" />
             <xs:enumeration value="@layout/material_drawer_compact_header" />
             <xs:enumeration value="@layout/material_drawer_header" />

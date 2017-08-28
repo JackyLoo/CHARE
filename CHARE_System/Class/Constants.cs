@@ -18,7 +18,8 @@ namespace CHARE_System.Class
         public static readonly Dictionary<string, LatLng> BAY_AREA_LANDMARKS = new Dictionary<string, LatLng> {
 			{ "SFO", new LatLng (3.272952,101.647964) },
             { "TPC", new LatLng ( 3.130228, 101.627903) },
-            { "UMW", new LatLng ( 3.112311, 101.632065) }
+            { "UMW", new LatLng ( 3.112311, 101.632065) },
+            { "SLY", new LatLng ( 3.243064, 101.646366) }
         };
 	}
 }

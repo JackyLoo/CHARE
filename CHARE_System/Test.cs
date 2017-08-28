@@ -9,8 +9,10 @@ using Android.OS;
 using Android.Support.V7.App;
 using Android.Util;
 using Android.Widget;
+using CHARE_REST_API.JSON_Object;
 using CHARE_System.Class;
 using Java.Lang;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -21,8 +23,11 @@ namespace CHARE_System
     public class Test : ActionBarActivity,
         GoogleApiClient.IConnectionCallbacks,
         GoogleApiClient.IOnConnectionFailedListener,
-        IOnMapReadyCallback, GeofenBroadcastReceiver.NetworkListener
+        IOnMapReadyCallback, GeofenBroadcastReceiver.GeofenceListener
     {
+        private TripDetails iTripDetail;
+        private Button button;
+
         GoogleMap mMap;
         protected const string TAG = "creating-and-monitoring-geofences";
         protected GoogleApiClient mGoogleApiClient;
@@ -30,28 +35,27 @@ namespace CHARE_System
         bool mGeofencesAdded;
         PendingIntent mGeofencePendingIntent;
         ISharedPreferences mSharedPreferences;
-        Button mAddGeofencesButton;
-        Button mRemoveGeofencesButton;
 
         GeofenBroadcastReceiver receiver;
         IntentFilter intentFilter;
+        //string testAPi = "https://maps.googleapis.com/maps/api/directions/json?origin=3.2718236,101.6489234&destination=3.1161034,101.6392469&waypoints=optimize:true|3.209876,101.659176|3.302183,101.598181&key=AIzaSyBxXCmp-C6i5LwwRSTuvzIjD9_roPjJ4EI";
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.test);
 
-            receiver = new GeofenBroadcastReceiver(this);
+            MapFragment mapFragment = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.googlemap);
+            mapFragment.GetMapAsync(this);
+
+            button = (Button)FindViewById(Resource.Id.button);
+
+            iTripDetail = JsonConvert.DeserializeObject<TripDetails>(Intent.GetStringExtra("Trip"));
+
+            receiver = new GeofenBroadcastReceiver();
             receiver.SetListener(this);
             intentFilter = new IntentFilter("transition_change");
             RegisterReceiver(receiver, intentFilter);
-
-            ((MapFragment)FragmentManager.FindFragmentById(Resource.Id.googlemap)).GetMapAsync(this);           
-            
-            mAddGeofencesButton = FindViewById<Button>(Resource.Id.add_geofences_button);
-            mRemoveGeofencesButton = FindViewById<Button>(Resource.Id.remove_geofences_button);
-
-            mAddGeofencesButton.Click += AddGeofencesButtonHandler;
-            mRemoveGeofencesButton.Click += RemoveGeofencesButtonHandler;
 
             mGeofenceList = new List<IGeofence>();
             mGeofencePendingIntent = null;
@@ -61,16 +65,15 @@ namespace CHARE_System
 
             mGeofencesAdded = mSharedPreferences.GetBoolean(Constants.GEOFENCES_ADDED_KEY, false);
 
-            SetButtonsEnabledState();            
             BuildGoogleApiClient();
-        }        
+        }
 
         protected void BuildGoogleApiClient()
         {
             mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .AddConnectionCallbacks(this)
                 .AddOnConnectionFailedListener(this)
-                .AddApi(LocationServices.API)                
+                .AddApi(LocationServices.API)
                 .Build();
         }
 
@@ -101,21 +104,11 @@ namespace CHARE_System
             Log.Info(TAG, "Connection failed: ConnectionResult.getErrorCode() = " + result.ErrorCode);
         }
 
-        GeofencingRequest GetGeofencingRequest()
-        {
-            var builder = new GeofencingRequest.Builder();
-            builder.SetInitialTrigger(GeofencingRequest.InitialTriggerEnter);
-            builder.AddGeofences(mGeofenceList);
-
-            return builder.Build();
-        }
-
-        public async void AddGeofencesButtonHandler(object sender, EventArgs e)
+        public async void CreateGeofences()
         {
             if (!mGoogleApiClient.IsConnected)
             {
                 Toast.MakeText(this, GetString(Resource.String.not_connected), ToastLength.Short).Show();
-                return;
             }
 
             try
@@ -123,7 +116,6 @@ namespace CHARE_System
                 var status = await LocationServices.GeofencingApi.AddGeofencesAsync(mGoogleApiClient, GetGeofencingRequest(),
                     GetGeofencePendingIntent());
 
-                HandleResult(status);
             }
             catch (SecurityException securityException)
             {
@@ -141,8 +133,7 @@ namespace CHARE_System
             try
             {
                 var status = await LocationServices.GeofencingApi.RemoveGeofencesAsync(mGoogleApiClient,
-                    GetGeofencePendingIntent());
-                HandleResult(status);
+                    GetGeofencePendingIntent()); ;
             }
             catch (SecurityException securityException)
             {
@@ -165,8 +156,6 @@ namespace CHARE_System
                 editor.PutBoolean(Constants.GEOFENCES_ADDED_KEY, mGeofencesAdded);
                 editor.Commit();
 
-                SetButtonsEnabledState();
-
                 Toast.MakeText(
                     this,
                     GetString(mGeofencesAdded ? Resource.String.geofences_added :
@@ -182,6 +171,15 @@ namespace CHARE_System
             }
         }
 
+        GeofencingRequest GetGeofencingRequest()
+        {
+            var builder = new GeofencingRequest.Builder();
+            builder.SetInitialTrigger(GeofencingRequest.InitialTriggerEnter);
+            builder.AddGeofences(mGeofenceList);
+
+            return builder.Build();
+        }
+
         PendingIntent GetGeofencePendingIntent()
         {
             if (mGeofencePendingIntent != null)
@@ -195,13 +193,18 @@ namespace CHARE_System
 
         public void PopulateGeofenceList()
         {
-            foreach (var entry in Constants.BAY_AREA_LANDMARKS)
+            LatLng w;
+            CircleOptions circleOptions;
+            string[] latlng;
+            int i = 0;
+            foreach (TripPassenger tp in iTripDetail.TripPassengers)
             {
+                latlng = tp.originLatLng.Split(',');
                 mGeofenceList.Add(new GeofenceBuilder()
-                    .SetRequestId(entry.Key)
+                    .SetRequestId(i.ToString())
                     .SetCircularRegion(
-                        entry.Value.Latitude,
-                        entry.Value.Longitude,
+                        double.Parse(latlng[0]),
+                        double.Parse(latlng[1]),
                         Constants.GEOFENCE_RADIUS_IN_METERS
                     )
                     .SetExpirationDuration(Constants.GEOFENCE_EXPIRATION_IN_MILLISECONDS)
@@ -209,65 +212,167 @@ namespace CHARE_System
                         Geofence.GeofenceTransitionExit)
                     .Build());
 
-                LatLng location = new LatLng(entry.Value.Latitude, entry.Value.Longitude);
-                CameraUpdate cameraUpdate = CameraUpdateFactory.NewLatLngZoom(location, 50);
-                mMap.AddMarker(new MarkerOptions().SetPosition(location).SetTitle("Origin"));
-                mMap.AnimateCamera(cameraUpdate);
-                CircleOptions circleOptions = new CircleOptions()
-                    .InvokeCenter(location)
+                // Draw Circle    
+                w = new LatLng(double.Parse(latlng[0]), double.Parse(latlng[1]));
+                circleOptions = new CircleOptions()
+                    .InvokeCenter(w)
                     .InvokeFillColor(Color.Argb(0x30, 0, 0xff, 0))
                     .InvokeRadius(Constants.GEOFENCE_RADIUS_IN_METERS);
                 mMap.AddCircle(circleOptions);
+                i++;
             }
+
+            latlng = iTripDetail.destinationLatLng.Split(',');
+            mGeofenceList.Add(new GeofenceBuilder()
+                .SetRequestId(i.ToString())
+                .SetCircularRegion(
+                    double.Parse(latlng[0]),
+                    double.Parse(latlng[1]),
+                    Constants.GEOFENCE_RADIUS_IN_METERS
+                )
+                .SetExpirationDuration(Constants.GEOFENCE_EXPIRATION_IN_MILLISECONDS)
+                .SetTransitionTypes(Geofence.GeofenceTransitionEnter |
+                    Geofence.GeofenceTransitionExit)
+                .Build());
+
+            // Draw Circle    
+            w = new LatLng(double.Parse(latlng[0]), double.Parse(latlng[1]));
+            circleOptions = new CircleOptions()
+                .InvokeCenter(w)
+                .InvokeFillColor(Color.Argb(0x30, 0, 0xff, 0))
+                .InvokeRadius(Constants.GEOFENCE_RADIUS_IN_METERS);
+            mMap.AddCircle(circleOptions);
         }
 
-        void SetButtonsEnabledState()
+
+        private async void AddGeofence()
         {
-            if (mGeofencesAdded)
+            if (!mGoogleApiClient.IsConnected)
             {
-                mAddGeofencesButton.Enabled = false;
-                mRemoveGeofencesButton.Enabled = true;
+                Toast.MakeText(this, GetString(Resource.String.not_connected), ToastLength.Short).Show();
+                return;
             }
-            else
+
+            try
             {
-                mAddGeofencesButton.Enabled = true;
-                mRemoveGeofencesButton.Enabled = false;
+                var status = await LocationServices.GeofencingApi.AddGeofencesAsync(mGoogleApiClient, GetGeofencingRequest(),
+                    GetGeofencePendingIntent());
+            }
+            catch (SecurityException securityException)
+            {
+                LogSecurityException(securityException);
             }
         }
 
-        public void OnMapReady(GoogleMap googleMap)
+        public async void OnMapReady(GoogleMap googleMap)
         {
             mMap = googleMap;
             mMap.MyLocationEnabled = true;
-            
-            CameraUpdate cameraUpdate = CameraUpdateFactory.NewLatLngZoom(new LatLng(3.2718236, 101.6489234), 18);                        
-            mMap.MoveCamera(cameraUpdate);
 
+            string strGoogleDirection = await MapHelper.DownloadStringAsync(iTripDetail);
+
+            var googleDirectionAPIRoute = JsonConvert.DeserializeObject<GoogleDirectionAPI>(strGoogleDirection);
+            string encodedPoints = googleDirectionAPIRoute.routes[0].overview_polyline.points;
+            var lstDecodedPoints = MapHelper.DecodePolylinePoint(encodedPoints);
+            //convert list of location point to array of latlng type
+
+            var latLngPoints = lstDecodedPoints.ToArray();
+            var polylineoption = new PolylineOptions();
+            polylineoption.InvokeColor(Android.Graphics.Color.SkyBlue);
+            polylineoption.Geodesic(true);
+            polylineoption.Add(latLngPoints);
+            mMap.AddPolyline(polylineoption);
+            DrawMarkers(iTripDetail);
             PopulateGeofenceList();
+            CreateGeofences();
         }
 
-        public void OnNetworkChange()
+        private void DrawMarkers(TripDetails tripDetail)
         {
-            Dialog dialog = new Dialog(this);
-            dialog.SetContentView(Resource.Layout.Custom_Dialog_Rating);
-            dialog.SetTitle("Set Day");
+            // Draw Markers
+            string[] origin = tripDetail.originLatLng.Split(',');
+            string[] destination = tripDetail.destinationLatLng.Split(',');
+            LatLng o = new LatLng(double.Parse(origin[0]), double.Parse(origin[1]));
+            LatLng d = new LatLng(double.Parse(destination[0]), double.Parse(destination[1]));
+            mMap.AddMarker(new MarkerOptions().SetPosition(o).SetTitle("Origin"));
+            mMap.AddMarker(new MarkerOptions().SetPosition(d).SetTitle("Destination"));
 
-            TextView tvTitle = (TextView)dialog.FindViewById(Resource.Id.title);
-            RatingBar ratingbar = (RatingBar)dialog.FindViewById(Resource.Id.ratingbar);
-            EditText etComment = (EditText)dialog.FindViewById(Resource.Id.comment);
-            Button btnSubmit = (Button)dialog.FindViewById(Resource.Id.btn_submit);
-            Button btnCancel = (Button)dialog.FindViewById(Resource.Id.btn_cancel);
-
-            btnSubmit.Click += (sender,e) =>
+            foreach (TripPassenger tp in tripDetail.TripPassengers)
             {
-                Console.WriteLine("==== Submit click");
-            };
+                string[] w = tp.originLatLng.Split(',');
+                LatLng waypoint = new LatLng(double.Parse(w[0]), double.Parse(w[1]));
+                mMap.AddMarker(new MarkerOptions().SetPosition(waypoint).SetTitle("waypoint"));
+            }
 
-            btnCancel.Click += (sender, e) =>
+            // Zoom map to the set padding
+            LatLngBounds.Builder builder = new LatLngBounds.Builder();
+            builder.Include(o);
+            builder.Include(d);
+            LatLngBounds bounds = builder.Build();
+            int padding = 100;
+            CameraUpdate cu = CameraUpdateFactory.NewLatLngBounds(bounds, padding);
+            mMap.AnimateCamera(cu);
+        }
+
+        public void PickupPassenger(System.Object sender, EventArgs e)
+        {
+            button.Enabled = false;
+            Toast.MakeText(this, "Pickup Passenger", ToastLength.Short).Show();
+        }
+
+        public void FinishCarpool(System.Object sender, EventArgs e)
+        {
+            button.Enabled = false;
+            Console.WriteLine("==== Arrive Method Entered");
+            int commenter = iTripDetail.DriverID;
+            foreach (TripPassenger tp in iTripDetail.TripPassengers)
             {
-                Console.WriteLine("==== Cancel click");
-            };
-            dialog.Show();
+                Dialog dialog = new Dialog(this);
+                dialog.SetContentView(Resource.Layout.Custom_Dialog_Rating);
+                dialog.SetTitle("Rating");
+
+                TextView tvTitle = (TextView)dialog.FindViewById(Resource.Id.title);
+                RatingBar ratingbar = (RatingBar)dialog.FindViewById(Resource.Id.ratingbar);
+                EditText etComment = (EditText)dialog.FindViewById(Resource.Id.comment);
+                Button btnSubmit = (Button)dialog.FindViewById(Resource.Id.btn_submit);
+                Button btnCancel = (Button)dialog.FindViewById(Resource.Id.btn_cancel);
+
+                btnSubmit.Click += (sender2, e2) =>
+                {
+                    Console.WriteLine("==== Submit click " + tp.TripPassengerID);
+                    dialog.Dismiss();
+                };
+
+                btnCancel.Click += (sender2, e2) =>
+                {
+                    Console.WriteLine("==== Cancel click " + tp.TripPassengerID);
+                    dialog.Dismiss();
+                };
+                dialog.Show();
+            }
+        }
+
+        public void OnTransitionStateChange()
+        {
+            Console.WriteLine("=== State " + receiver.TransitionState());
+            if (receiver.TransitionState().Equals("Entered"))
+            {
+                button.Enabled = true;
+                if (receiver.GeofenceIDs().Equals(iTripDetail.TripPassengers.Count.ToString()))
+                {
+                    Console.WriteLine("==== Arrive");
+                    button.Text = "Arrive";
+                    button.Click += FinishCarpool;
+                }
+                else
+                    button.Click += PickupPassenger;
+            }
+            else if (receiver.TransitionState().Equals("Exited"))
+            {
+                button.Enabled = false;
+                if (receiver.GeofenceIDs().Equals((iTripDetail.TripPassengers.Count - 1)))
+                    button.Text = "Arrive";
+            }
         }
     }
 }

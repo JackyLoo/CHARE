@@ -44,15 +44,14 @@ namespace CHARE_System
         private TextView txtviewDistance;
         private TextView txtviewDuration;
         private TextView txtviewCost;
-        private Button btnContinue;        
+        private Button btnConfirm;        
         private const double dblPassengerCostKM = 0.0003;
         private const double dblDriverCostKM = 0.0010;
 
         // Lower        
         private TextView tvArriveTime;
         private TextView tvDay;
-        private Switch switchFemaleOnly;        
-        private Button btnConfirm;
+        private Switch switchFemaleOnly;                
         private ToggleButton tbtnMon;
         private ToggleButton tbtnTue;
         private ToggleButton tbtnWed;
@@ -146,8 +145,8 @@ namespace CHARE_System
             txtviewDistance = (TextView)FindViewById(Resource.Id.textview_distance);
             txtviewDuration = (TextView)FindViewById(Resource.Id.textview_time);
             txtviewCost = (TextView)FindViewById(Resource.Id.textview_cost);
-            btnContinue = (Button)FindViewById(Resource.Id.btn_tripcon_continue);
-            btnContinue.Click += BtnConfirm_Click;
+            btnConfirm = (Button)FindViewById(Resource.Id.btn_tripcon_continue);
+            btnConfirm.Click += BtnConfirm_Click;
         }
 
         private async void BtnConfirm_Click(Object sender, EventArgs e)
@@ -180,6 +179,11 @@ namespace CHARE_System
                 TripDriver tripDriver;
                 TripPassenger tripPassenger;
 
+                progress.SetMessage("Creating trip...");
+                RunOnUiThread(() =>
+                {
+                    progress.Show();
+                });
                 if (iMember.type.Equals("Driver"))
                 {
                     tripDriver = new TripDriver(iTrip);
@@ -201,6 +205,14 @@ namespace CHARE_System
                     Console.WriteLine("========================= 2 =========================");
                     await RESTClient.CreateTripPassengerAsync(this, tripPassenger);
                 }
+                RunOnUiThread(() =>
+                {
+                    progress.Dismiss();
+                });
+                Intent intent = new Intent(this, typeof(MainActivity));                
+                intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask);
+                StartActivity(intent);
+                Finish();
             }
         }
 
@@ -350,9 +362,7 @@ namespace CHARE_System
             mMap.AddMarker(new MarkerOptions().SetPosition(destLatLng).SetTitle("Destination"));
 
             // Combine Google Direction API string 
-            string urlGoogleDirection = strGoogleDirectionAPIOri + iTrip.origin +
-                strGoogleDirectionAPIDest + iTrip.destination + strGoogleApiKey;
-
+            string urlGoogleDirection = MapHelper.GoogleDirectionAPIAddress(iTrip.originLatLng, iTrip.destinationLatLng);
             string strGoogleDirection = await MapHelper.DownloadStringAsync(urlGoogleDirection);
 
             var googleDirectionAPIRoute = JsonConvert.DeserializeObject<GoogleDirectionAPI>(strGoogleDirection);
@@ -369,8 +379,7 @@ namespace CHARE_System
             mMap.AnimateCamera(cu);
 
             // Call google matrix api 
-            string urlGoogleMatrix = strGoogleMatrixAPIOri + iTrip.origin + strGoogleMatrixAPIDest + 
-                iTrip.destination + strGoogleApiKey;           
+            string urlGoogleMatrix = MapHelper.GoogleDistanceMatrixAPIAddress(iTrip.originLatLng, iTrip.destinationLatLng);
             string strGoogleMatrix = await MapHelper.DownloadStringAsync(urlGoogleMatrix);            
             var googleDirectionMatrix = JsonConvert.DeserializeObject<GoogleDistanceMatrixAPI>(strGoogleMatrix);
             txtviewDistance.Text = googleDirectionMatrix.rows[0].elements[0].distance.text.ToString();

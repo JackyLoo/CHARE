@@ -48,11 +48,11 @@ namespace CHARE_System.Class
                 SendNotification(geofenceTransitionDetails);                
 
                 Log.Info(TAG, geofenceTransitionDetails);
-
-                Intent intnt = new Intent("transition_change");
-                intnt.PutExtra("message", geofenceTransitionDetails);
-                intnt.PutExtra("message2", "Yes");
-                SendBroadcast(intnt);           
+                transitionState = GetTransitionString(geofenceTransition);
+                Intent i = new Intent("transition_change");
+                i.PutExtra("Transition", transitionState);
+                i.PutExtra("GeofenceId", GetGeofenceString(triggeringGeofences));
+                SendBroadcast(i);
             }
             else
             {
@@ -73,6 +73,18 @@ namespace CHARE_System.Class
             var triggeringGeofencesIdsString = string.Join(", ", triggeringGeofencesIdsList);
 
             return geofenceTransitionString + ": " + triggeringGeofencesIdsString;
+        }
+
+        string GetGeofenceString(IList<IGeofence> triggeringGeofences)
+        {            
+            var triggeringGeofencesIdsList = new List<string>();
+            foreach (IGeofence geofence in triggeringGeofences)
+            {
+                triggeringGeofencesIdsList.Add(geofence.RequestId);
+            }
+            var triggeringGeofencesIdsString = string.Join(", ", triggeringGeofencesIdsList);
+
+            return triggeringGeofencesIdsString;
         }
 
         void SendNotification(string notificationDetails)
@@ -118,3 +130,4 @@ namespace CHARE_System.Class
         }
     }
 }
+

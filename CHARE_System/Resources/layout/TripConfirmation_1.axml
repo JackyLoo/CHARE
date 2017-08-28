@@ -165,7 +165,7 @@
                     android:textColor="#000000" />
                 <TextView
                     android:id="@+id/textview_distance"
-                    android:text="55 KM"
+                    android:text="Calculating..."
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -190,7 +190,7 @@
                     android:textColor="#000000" />
                 <TextView
                     android:id="@+id/textview_time"
-                    android:text="08:00 AM"
+                    android:text="Calculating..."
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -215,7 +215,7 @@
                     android:textColor="#000000" />
                 <TextView
                     android:id="@+id/textview_cost"
-                    android:text="RM 44.00"
+                    android:text="Calculating..."
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
