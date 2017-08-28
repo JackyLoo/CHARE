@@ -344,25 +344,33 @@ namespace CHARE_System
                 Button btnCancel = (Button)dialog.FindViewById(Resource.Id.btn_cancel);
 
                 tvTitle.Text = "Rate " + tp.Member.username;
+                
                 btnSubmit.Click  += async (sender2, e2) =>
                 {
-                    RunOnUiThread(() =>
-                    {
-                        progress.Show();
-                    });
-
                     string comment = etComment.Text.ToString();
-                    int rating = (int) ratingbar.Rating;
+                    int rating = (int)ratingbar.Rating;
                     int rater = iTripDetail.Member.MemberID;
                     int member = tp.Member.MemberID;
-                    Rating rate = new Rating(rater, member, rating, comment);
-                    
-                    await RESTClient.CreateRatingAsync(this, rate);
-                    RunOnUiThread(() =>
+
+                    if (rating != 0)
                     {
-                        progress.Dismiss();
-                    });
-                    dialog.Dismiss();
+                        RunOnUiThread(() =>
+                        {
+                            progress.Show();
+                        });
+
+
+                        Rating rate = new Rating(rater, member, rating, comment);
+
+                        await RESTClient.CreateRatingAsync(this, rate);
+                        RunOnUiThread(() =>
+                        {
+                            progress.Dismiss();
+                        });
+                        dialog.Dismiss();
+                    }
+                    else
+                        Toast.MakeText(this, "Set the rating star", ToastLength.Short).Show();
                 };
 
                 btnCancel.Click += (sender2, e2) =>                                    
