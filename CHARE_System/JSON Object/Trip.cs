@@ -24,10 +24,20 @@ namespace CHARE_REST_API.JSON_Object
     }
 
     public class Rating
-    {
+    {        
+        public Rating(int rater, int member, int rate, string comment)
+        {
+            RaterID= rater ;
+            MemberID = member;
+            this.rate = rate;
+            this.comment = comment;
+        }
         public int RateID { get; set; }
-        public int rating1 { get; set; }
+        public int RaterID { get; set; }
         public int MemberID { get; set; }
+        public int rate { get; set; }
+        public string comment { get; set; }
+        
     }
 
     public class Trip

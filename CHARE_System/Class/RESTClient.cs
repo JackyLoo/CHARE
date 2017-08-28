@@ -119,6 +119,19 @@ namespace CHARE_System.Class
                 Toast.MakeText(c, "Failed to register vehicle.", ToastLength.Short).Show();
         }
 
+        // Rating
+        public static async Task CreateRatingAsync(Context c, Rating rating)
+        {
+            HttpResponseMessage response = await client.PostAsJsonAsync("api/Ratings", rating);
+            Console.WriteLine("==== Rating Error :" + response.StatusCode);
+            Console.WriteLine("==== Rating Error :" + response.RequestMessage);
+            Console.WriteLine("==== Rating Error :" + response.Content);
+            if (response.IsSuccessStatusCode)
+                Toast.MakeText(c, "Rating submitted successfully.", ToastLength.Short).Show();
+            else
+                Toast.MakeText(c, "Failed to submit rating.", ToastLength.Short).Show();
+        }
+
         //TripDriver
         public static async Task CreateTripDriverAsync(Context c, TripDriver tripDriver)
         {

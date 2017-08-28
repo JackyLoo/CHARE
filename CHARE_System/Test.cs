@@ -38,12 +38,19 @@ namespace CHARE_System
 
         GeofenBroadcastReceiver receiver;
         IntentFilter intentFilter;
-        //string testAPi = "https://maps.googleapis.com/maps/api/directions/json?origin=3.2718236,101.6489234&destination=3.1161034,101.6392469&waypoints=optimize:true|3.209876,101.659176|3.302183,101.598181&key=AIzaSyBxXCmp-C6i5LwwRSTuvzIjD9_roPjJ4EI";
+        
+        private ProgressDialog progress;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.test);
+
+            progress = new Android.App.ProgressDialog(this);
+            progress.Indeterminate = true;
+            progress.SetProgressStyle(Android.App.ProgressDialogStyle.Spinner);
+            progress.SetMessage("Submitting...");
+            progress.SetCancelable(false);
 
             MapFragment mapFragment = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.googlemap);
             mapFragment.GetMapAsync(this);
@@ -244,7 +251,6 @@ namespace CHARE_System
             mMap.AddCircle(circleOptions);
         }
 
-
         private async void AddGeofence()
         {
             if (!mGoogleApiClient.IsConnected)
@@ -337,17 +343,31 @@ namespace CHARE_System
                 Button btnSubmit = (Button)dialog.FindViewById(Resource.Id.btn_submit);
                 Button btnCancel = (Button)dialog.FindViewById(Resource.Id.btn_cancel);
 
-                btnSubmit.Click += (sender2, e2) =>
+                tvTitle.Text = "Rate " + tp.Member.username;
+                btnSubmit.Click  += async (sender2, e2) =>
                 {
-                    Console.WriteLine("==== Submit click " + tp.TripPassengerID);
+                    RunOnUiThread(() =>
+                    {
+                        progress.Show();
+                    });
+
+                    string comment = etComment.Text.ToString();
+                    int rating = (int) ratingbar.Rating;
+                    int rater = iTripDetail.Member.MemberID;
+                    int member = tp.Member.MemberID;
+                    Rating rate = new Rating(rater, member, rating, comment);
+                    
+                    await RESTClient.CreateRatingAsync(this, rate);
+                    RunOnUiThread(() =>
+                    {
+                        progress.Dismiss();
+                    });
                     dialog.Dismiss();
                 };
 
-                btnCancel.Click += (sender2, e2) =>
-                {
-                    Console.WriteLine("==== Cancel click " + tp.TripPassengerID);
-                    dialog.Dismiss();
-                };
+                btnCancel.Click += (sender2, e2) =>                                    
+                    dialog.Dismiss();              
+                
                 dialog.Show();
             }
         }
@@ -365,7 +385,10 @@ namespace CHARE_System
                     button.Click += FinishCarpool;
                 }
                 else
+                {
+                    button.Text = "Pickup Passenger";
                     button.Click += PickupPassenger;
+                }
             }
             else if (receiver.TransitionState().Equals("Exited"))
             {
