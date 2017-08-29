@@ -72,6 +72,7 @@ namespace CHARE_System
                 var dest = view.FindViewById<TextView>(Resource.Id.driver_row_destination);
                 var day = view.FindViewById<TextView>(Resource.Id.driver_row_day);
                 var arriveTime = view.FindViewById<TextView>(Resource.Id.driver_row_time);
+                var rate = view.FindViewById<RatingBar>(Resource.Id.driver_row_rating);
                 var duration = view.FindViewById<TextView>(Resource.Id.driver_row_duration);                
                 var button = view.FindViewById<TextView>(Resource.Id.driver_row_button);                
 
@@ -83,6 +84,7 @@ namespace CHARE_System
                     Dest = dest,
                     Day = day,
                     ArriveTime = arriveTime,
+                    Rate = rate,
                     Duration = duration,             
                     mButton = button
                 };
@@ -103,6 +105,7 @@ namespace CHARE_System
                 holder.Female.Visibility = ViewStates.Gone;
 
             holder.Name.Text = trips[position].Member.username;
+            holder.Rate.Rating = (float)trips[position].Member.rate;
             holder.Origin.Text = trips[position].origin;
             holder.Dest.Text = trips[position].destination;
             holder.Day.Text = strDay;
@@ -137,6 +140,7 @@ namespace CHARE_System
         public TextView Day { get; set; }
         public TextView ArriveTime { get; set; }
         public TextView Duration { get; set; }
+        public RatingBar Rate { get; set; }
         public TextView Cost { get; set; }
         public TextView mButton { get; set; }
     }

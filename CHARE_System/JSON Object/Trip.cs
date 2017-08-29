@@ -179,6 +179,7 @@ namespace CHARE_REST_API.JSON_Object
         public string gender { get; set; }
         public string phoneno { get; set; }
         public string type { get; set; }
+        public double rate { get; set; }
     }
 
     public class Route

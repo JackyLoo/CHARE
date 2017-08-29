@@ -67,6 +67,7 @@ namespace CHARE_System
                 var day = view.FindViewById<TextView>(Resource.Id.day);
                 var arriveTime = view.FindViewById<TextView>(Resource.Id.time);
                 var duration = view.FindViewById<TextView>(Resource.Id.duration);
+                var rate = view.FindViewById<RatingBar>(Resource.Id.rating);
                 var buttonAccept = view.FindViewById<Button>(Resource.Id.button_accept);
                 var buttonReject = view.FindViewById<Button>(Resource.Id.button_reject);
 
@@ -79,6 +80,7 @@ namespace CHARE_System
                     Day = day,
                     ArriveTime = arriveTime,
                     Duration = duration,
+                    Rate = rate,
                     ButtonAccept = buttonAccept,
                     ButtonReject = buttonReject
                 };
@@ -104,6 +106,7 @@ namespace CHARE_System
             holder.Day.Text = strDay;
             holder.ArriveTime.Text = strTime;
             holder.Duration.Text = " • Approx " + requests[position].TripPassenger.durationStr;
+            holder.Rate.Rating = (float)requests[position].TripPassenger.Member.rate;
             holder.ButtonAccept.Click += async (sender, e) =>
             {
                 Android.Net.ConnectivityManager cm = (Android.Net.ConnectivityManager)context.GetSystemService(Context.ConnectivityService);
@@ -157,6 +160,7 @@ namespace CHARE_System
         public TextView ArriveTime { get; set; }
         public TextView Duration { get; set; }
         public TextView Cost { get; set; }
+        public RatingBar Rate { get; set; }
         public Button ButtonAccept { get; set; }
         public Button ButtonReject { get; set; }
     }
