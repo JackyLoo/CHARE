@@ -143,6 +143,8 @@
     <Compile Include="Class\MapHelper.cs" />
     <Compile Include="Class\RESTClient.cs" />
     <Compile Include="CommentDialogActivity.cs" />
+    <Compile Include="EditDriverDetailActivity.cs" />
+    <Compile Include="EditPassengerDetailActivity.cs" />
     <Compile Include="JSON Object\RatingDetails.cs" />
     <Compile Include="MapFragmentActivity.cs" />
     <Compile Include="RateListViewActivity.cs" />
@@ -259,6 +261,12 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\RateListView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\PassengerDetails_Edit.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\DriverDetails_Edit.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

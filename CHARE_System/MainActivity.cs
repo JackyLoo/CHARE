@@ -268,12 +268,33 @@ namespace CHARE_System
                 }
             }
             return false;
-        }
+        }      
 
         public bool OnProfileChanged(View view, IProfile profile, bool current)
         {
-            throw new NotImplementedException();
+            if (user.type.Equals("Driver"))
+            {
+                Intent intent = new Intent(this, typeof(EditDriverDetailActivity));
+                StartActivityForResult(intent, 0);                     
+            }
+            else if (user.type.Equals("Passenger"))
+            {
+                Intent intent = new Intent(this, typeof(EditPassengerDetailActivity));
+                StartActivityForResult(intent, 0); 
+            }       
+            return true;
         }
+
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            Console.WriteLine("===== RequestCode");
+            Console.WriteLine("Code " + requestCode);
+            if (resultCode == 0)
+            {
+                this.Recreate();
+            }
+        }    
 
         public void OnClick(IDialogInterface dialog, int which)
         {

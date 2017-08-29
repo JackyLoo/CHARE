@@ -18,7 +18,7 @@ using CHARE_System.JSON_Object;
 
 namespace CHARE_System
 {
-    [Activity(Label = "RateListViewActivity")]
+    [Activity(Label = "Ratings")]
     public class RateListViewActivity : Activity
     {
         private ProgressDialog progress;

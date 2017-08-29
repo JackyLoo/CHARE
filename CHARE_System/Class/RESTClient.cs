@@ -73,7 +73,18 @@ namespace CHARE_System.Class
             return list;
         }
 
+
         // Member
+        public static async Task UpdateMemberAsync(Context c, Member member)
+        {
+            HttpResponseMessage response = await client.PutAsJsonAsync("api/Members?id=" +
+                member.MemberID, member);
+            if (response.IsSuccessStatusCode)
+                Toast.MakeText(c, "Details updated.", ToastLength.Short).Show();            
+            else
+                Toast.MakeText(c, "Error occur when updating member details.", ToastLength.Short).Show();            
+        }
+
         public static async Task CreateMemberAsync(Context c, Member member)
         {
             HttpResponseMessage response = await client.PostAsJsonAsync("api/Members", member);

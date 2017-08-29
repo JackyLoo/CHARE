@@ -47,7 +47,11 @@ namespace CHARE_System
             progress.SetProgressStyle(Android.App.ProgressDialogStyle.Spinner);
             progress.SetMessage("Registering Account.....");
             progress.SetCancelable(false);
-
+          
+            etUsername = (EditText)FindViewById(Resource.Id.signup_username);
+            etPassword = (EditText)FindViewById(Resource.Id.signup_password);
+            etConPassword = (EditText)FindViewById(Resource.Id.signup_con_pswrd);
+            etPhone = (EditText)FindViewById(Resource.Id.signup_phone);
             spnGender = (Spinner)FindViewById(Resource.Id.signup_gender);
             spnType = (Spinner)FindViewById(Resource.Id.signup_account_type);
 
@@ -59,10 +63,6 @@ namespace CHARE_System
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spnType.Adapter = adapter;
 
-            etUsername = (EditText)FindViewById(Resource.Id.signup_username);
-            etPassword = (EditText)FindViewById(Resource.Id.signup_password);
-            etConPassword = (EditText)FindViewById(Resource.Id.signup_con_pswrd);
-            etPhone = (EditText)FindViewById(Resource.Id.signup_phone);
 
             etUsername.AfterTextChanged += (sender, e) =>
             {
