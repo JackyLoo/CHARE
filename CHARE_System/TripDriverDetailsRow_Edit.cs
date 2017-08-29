@@ -354,7 +354,7 @@ namespace CHARE_System
 
         public void StartRoute(Object sender, EventArgs e)
         {            
-            Intent intent = new Intent(this, typeof(Test));
+            Intent intent = new Intent(this, typeof(StartRouteActivity));
             intent.PutExtra("Trip", Intent.GetStringExtra("Trip"));
             intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask);
             StartActivity(intent);

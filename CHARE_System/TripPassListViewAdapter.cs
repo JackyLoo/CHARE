@@ -139,11 +139,19 @@ namespace CHARE_System
 
             view.Click += (sender, e) =>
             {
-                Intent intent = new Intent(context, typeof(TripPassDetailsRow_Edit));
-                if (holder.mButton.Text.Equals("Search Driver"))
-                    intent.PutExtra("Status", "OK");
-                intent.PutExtra("Trip", JsonConvert.SerializeObject(trips[position]));
-                ((Activity)context).StartActivityForResult(intent, 0);
+                Android.Net.ConnectivityManager cm = (Android.Net.ConnectivityManager)context.GetSystemService(Context.ConnectivityService);
+                if (cm.ActiveNetworkInfo == null)
+                    Toast.MakeText(context, "Network error. Try again later.", ToastLength.Long).Show();
+                else
+                {
+                    Intent intent = new Intent(context, typeof(TripPassDetailsRow_Edit));
+                    // Send intent extra to notify the trip is editable
+                    // Condition = no passenger in the trip yet AND no passenger send request for this trip
+                    if (holder.mButton.Text.Equals("View Driver"))
+                        intent.PutExtra("Status", "Has Driver");                    
+                    intent.PutExtra("Trip", JsonConvert.SerializeObject(trips[position]));
+                    ((Activity)context).StartActivityForResult(intent, 0);
+                }                
             };
 
             Console.WriteLine("===== GetView End");

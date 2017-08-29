@@ -161,7 +161,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignupActivity.cs" />
     <Compile Include="SignupCarActivity.cs" />
-    <Compile Include="Test.cs" />
+    <Compile Include="StartRouteActivity.cs" />
     <Compile Include="TripConfirmation_1.cs" />
     <Compile Include="TripConfirmation_2.cs" />
     <Compile Include="TripDriverDetailsRow_Edit.cs" />

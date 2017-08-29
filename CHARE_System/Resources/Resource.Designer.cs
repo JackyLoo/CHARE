@@ -4667,20 +4667,20 @@ namespace CHARE_System
 			// aapt resource value: 0x7f07005e
 			public const int ApplicationName = 2131165278;
 			
+			// aapt resource value: 0x7f070068
+			public const int AzureAPI = 2131165288;
+			
 			// aapt resource value: 0x7f070065
-			public const int AzureAPI = 2131165285;
+			public const int Drawer_Item_About = 2131165285;
 			
-			// aapt resource value: 0x7f070062
-			public const int Drawer_Item_About = 2131165282;
-			
-			// aapt resource value: 0x7f070063
-			public const int Drawer_Item_Logout = 2131165283;
-			
-			// aapt resource value: 0x7f070061
-			public const int Drawer_Item_Trips = 2131165281;
+			// aapt resource value: 0x7f070066
+			public const int Drawer_Item_Logout = 2131165286;
 			
 			// aapt resource value: 0x7f070064
-			public const int GoogleKey = 2131165284;
+			public const int Drawer_Item_Trips = 2131165284;
+			
+			// aapt resource value: 0x7f070067
+			public const int GoogleKey = 2131165287;
 			
 			// aapt resource value: 0x7f07005d
 			public const int Hello = 2131165277;
@@ -4688,11 +4688,20 @@ namespace CHARE_System
 			// aapt resource value: 0x7f07005f
 			public const int PreferenceFileName = 2131165279;
 			
+			// aapt resource value: 0x7f070061
+			public const int PreferenceFileNameActivity = 2131165281;
+			
+			// aapt resource value: 0x7f070062
+			public const int PreferenceSavedActivity = 2131165282;
+			
 			// aapt resource value: 0x7f070060
 			public const int PreferenceSavedMember = 2131165280;
 			
-			// aapt resource value: 0x7f070066
-			public const int RestAPIBaseAddress = 2131165286;
+			// aapt resource value: 0x7f070063
+			public const int PreferenceSavedTrip = 2131165283;
+			
+			// aapt resource value: 0x7f070069
+			public const int RestAPIBaseAddress = 2131165289;
 			
 			// aapt resource value: 0x7f070013
 			public const int abc_action_bar_home_description = 2131165203;
@@ -4787,11 +4796,11 @@ namespace CHARE_System
 			// aapt resource value: 0x7f070025
 			public const int abc_toolbar_collapse_description = 2131165221;
 			
-			// aapt resource value: 0x7f070067
-			public const int action_settings = 2131165287;
-			
 			// aapt resource value: 0x7f07006a
-			public const int add_geofences = 2131165290;
+			public const int action_settings = 2131165290;
+			
+			// aapt resource value: 0x7f07006d
+			public const int add_geofences = 2131165293;
 			
 			// aapt resource value: 0x7f070050
 			public const int app_name = 2131165264;
@@ -4856,32 +4865,32 @@ namespace CHARE_System
 			// aapt resource value: 0x7f070034
 			public const int define_materialize = 2131165236;
 			
-			// aapt resource value: 0x7f07006f
-			public const int geofence_not_available = 2131165295;
-			
-			// aapt resource value: 0x7f070070
-			public const int geofence_too_many_geofences = 2131165296;
-			
-			// aapt resource value: 0x7f070071
-			public const int geofence_too_many_pending_intents = 2131165297;
-			
-			// aapt resource value: 0x7f070074
-			public const int geofence_transition_entered = 2131165300;
-			
-			// aapt resource value: 0x7f070075
-			public const int geofence_transition_exited = 2131165301;
+			// aapt resource value: 0x7f070072
+			public const int geofence_not_available = 2131165298;
 			
 			// aapt resource value: 0x7f070073
-			public const int geofence_transition_invalid_type = 2131165299;
+			public const int geofence_too_many_geofences = 2131165299;
+			
+			// aapt resource value: 0x7f070074
+			public const int geofence_too_many_pending_intents = 2131165300;
 			
 			// aapt resource value: 0x7f070077
-			public const int geofence_transition_notification_text = 2131165303;
+			public const int geofence_transition_entered = 2131165303;
 			
-			// aapt resource value: 0x7f07006c
-			public const int geofences_added = 2131165292;
+			// aapt resource value: 0x7f070078
+			public const int geofence_transition_exited = 2131165304;
 			
-			// aapt resource value: 0x7f07006d
-			public const int geofences_removed = 2131165293;
+			// aapt resource value: 0x7f070076
+			public const int geofence_transition_invalid_type = 2131165302;
+			
+			// aapt resource value: 0x7f07007a
+			public const int geofence_transition_notification_text = 2131165306;
+			
+			// aapt resource value: 0x7f07006f
+			public const int geofences_added = 2131165295;
+			
+			// aapt resource value: 0x7f070070
+			public const int geofences_removed = 2131165296;
 			
 			// aapt resource value: 0x7f070052
 			public const int library_AndroidIconics_author = 2131165266;
@@ -4988,8 +4997,8 @@ namespace CHARE_System
 			// aapt resource value: 0x7f07004d
 			public const int material_drawer_open = 2131165261;
 			
-			// aapt resource value: 0x7f07006e
-			public const int not_connected = 2131165294;
+			// aapt resource value: 0x7f070071
+			public const int not_connected = 2131165297;
 			
 			// aapt resource value: 0x7f070000
 			public const int place_autocomplete_clear_button = 2131165184;
@@ -4997,8 +5006,8 @@ namespace CHARE_System
 			// aapt resource value: 0x7f070001
 			public const int place_autocomplete_search_hint = 2131165185;
 			
-			// aapt resource value: 0x7f07006b
-			public const int remove_geofences = 2131165291;
+			// aapt resource value: 0x7f07006e
+			public const int remove_geofences = 2131165294;
 			
 			// aapt resource value: 0x7f070026
 			public const int search_menu_title = 2131165222;
@@ -5012,17 +5021,17 @@ namespace CHARE_System
 			// aapt resource value: 0x7f07004f
 			public const int switch_on = 2131165263;
 			
-			// aapt resource value: 0x7f070069
-			public const int title_activity_main = 2131165289;
+			// aapt resource value: 0x7f07006c
+			public const int title_activity_main = 2131165292;
 			
-			// aapt resource value: 0x7f070068
-			public const int title_activity_show_geofence_transitions = 2131165288;
+			// aapt resource value: 0x7f07006b
+			public const int title_activity_show_geofence_transitions = 2131165291;
 			
-			// aapt resource value: 0x7f070072
-			public const int unknown_geofence_error = 2131165298;
+			// aapt resource value: 0x7f070075
+			public const int unknown_geofence_error = 2131165301;
 			
-			// aapt resource value: 0x7f070076
-			public const int unknown_geofence_transition = 2131165302;
+			// aapt resource value: 0x7f070079
+			public const int unknown_geofence_transition = 2131165305;
 			
 			static String()
 			{

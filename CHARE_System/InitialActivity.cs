@@ -70,10 +70,23 @@ namespace CHARE_System
             
             if (!member.Equals(""))
             {
-                Intent intent = new Intent(this, typeof(MainActivity));                                
-                intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask);
-                StartActivity(intent);
-                Finish();
+                pref = GetSharedPreferences(GetString(Resource.String.PreferenceFileNameActivity), FileCreationMode.Private);
+                var trip = pref.GetString(GetString(Resource.String.PreferenceSavedTrip), "");
+                if (trip.Equals(""))
+                {
+                    Intent intent = new Intent(this, typeof(MainActivity));
+                    intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask);
+                    StartActivity(intent);
+                    Finish();
+                }
+                else
+                {                    
+                    Intent intent = new Intent(this, typeof(MainActivity));
+                    intent.PutExtra("Trip", trip);
+                    intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask);
+                    StartActivity(intent);
+                    Finish();
+                }                
             }
             else
             {

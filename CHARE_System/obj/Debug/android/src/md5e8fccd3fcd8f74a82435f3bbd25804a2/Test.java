@@ -2,7 +2,7 @@ package md5e8fccd3fcd8f74a82435f3bbd25804a2;
 
 
 public class Test
-	extends android.support.v7.app.ActionBarActivity
+	extends android.app.Activity
 	implements
 		mono.android.IGCUserPeer,
 		com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks,

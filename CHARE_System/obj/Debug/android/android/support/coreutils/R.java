@@ -3376,15 +3376,18 @@ containing a value of this type.
     }
     public static final class string {
         public static final int ApplicationName=0x7f07005e;
-        public static final int AzureAPI=0x7f070065;
-        public static final int Drawer_Item_About=0x7f070062;
-        public static final int Drawer_Item_Logout=0x7f070063;
-        public static final int Drawer_Item_Trips=0x7f070061;
-        public static final int GoogleKey=0x7f070064;
+        public static final int AzureAPI=0x7f070068;
+        public static final int Drawer_Item_About=0x7f070065;
+        public static final int Drawer_Item_Logout=0x7f070066;
+        public static final int Drawer_Item_Trips=0x7f070064;
+        public static final int GoogleKey=0x7f070067;
         public static final int Hello=0x7f07005d;
         public static final int PreferenceFileName=0x7f07005f;
+        public static final int PreferenceFileNameActivity=0x7f070061;
+        public static final int PreferenceSavedActivity=0x7f070062;
         public static final int PreferenceSavedMember=0x7f070060;
-        public static final int RestAPIBaseAddress=0x7f070066;
+        public static final int PreferenceSavedTrip=0x7f070063;
+        public static final int RestAPIBaseAddress=0x7f070069;
         public static final int abc_action_bar_home_description=0x7f070013;
         public static final int abc_action_bar_home_description_format=0x7f070014;
         public static final int abc_action_bar_home_subtitle_description_format=0x7f070015;
@@ -3416,10 +3419,10 @@ containing a value of this type.
         public static final int abc_shareactionprovider_share_with=0x7f070023;
         public static final int abc_shareactionprovider_share_with_application=0x7f070024;
         public static final int abc_toolbar_collapse_description=0x7f070025;
-        public static final int action_settings=0x7f070067;
+        public static final int action_settings=0x7f07006a;
         /**  Buttons strings 
          */
-        public static final int add_geofences=0x7f07006a;
+        public static final int add_geofences=0x7f07006d;
         /** Geofencing string
          */
         public static final int app_name=0x7f070050;
@@ -3443,17 +3446,17 @@ containing a value of this type.
         public static final int define_AndroidIconics=0x7f070051;
         public static final int define_materialdrawer=0x7f070040;
         public static final int define_materialize=0x7f070034;
-        public static final int geofence_not_available=0x7f07006f;
-        public static final int geofence_too_many_geofences=0x7f070070;
-        public static final int geofence_too_many_pending_intents=0x7f070071;
+        public static final int geofence_not_available=0x7f070072;
+        public static final int geofence_too_many_geofences=0x7f070073;
+        public static final int geofence_too_many_pending_intents=0x7f070074;
         /**  Transition type strings 
          */
-        public static final int geofence_transition_entered=0x7f070074;
-        public static final int geofence_transition_exited=0x7f070075;
-        public static final int geofence_transition_invalid_type=0x7f070073;
-        public static final int geofence_transition_notification_text=0x7f070077;
-        public static final int geofences_added=0x7f07006c;
-        public static final int geofences_removed=0x7f07006d;
+        public static final int geofence_transition_entered=0x7f070077;
+        public static final int geofence_transition_exited=0x7f070078;
+        public static final int geofence_transition_invalid_type=0x7f070076;
+        public static final int geofence_transition_notification_text=0x7f07007a;
+        public static final int geofences_added=0x7f07006f;
+        public static final int geofences_removed=0x7f070070;
         public static final int library_AndroidIconics_author=0x7f070052;
         public static final int library_AndroidIconics_authorWebsite=0x7f070053;
         public static final int library_AndroidIconics_isOpenSource=0x7f070054;
@@ -3491,18 +3494,18 @@ containing a value of this type.
         public static final int material_drawer_open=0x7f07004d;
         /**  Error strings 
          */
-        public static final int not_connected=0x7f07006e;
+        public static final int not_connected=0x7f070071;
         public static final int place_autocomplete_clear_button=0x7f070000;
         public static final int place_autocomplete_search_hint=0x7f070001;
-        public static final int remove_geofences=0x7f07006b;
+        public static final int remove_geofences=0x7f07006e;
         public static final int search_menu_title=0x7f070026;
         public static final int status_bar_notification_info_overflow=0x7f070027;
         public static final int switch_off=0x7f07004e;
         public static final int switch_on=0x7f07004f;
-        public static final int title_activity_main=0x7f070069;
-        public static final int title_activity_show_geofence_transitions=0x7f070068;
-        public static final int unknown_geofence_error=0x7f070072;
-        public static final int unknown_geofence_transition=0x7f070076;
+        public static final int title_activity_main=0x7f07006c;
+        public static final int title_activity_show_geofence_transitions=0x7f07006b;
+        public static final int unknown_geofence_error=0x7f070075;
+        public static final int unknown_geofence_transition=0x7f070079;
     }
     public static final class style {
         public static final int AlertDialog_AppCompat=0x7f0a009f;

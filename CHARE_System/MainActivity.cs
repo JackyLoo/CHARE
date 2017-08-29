@@ -257,7 +257,7 @@ namespace CHARE_System
                         break;
                     case 5:
                         Toast.MakeText(this, "5 Clicked", ToastLength.Long).Show();
-                        GetSharedPreferences(GetString(Resource.String.PreferenceFileName), FileCreationMode.Private)
+                        GetSharedPreferences(GetString(Resource.String.PreferenceFileName), FileCreationMode.Private)                            
                         .Edit()
                         .Clear()                        
                         .Commit();

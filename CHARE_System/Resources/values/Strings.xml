@@ -4,6 +4,9 @@
   <string name="ApplicationName">CHARE_System</string>
   <string name="PreferenceFileName">PreferenceFile</string>
   <string name="PreferenceSavedMember">PreferenceMember</string>
+  <string name="PreferenceFileNameActivity">Activity</string>
+  <string name="PreferenceSavedActivity">SavedActivity</string>
+  <string name="PreferenceSavedTrip">Trip</string>
   <string name="Drawer_Item_Trips">Trips</string>
   <string name="Drawer_Item_About">About</string>
   <string name="Drawer_Item_Logout">Logout</string>    

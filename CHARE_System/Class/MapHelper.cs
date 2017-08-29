@@ -108,7 +108,34 @@ namespace CHARE_System.Class
             
             string strUri = _GoogleDirectionAPIAddress + "?origin=" + trips.originLatLng + "&destination=" + trips.destinationLatLng + 
                 "&waypoints=optimize:true" + waypoints + "&key=" + _GoogleAPIKey;
-            Console.WriteLine("===== strUri " + strUri);
+            
+            WebClient webclient = new WebClient();
+            string strResultData;
+            try
+            {
+                strResultData = await webclient.DownloadStringTaskAsync(new Uri(strUri));
+                Console.WriteLine(strResultData);
+            }
+            catch
+            {
+                strResultData = "Exception";
+            }
+            finally
+            {
+                webclient.Dispose();
+                webclient = null;
+            }
+
+            return strResultData;
+        }
+
+        public static async Task<string> DownloadStringAsync(TripDetails trips, string type)
+        {
+            string waypoints = "";
+            
+            string strUri = _GoogleDirectionAPIAddress + "?origin=" + trips.originLatLng + "&destination=" + trips.destinationLatLng +
+                "&key=" + _GoogleAPIKey;
+
             WebClient webclient = new WebClient();
             string strResultData;
             try
