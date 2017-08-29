@@ -114,3 +114,4 @@ C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\
 C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\ratelistview.xml
 C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\passengerdetails_edit.xml
 C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\driverdetails_edit.xml
+C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\custom_spinner_edit_details.xml

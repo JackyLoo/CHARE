@@ -47,7 +47,7 @@ namespace CHARE_System
             spnGender = (Spinner)FindViewById(Resource.Id.spinner_gender);
             buttonUpdate = (Button)FindViewById(Resource.Id.button_update);
 
-            var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.signup_gender, Resource.Layout.Custom_Spinner_Signup);
+            var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.signup_gender, Resource.Layout.Custom_Spinner_Edit_Details);
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spnGender.Adapter = adapter;
 

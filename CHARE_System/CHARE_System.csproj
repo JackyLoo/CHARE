@@ -242,7 +242,7 @@
     <AndroidResource Include="Resources\layout\TripDetailsRow_Edit.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\Custom_Spinner_Signup.axml">
+    <AndroidResource Include="Resources\layout\Custom_Spinner_Edit_Details.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\RequestListView.axml">
@@ -267,6 +267,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\DriverDetails_Edit.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Custom_Spinner_Signup.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
