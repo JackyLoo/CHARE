@@ -143,9 +143,7 @@ namespace CHARE_System
             };
 
             view.Click += (sender, e) =>
-            {
-                holder.Name.Text = requests[position].TripPassenger.Member.username;
-
+            {                
                 Console.WriteLine("=== Check id " + requests[position].TripPassenger.Member.MemberID);
                 Intent intent = new Intent(context, typeof(RateListViewActivity));
                 intent.AddFlags(ActivityFlags.ReorderToFront);

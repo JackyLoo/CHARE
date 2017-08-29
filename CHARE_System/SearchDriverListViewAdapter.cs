@@ -110,7 +110,7 @@ namespace CHARE_System
             holder.Dest.Text = trips[position].destination;
             holder.Day.Text = strDay;
             holder.ArriveTime.Text = strTime;
-            holder.Duration.Text = " • Approx " + trips[position].durationStr;            
+            holder.Duration.Text = " • Approx " + trips[position].durationStr;
             holder.mButton.Click += async (sender, e) =>
             {
                 Android.Net.ConnectivityManager cm = (Android.Net.ConnectivityManager)context.GetSystemService(Context.ConnectivityService);
@@ -126,7 +126,16 @@ namespace CHARE_System
                     intent.AddFlags(ActivityFlags.ClearTop);
                     context.StartActivity(intent);
                 }
-            };                        
+            };
+
+            view.Click += (sender, e) =>
+            {                
+                Console.WriteLine("=== Check id " + trips[position].Member.MemberID);
+                Intent intent = new Intent(context, typeof(RateListViewActivity));
+                intent.AddFlags(ActivityFlags.ReorderToFront);
+                intent.PutExtra("MemberID", trips[position].Member.MemberID.ToString());
+                context.StartActivity(intent);
+            };
             return view;
         }        
     }

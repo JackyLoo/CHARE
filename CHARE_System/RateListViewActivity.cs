@@ -81,7 +81,8 @@ namespace CHARE_System
 
         override
         public bool OnOptionsItemSelected(IMenuItem item)
-        {      
+        {
+            Finish();
             return true;
         }
     }
