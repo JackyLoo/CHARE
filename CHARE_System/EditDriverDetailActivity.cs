@@ -15,18 +15,27 @@ namespace CHARE_System
     {
         private ProgressDialog progress;
 
-        private Member user;        
+        private Member user;  
+        // Member
         private EditText etUsername;
         private EditText etPassword;
         private EditText etConPassword;
         private EditText etPhone;
+        // Vehicle
         private Spinner spnGender;
+        private Spinner spnMake;
+        private Spinner spnModel;
+        private Spinner spnColor;
+        private EditText etCarplate;
+        
         private Button buttonUpdate;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             SetTheme(Android.Resource.Style.ThemeDeviceDefault);
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.DriverDetails_Edit);
+            SetContentView(Resource.Layout.DriverDetails_Edit);            
+            ActionBar ab = ActionBar;
+            ab.SetDisplayHomeAsUpEnabled(true);
 
             progress = new Android.App.ProgressDialog(this);
             progress.Indeterminate = true;
@@ -38,28 +47,63 @@ namespace CHARE_System
             var member = pref.GetString(GetString(Resource.String.PreferenceSavedMember), "");
             user = JsonConvert.DeserializeObject<Member>(member);
 
+            // Member variable views 
             etUsername = (EditText)FindViewById(Resource.Id.edittext_username);
             etPassword = (EditText)FindViewById(Resource.Id.edittext_password);
             etConPassword = (EditText)FindViewById(Resource.Id.edittext_confirm_password);
             etPhone = (EditText)FindViewById(Resource.Id.edittext_phone);
             spnGender = (Spinner)FindViewById(Resource.Id.spinner_gender);
+            // Vehicle variable views
+            spnMake = (Spinner)FindViewById(Resource.Id.carmake);
+            spnModel = (Spinner)FindViewById(Resource.Id.carmodel);
+            spnColor = (Spinner)FindViewById(Resource.Id.color);
+            etCarplate = (EditText)FindViewById(Resource.Id.edittext_carplate);
+
             buttonUpdate = (Button)FindViewById(Resource.Id.button_update);
 
-            var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.signup_gender, Resource.Layout.Custom_Spinner_Signup);
+            var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.signup_gender, Resource.Layout.Custom_Spinner_Edit_Details);
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spnGender.Adapter = adapter;
 
             etUsername.Text = user.username;
             etPassword.Text = user.password;
             etConPassword.Text = user.password;
-            etPhone.Text = user.phoneno;
-            if(user.gender.Equals("Male"))
+            etPhone.Text = user.phoneno;            
+            if (user.gender.Equals("Male"))
                 spnGender.SetSelection(1);
             else
                 spnGender.SetSelection(2);
+            etCarplate.Text = user.Vehicles[0].plateNo;
+
+            InitializeVehicleSpinners();
             buttonUpdate.Click += UpdateDetails;
 
             SetValidation();
+        }
+
+        private async void InitializeVehicleSpinners()
+        {
+            var modelList = await RESTClient.GetCarmodelAsync(this);
+            Array.Sort(modelList);
+            ArrayAdapter<string> dataAdapter = new ArrayAdapter<string>(this, Resource.Layout.Custom_Spinner_Edit_Details, modelList);
+            dataAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+            spnMake.Adapter = dataAdapter;
+            spnMake.SetSelection(dataAdapter.GetPosition(user.Vehicles[0].make));            
+
+            spnMake.ItemSelected += async (sender, e) =>
+            {
+                var makeList = await RESTClient.GetCarmodelMakeAsync(this, spnMake.SelectedItem.ToString().Trim());
+                Array.Sort(makeList);
+                dataAdapter = new ArrayAdapter<string>(this, Resource.Layout.Custom_Spinner_Edit_Details, makeList);
+                dataAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+                spnModel.Adapter = dataAdapter;
+                spnModel.SetSelection(dataAdapter.GetPosition(user.Vehicles[0].model));
+            };
+
+            var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.car_color_array, Resource.Layout.Custom_Spinner_Edit_Details);
+            adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+            spnColor.Adapter = adapter;
+            spnColor.SetSelection(dataAdapter.GetPosition(user.Vehicles[0].color));
         }
 
         private async void UpdateDetails(object sender, EventArgs e)
@@ -99,17 +143,25 @@ namespace CHARE_System
                 etUsername.SetError("Username contain space!", null);
                 etUsername.RequestFocus();
             }
+            else if (etCarplate.Text.ToString().Trim().Equals(""))
+                etCarplate.SetError("Car plate no is required!", null);            
             else
-            {
+            {                                                
                 user.username = etUsername.Text.ToString().Trim();
                 user.password = etPassword.Text.ToString().Trim();
                 user.phoneno = etPhone.Text.ToString().Trim();
-                user.gender = spnGender.SelectedItem.ToString();                                                                                
+                user.gender = spnGender.SelectedItem.ToString();
+
+                user.Vehicles[0].model = spnModel.SelectedItem.ToString();
+                user.Vehicles[0].make = spnMake.SelectedItem.ToString();
+                user.Vehicles[0].color = spnColor.SelectedItem.ToString();
+                user.Vehicles[0].plateNo = etCarplate.Text.ToString().Trim();
+                
                 RunOnUiThread(() =>
                 {
                     progress.Show();
                 });
-                await RESTClient.UpdateMemberAsync(this, user);
+                await RESTClient.UpdateMemberVehicleAsync(this, user);
                 GetSharedPreferences(GetString(Resource.String.PreferenceFileName), FileCreationMode.Private)
                         .Edit()
                         .PutString(GetString(Resource.String.PreferenceSavedMember), JsonConvert.SerializeObject(user))
@@ -149,9 +201,12 @@ namespace CHARE_System
             };
         }
 
+
         override
         public bool OnOptionsItemSelected(IMenuItem item)
         {
+            Intent returnIntent = new Intent();
+            SetResult(Result.Canceled, returnIntent);
             Finish();
             return true;
         }

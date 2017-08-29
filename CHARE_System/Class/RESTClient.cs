@@ -85,6 +85,19 @@ namespace CHARE_System.Class
                 Toast.MakeText(c, "Error occur when updating member details.", ToastLength.Short).Show();            
         }
 
+        public static async Task UpdateMemberVehicleAsync(Context c, Member member)
+        {
+            HttpResponseMessage response = await client.PutAsJsonAsync("api/Members?id=" +
+                member.MemberID+"&vehicle=true", member);
+            if (response.IsSuccessStatusCode)
+            {
+                await UpdateVehicleAsync(c, member.Vehicles[0]);
+                Toast.MakeText(c, "Details updated.", ToastLength.Short).Show();
+            }
+            else
+                Toast.MakeText(c, "Error occur when updating member details.", ToastLength.Short).Show();
+        }
+
         public static async Task CreateMemberAsync(Context c, Member member)
         {
             HttpResponseMessage response = await client.PostAsJsonAsync("api/Members", member);
@@ -115,17 +128,27 @@ namespace CHARE_System.Class
         }
 
         // Vehicle
-        public static async Task CreateVehicleAsync(Context c, Vehicle vehicle)
+        public static async Task UpdateVehicleAsync(Context c, Vehicle vehicle)
         {
-            HttpResponseMessage response = await client.PostAsJsonAsync("api/Vehicles", vehicle);
             Console.WriteLine("===== Vehicle S");
             Console.WriteLine("1 " + vehicle.MemberID);
             Console.WriteLine("2 " + vehicle.plateNo);
             Console.WriteLine("3 " + vehicle.model);
             Console.WriteLine("4 " + vehicle.make);
             Console.WriteLine("5 " + vehicle.color);            
-            Console.WriteLine("===== Vehicle E");
+            
+
+            HttpResponseMessage response = await client.PutAsJsonAsync("api/Vehicles?id=" +
+                vehicle.VehicleID, vehicle);
             Console.WriteLine("===== Code " + response.StatusCode);
+            Console.WriteLine("===== Vehicle E");
+            if (!response.IsSuccessStatusCode)
+                Toast.MakeText(c, "Failed to update vehicle.", ToastLength.Short).Show();
+        }
+
+        public static async Task CreateVehicleAsync(Context c, Vehicle vehicle)
+        {
+            HttpResponseMessage response = await client.PostAsJsonAsync("api/Vehicles", vehicle);
             if (!response.IsSuccessStatusCode)                           
                 Toast.MakeText(c, "Failed to register vehicle.", ToastLength.Short).Show();
         }
