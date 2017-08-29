@@ -137,6 +137,7 @@ namespace CHARE_System
                     member.phoneno = etPhone.Text.ToString().Trim();
                     member.gender = spnGender.SelectedItem.ToString();
                     member.type = spnType.SelectedItem.ToString();
+                    member.rate = 5;
 
                     if (spnType.SelectedItem.ToString().Equals("Driver"))
                     {

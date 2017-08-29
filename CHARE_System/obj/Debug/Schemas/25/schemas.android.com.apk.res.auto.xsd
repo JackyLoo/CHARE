@@ -2,7 +2,7 @@
 <xs:schema xmlns:app="http://schemas.android.com/apk/res-auto" attributeFormDefault="qualified" targetNamespace="http://schemas.android.com/apk/res-auto" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation>v25</xs:documentation>
-    <xs:documentation>28/8/2017 1:10:37 PM</xs:documentation>
+    <xs:documentation>29/8/2017 3:36:56 PM</xs:documentation>
   </xs:annotation>
   <xs:attribute name="allowStacking">
     <xs:annotation>
@@ -5155,7 +5155,10 @@
             <xs:enumeration value="@string/place_autocomplete_clear_button" />
             <xs:enumeration value="@string/place_autocomplete_search_hint" />
             <xs:enumeration value="@string/PreferenceFileName" />
+            <xs:enumeration value="@string/PreferenceFileNameActivity" />
+            <xs:enumeration value="@string/PreferenceSavedActivity" />
             <xs:enumeration value="@string/PreferenceSavedMember" />
+            <xs:enumeration value="@string/PreferenceSavedTrip" />
             <xs:enumeration value="@string/remove_geofences" />
             <xs:enumeration value="@string/RestAPIBaseAddress" />
             <xs:enumeration value="@string/search_menu_title" />
@@ -7933,7 +7936,10 @@
             <xs:enumeration value="@string/place_autocomplete_clear_button" />
             <xs:enumeration value="@string/place_autocomplete_search_hint" />
             <xs:enumeration value="@string/PreferenceFileName" />
+            <xs:enumeration value="@string/PreferenceFileNameActivity" />
+            <xs:enumeration value="@string/PreferenceSavedActivity" />
             <xs:enumeration value="@string/PreferenceSavedMember" />
+            <xs:enumeration value="@string/PreferenceSavedTrip" />
             <xs:enumeration value="@string/remove_geofences" />
             <xs:enumeration value="@string/RestAPIBaseAddress" />
             <xs:enumeration value="@string/search_menu_title" />
@@ -13617,7 +13623,10 @@
             <xs:enumeration value="@string/place_autocomplete_clear_button" />
             <xs:enumeration value="@string/place_autocomplete_search_hint" />
             <xs:enumeration value="@string/PreferenceFileName" />
+            <xs:enumeration value="@string/PreferenceFileNameActivity" />
+            <xs:enumeration value="@string/PreferenceSavedActivity" />
             <xs:enumeration value="@string/PreferenceSavedMember" />
+            <xs:enumeration value="@string/PreferenceSavedTrip" />
             <xs:enumeration value="@string/remove_geofences" />
             <xs:enumeration value="@string/RestAPIBaseAddress" />
             <xs:enumeration value="@string/search_menu_title" />
@@ -15038,7 +15047,10 @@
             <xs:enumeration value="@string/place_autocomplete_clear_button" />
             <xs:enumeration value="@string/place_autocomplete_search_hint" />
             <xs:enumeration value="@string/PreferenceFileName" />
+            <xs:enumeration value="@string/PreferenceFileNameActivity" />
+            <xs:enumeration value="@string/PreferenceSavedActivity" />
             <xs:enumeration value="@string/PreferenceSavedMember" />
+            <xs:enumeration value="@string/PreferenceSavedTrip" />
             <xs:enumeration value="@string/remove_geofences" />
             <xs:enumeration value="@string/RestAPIBaseAddress" />
             <xs:enumeration value="@string/search_menu_title" />
@@ -15613,7 +15625,10 @@
             <xs:enumeration value="@string/place_autocomplete_clear_button" />
             <xs:enumeration value="@string/place_autocomplete_search_hint" />
             <xs:enumeration value="@string/PreferenceFileName" />
+            <xs:enumeration value="@string/PreferenceFileNameActivity" />
+            <xs:enumeration value="@string/PreferenceSavedActivity" />
             <xs:enumeration value="@string/PreferenceSavedMember" />
+            <xs:enumeration value="@string/PreferenceSavedTrip" />
             <xs:enumeration value="@string/remove_geofences" />
             <xs:enumeration value="@string/RestAPIBaseAddress" />
             <xs:enumeration value="@string/search_menu_title" />
@@ -16188,7 +16203,10 @@
             <xs:enumeration value="@string/place_autocomplete_clear_button" />
             <xs:enumeration value="@string/place_autocomplete_search_hint" />
             <xs:enumeration value="@string/PreferenceFileName" />
+            <xs:enumeration value="@string/PreferenceFileNameActivity" />
+            <xs:enumeration value="@string/PreferenceSavedActivity" />
             <xs:enumeration value="@string/PreferenceSavedMember" />
+            <xs:enumeration value="@string/PreferenceSavedTrip" />
             <xs:enumeration value="@string/remove_geofences" />
             <xs:enumeration value="@string/RestAPIBaseAddress" />
             <xs:enumeration value="@string/search_menu_title" />
@@ -16620,7 +16638,10 @@
             <xs:enumeration value="@string/place_autocomplete_clear_button" />
             <xs:enumeration value="@string/place_autocomplete_search_hint" />
             <xs:enumeration value="@string/PreferenceFileName" />
+            <xs:enumeration value="@string/PreferenceFileNameActivity" />
+            <xs:enumeration value="@string/PreferenceSavedActivity" />
             <xs:enumeration value="@string/PreferenceSavedMember" />
+            <xs:enumeration value="@string/PreferenceSavedTrip" />
             <xs:enumeration value="@string/remove_geofences" />
             <xs:enumeration value="@string/RestAPIBaseAddress" />
             <xs:enumeration value="@string/search_menu_title" />
@@ -18027,7 +18048,10 @@
             <xs:enumeration value="@string/place_autocomplete_clear_button" />
             <xs:enumeration value="@string/place_autocomplete_search_hint" />
             <xs:enumeration value="@string/PreferenceFileName" />
+            <xs:enumeration value="@string/PreferenceFileNameActivity" />
+            <xs:enumeration value="@string/PreferenceSavedActivity" />
             <xs:enumeration value="@string/PreferenceSavedMember" />
+            <xs:enumeration value="@string/PreferenceSavedTrip" />
             <xs:enumeration value="@string/remove_geofences" />
             <xs:enumeration value="@string/RestAPIBaseAddress" />
             <xs:enumeration value="@string/search_menu_title" />
@@ -18414,7 +18438,10 @@
             <xs:enumeration value="@string/place_autocomplete_clear_button" />
             <xs:enumeration value="@string/place_autocomplete_search_hint" />
             <xs:enumeration value="@string/PreferenceFileName" />
+            <xs:enumeration value="@string/PreferenceFileNameActivity" />
+            <xs:enumeration value="@string/PreferenceSavedActivity" />
             <xs:enumeration value="@string/PreferenceSavedMember" />
+            <xs:enumeration value="@string/PreferenceSavedTrip" />
             <xs:enumeration value="@string/remove_geofences" />
             <xs:enumeration value="@string/RestAPIBaseAddress" />
             <xs:enumeration value="@string/search_menu_title" />
@@ -20216,7 +20243,10 @@
             <xs:enumeration value="@string/place_autocomplete_clear_button" />
             <xs:enumeration value="@string/place_autocomplete_search_hint" />
             <xs:enumeration value="@string/PreferenceFileName" />
+            <xs:enumeration value="@string/PreferenceFileNameActivity" />
+            <xs:enumeration value="@string/PreferenceSavedActivity" />
             <xs:enumeration value="@string/PreferenceSavedMember" />
+            <xs:enumeration value="@string/PreferenceSavedTrip" />
             <xs:enumeration value="@string/remove_geofences" />
             <xs:enumeration value="@string/RestAPIBaseAddress" />
             <xs:enumeration value="@string/search_menu_title" />
@@ -23348,7 +23378,10 @@
             <xs:enumeration value="@string/place_autocomplete_clear_button" />
             <xs:enumeration value="@string/place_autocomplete_search_hint" />
             <xs:enumeration value="@string/PreferenceFileName" />
+            <xs:enumeration value="@string/PreferenceFileNameActivity" />
+            <xs:enumeration value="@string/PreferenceSavedActivity" />
             <xs:enumeration value="@string/PreferenceSavedMember" />
+            <xs:enumeration value="@string/PreferenceSavedTrip" />
             <xs:enumeration value="@string/remove_geofences" />
             <xs:enumeration value="@string/RestAPIBaseAddress" />
             <xs:enumeration value="@string/search_menu_title" />

@@ -34,7 +34,9 @@ namespace CHARE_System
             Android.Net.ConnectivityManager cm = (Android.Net.ConnectivityManager)this.GetSystemService(Context.ConnectivityService);
             if (cm.ActiveNetworkInfo == null)
                 Toast.MakeText(this, "Network error. Try again later.", ToastLength.Long).Show();
+            else
             {
+
                 passTrip = JsonConvert.DeserializeObject<TripDetails>(Intent.GetStringExtra("Trip"));
 
                 listView = FindViewById<ListView>(Resource.Id.driver_listview);

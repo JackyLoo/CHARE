@@ -13,6 +13,7 @@
     <meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/GoogleKey" />
     <service android:name=".GeofenceTransitionsIntentService" />
     <activity android:label="CommentDialogActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.CommentDialogActivity" />
+    <activity android:label="RateListViewActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.RateListViewActivity" />
     <activity android:label="RequestListViewActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.RequestListViewActivity" />
     <activity android:label="RouteActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.RouteActivity" />
     <activity android:label="DriverListViewActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.SearchDriverListViewActivity" />

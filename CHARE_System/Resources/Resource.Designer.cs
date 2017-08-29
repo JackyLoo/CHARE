@@ -3599,11 +3599,11 @@ namespace CHARE_System
 			// aapt resource value: 0x7f090042
 			public const int buttonPanel = 2131296322;
 			
-			// aapt resource value: 0x7f0900c4
-			public const int button_accept = 2131296452;
-			
 			// aapt resource value: 0x7f0900c5
-			public const int button_reject = 2131296453;
+			public const int button_accept = 2131296453;
+			
+			// aapt resource value: 0x7f0900c6
+			public const int button_reject = 2131296454;
 			
 			// aapt resource value: 0x7f09009f
 			public const int cancel_action = 2131296415;
@@ -3644,8 +3644,8 @@ namespace CHARE_System
 			// aapt resource value: 0x7f09001d
 			public const int dark = 2131296285;
 			
-			// aapt resource value: 0x7f0900c2
-			public const int day = 2131296450;
+			// aapt resource value: 0x7f0900c3
+			public const int day = 2131296451;
 			
 			// aapt resource value: 0x7f0900e4
 			public const int day_layout = 2131296484;
@@ -3659,8 +3659,8 @@ namespace CHARE_System
 			// aapt resource value: 0x7f0900fd
 			public const int dest_layout = 2131296509;
 			
-			// aapt resource value: 0x7f0900c1
-			public const int destination = 2131296449;
+			// aapt resource value: 0x7f0900c2
+			public const int destination = 2131296450;
 			
 			// aapt resource value: 0x7f090021
 			public const int disableHome = 2131296289;
@@ -3698,8 +3698,8 @@ namespace CHARE_System
 			// aapt resource value: 0x7f0900cb
 			public const int driver_row_to = 2131296459;
 			
-			// aapt resource value: 0x7f0900c3
-			public const int duration = 2131296451;
+			// aapt resource value: 0x7f0900c4
+			public const int duration = 2131296452;
 			
 			// aapt resource value: 0x7f09005d
 			public const int edit_query = 2131296349;
@@ -3722,8 +3722,8 @@ namespace CHARE_System
 			// aapt resource value: 0x7f090051
 			public const int expanded_menu = 2131296337;
 			
-			// aapt resource value: 0x7f0900bc
-			public const int female = 2131296444;
+			// aapt resource value: 0x7f0900bf
+			public const int female = 2131296447;
 			
 			// aapt resource value: 0x7f0900e6
 			public const int female_layout = 2131296486;
@@ -3779,8 +3779,8 @@ namespace CHARE_System
 			// aapt resource value: 0x7f09003f
 			public const int list_item = 2131296319;
 			
-			// aapt resource value: 0x7f0900c6
-			public const int listview = 2131296454;
+			// aapt resource value: 0x7f0900be
+			public const int listview = 2131296446;
 			
 			// aapt resource value: 0x7f090119
 			public const int listview_background_shape = 2131296537;
@@ -3905,8 +3905,8 @@ namespace CHARE_System
 			// aapt resource value: 0x7f090027
 			public const int multiply = 2131296295;
 			
-			// aapt resource value: 0x7f0900bd
-			public const int name = 2131296445;
+			// aapt resource value: 0x7f0900bc
+			public const int name = 2131296444;
 			
 			// aapt resource value: 0x7f09007b
 			public const int network_notification = 2131296379;
@@ -3929,8 +3929,8 @@ namespace CHARE_System
 			// aapt resource value: 0x7f0900a3
 			public const int notification_main_column_container = 2131296419;
 			
-			// aapt resource value: 0x7f0900bf
-			public const int origin = 2131296447;
+			// aapt resource value: 0x7f0900c0
+			public const int origin = 2131296448;
 			
 			// aapt resource value: 0x7f0900fb
 			public const int origin_layout = 2131296507;
@@ -3977,8 +3977,8 @@ namespace CHARE_System
 			// aapt resource value: 0x7f090054
 			public const int radio = 2131296340;
 			
-			// aapt resource value: 0x7f0900be
-			public const int rating = 2131296446;
+			// aapt resource value: 0x7f0900bd
+			public const int rating = 2131296445;
 			
 			// aapt resource value: 0x7f09006a
 			public const int rating_layout = 2131296362;
@@ -4190,8 +4190,8 @@ namespace CHARE_System
 			// aapt resource value: 0x7f09004e
 			public const int title_template = 2131296334;
 			
-			// aapt resource value: 0x7f0900c0
-			public const int to = 2131296448;
+			// aapt resource value: 0x7f0900c1
+			public const int to = 2131296449;
 			
 			// aapt resource value: 0x7f090073
 			public const int togglebtn_fri = 2131296371;
@@ -4595,61 +4595,67 @@ namespace CHARE_System
 			public const int preference_widget_switch = 2130903113;
 			
 			// aapt resource value: 0x7f03004a
-			public const int RequestDetailsRow = 2130903114;
+			public const int RateDetailsRow = 2130903114;
 			
 			// aapt resource value: 0x7f03004b
-			public const int RequestListView = 2130903115;
+			public const int RateListView = 2130903115;
 			
 			// aapt resource value: 0x7f03004c
-			public const int SearchDriverDetailsRow = 2130903116;
+			public const int RequestDetailsRow = 2130903116;
 			
 			// aapt resource value: 0x7f03004d
-			public const int SearchDriverListView = 2130903117;
+			public const int RequestListView = 2130903117;
 			
 			// aapt resource value: 0x7f03004e
-			public const int select_dialog_item_material = 2130903118;
+			public const int SearchDriverDetailsRow = 2130903118;
 			
 			// aapt resource value: 0x7f03004f
-			public const int select_dialog_multichoice_material = 2130903119;
+			public const int SearchDriverListView = 2130903119;
 			
 			// aapt resource value: 0x7f030050
-			public const int select_dialog_singlechoice_material = 2130903120;
+			public const int select_dialog_item_material = 2130903120;
 			
 			// aapt resource value: 0x7f030051
-			public const int Signup = 2130903121;
+			public const int select_dialog_multichoice_material = 2130903121;
 			
 			// aapt resource value: 0x7f030052
-			public const int Signup_Car = 2130903122;
+			public const int select_dialog_singlechoice_material = 2130903122;
 			
 			// aapt resource value: 0x7f030053
-			public const int support_simple_spinner_dropdown_item = 2130903123;
+			public const int Signup = 2130903123;
 			
 			// aapt resource value: 0x7f030054
-			public const int test = 2130903124;
+			public const int Signup_Car = 2130903124;
 			
 			// aapt resource value: 0x7f030055
-			public const int Tool_Bar = 2130903125;
+			public const int support_simple_spinner_dropdown_item = 2130903125;
 			
 			// aapt resource value: 0x7f030056
-			public const int TripConfirmation_1 = 2130903126;
+			public const int test = 2130903126;
 			
 			// aapt resource value: 0x7f030057
-			public const int TripConfirmation_2 = 2130903127;
+			public const int Tool_Bar = 2130903127;
 			
 			// aapt resource value: 0x7f030058
-			public const int TripDetailsRow_Edit = 2130903128;
+			public const int TripConfirmation_1 = 2130903128;
 			
 			// aapt resource value: 0x7f030059
-			public const int TripDriverDetailsRow = 2130903129;
+			public const int TripConfirmation_2 = 2130903129;
 			
 			// aapt resource value: 0x7f03005a
-			public const int TripDriverListView = 2130903130;
+			public const int TripDetailsRow_Edit = 2130903130;
 			
 			// aapt resource value: 0x7f03005b
-			public const int TripPassDetailsRow = 2130903131;
+			public const int TripDriverDetailsRow = 2130903131;
 			
 			// aapt resource value: 0x7f03005c
-			public const int TripPassListView = 2130903132;
+			public const int TripDriverListView = 2130903132;
+			
+			// aapt resource value: 0x7f03005d
+			public const int TripPassDetailsRow = 2130903133;
+			
+			// aapt resource value: 0x7f03005e
+			public const int TripPassListView = 2130903134;
 			
 			static Layout()
 			{

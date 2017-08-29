@@ -120,6 +120,28 @@ namespace CHARE_System.Class
         }
 
         // Rating
+        public static async Task<string> GetRateListAsync(Context c, string id)
+        {            
+            var make = "";
+            HttpResponseMessage response = await client.GetAsync("api/Ratings?id=" + id + "&type=List");
+            Console.WriteLine("===== Rate Test Load error1 : " + response.Content);
+            Console.WriteLine("===== Rate Test Load error2 : " + response.StatusCode);
+            Console.WriteLine("===== Rate Test Load error3 : " + response.RequestMessage);
+            
+            if (response.IsSuccessStatusCode)
+            {
+                make = await response.Content.ReadAsStringAsync();
+                if (make == null)
+                    Toast.MakeText(c, "There is no rating data", ToastLength.Short).Show();
+            }
+            else
+                Toast.MakeText(c, "Failed to load rating data.", ToastLength.Short).Show();
+
+            Console.WriteLine("===== Rate Test Load : " + make.ToString());
+            Console.WriteLine("===== Rate GetTripsAsync End");
+            return make;
+        }
+
         public static async Task CreateRatingAsync(Context c, Rating rating)
         {
             HttpResponseMessage response = await client.PostAsJsonAsync("api/Ratings", rating);

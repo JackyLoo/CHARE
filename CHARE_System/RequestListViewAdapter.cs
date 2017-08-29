@@ -1,4 +1,5 @@
-﻿using Android.Content;
+﻿using Android.App;
+using Android.Content;
 using Android.Views;
 using Android.Widget;
 using CHARE_REST_API.JSON_Object;
@@ -53,13 +54,10 @@ namespace CHARE_System
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-            Console.WriteLine("===== Driver GetView Start");
             var view = convertView;
-
             if (view == null)
             {
                 view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.RequestDetailsRow, parent, false);
-
                 var name = view.FindViewById<TextView>(Resource.Id.name);
                 var femaleOnly = view.FindViewById<TextView>(Resource.Id.female);
                 var origin = view.FindViewById<TextView>(Resource.Id.origin);
@@ -87,16 +85,12 @@ namespace CHARE_System
             }
 
             var holder = (RequestViewHolder)view.Tag;
-            // Convert time to hh:mm tt format
-            var time =  requests[position].TripPassenger.arriveTime.Split(':');
+            var time = requests[position].TripPassenger.arriveTime.Split(':');
             int totalInSecond = (int.Parse(time[0]) * 3600) + (int.Parse(time[1]) * 60);
             TimeSpan onTimeSet = TimeSpan.FromSeconds(totalInSecond);
             string strTime = DateTime.ParseExact(onTimeSet.ToString(@"hh\:mm"), "HH:mm", null).ToString("hh:mm tt", CultureInfo.GetCultureInfo("en-US"));
 
-            // Convert "Mon,Tue,Wed..." to "Mon • Tue • Wed..." format
             string strDay = requests[position].TripPassenger.days.Replace(",", " • ");
-
-            // Check if is female only
             if (requests[position].TripPassenger.femaleOnly.Equals("No"))
                 holder.Female.Visibility = ViewStates.Gone;
 
@@ -106,7 +100,7 @@ namespace CHARE_System
             holder.Day.Text = strDay;
             holder.ArriveTime.Text = strTime;
             holder.Duration.Text = " • Approx " + requests[position].TripPassenger.durationStr;
-            holder.Rate.Rating = (float)requests[position].TripPassenger.Member.rate;
+            holder.Rate.NumStars = (int)requests[position].TripPassenger.Member.rate;
             holder.ButtonAccept.Click += async (sender, e) =>
             {
                 Android.Net.ConnectivityManager cm = (Android.Net.ConnectivityManager)context.GetSystemService(Context.ConnectivityService);
@@ -134,6 +128,7 @@ namespace CHARE_System
                     }
                 }
             };
+
             holder.ButtonReject.Click += async (sender, e) =>
             {
                 Android.Net.ConnectivityManager cm = (Android.Net.ConnectivityManager)context.GetSystemService(Context.ConnectivityService);
@@ -146,6 +141,18 @@ namespace CHARE_System
                     view.Visibility = ViewStates.Gone;
                 }
             };
+
+            view.Click += (sender, e) =>
+            {
+                holder.Name.Text = requests[position].TripPassenger.Member.username;
+
+                Console.WriteLine("=== Check id " + requests[position].TripPassenger.Member.MemberID);
+                Intent intent = new Intent(context, typeof(RateListViewActivity));
+                intent.AddFlags(ActivityFlags.ReorderToFront);
+                intent.PutExtra("MemberID", requests[position].TripPassenger.Member.MemberID.ToString());
+                context.StartActivity(intent);                
+            };
+
             return view;
         }
     }

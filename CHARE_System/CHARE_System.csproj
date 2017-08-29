@@ -143,7 +143,10 @@
     <Compile Include="Class\MapHelper.cs" />
     <Compile Include="Class\RESTClient.cs" />
     <Compile Include="CommentDialogActivity.cs" />
+    <Compile Include="JSON Object\RatingDetails.cs" />
     <Compile Include="MapFragmentActivity.cs" />
+    <Compile Include="RateListViewActivity.cs" />
+    <Compile Include="RateListViewAdapter.cs" />
     <Compile Include="RequestListViewActivity.cs" />
     <Compile Include="RequestListViewAdapter.cs" />
     <Compile Include="RouteActivity.cs" />
@@ -250,6 +253,12 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\MapViewFragment.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\RateDetailsRow.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\RateListView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

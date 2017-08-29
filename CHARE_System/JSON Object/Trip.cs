@@ -36,8 +36,7 @@ namespace CHARE_REST_API.JSON_Object
         public int RaterID { get; set; }
         public int MemberID { get; set; }
         public int rate { get; set; }
-        public string comment { get; set; }
-        
+        public string comment { get; set; }        
     }
 
     public class Trip
@@ -170,7 +169,7 @@ namespace CHARE_REST_API.JSON_Object
     }
 
     public class Member
-    {
+    {       
         public List<Rating> Ratings { get; set; }
         public List<Vehicle> Vehicles { get; set; }
         public int MemberID { get; set; }
