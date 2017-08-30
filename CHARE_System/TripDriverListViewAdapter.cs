@@ -181,12 +181,32 @@ namespace CHARE_System
 
             view.LongClick += (sender, e) =>
             {
-                var ad = new Android.Support.V7.App.AlertDialog.Builder(context);
-                ad.SetTitle("No Connection");
-                ad.SetMessage("Looks like there's a problem with your network connection. Try again later.");
-                ad.SetCancelable(false);
-                ad.SetPositiveButton("OK", this);
-                Android.Support.V7.App.AlertDialog dialog = ad.Create();
+                Dialog dialog = new Dialog(context);
+                dialog.SetContentView(Resource.Layout.Custom_Dialog_Action);
+                TextView disjoinPassenger = (TextView)dialog.FindViewById(Resource.Id.quit);
+                TextView deleteTrip = (TextView)dialog.FindViewById(Resource.Id.delete);
+                if (string.IsNullOrEmpty(trips[position].PassengerIDs))
+                    disjoinPassenger.Visibility = ViewStates.Gone;
+                
+                
+                disjoinPassenger.Click += async (sender2, e2) =>
+                {
+                    TripDriver td = new TripDriver(trips[position]);                    
+                    await RESTClient.DisjoinAllPassengerAsync(context, td);
+                    Intent intent = new Intent(context, typeof(TripDriverListViewActivity));
+                    ((Activity)context).Finish();
+                    ((Activity)context).StartActivity(intent);
+                    dialog.Dismiss();
+                };
+
+                deleteTrip.Click += async (sender2, e2) =>
+                {
+                    await RESTClient.DeleteTripDriverAsync(context, (int)trips[position].TripDriverID);
+                    Intent intent = new Intent(context, typeof(TripDriverListViewActivity));
+                    ((Activity)context).Finish();
+                    ((Activity)context).StartActivity(intent);
+                    dialog.Dismiss();
+                };
                 dialog.Show();
             };
 

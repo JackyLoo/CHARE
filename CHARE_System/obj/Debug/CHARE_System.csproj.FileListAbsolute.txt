@@ -115,3 +115,6 @@ C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\
 C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\passengerdetails_edit.xml
 C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\driverdetails_edit.xml
 C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\custom_spinner_edit_details.xml
+C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\custom_dialog_action.xml
+C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\drawable\ic_delete_black_24dp.png
+C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\drawable\ic_exit_to_app_black_24dp.png

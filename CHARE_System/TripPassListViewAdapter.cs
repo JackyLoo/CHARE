@@ -154,7 +154,36 @@ namespace CHARE_System
                 }                
             };
 
-            Console.WriteLine("===== GetView End");
+            view.LongClick += (sender, e) =>
+            {                
+                Dialog dialog = new Dialog(context);
+                dialog.SetContentView(Resource.Layout.Custom_Dialog_Action);
+                TextView quitCarpool = (TextView)dialog.FindViewById(Resource.Id.quit);
+                TextView deleteTrip = (TextView)dialog.FindViewById(Resource.Id.delete);                
+                if (trips[position].TripDriverID.Equals(null))                
+                    quitCarpool.Visibility = ViewStates.Gone;                                    
+
+                quitCarpool.Click += async (sender2, e2) =>
+                {
+                    TripPassenger tp = new TripPassenger(trips[position]);                    
+                    await RESTClient.QuitCarpoolPassengerAsync(context, tp);
+                    Intent intent = new Intent(context, typeof(TripPassListViewActivity));
+                    ((Activity)context).Finish();
+                    ((Activity)context).StartActivity(intent); 
+                    dialog.Dismiss();
+                };
+
+                deleteTrip.Click += async (sender2, e2) =>
+                {
+                    await RESTClient.DeleteTripPassengerAsync(context, trips[position].TripPassengerID);
+                    Intent intent = new Intent(context, typeof(TripPassListViewActivity));
+                    ((Activity)context).Finish();
+                    ((Activity)context).StartActivity(intent);
+                    dialog.Dismiss();
+                };
+                dialog.Show();
+            };
+            
             return view;
         }
     }

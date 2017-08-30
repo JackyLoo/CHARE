@@ -264,6 +264,36 @@ namespace CHARE_System.Class
                 Toast.MakeText(c, "Failed to update.", ToastLength.Short).Show();
         }
 
+        public static async Task DisjoinAllPassengerAsync(Context c, TripDriver tripDriver)
+        {
+            string passengerIDs = tripDriver.PassengerIDs;
+            tripDriver.PassengerIDs = string.Empty;
+            HttpResponseMessage response = await client.PutAsJsonAsync("api/TripDrivers?id=" +
+                tripDriver.TripDriverID+ "&tripPassengerID=" + passengerIDs, tripDriver);
+
+            Console.WriteLine("==== Code " + response.Content);
+            Console.WriteLine("==== Code2 " + response.RequestMessage);
+            Console.WriteLine("==== Code3 " + response.StatusCode);
+            Console.WriteLine("==== Code4 " + JsonConvert.SerializeObject(tripDriver).ToString());
+            if (response.IsSuccessStatusCode)
+                Toast.MakeText(c, "Disjoin all passengers.", ToastLength.Short).Show();
+            else
+                Toast.MakeText(c, "Failed to disjoin.", ToastLength.Short).Show();
+        }
+
+        public static async Task DeleteTripDriverAsync(Context c, int id)
+        {
+            HttpResponseMessage response = await client.DeleteAsync("api/TripDrivers?id=" + id);
+            Console.WriteLine("==== Code " + response.Content);
+            Console.WriteLine("==== Code2 " + response.RequestMessage);
+            Console.WriteLine("==== Code3 " + response.StatusCode);
+
+            if (response.IsSuccessStatusCode)
+                Toast.MakeText(c, "Deleted trip.", ToastLength.Short).Show();
+            else
+                Toast.MakeText(c, "Failed to delete trip.", ToastLength.Short).Show();
+        }
+
         //TripPassenger 
         public static async Task CreateTripPassengerAsync(Context c, TripPassenger tripPassenger)
         {
@@ -283,6 +313,21 @@ namespace CHARE_System.Class
                 make = await response.Content.ReadAsStringAsync();
             }            
             return make;
+        }
+        
+        public static async Task QuitCarpoolPassengerAsync(Context c, TripPassenger tripPassenger)
+        {
+            string tripDriverID = tripPassenger.TripDriverID.ToString();
+            tripPassenger.TripDriverID = null;
+            HttpResponseMessage response = await client.PutAsJsonAsync("api/TripPassengers?id=" +
+                tripPassenger.TripPassengerID+ "&tripDriverID=" + tripDriverID, tripPassenger);
+            Console.WriteLine("==== Code " + response.Content);
+            Console.WriteLine("==== Code2 " + response.RequestMessage);
+            Console.WriteLine("==== Code3 " + response.StatusCode);
+            if (response.IsSuccessStatusCode)
+                Toast.MakeText(c, "Quit from the carpool.", ToastLength.Short).Show();
+            else
+                Toast.MakeText(c, "Failed to quit.", ToastLength.Short).Show();
         }
 
         public static async Task UpdateTripPassengerAsync(TripPassenger tripPassenger)
@@ -318,6 +363,20 @@ namespace CHARE_System.Class
                 Toast.MakeText(c, "Failed to load trips.", ToastLength.Short).Show();                                    
             return make;            
         }
+
+        public static async Task DeleteTripPassengerAsync(Context c, int id)
+        {            
+            HttpResponseMessage response = await client.DeleteAsync("api/TripPassengers?id=" + id);
+            Console.WriteLine("==== Code " + response.Content);
+            Console.WriteLine("==== Code2 " + response.RequestMessage);
+            Console.WriteLine("==== Code3 " + response.StatusCode);
+
+            if (response.IsSuccessStatusCode)
+                Toast.MakeText(c, "Deleted trip.", ToastLength.Short).Show();
+            else
+                Toast.MakeText(c, "Failed to delete trip.", ToastLength.Short).Show();
+        }
+
         // Request
         public static async Task<string> GetTripRequestListAsync(Context c, int id)
         {
