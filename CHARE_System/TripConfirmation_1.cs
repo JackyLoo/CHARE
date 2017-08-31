@@ -1,26 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
+using Android.Gms.Maps;
+using Android.Gms.Maps.Model;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Android.Gms.Maps.Model;
-using Android.Gms.Maps;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using System.Net;
-using CHARE_System.JSON_Object;
-using static CHARE_System.JSON_Object.GoogleDistanceMatrix;
 using CHARE_REST_API.JSON_Object;
 using CHARE_System.Class;
-using System.Net.Http;
-using static Android.App.TimePickerDialog;
+using CHARE_System.JSON_Object;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
+using static Android.App.TimePickerDialog;
 
 namespace CHARE_System
 {
@@ -189,20 +182,14 @@ namespace CHARE_System
                     tripDriver = new TripDriver(iTrip);
                     tripDriver.DriverID = iMember.MemberID;
                     tripDriver.availableSeat = int.Parse(spinnerSeat.SelectedItem.ToString());
-                    var json = JsonConvert.SerializeObject(tripDriver);
-                    Console.WriteLine("========================= 1 =========================");
-                    Console.WriteLine(json.ToString());
-                    Console.WriteLine("========================= 2 =========================");
+                    var json = JsonConvert.SerializeObject(tripDriver);                    
                     await RESTClient.CreateTripDriverAsync(this, tripDriver);
                 }
                 else
                 {
                     tripPassenger = new TripPassenger(iTrip);
                     tripPassenger.PassengerID = iMember.MemberID;
-                    var json = JsonConvert.SerializeObject(tripPassenger);
-                    Console.WriteLine("========================= 1 =========================");
-                    Console.WriteLine(json.ToString());
-                    Console.WriteLine("========================= 2 =========================");
+                    var json = JsonConvert.SerializeObject(tripPassenger);                   
                     await RESTClient.CreateTripPassengerAsync(this, tripPassenger);
                 }
                 RunOnUiThread(() =>

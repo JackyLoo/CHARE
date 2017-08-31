@@ -11,7 +11,7 @@ namespace CHARE_System.Class
 
 		public const long GEOFENCE_EXPIRATION_IN_HOURS = 12;
 		public const long GEOFENCE_EXPIRATION_IN_MILLISECONDS =	GEOFENCE_EXPIRATION_IN_HOURS * 60 * 60 * 1000;
-		public const float GEOFENCE_RADIUS_IN_METERS = 600;
+		public const float GEOFENCE_RADIUS_IN_METERS = 300;
         // Aman siara 3.272952,101.647964
         // City mall = 3.130228, 101.627903
         // 3.112311, 101.632065

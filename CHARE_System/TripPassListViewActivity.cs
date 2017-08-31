@@ -1,26 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using CHARE_System.JSON_Object;
 using CHARE_REST_API.JSON_Object;
 using CHARE_System.Class;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace CHARE_System
-{
-    //[Activity(Label = "TripListViewActivity", MainLauncher = true, Icon = "@drawable/icon")]
-    [Activity(Label = "TripPassListViewActivity")]
+{    
+    [Activity(Label = "Trips")]
     public class TripPassListViewActivity : Activity
     {
         private Member user;
@@ -65,30 +58,24 @@ namespace CHARE_System
                     progress.Show();
                 });
 
-                LoadTripDetails(user.MemberID);
-                Console.WriteLine("===== End");
+                LoadTripDetails(user.MemberID);                
             }
         }
 
         async void LoadTripDetails(int id)
-        {
-            Console.WriteLine("===== Loading");
-            var models = await RESTClient.GetTripPassengerListAsync(this, id);
-            Console.WriteLine("Models " +models);
+        {            
+            var models = await RESTClient.GetTripPassengerListAsync(this, id);            
             RunOnUiThread(() =>
             {
                 progress.Dismiss();
             });            
             listTrips = JsonConvert.DeserializeObject<List<TripDetails>>(models);                                               
-            listView.Adapter = new TripPassListViewAdapter(this, listTrips);
-            Console.WriteLine("===== Finish Loading");
+            listView.Adapter = new TripPassListViewAdapter(this, listTrips);            
         }
         
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
-            base.OnActivityResult(requestCode, resultCode, data);
-            Console.WriteLine("===== RequestCode");
-            Console.WriteLine("Code " + requestCode);
+            base.OnActivityResult(requestCode, resultCode, data);            
             if (resultCode == 0)
             {
                 this.Recreate();                

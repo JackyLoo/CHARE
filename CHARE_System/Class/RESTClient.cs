@@ -1,21 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
+﻿using Android.Content;
 using Android.Widget;
+using CHARE_REST_API.JSON_Object;
+using System;
 using System.Net.Http;
-using System.Reflection;
-using System.Resources;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using CHARE_REST_API.JSON_Object;
-using Newtonsoft.Json;
 
 namespace CHARE_System.Class
 {
@@ -129,19 +118,9 @@ namespace CHARE_System.Class
 
         // Vehicle
         public static async Task UpdateVehicleAsync(Context c, Vehicle vehicle)
-        {
-            Console.WriteLine("===== Vehicle S");
-            Console.WriteLine("1 " + vehicle.MemberID);
-            Console.WriteLine("2 " + vehicle.plateNo);
-            Console.WriteLine("3 " + vehicle.model);
-            Console.WriteLine("4 " + vehicle.make);
-            Console.WriteLine("5 " + vehicle.color);            
-            
-
+        {       
             HttpResponseMessage response = await client.PutAsJsonAsync("api/Vehicles?id=" +
-                vehicle.VehicleID, vehicle);
-            Console.WriteLine("===== Code " + response.StatusCode);
-            Console.WriteLine("===== Vehicle E");
+                vehicle.VehicleID, vehicle);         
             if (!response.IsSuccessStatusCode)
                 Toast.MakeText(c, "Failed to update vehicle.", ToastLength.Short).Show();
         }
@@ -157,11 +136,7 @@ namespace CHARE_System.Class
         public static async Task<string> GetRateListAsync(Context c, string id)
         {            
             var make = "";
-            HttpResponseMessage response = await client.GetAsync("api/Ratings?id=" + id + "&type=List");
-            Console.WriteLine("===== Rate Test Load error1 : " + response.Content);
-            Console.WriteLine("===== Rate Test Load error2 : " + response.StatusCode);
-            Console.WriteLine("===== Rate Test Load error3 : " + response.RequestMessage);
-            
+            HttpResponseMessage response = await client.GetAsync("api/Ratings?id=" + id + "&type=List");            
             if (response.IsSuccessStatusCode)
             {
                 make = await response.Content.ReadAsStringAsync();
@@ -170,18 +145,13 @@ namespace CHARE_System.Class
             }
             else
                 Toast.MakeText(c, "Failed to load rating data.", ToastLength.Short).Show();
-
-            Console.WriteLine("===== Rate Test Load : " + make.ToString());
-            Console.WriteLine("===== Rate GetTripsAsync End");
+            
             return make;
         }
 
         public static async Task CreateRatingAsync(Context c, Rating rating)
         {
-            HttpResponseMessage response = await client.PostAsJsonAsync("api/Ratings", rating);
-            Console.WriteLine("==== Rating Error :" + response.StatusCode);
-            Console.WriteLine("==== Rating Error :" + response.RequestMessage);
-            Console.WriteLine("==== Rating Error :" + response.Content);
+            HttpResponseMessage response = await client.PostAsJsonAsync("api/Ratings", rating);            
             if (response.IsSuccessStatusCode)
                 Toast.MakeText(c, "Rating submitted successfully.", ToastLength.Short).Show();
             else
@@ -227,11 +197,9 @@ namespace CHARE_System.Class
         }
 
         public static async Task<string> GetTripDriverListAsync(Context c, int id)
-        {
-            Console.WriteLine("===== GetTripsAsync Start");
+        {            
             var make = "";
-            HttpResponseMessage response = await client.GetAsync("api/TripDrivers?id=" + id+"&type=List");
-            
+            HttpResponseMessage response = await client.GetAsync("api/TripDrivers?id=" + id+"&type=List");            
             if (response.IsSuccessStatusCode)
             {
                 make = await response.Content.ReadAsStringAsync();
@@ -240,9 +208,6 @@ namespace CHARE_System.Class
             }
             else            
                 Toast.MakeText(c, "Failed to load trips.", ToastLength.Short).Show();
-            
-            Console.WriteLine("===== Test Load : "+ make.ToString());
-            Console.WriteLine("===== GetTripsAsync End");
             return make;
         }
 
@@ -270,11 +235,6 @@ namespace CHARE_System.Class
             tripDriver.PassengerIDs = string.Empty;
             HttpResponseMessage response = await client.PutAsJsonAsync("api/TripDrivers?id=" +
                 tripDriver.TripDriverID+ "&tripPassengerID=" + passengerIDs, tripDriver);
-
-            Console.WriteLine("==== Code " + response.Content);
-            Console.WriteLine("==== Code2 " + response.RequestMessage);
-            Console.WriteLine("==== Code3 " + response.StatusCode);
-            Console.WriteLine("==== Code4 " + JsonConvert.SerializeObject(tripDriver).ToString());
             if (response.IsSuccessStatusCode)
                 Toast.MakeText(c, "Disjoin all passengers.", ToastLength.Short).Show();
             else
@@ -284,10 +244,6 @@ namespace CHARE_System.Class
         public static async Task DeleteTripDriverAsync(Context c, int id)
         {
             HttpResponseMessage response = await client.DeleteAsync("api/TripDrivers?id=" + id);
-            Console.WriteLine("==== Code " + response.Content);
-            Console.WriteLine("==== Code2 " + response.RequestMessage);
-            Console.WriteLine("==== Code3 " + response.StatusCode);
-
             if (response.IsSuccessStatusCode)
                 Toast.MakeText(c, "Deleted trip.", ToastLength.Short).Show();
             else
@@ -320,10 +276,7 @@ namespace CHARE_System.Class
             string tripDriverID = tripPassenger.TripDriverID.ToString();
             tripPassenger.TripDriverID = null;
             HttpResponseMessage response = await client.PutAsJsonAsync("api/TripPassengers?id=" +
-                tripPassenger.TripPassengerID+ "&tripDriverID=" + tripDriverID, tripPassenger);
-            Console.WriteLine("==== Code " + response.Content);
-            Console.WriteLine("==== Code2 " + response.RequestMessage);
-            Console.WriteLine("==== Code3 " + response.StatusCode);
+                tripPassenger.TripPassengerID+ "&tripDriverID=" + tripDriverID, tripPassenger);         
             if (response.IsSuccessStatusCode)
                 Toast.MakeText(c, "Quit from the carpool.", ToastLength.Short).Show();
             else
@@ -367,10 +320,6 @@ namespace CHARE_System.Class
         public static async Task DeleteTripPassengerAsync(Context c, int id)
         {            
             HttpResponseMessage response = await client.DeleteAsync("api/TripPassengers?id=" + id);
-            Console.WriteLine("==== Code " + response.Content);
-            Console.WriteLine("==== Code2 " + response.RequestMessage);
-            Console.WriteLine("==== Code3 " + response.StatusCode);
-
             if (response.IsSuccessStatusCode)
                 Toast.MakeText(c, "Deleted trip.", ToastLength.Short).Show();
             else

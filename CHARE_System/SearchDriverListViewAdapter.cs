@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
+﻿using Android.Content;
 using Android.Views;
 using Android.Widget;
 using CHARE_REST_API.JSON_Object;
+using CHARE_System.Class;
+using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using Newtonsoft.Json;
-using CHARE_System.Class;
 
 namespace CHARE_System
 {
@@ -58,8 +52,7 @@ namespace CHARE_System
         }
 
         public override View GetView(int position, View convertView, ViewGroup parent)
-        {
-            Console.WriteLine("===== Driver GetView Start");
+        {            
             var view = convertView;
 
             if (view == null)
@@ -129,8 +122,7 @@ namespace CHARE_System
             };
 
             view.Click += (sender, e) =>
-            {                
-                Console.WriteLine("=== Check id " + trips[position].Member.MemberID);
+            {                                
                 Intent intent = new Intent(context, typeof(RateListViewActivity));
                 intent.AddFlags(ActivityFlags.ReorderToFront);
                 intent.PutExtra("MemberID", trips[position].Member.MemberID.ToString());

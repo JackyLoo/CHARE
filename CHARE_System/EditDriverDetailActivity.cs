@@ -7,6 +7,7 @@ using CHARE_REST_API.JSON_Object;
 using Newtonsoft.Json;
 using CHARE_System.Class;
 using Android.Views;
+using System.Text.RegularExpressions;
 
 namespace CHARE_System
 {
@@ -121,6 +122,11 @@ namespace CHARE_System
                 etPassword.SetError("Password is required!", null);
                 etPassword.RequestFocus();
             }
+            else if (ValidatePassword(etPassword.Text.ToString().Trim()))
+            {
+                etPassword.SetError("Password must be alphanumeric and at least 6 character!", null);
+                etPassword.RequestFocus();
+            }
             else if (etConPassword.Text.ToString().Trim().Equals(""))
             {
                 etConPassword.SetError("Confirm password is required!", null);
@@ -173,6 +179,16 @@ namespace CHARE_System
             }
         }
 
+
+        static bool ValidatePassword(string password)
+        {
+            Regex regex = new Regex(@"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,16}$");
+            Match match = regex.Match(password);
+            if (match.Success)
+                return true;
+            return false;
+        }
+
         private void SetValidation()
         {
             etUsername.AfterTextChanged += (sender, e) =>
@@ -200,7 +216,6 @@ namespace CHARE_System
                     etPhone.SetError("Phone is required!", null);
             };
         }
-
 
         override
         public bool OnOptionsItemSelected(IMenuItem item)

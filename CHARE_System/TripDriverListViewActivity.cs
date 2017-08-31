@@ -1,24 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using CHARE_REST_API.JSON_Object;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using System.Net.Http.Headers;
 using CHARE_System.Class;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace CHARE_System
 {
-    [Activity(Label = "TripDriverListViewActivity")]
+    [Activity(Label = "Trips")]
     public class TripDriverListViewActivity : Activity
     {
         private Member user;
@@ -60,24 +55,19 @@ namespace CHARE_System
                 RunOnUiThread(() =>
                 {
                     progress.Show();
-                });
-                Console.WriteLine("===== Start");
-                LoadTripDetails(user.MemberID);
-                Console.WriteLine("===== End");
+                });                
+                LoadTripDetails(user.MemberID);                
             }
         }
         async void LoadTripDetails(int id)
-        {
-            Console.WriteLine("===== Loading");
-            var models = await RESTClient.GetTripDriverListAsync(this,id);
-            Console.WriteLine("Models " + models);
+        {            
+            var models = await RESTClient.GetTripDriverListAsync(this,id);            
             RunOnUiThread(() =>
             {
                 progress.Dismiss();
             });
             listTrips = JsonConvert.DeserializeObject<List<TripDetails>>(models);
-            listView.Adapter = new TripDriverListViewAdapter(this, listTrips);
-            Console.WriteLine("===== Finish Loading");
+            listView.Adapter = new TripDriverListViewAdapter(this, listTrips);            
         }
         
         override

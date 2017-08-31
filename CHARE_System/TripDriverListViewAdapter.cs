@@ -1,33 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using CHARE_REST_API.JSON_Object;
-using System.Net.Http;
 using CHARE_System.Class;
-using System.Globalization;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Net.Http;
 
 namespace CHARE_System
 {
-    class TripDriverListViewAdapter : BaseAdapter<TripDetails>, IDialogInterfaceOnClickListener
+    class TripDriverListViewAdapter : BaseAdapter<TripDetails>
     {
         private static Context context;
         private List<TripDetails> trips;        
         private HttpClient client;
+        private ProgressDialog progress;
 
         public TripDriverListViewAdapter(Context c, List<TripDetails> trips)
         {
             this.trips = trips;
             context = c;
             client = RESTClient.GetClient();
+            progress = new Android.App.ProgressDialog(c);
+            progress.Indeterminate = true;
+            progress.SetProgressStyle(Android.App.ProgressDialogStyle.Spinner);            
+            progress.SetCancelable(false);
         }
 
         public override TripDetails this[int position]
@@ -52,8 +53,7 @@ namespace CHARE_System
         }
 
         public override View GetView(int position, View convertView, ViewGroup parent)
-        {
-            Console.WriteLine("===== GetView Start");
+        {            
             var view = convertView;
 
             if (view == null)
@@ -129,9 +129,7 @@ namespace CHARE_System
                 foreach (Request r in trips[position].Requests)
                 {
                     if (r.status.Equals("Pending"))
-                    {
-                        Console.WriteLine("===== Has pending");
-                        Console.WriteLine("Pending with "+r.RequestID);
+                    {         
                         hasPending = true;
                     }
                 }
@@ -185,38 +183,38 @@ namespace CHARE_System
                 dialog.SetContentView(Resource.Layout.Custom_Dialog_Action);
                 TextView disjoinPassenger = (TextView)dialog.FindViewById(Resource.Id.quit);
                 TextView deleteTrip = (TextView)dialog.FindViewById(Resource.Id.delete);
+                disjoinPassenger.Text = "Disjoin Passengers";
+
                 if (string.IsNullOrEmpty(trips[position].PassengerIDs))
-                    disjoinPassenger.Visibility = ViewStates.Gone;
-                
+                    disjoinPassenger.Visibility = ViewStates.Gone;                
                 
                 disjoinPassenger.Click += async (sender2, e2) =>
                 {
+                    progress.SetMessage("Disjoining passengers.....");              
+                    progress.Show();                    
                     TripDriver td = new TripDriver(trips[position]);                    
                     await RESTClient.DisjoinAllPassengerAsync(context, td);
                     Intent intent = new Intent(context, typeof(TripDriverListViewActivity));
                     ((Activity)context).Finish();
                     ((Activity)context).StartActivity(intent);
-                    dialog.Dismiss();
+                    progress.Dismiss();
+                    dialog.Dismiss();                    
                 };
 
                 deleteTrip.Click += async (sender2, e2) =>
                 {
+                    progress.SetMessage("Deleting trip.....");
+                    progress.Show();
                     await RESTClient.DeleteTripDriverAsync(context, (int)trips[position].TripDriverID);
                     Intent intent = new Intent(context, typeof(TripDriverListViewActivity));
                     ((Activity)context).Finish();
                     ((Activity)context).StartActivity(intent);
+                    progress.Dismiss();
                     dialog.Dismiss();
                 };
                 dialog.Show();
-            };
-
-            Console.WriteLine("===== GetView End");
+            };            
             return view;
-        }
-
-        public void OnClick(IDialogInterface dialog, int which)
-        {
-            Console.WriteLine("===which "+which);         
         }
     }
 

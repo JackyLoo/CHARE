@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using CHARE_REST_API.JSON_Object;
+using CHARE_System.Class;
+using CHARE_System.JSON_Object;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using CHARE_System.Class;
-using Newtonsoft.Json;
-using CHARE_System.JSON_Object;
 
 namespace CHARE_System
 {
@@ -40,9 +35,7 @@ namespace CHARE_System
                 Toast.MakeText(this, "Network error. Try again later.", ToastLength.Long).Show();
             else
             {
-                memberID = Intent.GetStringExtra("MemberID");
-                Console.WriteLine("=== Check id again " + memberID);
-
+                memberID = Intent.GetStringExtra("MemberID");                
                 listView = FindViewById<ListView>(Resource.Id.listview);
 
                 client = new HttpClient();
@@ -67,9 +60,7 @@ namespace CHARE_System
 
         async void LoadRateDetails(string id)
         {
-            var models = await RESTClient.GetRateListAsync(this, id);
-            Console.WriteLine("===== Models");
-            Console.WriteLine(": " + models);
+            var models = await RESTClient.GetRateListAsync(this, id);            
             RunOnUiThread(() =>
             {
                 progress.Dismiss();

@@ -1,26 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
+using CHARE_REST_API.JSON_Object;
+using CHARE_System.Class;
+using Newtonsoft.Json;
+using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using static Android.Widget.AdapterView;
-using CHARE_REST_API.JSON_Object;
-using Newtonsoft.Json;
-using CHARE_System.Class;
 
 namespace CHARE_System
-{
-    //[Activity(Label = "SignupCarActivity", MainLauncher = true, Icon = "@drawable/icon")]
-    [Activity(Label = "SignupCarActivity")]
+{    
+    [Activity(Label = "Car Details")]
     public class SignupCarActivity : Activity
     {
         private ProgressDialog progress;
@@ -111,9 +102,6 @@ namespace CHARE_System
             ArrayAdapter<string> dataAdapter = new ArrayAdapter<string>(this, Resource.Layout.Custom_Spinner_Signup, modelList);
             dataAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spnMake.Adapter = dataAdapter;
-        }
-
-
-  
+        }  
     }
 }

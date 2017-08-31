@@ -146,12 +146,10 @@
     <Compile Include="EditDriverDetailActivity.cs" />
     <Compile Include="EditPassengerDetailActivity.cs" />
     <Compile Include="JSON Object\RatingDetails.cs" />
-    <Compile Include="MapFragmentActivity.cs" />
     <Compile Include="RateListViewActivity.cs" />
     <Compile Include="RateListViewAdapter.cs" />
     <Compile Include="RequestListViewActivity.cs" />
     <Compile Include="RequestListViewAdapter.cs" />
-    <Compile Include="RouteActivity.cs" />
     <Compile Include="SearchDriverListViewActivity.cs" />
     <Compile Include="SearchDriverListViewAdapter.cs" />
     <Compile Include="InitialActivity.cs" />
@@ -199,7 +197,7 @@
     <AndroidResource Include="Resources\layout\TripConfirmation_2.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\test.axml">
+    <AndroidResource Include="Resources\layout\StartRoute.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\DayPickerDialog.axml">
@@ -395,6 +393,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_exit_to_app_black_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\carpool_logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

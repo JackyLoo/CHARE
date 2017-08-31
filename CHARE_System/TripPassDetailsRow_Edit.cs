@@ -14,8 +14,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
 using static Android.App.TimePickerDialog;
 
 namespace CHARE_System
@@ -479,8 +477,7 @@ namespace CHARE_System
             RunOnUiThread(() =>
             {
                 progress.Dismiss();
-            });
-            Console.WriteLine("===== LoadMap END");
+            });            
         }
 
         override

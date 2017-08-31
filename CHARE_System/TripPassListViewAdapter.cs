@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using CHARE_REST_API.JSON_Object;
-using Android.Gms.Common.Images;
-using CHARE_System.JSON_Object;
-using System.Globalization;
-using Newtonsoft.Json;
-using System.Net.Http;
 using CHARE_System.Class;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Net.Http;
 
 namespace CHARE_System
 {
@@ -24,11 +18,17 @@ namespace CHARE_System
         private List<TripDetails> trips;
         private static Context context;
         private HttpClient client;
+        private ProgressDialog progress;
+
         public TripPassListViewAdapter(Context c, List<TripDetails> trips)
         {
             this.trips = trips;
             context = c;
             client = RESTClient.GetClient();
+            progress = new Android.App.ProgressDialog(c);
+            progress.Indeterminate = true;
+            progress.SetProgressStyle(Android.App.ProgressDialogStyle.Spinner);
+            progress.SetCancelable(false);
         }
 
         public override TripDetails this[int position]
@@ -53,8 +53,7 @@ namespace CHARE_System
         }
         
         public override View GetView(int position, View convertView, ViewGroup parent)
-        {
-            Console.WriteLine("===== GetView Start");
+        {            
             var view = convertView;
 
             if (view == null)
@@ -165,6 +164,8 @@ namespace CHARE_System
 
                 quitCarpool.Click += async (sender2, e2) =>
                 {
+                    progress.SetMessage("Disjoining.....");
+                    progress.Show();
                     TripPassenger tp = new TripPassenger(trips[position]);                    
                     await RESTClient.QuitCarpoolPassengerAsync(context, tp);
                     Intent intent = new Intent(context, typeof(TripPassListViewActivity));
@@ -175,6 +176,8 @@ namespace CHARE_System
 
                 deleteTrip.Click += async (sender2, e2) =>
                 {
+                    progress.SetMessage("Deleting.....");
+                    progress.Show();
                     await RESTClient.DeleteTripPassengerAsync(context, trips[position].TripPassengerID);
                     Intent intent = new Intent(context, typeof(TripPassListViewActivity));
                     ((Activity)context).Finish();

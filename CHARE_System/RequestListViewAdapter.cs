@@ -1,5 +1,4 @@
-﻿using Android.App;
-using Android.Content;
+﻿using Android.Content;
 using Android.Views;
 using Android.Widget;
 using CHARE_REST_API.JSON_Object;
@@ -143,8 +142,7 @@ namespace CHARE_System
             };
 
             view.Click += (sender, e) =>
-            {                
-                Console.WriteLine("=== Check id " + requests[position].TripPassenger.Member.MemberID);
+            {                                
                 Intent intent = new Intent(context, typeof(RateListViewActivity));
                 intent.AddFlags(ActivityFlags.ReorderToFront);
                 intent.PutExtra("MemberID", requests[position].TripPassenger.Member.MemberID.ToString());

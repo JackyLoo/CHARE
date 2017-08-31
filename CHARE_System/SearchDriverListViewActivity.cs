@@ -13,10 +13,9 @@ using System.Net.Http.Headers;
 
 namespace CHARE_System
 {
-    [Activity(Label = "DriverListViewActivity")]
+    [Activity(Label = "Found Drivers")]
     public class SearchDriverListViewActivity : Activity
-    {
-        private Member user;
+    {        
         private ProgressDialog progress;
         private HttpClient client;
         private ListView listView;
@@ -36,9 +35,7 @@ namespace CHARE_System
                 Toast.MakeText(this, "Network error. Try again later.", ToastLength.Long).Show();
             else
             {
-
                 passTrip = JsonConvert.DeserializeObject<TripDetails>(Intent.GetStringExtra("Trip"));
-
                 listView = FindViewById<ListView>(Resource.Id.driver_listview);
 
                 client = new HttpClient();

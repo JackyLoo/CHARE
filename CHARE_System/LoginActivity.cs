@@ -3,26 +3,23 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 using CHARE_REST_API.JSON_Object;
+using CHARE_System.Class;
 using Newtonsoft.Json;
 using System;
 using System.Net;
 using System.Threading.Tasks;
 
 namespace CHARE_System
-{
-    //[Activity(Label = "LoginActivity", MainLauncher = true, Icon = "@drawable/icon")]
-    [Activity(Label = "LoginActivity")]
-
+{    
+    [Activity(Label = "Login")]
     public class LoginActivity : Activity
     {
         private ProgressDialog progress;
 
         private TextView tvLoginBtn;
         private TextView tvSignuplink;
-
         private EditText etUsername;
-        private EditText etPassword;
-        private CheckBox chkboxRemember;        
+        private EditText etPassword;        
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -46,6 +43,7 @@ namespace CHARE_System
             {
                 var intent = new Intent(this, typeof(SignupActivity));
                 StartActivity(intent);
+                Finish();
             };
 
             if (!etUsername.Text.ToString().Equals(""))
@@ -78,7 +76,7 @@ namespace CHARE_System
                     progress.Show();
                 });
 
-                string downloadedString = await fnDownloadString(url);
+                string downloadedString = await MapHelper.DownloadStringAsync(url);
 
                 RunOnUiThread(() =>
                 {
@@ -104,63 +102,5 @@ namespace CHARE_System
                 }
             }
         }
-        async Task<string> fnDownloadString(string strUri)
-        {
-            WebClient webclient = new WebClient();
-            string strResultData;
-            try
-            {
-                strResultData = await webclient.DownloadStringTaskAsync(new Uri(strUri));
-                Console.WriteLine(strResultData);
-            }
-            catch
-            {
-                strResultData = "Exception";
-            }
-            finally
-            {
-                webclient.Dispose();
-                webclient = null;
-            }
-
-            return strResultData;
-        }        
     }
 }
-
-/*
-            Member test = new Member();
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage responses = await client.GetAsync("http://charerestapi.azurewebsites.net/api/Members");
-            
-            if (responses.IsSuccessStatusCode)
-            {
-                test = await responses.Content.ReadAsAsync<Member>();
-                Console.WriteLine("======================== A ========================");
-                Console.WriteLine("Member iD " + test.MemberID);
-            }
-            else
-            {
-                Console.WriteLine("======================== Errir ========================");
-                Console.WriteLine("Responses" + responses.ToString());
-            }
-            */
-/*
-       if (etUsername.Text.ToString().Trim().Equals(""))            
-           etUsername.SetError("Username is required!", null);                
-       else if (etPassword.Text.ToString().Trim().Equals(""))            
-           etPassword.SetError("Password is required!", null);                           
-       else
-       {
-           string url = GetString(Resource.String.AzureAPI) + "Members?username=" + etUsername.Text.ToString() + "&password=" + etPassword.Text.ToString();
-           string downloadedString = await fnDownloadString(url);
-
-           if (downloadedString.Equals("Exception"))
-               Toast.MakeText(this, "Invalid username or password", ToastLength.Long).Show();
-           else
-           {
-               var member = JsonConvert.DeserializeObject<Member>(downloadedString);                    
-           }                
-       }
-       */

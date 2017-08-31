@@ -19,18 +19,13 @@ using Mikepenz.Typeface;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using static Android.Animation.Animator;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
-// ## Check before final deployment
-
 
 namespace CHARE_System
 {
     [Activity(Label = "CHARE_App")]
-    //[Activity(Label = "CHARE_App", MainLauncher = true, Icon = "@drawable/icon")]
-
-    // implement ILocationListener for 
+        
     public class MainActivity : ActionBarActivity, IOnMapReadyCallback, ILocationListener, Drawer.IOnDrawerItemClickListener, AccountHeader.IOnAccountHeaderListener,
         IDialogInterfaceOnClickListener, NetworkBroadcastReceiver.NetworkListener, IAnimatorListener
     {
@@ -102,14 +97,19 @@ namespace CHARE_System
                 ISharedPreferences pref = GetSharedPreferences(GetString(Resource.String.PreferenceFileName), FileCreationMode.Private);
                 var member = pref.GetString(GetString(Resource.String.PreferenceSavedMember), "");
                 user = JsonConvert.DeserializeObject<Member>(member);
+
                 var profile = new ProfileDrawerItem();
                 profile.WithName(user.username);
-                profile.WithIcon(Resource.Drawable.logo);
+                //profile.WithSelectable(false);
+                //profile.WithEnabled(false);
+                
+                
                 profile.WithIdentifier(100);
 
                 headerResult = new AccountHeaderBuilder()
-                    .WithActivity(this)
+                    .WithActivity(this)                    
                     .WithHeaderBackground(Resource.Drawable.profilebackground)
+                    .WithSelectionListEnabledForSingleProfile(false)
                     .AddProfiles(profile)
                     .WithOnAccountHeaderListener(this)
                     .WithSavedInstance(bundle)
@@ -120,15 +120,12 @@ namespace CHARE_System
                 header.WithIcon(GoogleMaterial.Icon.GmdDirectionsCar);
                 header.WithIdentifier(1);
 
+                /*
                 var secondaryDrawer = new SecondaryDrawerItem();
                 secondaryDrawer.WithName(Resource.String.Drawer_Item_About);
                 secondaryDrawer.WithIcon(GoogleMaterial.Icon.GmdInfo);
                 secondaryDrawer.WithIdentifier(2);
-
-                var requestDrawer = new SecondaryDrawerItem();
-                requestDrawer.WithName("Request");                
-                requestDrawer.WithIcon(GoogleMaterial.Icon.GmdEvent);
-                requestDrawer.WithIdentifier(3);
+                */
 
                 var logoutDrawer = new SecondaryDrawerItem();
                 logoutDrawer.WithName(Resource.String.Drawer_Item_Logout);
@@ -142,9 +139,7 @@ namespace CHARE_System
                     .WithAccountHeader(headerResult)
                     .AddDrawerItems(
                         header,
-                        new DividerDrawerItem(),
-                        secondaryDrawer,
-                        requestDrawer,
+                        new DividerDrawerItem(),                
                         logoutDrawer
                     )
                     .WithOnDrawerItemClickListener(this)
@@ -211,18 +206,14 @@ namespace CHARE_System
             {                               
                 // Get current location address and set to origin textfield                                       
                 IList<Address> addresses = geocoder.GetFromLocation(location.Latitude, location.Longitude, 1);
-                originTxt = addresses[0].SubLocality;
-                // ## Set user current latlng to Origin  
-                Console.WriteLine("======================= Write to origin autocomplete fragment");
+                originTxt = addresses[0].SubLocality;                
                 originAutocompleteFragment.SetText(addresses[0].GetAddressLine(0));
                 locationManager.RemoveUpdates(this);
             }
             catch (Exception e)
             {
-                // TODO Auto-generated catch block
-                Console.WriteLine("======================= error =============================");
-                Console.WriteLine(e.ToString());
-                Console.WriteLine("====================================================");
+                Toast.MakeText(this, "Error occur when requesting location.", ToastLength.Long).Show();
+                Toast.MakeText(this, e.ToString(), ToastLength.Long).Show();                
             }
         }   
 
@@ -234,13 +225,13 @@ namespace CHARE_System
         
         public bool OnItemClick(View view, int position, IDrawerItem drawerItem)
         {
+            Console.WriteLine("=== " + position);
             if (drawerItem != null)
             {
                 Intent intent;
                 switch (position)
                 {                    
-                    case 1:
-                        Toast.MakeText(this, "1 Clicked", ToastLength.Long).Show();
+                    case 1:                        
                         if(user.type.Equals("Passenger"))
                             intent = new Intent(this, typeof(TripPassListViewActivity));
                         else if (user.type.Equals("Driver"))
@@ -250,21 +241,15 @@ namespace CHARE_System
                         StartActivity(intent);
                         break;
                     case 3:
-                        Toast.MakeText(this, "3 Clicked", ToastLength.Long).Show();
-                        break;
-                    case 4:
-                        Toast.MakeText(this, "4 Clicked", ToastLength.Long).Show();
-                        break;
-                    case 5:
-                        Toast.MakeText(this, "5 Clicked", ToastLength.Long).Show();
-                        GetSharedPreferences(GetString(Resource.String.PreferenceFileName), FileCreationMode.Private)                            
+                        GetSharedPreferences(GetString(Resource.String.PreferenceFileName), FileCreationMode.Private)
                         .Edit()
-                        .Clear()                        
+                        .Clear()
                         .Commit();
                         intent = new Intent(this, typeof(LoginActivity));
                         StartActivity(intent);
-                        Finish();
+                        Finish();                        
                         break;
+                    
                 }
             }
             return false;
@@ -287,9 +272,7 @@ namespace CHARE_System
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
-            base.OnActivityResult(requestCode, resultCode, data);
-            Console.WriteLine("===== RequestCode");
-            Console.WriteLine("Code " + requestCode);
+            base.OnActivityResult(requestCode, resultCode, data);            
             if (resultCode == 0)
             {
                 this.Recreate();

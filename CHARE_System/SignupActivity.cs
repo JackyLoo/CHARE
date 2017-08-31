@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using CHARE_REST_API.JSON_Object;
 using Newtonsoft.Json;
+using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace CHARE_System
 {
-    //[Activity(Label = "SignupActivity", MainLauncher = true, Icon = "@drawable/icon")]
-    [Activity(Label = "SignupActivity")]
+    [Activity(Label = "Sign Up")]
     public class SignupActivity : Activity
     {
         private ProgressDialog progress;
@@ -105,6 +99,11 @@ namespace CHARE_System
                     etPassword.SetError("Password is required!", null);
                     etPassword.RequestFocus();
                 }
+                else if (!ValidatePassword(etPassword.Text.ToString().Trim()))
+                {
+                    etPassword.SetError("Password must be alphanumeric and at least 6 character!", null);
+                    etPassword.RequestFocus();
+                }
                 else if (etConPassword.Text.ToString().Trim().Equals(""))
                 {
                     etConPassword.SetError("Confirm password is required!", null);
@@ -159,9 +158,7 @@ namespace CHARE_System
                         RunOnUiThread(() =>
                         {
                             progress.Dismiss();
-                        });
-
-                        // intent.PutExtra("Trip", JsonConvert.SerializeObject(iTrip));
+                        });                        
                     }
                     else
                     {                        
@@ -179,12 +176,13 @@ namespace CHARE_System
                             var intent = new Intent(this, typeof(LoginActivity));
                             intent.SetFlags(ActivityFlags.NewTask | ActivityFlags.ClearTask);
                             StartActivity(intent);
+                            Finish();
                         }
                         RunOnUiThread(() =>
                         {
                             progress.Dismiss();
                         });
-                    }
+                    }                                        
                 }
             };
 
@@ -193,7 +191,17 @@ namespace CHARE_System
             {
                 var intent = new Intent(this, typeof(LoginActivity));
                 StartActivity(intent);
+                Finish();
             };
+        }
+
+        static bool ValidatePassword(string password)
+        {
+            Regex regex = new Regex(@"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,16}$");
+            Match match = regex.Match(password);
+            if (match.Success)
+                return true;
+            return false;
         }
 
         async Task<bool> CreateMemberAsync(Member member)

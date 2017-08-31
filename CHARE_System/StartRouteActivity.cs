@@ -6,7 +6,6 @@ using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using Android.Graphics;
 using Android.OS;
-using Android.Support.V7.App;
 using Android.Util;
 using Android.Widget;
 using CHARE_REST_API.JSON_Object;
@@ -17,9 +16,8 @@ using System;
 using System.Collections.Generic;
 
 namespace CHARE_System
-{
-    //[Activity(Label = "Test", MainLauncher = true, Icon = "@drawable/icon")]
-    [Activity(Label = "Test")]
+{    
+    [Activity(Label = "Start Route")]
     public class StartRouteActivity : Activity,
         GoogleApiClient.IConnectionCallbacks,
         GoogleApiClient.IOnConnectionFailedListener,
@@ -44,7 +42,7 @@ namespace CHARE_System
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.test);
+            SetContentView(Resource.Layout.StartRoute);
 
             progress = new Android.App.ProgressDialog(this);
             progress.Indeterminate = true;
@@ -244,13 +242,16 @@ namespace CHARE_System
                             Geofence.GeofenceTransitionExit)
                         .Build());
 
+                    /*
                     // Draw Circle    
                     w = new LatLng(double.Parse(latlng[0]), double.Parse(latlng[1]));
                     circleOptions = new CircleOptions()
                         .InvokeCenter(w)
                         .InvokeFillColor(Color.Argb(0x30, 0, 0xff, 0))
                         .InvokeRadius(Constants.GEOFENCE_RADIUS_IN_METERS);
+                        
                     mMap.AddCircle(circleOptions);
+                    */
                     i++;
                 }
             }
@@ -271,6 +272,7 @@ namespace CHARE_System
                     Geofence.GeofenceTransitionExit)
                 .Build());
 
+            /*
             // Draw Circle    
             w = new LatLng(double.Parse(latlng[0]), double.Parse(latlng[1]));
             circleOptions = new CircleOptions()
@@ -278,6 +280,7 @@ namespace CHARE_System
                 .InvokeFillColor(Color.Argb(0x30, 0, 0xff, 0))
                 .InvokeRadius(Constants.GEOFENCE_RADIUS_IN_METERS);
             mMap.AddCircle(circleOptions);
+            */
         }
 
         private async void AddGeofence()
@@ -501,9 +504,9 @@ namespace CHARE_System
         public void OnTransitionStateChange()
         {            
             if (receiver.TransitionState().Equals("Entered"))
-            {
+            {                
                 button.Enabled = true;
-                if (iTripDetail.Member.Equals("Driver"))
+                if (iTripDetail.Member.type.Equals("Driver"))
                 {                    
                     if (receiver.GeofenceIDs().Equals(iTripDetail.TripPassengers.Count.ToString()))
                     {                        

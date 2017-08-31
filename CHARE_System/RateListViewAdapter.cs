@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
+﻿using Android.Content;
 using Android.Views;
 using Android.Widget;
-using CHARE_REST_API.JSON_Object;
-using System.Net.Http;
 using CHARE_System.JSON_Object;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CHARE_System
 {
