@@ -37,7 +37,7 @@ namespace CHARE_System
         private TextView txtviewDistance;
         private TextView txtviewDuration;
         private TextView txtviewCost;
-        private Button btnConfirm;        
+        private Button btnCreate;        
         private const double dblPassengerCostKM = 0.0003;
         private const double dblDriverCostKM = 0.0010;
 
@@ -107,8 +107,7 @@ namespace CHARE_System
             tvArriveTime = (TextView)FindViewById(Resource.Id.textview_arrivetime);
             tvDay = (TextView)FindViewById(Resource.Id.textview_day);
             switchFemaleOnly = (Switch)FindViewById(Resource.Id.switch_femaleonly);            
-            spinnerSeat = (Spinner)FindViewById(Resource.Id.spinner_seat);
-            btnConfirm = (Button)FindViewById(Resource.Id.btn_tripcon_comfirm);
+            spinnerSeat = (Spinner)FindViewById(Resource.Id.spinner_seat);            
             tvArriveTime.Click += ShowTimeDialog;
             tvDay.Click += ShowDayDialog;
 
@@ -138,20 +137,35 @@ namespace CHARE_System
             txtviewDistance = (TextView)FindViewById(Resource.Id.textview_distance);
             txtviewDuration = (TextView)FindViewById(Resource.Id.textview_time);
             txtviewCost = (TextView)FindViewById(Resource.Id.textview_cost);
-            btnConfirm = (Button)FindViewById(Resource.Id.btn_tripcon_continue);
-            btnConfirm.Click += BtnConfirm_Click;
+            btnCreate = (Button)FindViewById(Resource.Id.btn_tripcon_continue);
+            btnCreate.Click += CreateClick;
         }
 
-        private async void BtnConfirm_Click(Object sender, EventArgs e)
+        private bool ValidateData()
         {
             Android.Net.ConnectivityManager cm = (Android.Net.ConnectivityManager)this.GetSystemService(Context.ConnectivityService);
             if (cm.ActiveNetworkInfo == null)
+            {
                 Toast.MakeText(this, "Network error. Try again later.", ToastLength.Long).Show();
+                return false;
+            }
             else if (tvArriveTime.Text.ToString().Equals("Set time"))
+            {
                 Toast.MakeText(this, "Set arrive time", ToastLength.Long).Show();
+                return false;
+            }
             else if (tvDay.Text.ToString().Equals("Set days") || tvDay.Text.ToString().Trim() == "")
+            {
                 Toast.MakeText(this, "Select day", ToastLength.Long).Show();
+                return false;
+            }
             else
+                return true;            
+        }
+
+        private async void CreateClick(Object sender, EventArgs e)
+        {            
+            if(ValidateData())
             {
                 iTrip.distance = distanceValue;
                 iTrip.duration = durationValue;

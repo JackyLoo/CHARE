@@ -1,12 +1,10 @@
-﻿using System;
-using Android.App;
-using Android.Gms.Location;
-using Android.Util;
+﻿using Android.App;
 using Android.Content;
-using System.Collections.Generic;
-using Android.Support.V4.App;
+using Android.Gms.Location;
 using Android.Graphics;
-using Android.Support.V4.Content;
+using Android.Support.V4.App;
+using Android.Util;
+using System.Collections.Generic;
 
 namespace CHARE_System.Class
 {
@@ -36,11 +34,7 @@ namespace CHARE_System.Class
             if (geofenceTransition == Geofence.GeofenceTransitionEnter ||
                 geofenceTransition == Geofence.GeofenceTransitionExit)
             {
-                transitionState = GetTransitionString(geofenceTransition);                
-
-                //StartActivity(new Intent(this,typeof(CommentDialogActivity)).SetFlags(ActivityFlags.NewTask));
-
-                
+                transitionState = GetTransitionString(geofenceTransition);                                                
                 IList<IGeofence> triggeringGeofences = geofencingEvent.TriggeringGeofences;
 
                 string geofenceTransitionDetails = GetGeofenceTransitionDetails(this, geofenceTransition, triggeringGeofences);                
@@ -49,6 +43,7 @@ namespace CHARE_System.Class
 
                 Log.Info(TAG, geofenceTransitionDetails);
                 transitionState = GetTransitionString(geofenceTransition);
+                // Call Geofence Broadcast Receiver
                 Intent i = new Intent("transition_change");
                 i.PutExtra("Transition", transitionState);
                 i.PutExtra("GeofenceId", GetGeofenceString(triggeringGeofences));
@@ -61,7 +56,7 @@ namespace CHARE_System.Class
             }
         }
 
-        string GetGeofenceTransitionDetails(Context context, int geofenceTransition, IList<IGeofence> triggeringGeofences)
+        private string GetGeofenceTransitionDetails(Context context, int geofenceTransition, IList<IGeofence> triggeringGeofences)
         {
             string geofenceTransitionString = GetTransitionString(geofenceTransition);
 
@@ -75,7 +70,7 @@ namespace CHARE_System.Class
             return geofenceTransitionString + ": " + triggeringGeofencesIdsString;
         }
 
-        string GetGeofenceString(IList<IGeofence> triggeringGeofences)
+        private string GetGeofenceString(IList<IGeofence> triggeringGeofences)
         {            
             var triggeringGeofencesIdsList = new List<string>();
             foreach (IGeofence geofence in triggeringGeofences)
@@ -87,7 +82,7 @@ namespace CHARE_System.Class
             return triggeringGeofencesIdsString;
         }
 
-        void SendNotification(string notificationDetails)
+        private void SendNotification(string notificationDetails)
         {
             var notificationIntent = new Intent(ApplicationContext, typeof(MainActivity));
 
@@ -116,7 +111,7 @@ namespace CHARE_System.Class
             return transitionState;
         }
 
-        string GetTransitionString(int transitionType)
+        private string GetTransitionString(int transitionType)
         {
             switch (transitionType)
             {

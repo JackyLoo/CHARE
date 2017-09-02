@@ -54,11 +54,11 @@ namespace CHARE_System
                     progress.Show();
                 });
 
-                LoadTripDetails(passTrip.TripPassengerID);
+                LoadDriverDetails(passTrip.TripPassengerID);
             }
         }
 
-        async void LoadTripDetails(int id)
+        async void LoadDriverDetails(int id)
         {            
             var models = await RESTClient.SearchTripDriversAsync(this, id);           
             RunOnUiThread(() =>

@@ -179,14 +179,5 @@ namespace CHARE_REST_API.JSON_Object
         public string phoneno { get; set; }
         public string type { get; set; }
         public double rate { get; set; }
-    }
-
-    public class Route
-    {
-        public int TripID { get; set; }
-        public int RouteID { get; set; }
-        public string PassengerTripIDs { get; set; }
-    }
-
-    
+    }    
 }

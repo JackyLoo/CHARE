@@ -1,15 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Android.Net;
+﻿using Android.Content;
+using System;
 
 namespace CHARE_System.Class
 {
@@ -27,7 +17,7 @@ namespace CHARE_System.Class
         public void SetListener(GeofenceListener listener)
         {
             this.listener = listener;
-        }
+        }   
 
         public GeofenBroadcastReceiver()
         {            
@@ -36,8 +26,7 @@ namespace CHARE_System.Class
         public override void OnReceive(Context context, Intent intent)
         {            
             transitionState = intent.GetStringExtra("Transition");
-            geofenceIds = intent.GetStringExtra("GeofenceId");
-            Console.WriteLine("===== Receiver receive message " + transitionState);
+            geofenceIds = intent.GetStringExtra("GeofenceId");            
                                     
             if (listener != null)
             {                                

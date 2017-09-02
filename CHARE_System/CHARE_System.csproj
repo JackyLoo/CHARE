@@ -143,7 +143,7 @@
     <Compile Include="Class\MapHelper.cs" />
     <Compile Include="Class\RESTClient.cs" />
     <Compile Include="CommentDialogActivity.cs" />
-    <Compile Include="EditDriverDetailActivity.cs" />
+    <Compile Include="EditDriverProfileActivity.cs" />
     <Compile Include="EditPassengerDetailActivity.cs" />
     <Compile Include="JSON Object\RatingDetails.cs" />
     <Compile Include="RateListViewActivity.cs" />
@@ -166,7 +166,6 @@
     <Compile Include="SignupCarActivity.cs" />
     <Compile Include="StartRouteActivity.cs" />
     <Compile Include="TripConfirmation_1.cs" />
-    <Compile Include="TripConfirmation_2.cs" />
     <Compile Include="TripDriverDetailsRow_Edit.cs" />
     <Compile Include="TripDriverListViewActivity.cs" />
     <Compile Include="TripDriverListViewAdapter.cs" />
@@ -192,9 +191,6 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\TripConfirmation_1.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\TripConfirmation_2.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\StartRoute.axml">

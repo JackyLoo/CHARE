@@ -50,8 +50,8 @@ namespace CHARE_System
 
         // Variables for Google Direction API
         // Sample htt://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood4&key=YOUR_API_KEY       
-        PlaceAutocompleteFragment originAutocompleteFragment;
-        PlaceAutocompleteFragment destAutocompleteFragment;
+        private PlaceAutocompleteFragment originAutocompleteFragment;
+        private PlaceAutocompleteFragment destAutocompleteFragment;
 
         private string originTxt;        
 
@@ -148,13 +148,28 @@ namespace CHARE_System
                 originAutocompleteFragment = (PlaceAutocompleteFragment)
                     FragmentManager.FindFragmentById(Resource.Id.place_autocomplete_origin_fragment);
                 originAutocompleteFragment.SetHint("Enter the origin");
-                originAutocompleteFragment.PlaceSelected += OnOriginSelectedAsync;
+                originAutocompleteFragment.PlaceSelected += OnOriginSelected;
 
                 destAutocompleteFragment = (PlaceAutocompleteFragment)
                     FragmentManager.FindFragmentById(Resource.Id.place_autocomplete_destination_fragment);
                 destAutocompleteFragment.SetHint("Enter the destination");
                 destAutocompleteFragment.PlaceSelected += OnDestinationSelected;
             }          
+        }
+
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            if (resultCode == 0)
+            {
+                this.Recreate();
+            }
+        }
+
+        protected override void OnDestroy()
+        {
+            UnregisterReceiver(receiver);
+            base.OnDestroy();
         }
 
         private void OnDestinationSelected(object sender, PlaceSelectedEventArgs e)
@@ -175,7 +190,7 @@ namespace CHARE_System
             StartActivity(intent);           
         }
         
-        private void OnOriginSelectedAsync(object sender, PlaceSelectedEventArgs e)
+        private void OnOriginSelected(object sender, PlaceSelectedEventArgs e)
         {
             mMap.Clear();
             originTxt = e.Place.NameFormatted.ToString();
@@ -259,7 +274,7 @@ namespace CHARE_System
         {
             if (user.type.Equals("Driver"))
             {
-                Intent intent = new Intent(this, typeof(EditDriverDetailActivity));
+                Intent intent = new Intent(this, typeof(EditDriverProfileActivity));
                 StartActivityForResult(intent, 0);                     
             }
             else if (user.type.Equals("Passenger"))
@@ -269,16 +284,7 @@ namespace CHARE_System
             }       
             return true;
         }
-
-        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
-        {
-            base.OnActivityResult(requestCode, resultCode, data);            
-            if (resultCode == 0)
-            {
-                this.Recreate();
-            }
-        }    
-
+        
         public void OnClick(IDialogInterface dialog, int which)
         {
             Finish();
@@ -312,10 +318,6 @@ namespace CHARE_System
 
         public void OnAnimationStart(Animator animation){}
 
-        protected override void OnDestroy()
-        {
-            UnregisterReceiver(receiver);            
-            base.OnDestroy();
-        }
+        
     }
 }

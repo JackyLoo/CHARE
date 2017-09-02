@@ -7,6 +7,7 @@ using CHARE_REST_API.JSON_Object;
 using Newtonsoft.Json;
 using CHARE_System.Class;
 using Android.Views;
+using System.Text.RegularExpressions;
 
 namespace CHARE_System
 {
@@ -14,7 +15,6 @@ namespace CHARE_System
     public class EditPassengerDetailActivity : Activity
     {
         private ProgressDialog progress;
-
         private Member user;        
         private EditText etUsername;
         private EditText etPassword;
@@ -22,6 +22,7 @@ namespace CHARE_System
         private EditText etPhone;
         private Spinner spnGender;
         private Button buttonUpdate;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             SetTheme(Android.Resource.Style.ThemeDeviceDefault);
@@ -59,49 +60,14 @@ namespace CHARE_System
                 spnGender.SetSelection(1);
             else
                 spnGender.SetSelection(2);
-            buttonUpdate.Click += UpdateDetails;
+            buttonUpdate.Click += UpdateClick;
 
             SetValidation();
         }
 
-        private async void UpdateDetails(object sender, EventArgs e)
+        private async void UpdateClick(object sender, EventArgs e)
         {
-            Android.Net.ConnectivityManager cm = (Android.Net.ConnectivityManager)this.GetSystemService(Context.ConnectivityService);
-            if (cm.ActiveNetworkInfo == null)
-                Toast.MakeText(this, "Network error. Try again later.", ToastLength.Long).Show();
-            else if (etUsername.Text.ToString().Trim().Equals(""))
-            {
-                etUsername.SetError("Username is required!", null);
-                etUsername.RequestFocus();
-            }
-            else if (etPassword.Text.ToString().Trim().Equals(""))
-            {
-                etPassword.SetError("Password is required!", null);
-                etPassword.RequestFocus();
-            }
-            else if (etConPassword.Text.ToString().Trim().Equals(""))
-            {
-                etConPassword.SetError("Confirm password is required!", null);
-                etConPassword.RequestFocus();
-            }
-            else if (!etPassword.Text.ToString().Equals(etConPassword.Text.ToString()))
-            {
-                etConPassword.SetError("Password is not same!", null);
-                etConPassword.RequestFocus();
-            }
-            else if (etPhone.Text.ToString().Trim().Equals(""))
-            {
-                etPhone.SetError("Phone is required!", null);
-                etPhone.RequestFocus();
-            }
-            else if (spnGender.SelectedItem.ToString().Equals("--Select Gender--"))
-                Toast.MakeText(this, "Select your gender.", ToastLength.Long).Show();            
-            else if (etUsername.Text.ToString().Trim().Contains(" "))
-            {
-                etUsername.SetError("Username contain space!", null);
-                etUsername.RequestFocus();
-            }
-            else
+            if(ValidateData())
             {
                 user.username = etUsername.Text.ToString().Trim();
                 user.password = etPassword.Text.ToString().Trim();
@@ -121,6 +87,76 @@ namespace CHARE_System
                     progress.Dismiss();
                 });                
             }
+        }
+
+        private bool ValidateData()
+        {
+            Android.Net.ConnectivityManager cm = (Android.Net.ConnectivityManager)this.GetSystemService(Context.ConnectivityService);
+            if (cm.ActiveNetworkInfo == null)
+            {
+                Toast.MakeText(this, "Network error. Try again later.", ToastLength.Long).Show();
+                return false;
+            }
+            else if (etUsername.Text.ToString().Trim().Equals(""))
+            {
+                etUsername.SetError("Username is required!", null);
+                etUsername.RequestFocus();
+                return false;
+            }
+            else if (etPassword.Text.ToString().Trim().Equals(""))
+            {
+                etPassword.SetError("Password is required!", null);
+                etPassword.RequestFocus();
+                return false;
+            }
+            else if (!ValidatePassword(etPassword.Text.ToString().Trim()))
+            {
+                etPassword.SetError("Password must be alphanumeric and at least 6 character!", null);
+                etPassword.RequestFocus();
+                return false;
+            }
+            else if (etConPassword.Text.ToString().Trim().Equals(""))
+            {
+                etConPassword.SetError("Confirm password is required!", null);
+                etConPassword.RequestFocus();
+                return false;
+            }
+            else if (!etPassword.Text.ToString().Equals(etConPassword.Text.ToString()))
+            {
+                etConPassword.SetError("Password is not same!", null);
+                etConPassword.RequestFocus();
+                return false;
+            }
+            else if (etPhone.Text.ToString().Trim().Equals(""))
+            {
+                etPhone.SetError("Phone is required!", null);
+                etPhone.RequestFocus();
+                return false;
+            }
+            else if (spnGender.SelectedItem.ToString().Equals("--Select Gender--"))
+            {
+                Toast.MakeText(this, "Select your gender.", ToastLength.Long).Show();
+                return false;
+            }
+            else if (etUsername.Text.ToString().Trim().Contains(" "))
+            {
+                etUsername.SetError("Username contain space!", null);
+                etUsername.RequestFocus();
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private static bool ValidatePassword(string password)
+        {
+            Regex regex = new Regex(@"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,16}$");
+            Match match = regex.Match(password);
+            if (match.Success)
+                return true;
+            return false;
         }
 
         private void SetValidation()

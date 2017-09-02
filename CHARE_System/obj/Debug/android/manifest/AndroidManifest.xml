@@ -13,7 +13,7 @@
     <meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/GoogleKey" />
     <service android:name=".GeofenceTransitionsIntentService" />
     <activity android:label="Rate" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.CommentDialogActivity" />
-    <activity android:label="Edit Account" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.EditDriverDetailActivity" />
+    <activity android:label="Edit Account" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.EditDriverProfileActivity" />
     <activity android:label="Edit Account" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.EditPassengerDetailActivity" />
     <activity android:label="Ratings" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.RateListViewActivity" />
     <activity android:label="RequestListViewActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.RequestListViewActivity" />
@@ -30,7 +30,6 @@
     <activity android:label="Car Details" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.SignupCarActivity" />
     <activity android:label="Start Route" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.StartRouteActivity" />
     <activity android:label="Route Details" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.TripConfirmation_1" />
-    <activity android:label="Set Route" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.TripConfirmation_2" />
     <activity android:label="Edit" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.TripDriverDetailsRow_Edit" />
     <activity android:label="Trips" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.TripDriverListViewActivity" />
     <activity android:label="TripPassDetailsRow_Edit" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.TripPassDetailsRow_Edit" />

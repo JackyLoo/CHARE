@@ -43,7 +43,6 @@ C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\signup.xml
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\login.xml
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\tripconfirmation_1.xml
-C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\tripconfirmation_2.xml
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\daypickerdialog.xml
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\drawable\toggle_fri.xml
 C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\drawable\toggle_mon.xml
@@ -116,6 +115,6 @@ C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\
 C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\drawable\ic_exit_to_app_black_24dp.png
 C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\layout\startroute.xml
 C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\res\drawable\carpool_logo.png
-C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\bin\Debug\CHARE_System.dll.mdb
-C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\android\assets\CHARE_System.dll.mdb
-C:\Users\WeiKei\Documents\Visual Studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\CHARE_System.csprojResolveAssemblyReference.cache
+C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\CHARE_System.csprojResolveAssemblyReference.cache
+C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\bin\Debug\CHARE_System.dll.mdb
+C:\Users\WeiKei\documents\visual studio 2017\Projects\CHARE_System\CHARE_System\obj\Debug\android\assets\CHARE_System.dll.mdb

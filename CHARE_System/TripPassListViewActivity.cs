@@ -17,8 +17,7 @@ namespace CHARE_System
     public class TripPassListViewActivity : Activity
     {
         private Member user;
-        private ProgressDialog progress;
-        private HttpClient client;
+        private ProgressDialog progress;        
         private ListView listView;
         private List<TripDetails> listTrips;
 
@@ -37,11 +36,6 @@ namespace CHARE_System
             else
             {
                 listView = FindViewById<ListView>(Resource.Id.trip_pass_listview);
-
-                client = new HttpClient();
-                client.BaseAddress = new Uri(GetString(Resource.String.RestAPIBaseAddress));
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 progress = new Android.App.ProgressDialog(this);
                 progress.Indeterminate = true;

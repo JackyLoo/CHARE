@@ -69,14 +69,14 @@ namespace CHARE_System
             }
             else
             {
-                string url = GetString(Resource.String.AzureAPI) + "Members?username=" + etUsername.Text.ToString() + "&password=" + etPassword.Text.ToString();
+                //string url = GetString(Resource.String.AzureAPI) + "Members?username=" + etUsername.Text.ToString() + "&password=" + etPassword.Text.ToString();
 
                 RunOnUiThread(() =>
                 {
                     progress.Show();
                 });
 
-                string downloadedString = await MapHelper.DownloadStringAsync(url);
+                string downloadedString = await RESTClient.LoginMemberAsync(etUsername.Text.ToString(),etPassword.Text.ToString());
 
                 RunOnUiThread(() =>
                 {

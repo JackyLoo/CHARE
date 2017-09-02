@@ -1,10 +1,9 @@
-﻿using System;
-using Android.Content;
+﻿using Android.Content;
 using Android.Gms.Location;
 
 namespace CHARE_System.Class
 {
-	public static class GeofenceErrorMessages
+    public static class GeofenceErrorMessages
 	{
 		public static string GetErrorString (Context context, int errorCode)
 		{

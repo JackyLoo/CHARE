@@ -22,10 +22,7 @@ namespace CHARE_System.Class
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
-        public static HttpClient GetClient()
-        {
-            return client;
-        }
+        
 
         // Carmodel
         public static async Task<string[]> GetCarmodelAsync(Context c)
@@ -64,6 +61,21 @@ namespace CHARE_System.Class
 
 
         // Member
+        public static async Task<string> LoginMemberAsync(string name, string password)
+        {
+            var make = "Exception";
+            HttpResponseMessage response = await client.GetAsync("api/Members?username=" + name+"&password="+password);
+            Console.WriteLine("=== " + response.StatusCode);
+            Console.WriteLine("=== " + response.RequestMessage);
+            Console.WriteLine("=== " + response.Content);
+            Console.WriteLine("=== " + response.Headers);
+            if (response.IsSuccessStatusCode)
+            {
+                make = await response.Content.ReadAsStringAsync();
+            }
+            return make;            
+        }
+
         public static async Task UpdateMemberAsync(Context c, Member member)
         {
             HttpResponseMessage response = await client.PutAsJsonAsync("api/Members?id=" +
@@ -270,7 +282,23 @@ namespace CHARE_System.Class
             }            
             return make;
         }
-        
+
+        public static async Task<string> GetTripPassengerListAsync(Context c, int id)
+        {
+            var make = "";
+            HttpResponseMessage response = await client.GetAsync("api/TripPassengers?id=" + id + "&type=List");
+
+            if (response.IsSuccessStatusCode)
+            {
+                make = await response.Content.ReadAsStringAsync();
+                if (make == null)
+                    Toast.MakeText(c, "You haven't created a trip yet. Create one today and get yourself a carpool partner", ToastLength.Short).Show();
+            }
+            else
+                Toast.MakeText(c, "Failed to load trips.", ToastLength.Short).Show();
+            return make;
+        }
+
         public static async Task QuitCarpoolPassengerAsync(Context c, TripPassenger tripPassenger)
         {
             string tripDriverID = tripPassenger.TripDriverID.ToString();
@@ -301,21 +329,7 @@ namespace CHARE_System.Class
                 Toast.MakeText(c, "Failed to update.", ToastLength.Short).Show();            
         }
 
-        public static async Task<string> GetTripPassengerListAsync(Context c, int id)
-        {            
-            var make = "";
-            HttpResponseMessage response = await client.GetAsync("api/TripPassengers?id=" + id + "&type=List");
-
-            if (response.IsSuccessStatusCode)
-            {
-                make = await response.Content.ReadAsStringAsync();
-                if(make==null)
-                    Toast.MakeText(c, "You haven't created a trip yet. Create one today and get yourself a carpool partner", ToastLength.Short).Show();
-            }
-            else            
-                Toast.MakeText(c, "Failed to load trips.", ToastLength.Short).Show();                                    
-            return make;            
-        }
+        
 
         public static async Task DeleteTripPassengerAsync(Context c, int id)
         {            
@@ -398,4 +412,4 @@ namespace CHARE_System.Class
                 Toast.MakeText(c, "Failed to cancel request.", ToastLength.Short).Show();
         }
     }
-}
+}   

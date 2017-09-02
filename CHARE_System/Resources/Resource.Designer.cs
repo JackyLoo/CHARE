@@ -3593,9 +3593,6 @@ namespace CHARE_System
 			// aapt resource value: 0x7f090071
 			public const int btn_submit = 2131296369;
 			
-			// aapt resource value: 0x7f090104
-			public const int btn_tripcon_comfirm = 2131296516;
-			
 			// aapt resource value: 0x7f090102
 			public const int btn_tripcon_continue = 2131296514;
 			
@@ -3677,8 +3674,8 @@ namespace CHARE_System
 			// aapt resource value: 0x7f09006b
 			public const int delete = 2131296363;
 			
-			// aapt resource value: 0x7f09010c
-			public const int dest_layout = 2131296524;
+			// aapt resource value: 0x7f09010a
+			public const int dest_layout = 2131296522;
 			
 			// aapt resource value: 0x7f0900d7
 			public const int destination = 2131296471;
@@ -3821,8 +3818,8 @@ namespace CHARE_System
 			// aapt resource value: 0x7f0900d3
 			public const int listview = 2131296467;
 			
-			// aapt resource value: 0x7f090127
-			public const int listview_background_shape = 2131296551;
+			// aapt resource value: 0x7f090125
+			public const int listview_background_shape = 2131296549;
 			
 			// aapt resource value: 0x7f0900fb
 			public const int lnlyt_tripcon_continue = 2131296507;
@@ -3974,8 +3971,8 @@ namespace CHARE_System
 			// aapt resource value: 0x7f0900d5
 			public const int origin = 2131296469;
 			
-			// aapt resource value: 0x7f09010a
-			public const int origin_layout = 2131296522;
+			// aapt resource value: 0x7f090108
+			public const int origin_layout = 2131296520;
 			
 			// aapt resource value: 0x7f090044
 			public const int parentPanel = 2131296324;
@@ -4205,23 +4202,23 @@ namespace CHARE_System
 			// aapt resource value: 0x7f0900f7
 			public const int textview_day = 2131296503;
 			
-			// aapt resource value: 0x7f09010d
-			public const int textview_dest = 2131296525;
+			// aapt resource value: 0x7f09010b
+			public const int textview_dest = 2131296523;
 			
 			// aapt resource value: 0x7f0900fd
 			public const int textview_distance = 2131296509;
 			
-			// aapt resource value: 0x7f090109
-			public const int textview_member = 2131296521;
+			// aapt resource value: 0x7f090107
+			public const int textview_member = 2131296519;
 			
-			// aapt resource value: 0x7f090108
-			public const int textview_member_title = 2131296520;
+			// aapt resource value: 0x7f090106
+			public const int textview_member_title = 2131296518;
 			
 			// aapt resource value: 0x7f09006a
 			public const int textview_name = 2131296362;
 			
-			// aapt resource value: 0x7f09010b
-			public const int textview_origin = 2131296523;
+			// aapt resource value: 0x7f090109
+			public const int textview_origin = 2131296521;
 			
 			// aapt resource value: 0x7f0900ff
 			public const int textview_time = 2131296511;
@@ -4274,92 +4271,89 @@ namespace CHARE_System
 			// aapt resource value: 0x7f09004d
 			public const int topPanel = 2131296333;
 			
-			// aapt resource value: 0x7f09011b
-			public const int tripPassDetailsRow_layout = 2131296539;
-			
-			// aapt resource value: 0x7f09011a
-			public const int trip_driver_listview = 2131296538;
-			
 			// aapt resource value: 0x7f090119
-			public const int trip_driver_row_button = 2131296537;
-			
-			// aapt resource value: 0x7f090117
-			public const int trip_driver_row_cost = 2131296535;
-			
-			// aapt resource value: 0x7f090113
-			public const int trip_driver_row_day = 2131296531;
-			
-			// aapt resource value: 0x7f090112
-			public const int trip_driver_row_destination = 2131296530;
-			
-			// aapt resource value: 0x7f090114
-			public const int trip_driver_row_distance = 2131296532;
-			
-			// aapt resource value: 0x7f090115
-			public const int trip_driver_row_duration = 2131296533;
-			
-			// aapt resource value: 0x7f09010f
-			public const int trip_driver_row_female = 2131296527;
-			
-			// aapt resource value: 0x7f090110
-			public const int trip_driver_row_origin = 2131296528;
+			public const int tripPassDetailsRow_layout = 2131296537;
 			
 			// aapt resource value: 0x7f090118
-			public const int trip_driver_row_seat = 2131296536;
+			public const int trip_driver_listview = 2131296536;
 			
-			// aapt resource value: 0x7f090116
-			public const int trip_driver_row_time = 2131296534;
+			// aapt resource value: 0x7f090117
+			public const int trip_driver_row_button = 2131296535;
+			
+			// aapt resource value: 0x7f090115
+			public const int trip_driver_row_cost = 2131296533;
 			
 			// aapt resource value: 0x7f090111
-			public const int trip_driver_row_to = 2131296529;
+			public const int trip_driver_row_day = 2131296529;
 			
-			// aapt resource value: 0x7f090103
-			public const int trip_linearlyt_seat = 2131296515;
+			// aapt resource value: 0x7f090110
+			public const int trip_driver_row_destination = 2131296528;
+			
+			// aapt resource value: 0x7f090112
+			public const int trip_driver_row_distance = 2131296530;
+			
+			// aapt resource value: 0x7f090113
+			public const int trip_driver_row_duration = 2131296531;
+			
+			// aapt resource value: 0x7f09010d
+			public const int trip_driver_row_female = 2131296525;
 			
 			// aapt resource value: 0x7f09010e
-			public const int trip_pass_edit_edit_continue = 2131296526;
+			public const int trip_driver_row_origin = 2131296526;
 			
-			// aapt resource value: 0x7f090106
-			public const int trip_pass_edit_edit_dest_fragment = 2131296518;
+			// aapt resource value: 0x7f090116
+			public const int trip_driver_row_seat = 2131296534;
+			
+			// aapt resource value: 0x7f090114
+			public const int trip_driver_row_time = 2131296532;
+			
+			// aapt resource value: 0x7f09010f
+			public const int trip_driver_row_to = 2131296527;
+			
+			// aapt resource value: 0x7f09010c
+			public const int trip_pass_edit_edit_continue = 2131296524;
+			
+			// aapt resource value: 0x7f090104
+			public const int trip_pass_edit_edit_dest_fragment = 2131296516;
+			
+			// aapt resource value: 0x7f090103
+			public const int trip_pass_edit_edit_origin_fragment = 2131296515;
 			
 			// aapt resource value: 0x7f090105
-			public const int trip_pass_edit_edit_origin_fragment = 2131296517;
-			
-			// aapt resource value: 0x7f090107
-			public const int trip_pass_edit_googlemap = 2131296519;
-			
-			// aapt resource value: 0x7f090126
-			public const int trip_pass_listview = 2131296550;
-			
-			// aapt resource value: 0x7f090125
-			public const int trip_row_button = 2131296549;
+			public const int trip_pass_edit_googlemap = 2131296517;
 			
 			// aapt resource value: 0x7f090124
-			public const int trip_row_cost = 2131296548;
-			
-			// aapt resource value: 0x7f090120
-			public const int trip_row_day = 2131296544;
-			
-			// aapt resource value: 0x7f09011f
-			public const int trip_row_destination = 2131296543;
-			
-			// aapt resource value: 0x7f090121
-			public const int trip_row_distance = 2131296545;
-			
-			// aapt resource value: 0x7f090122
-			public const int trip_row_duration = 2131296546;
-			
-			// aapt resource value: 0x7f09011c
-			public const int trip_row_female = 2131296540;
-			
-			// aapt resource value: 0x7f09011d
-			public const int trip_row_origin = 2131296541;
+			public const int trip_pass_listview = 2131296548;
 			
 			// aapt resource value: 0x7f090123
-			public const int trip_row_time = 2131296547;
+			public const int trip_row_button = 2131296547;
+			
+			// aapt resource value: 0x7f090122
+			public const int trip_row_cost = 2131296546;
 			
 			// aapt resource value: 0x7f09011e
-			public const int trip_row_to = 2131296542;
+			public const int trip_row_day = 2131296542;
+			
+			// aapt resource value: 0x7f09011d
+			public const int trip_row_destination = 2131296541;
+			
+			// aapt resource value: 0x7f09011f
+			public const int trip_row_distance = 2131296543;
+			
+			// aapt resource value: 0x7f090120
+			public const int trip_row_duration = 2131296544;
+			
+			// aapt resource value: 0x7f09011a
+			public const int trip_row_female = 2131296538;
+			
+			// aapt resource value: 0x7f09011b
+			public const int trip_row_origin = 2131296539;
+			
+			// aapt resource value: 0x7f090121
+			public const int trip_row_time = 2131296545;
+			
+			// aapt resource value: 0x7f09011c
+			public const int trip_row_to = 2131296540;
 			
 			// aapt resource value: 0x7f090009
 			public const int up = 2131296265;
@@ -4703,22 +4697,19 @@ namespace CHARE_System
 			public const int TripConfirmation_1 = 2130903132;
 			
 			// aapt resource value: 0x7f03005d
-			public const int TripConfirmation_2 = 2130903133;
+			public const int TripDetailsRow_Edit = 2130903133;
 			
 			// aapt resource value: 0x7f03005e
-			public const int TripDetailsRow_Edit = 2130903134;
+			public const int TripDriverDetailsRow = 2130903134;
 			
 			// aapt resource value: 0x7f03005f
-			public const int TripDriverDetailsRow = 2130903135;
+			public const int TripDriverListView = 2130903135;
 			
 			// aapt resource value: 0x7f030060
-			public const int TripDriverListView = 2130903136;
+			public const int TripPassDetailsRow = 2130903136;
 			
 			// aapt resource value: 0x7f030061
-			public const int TripPassDetailsRow = 2130903137;
-			
-			// aapt resource value: 0x7f030062
-			public const int TripPassListView = 2130903138;
+			public const int TripPassListView = 2130903137;
 			
 			static Layout()
 			{

@@ -16,15 +16,13 @@ namespace CHARE_System
     class TripDriverListViewAdapter : BaseAdapter<TripDetails>
     {
         private static Context context;
-        private List<TripDetails> trips;        
-        private HttpClient client;
+        private List<TripDetails> trips;                
         private ProgressDialog progress;
 
         public TripDriverListViewAdapter(Context c, List<TripDetails> trips)
         {
             this.trips = trips;
-            context = c;
-            client = RESTClient.GetClient();
+            context = c;            
             progress = new Android.App.ProgressDialog(c);
             progress.Indeterminate = true;
             progress.SetProgressStyle(Android.App.ProgressDialogStyle.Spinner);            

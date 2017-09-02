@@ -214,7 +214,7 @@ namespace CHARE_System
             }            
         }
 
-        public void StartRoute(Object sender, EventArgs e)
+        private void StartRoute(Object sender, EventArgs e)
         {
             Intent intent = new Intent(this, typeof(StartRouteActivity));
             intent.PutExtra("Trip", Intent.GetStringExtra("Trip"));

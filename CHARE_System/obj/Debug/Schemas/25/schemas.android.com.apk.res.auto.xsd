@@ -2,7 +2,7 @@
 <xs:schema xmlns:app="http://schemas.android.com/apk/res-auto" attributeFormDefault="qualified" targetNamespace="http://schemas.android.com/apk/res-auto" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation>v25</xs:documentation>
-    <xs:documentation>29/8/2017 9:29:25 PM</xs:documentation>
+    <xs:documentation>2/9/2017 2:29:31 PM</xs:documentation>
   </xs:annotation>
   <xs:attribute name="allowStacking">
     <xs:annotation>
@@ -600,6 +600,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -1018,6 +1019,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -1436,6 +1438,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -1854,6 +1857,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -2500,6 +2504,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -2963,6 +2968,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -3800,6 +3806,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -4315,6 +4322,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -4733,6 +4741,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -5313,6 +5322,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -5734,6 +5744,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -6152,6 +6163,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -8100,6 +8112,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -8746,6 +8759,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -9164,6 +9178,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -10046,6 +10061,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -10962,6 +10978,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -11878,6 +11895,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -12563,6 +12581,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -13196,6 +13215,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -13991,6 +14011,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -14624,6 +14645,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -15231,6 +15253,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -15811,6 +15834,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -16826,6 +16850,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -17244,6 +17269,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -17662,6 +17688,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -18287,6 +18314,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -18854,6 +18882,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -19272,6 +19301,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -19865,6 +19895,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -20445,6 +20476,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -21374,6 +21406,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -22248,6 +22281,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -24954,6 +24988,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -25883,6 +25918,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />
@@ -26831,6 +26867,7 @@
             <xs:enumeration value="@drawable/angle2" />
             <xs:enumeration value="@drawable/background" />
             <xs:enumeration value="@drawable/bag" />
+            <xs:enumeration value="@drawable/carpool_logo" />
             <xs:enumeration value="@drawable/circleangle" />
             <xs:enumeration value="@drawable/common_full_open_on_phone" />
             <xs:enumeration value="@drawable/common_google_signin_btn_icon_dark" />

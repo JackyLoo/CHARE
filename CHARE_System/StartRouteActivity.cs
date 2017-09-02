@@ -96,7 +96,7 @@ namespace CHARE_System
                 .Commit();
         }
 
-        protected void BuildGoogleApiClient()
+        private void BuildGoogleApiClient()
         {
             mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .AddConnectionCallbacks(this)
@@ -132,7 +132,7 @@ namespace CHARE_System
             Log.Info(TAG, "Connection failed: ConnectionResult.getErrorCode() = " + result.ErrorCode);
         }
 
-        public async void CreateGeofences()
+        private async void CreateGeofences()
         {
             if (!mGoogleApiClient.IsConnected)
             {
@@ -219,7 +219,7 @@ namespace CHARE_System
             return PendingIntent.GetService(this, 0, intent, PendingIntentFlags.UpdateCurrent);
         }
 
-        public void PopulateGeofenceList()
+        private void PopulateGeofenceList()
         {
             LatLng w;
             CircleOptions circleOptions;

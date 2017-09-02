@@ -359,7 +359,7 @@ namespace CHARE_System
             Finish();
         }
 
-            public async void UpdateTripDetail(Object sender, EventArgs e)
+        public async void UpdateTripDetail(Object sender, EventArgs e)
         {
             Android.Net.ConnectivityManager cm = (Android.Net.ConnectivityManager)this.GetSystemService(Context.ConnectivityService);
             if (cm.ActiveNetworkInfo == null)
