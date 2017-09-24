@@ -18,9 +18,10 @@ using static Android.App.TimePickerDialog;
 
 namespace CHARE_System
 {
-    [Activity(Label = "Edit")]
+    [Activity(Label = "Trip")]
     public class TripDriverDetailsRow_Edit : Activity, IOnMapReadyCallback, IOnTimeSetListener
     {
+        
         private ProgressDialog progress;
         private TripDetails iTripDetail;
         private LatLng originLatLng;
@@ -146,10 +147,25 @@ namespace CHARE_System
             txtviewDuration.Text = iTripDetail.durationStr;
             tvArriveTime.Text = strTime;
             tvDay.Text = iTripDetail.days;
-            if (iTripDetail.femaleOnly.Equals("Yes"))
+            
+            // Deserialize the member object
+            ISharedPreferences pref = GetSharedPreferences(GetString(Resource.String.PreferenceFileName), FileCreationMode.Private);
+            var member = pref.GetString(GetString(Resource.String.PreferenceSavedMember), "");
+            Member iMember = JsonConvert.DeserializeObject<Member>(member);
+
+            if (iMember.gender.Equals("Male"))
+                switchFemaleOnly.Enabled = false;
+            else if (iTripDetail.femaleOnly.Equals("Yes"))
                 switchFemaleOnly.Checked = true;
             else
-                switchFemaleOnly.Checked = false;            
+                switchFemaleOnly.Checked = false;
+
+            
+
+            for (int i = 0; i < iTripDetail.TripPassengers.Count; i++)
+            {
+                Console.WriteLine("=== passenger " + iTripDetail.TripPassengers[i].origin);
+            }
 
             // Set available seat string array to adapter
             var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.trip_available_seat,

@@ -1,6 +1,7 @@
 ﻿using Android.Content;
 using Android.Widget;
 using CHARE_REST_API.JSON_Object;
+using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -10,7 +11,8 @@ namespace CHARE_System.Class
 {
     class RESTClient
     {
-        private static HttpClient client;        
+        private static HttpClient client;
+        
         public RESTClient()
         {
             
@@ -21,16 +23,14 @@ namespace CHARE_System.Class
             client.BaseAddress = new Uri("http://charerestapi.azurewebsites.net/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-        }
-        
+        }        
 
         // Carmodel
         public static async Task<string[]> GetCarmodelAsync(Context c)
         {
             var make = "";
-            string[] list = null;
-
-            HttpResponseMessage response = await client.GetAsync("api/CarModels");
+            string[] list = null;            
+            HttpResponseMessage response = await client.GetAsync("api/CarModels");            
             if (response.IsSuccessStatusCode)
             {
                 make = await response.Content.ReadAsStringAsync();
@@ -59,8 +59,26 @@ namespace CHARE_System.Class
             return list;
         }
 
-
         // Member
+        public static async Task<Member> GetDriverProfileAsync(Context c, int id)
+        {
+            Member member = new Member();
+            var make = "";
+            HttpResponseMessage response = await client.GetAsync("api/Members?id=" + id);          
+            if (response.IsSuccessStatusCode)
+            {
+                make = await response.Content.ReadAsStringAsync();
+                if (make == null)
+                    Toast.MakeText(c, "The driver profile is empty.", ToastLength.Short).Show();
+            }
+            else
+                Toast.MakeText(c, "Failed to load driver profile.", ToastLength.Short).Show();
+            
+            member = JsonConvert.DeserializeObject<Member>(make);
+            member.Vehicles.RemoveAll(item => item.plateNo == null);
+            return member;
+        }
+
         public static async Task<string> LoginMemberAsync(string name, string password)
         {
             var make = "Exception";
@@ -327,9 +345,7 @@ namespace CHARE_System.Class
                 Toast.MakeText(c, "Updated trip details.", ToastLength.Short).Show();
             else
                 Toast.MakeText(c, "Failed to update.", ToastLength.Short).Show();            
-        }
-
-        
+        }        
 
         public static async Task DeleteTripPassengerAsync(Context c, int id)
         {            
@@ -358,17 +374,8 @@ namespace CHARE_System.Class
         }        
        
         public static async Task AcceptRequestAsync(Context c, Request request)
-        {
-            if(request.TripDriver.PassengerIDs != null)
-                request.TripDriver.PassengerIDs = request.TripDriver.PassengerIDs +","+request.TripPassenger.TripPassengerID.ToString();            
-            else
-                request.TripDriver.PassengerIDs = request.TripPassenger.TripPassengerID.ToString();
-            request.TripPassenger.TripDriverID = request.TripDriver.TripDriverID;
-            await UpdateTripDriverAsync(request.TripDriver);
-            await UpdateTripPassengerAsync(request.TripPassenger);
-
-            HttpResponseMessage response = await client.PutAsJsonAsync("api/Requests?id=" +
-                request.RequestID, request);
+        {            
+            HttpResponseMessage response = await client.PutAsJsonAsync("api/Requests?id=" + request.RequestID+"&type=Accept", request);
             if (response.IsSuccessStatusCode)                          
                 Toast.MakeText(c, "Request accepted.", ToastLength.Short).Show();            
             else

@@ -112,7 +112,7 @@ namespace CHARE_System
 
             int totalPassenger = 0;
             int totalSeat = trips[position].availableSeat;
-            if (trips[position].PassengerIDs != null)
+            if (trips[position].PassengerIDs != null && !String.IsNullOrEmpty(trips[position].PassengerIDs))
             {
                 string[] passengers = trips[position].PassengerIDs.Split(',');
                 totalPassenger = passengers.Count();                

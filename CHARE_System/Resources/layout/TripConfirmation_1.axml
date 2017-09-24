@@ -9,7 +9,7 @@
         android:layout_width="fill_parent"
         android:layout_height="0dip"
         android:orientation="vertical"
-        android:layout_weight="5.5">
+        android:layout_weight="4.5">
         <fragment
             android:id="@+id/googlemap"
             class="com.google.android.gms.maps.MapFragment"
@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:orientation="vertical"
-        android:layout_weight="4.5"
+        android:layout_weight="5.5"
         android:background="#efefef"
         android:minWidth="25px"
         android:minHeight="25px">
@@ -32,6 +32,60 @@
             android:background="#ffffff"
             android:layout_marginTop="3dp"
             android:paddingTop="7dp">
+            <LinearLayout
+                android:id="@+id/origin_layout"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:layout_marginBottom="3dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp">
+                <TextView
+                    android:text="Origin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="#000000" />
+                <TextView
+                    android:id="@+id/textview_origin"
+                    android:text="Loading origin..."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="#565656"
+                    android:gravity="right"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:maxEms="8" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/dest_layout"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp">
+                <TextView
+                    android:text="Destination"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="#000000" />
+                <TextView
+                    android:id="@+id/textview_dest"
+                    android:text="Loading destination..."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="#565656"
+                    android:gravity="right"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:maxEms="8" />
+            </LinearLayout>
             <LinearLayout
                 android:id="@+id/arrivetime_layout"
                 android:orientation="horizontal"
@@ -130,7 +184,7 @@
                     android:drawablePadding="12dp"
                     android:drawableRight="@drawable/right_arrow_small"
                     android:textColor="#000000"
-                    android:gravity="right"    
+                    android:gravity="right"
                     android:background="#ffffff"
                     android:layout_weight="1" />
             </LinearLayout>

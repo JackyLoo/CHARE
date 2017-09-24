@@ -13,10 +13,11 @@
     <meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/GoogleKey" />
     <service android:name=".GeofenceTransitionsIntentService" />
     <activity android:label="Rate" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.CommentDialogActivity" />
+    <activity android:label="Profile" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.ViewDriverProfileActivity" />
     <activity android:label="Edit Account" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.EditDriverProfileActivity" />
     <activity android:label="Edit Account" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.EditPassengerDetailActivity" />
     <activity android:label="Ratings" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.RateListViewActivity" />
-    <activity android:label="RequestListViewActivity" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.RequestListViewActivity" />
+    <activity android:label="Request" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.RequestListViewActivity" />
     <activity android:label="Found Drivers" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.SearchDriverListViewActivity" />
     <activity android:icon="@drawable/carpool_logo" android:label="CHARE" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.InitialActivity">
       <intent-filter>
@@ -25,14 +26,14 @@
       </intent-filter>
     </activity>
     <activity android:label="Login" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.LoginActivity" />
-    <activity android:label="CHARE_App" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.MainActivity" />
+    <activity android:label="CHARE" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.MainActivity" />
     <activity android:label="Sign Up" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.SignupActivity" />
     <activity android:label="Car Details" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.SignupCarActivity" />
     <activity android:label="Start Route" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.StartRouteActivity" />
-    <activity android:label="Route Details" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.TripConfirmation_1" />
-    <activity android:label="Edit" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.TripDriverDetailsRow_Edit" />
+    <activity android:label="Plan Your Trip" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.TripConfirmation_1" />
+    <activity android:label="Trip" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.TripDriverDetailsRow_Edit" />
     <activity android:label="Trips" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.TripDriverListViewActivity" />
-    <activity android:label="TripPassDetailsRow_Edit" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.TripPassDetailsRow_Edit" />
+    <activity android:label="Trip" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.TripPassDetailsRow_Edit" />
     <activity android:label="Trips" android:name="md5e8fccd3fcd8f74a82435f3bbd25804a2.TripPassListViewActivity" />
     <service android:name="md541ca4e12fba73a4136b4b984fc3acd42.GeofenceTransitionsIntentService" />
     <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="CHARE_System.CHARE_System.mono.MonoRuntimeProvider.__mono_init__" />

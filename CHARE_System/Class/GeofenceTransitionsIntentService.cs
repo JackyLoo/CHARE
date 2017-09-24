@@ -4,6 +4,7 @@ using Android.Gms.Location;
 using Android.Graphics;
 using Android.Support.V4.App;
 using Android.Util;
+using System;
 using System.Collections.Generic;
 
 namespace CHARE_System.Class
@@ -12,10 +13,8 @@ namespace CHARE_System.Class
     public class GeofenceTransitionsIntentService : IntentService
     {        
         private string transitionState;
-        
-        protected const string TAG = "geofence-transitions-service";
-        
-        public GeofenceTransitionsIntentService() : base(TAG)
+                        
+        public GeofenceTransitionsIntentService() : base()
         {
         }        
 
@@ -25,7 +24,7 @@ namespace CHARE_System.Class
             if (geofencingEvent.HasError)
             {
                 var errorMessage = GeofenceErrorMessages.GetErrorString(this, geofencingEvent.ErrorCode);
-                Log.Error(TAG, errorMessage);
+                Console.WriteLine(errorMessage);
                 return;
             }
 
@@ -36,24 +35,14 @@ namespace CHARE_System.Class
             {
                 transitionState = GetTransitionString(geofenceTransition);                                                
                 IList<IGeofence> triggeringGeofences = geofencingEvent.TriggeringGeofences;
-
-                string geofenceTransitionDetails = GetGeofenceTransitionDetails(this, geofenceTransition, triggeringGeofences);                
-
-                SendNotification(geofenceTransitionDetails);                
-
-                Log.Info(TAG, geofenceTransitionDetails);
+                string geofenceTransitionDetails = GetGeofenceTransitionDetails(this, geofenceTransition, triggeringGeofences);                                                
                 transitionState = GetTransitionString(geofenceTransition);
                 // Call Geofence Broadcast Receiver
                 Intent i = new Intent("transition_change");
                 i.PutExtra("Transition", transitionState);
                 i.PutExtra("GeofenceId", GetGeofenceString(triggeringGeofences));
                 SendBroadcast(i);
-            }
-            else
-            {
-                // Log the error.
-                Log.Error(TAG, GetString(Resource.String.geofence_transition_invalid_type, new[] { new Java.Lang.Integer(geofenceTransition) }));
-            }
+            }   
         }
 
         private string GetGeofenceTransitionDetails(Context context, int geofenceTransition, IList<IGeofence> triggeringGeofences)

@@ -17,7 +17,7 @@ using static Android.App.TimePickerDialog;
 
 namespace CHARE_System
 {
-    [Activity(Label = "Route Details")]
+    [Activity(Label = "Plan Your Trip")]
     public class TripConfirmation_1 : Activity, IOnMapReadyCallback, IOnTimeSetListener
     {
         private ProgressDialog progress;
@@ -42,6 +42,8 @@ namespace CHARE_System
         private const double dblDriverCostKM = 0.0010;
 
         // Lower        
+        private TextView tvOrigin;
+        private TextView tvDestination;
         private TextView tvArriveTime;
         private TextView tvDay;
         private Switch switchFemaleOnly;                
@@ -104,12 +106,19 @@ namespace CHARE_System
             LinearLayout lowerContainer = (LinearLayout)FindViewById(Resource.Id.lower_container);
             LinearLayout seatLayout = (LinearLayout)FindViewById(Resource.Id.availableSeat_layout);
 
+            tvOrigin = (TextView)FindViewById(Resource.Id.textview_origin);
+            tvDestination = (TextView)FindViewById(Resource.Id.textview_dest);
             tvArriveTime = (TextView)FindViewById(Resource.Id.textview_arrivetime);
             tvDay = (TextView)FindViewById(Resource.Id.textview_day);
             switchFemaleOnly = (Switch)FindViewById(Resource.Id.switch_femaleonly);            
             spinnerSeat = (Spinner)FindViewById(Resource.Id.spinner_seat);            
             tvArriveTime.Click += ShowTimeDialog;
             tvDay.Click += ShowDayDialog;
+
+            tvOrigin.Text = iTrip.origin;
+            tvDestination.Text = iTrip.destination;
+            if (iMember.gender.Equals("Male"))
+                switchFemaleOnly.Enabled = false;
 
             if (iMember.type.Equals("Driver"))
             {
@@ -123,8 +132,8 @@ namespace CHARE_System
             else
             {
                 seatLayout.Visibility = ViewStates.Gone;
-                upperContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 6f);
-                lowerContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 4f);
+                upperContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 5.0f);
+                lowerContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 5.0f);
             }
 
             Android.Icu.Util.Calendar mcurrentTime = Android.Icu.Util.Calendar.Instance;

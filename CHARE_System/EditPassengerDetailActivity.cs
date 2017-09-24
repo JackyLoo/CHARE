@@ -31,38 +31,44 @@ namespace CHARE_System
             ActionBar ab = ActionBar;
             ab.SetDisplayHomeAsUpEnabled(true);
 
-            progress = new Android.App.ProgressDialog(this);
-            progress.Indeterminate = true;
-            progress.SetProgressStyle(Android.App.ProgressDialogStyle.Spinner);
-            progress.SetMessage("Updating Account.....");
-            progress.SetCancelable(false);
-
-            ISharedPreferences pref = GetSharedPreferences(GetString(Resource.String.PreferenceFileName), FileCreationMode.Private);
-            var member = pref.GetString(GetString(Resource.String.PreferenceSavedMember), "");
-            user = JsonConvert.DeserializeObject<Member>(member);
-
-            etUsername = (EditText)FindViewById(Resource.Id.edittext_username);
-            etPassword = (EditText)FindViewById(Resource.Id.edittext_password);
-            etConPassword = (EditText)FindViewById(Resource.Id.edittext_confirm_password);
-            etPhone = (EditText)FindViewById(Resource.Id.edittext_phone);
-            spnGender = (Spinner)FindViewById(Resource.Id.spinner_gender);
-            buttonUpdate = (Button)FindViewById(Resource.Id.button_update);
-
-            var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.signup_gender, Resource.Layout.Custom_Spinner_Edit_Details);
-            adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
-            spnGender.Adapter = adapter;
-
-            etUsername.Text = user.username;
-            etPassword.Text = user.password;
-            etConPassword.Text = user.password;
-            etPhone.Text = user.phoneno;
-            if(user.gender.Equals("Male"))
-                spnGender.SetSelection(1);
+            Android.Net.ConnectivityManager cm = (Android.Net.ConnectivityManager)this.GetSystemService(Context.ConnectivityService);
+            if (cm.ActiveNetworkInfo == null)
+                Toast.MakeText(this, "Network error. Try again later.", ToastLength.Long).Show();
             else
-                spnGender.SetSelection(2);
-            buttonUpdate.Click += UpdateClick;
+            {
+                progress = new Android.App.ProgressDialog(this);
+                progress.Indeterminate = true;
+                progress.SetProgressStyle(Android.App.ProgressDialogStyle.Spinner);
+                progress.SetMessage("Loading ...");
+                progress.SetCancelable(false);
 
-            SetValidation();
+                ISharedPreferences pref = GetSharedPreferences(GetString(Resource.String.PreferenceFileName), FileCreationMode.Private);
+                var member = pref.GetString(GetString(Resource.String.PreferenceSavedMember), "");
+                user = JsonConvert.DeserializeObject<Member>(member);
+
+                etUsername = (EditText)FindViewById(Resource.Id.edittext_username);
+                etPassword = (EditText)FindViewById(Resource.Id.edittext_password);
+                etConPassword = (EditText)FindViewById(Resource.Id.edittext_confirm_password);
+                etPhone = (EditText)FindViewById(Resource.Id.edittext_phone);
+                spnGender = (Spinner)FindViewById(Resource.Id.spinner_gender);
+                buttonUpdate = (Button)FindViewById(Resource.Id.button_update);
+
+                var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.signup_gender, Resource.Layout.Custom_Spinner_Edit_Details);
+                adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+                spnGender.Adapter = adapter;
+
+                etUsername.Text = user.username;
+                etPassword.Text = user.password;
+                etConPassword.Text = user.password;
+                etPhone.Text = user.phoneno;
+                if (user.gender.Equals("Male"))
+                    spnGender.SetSelection(1);
+                else
+                    spnGender.SetSelection(2);
+                buttonUpdate.Click += UpdateClick;
+
+                SetValidation();
+            }
         }
 
         private async void UpdateClick(object sender, EventArgs e)
@@ -72,7 +78,8 @@ namespace CHARE_System
                 user.username = etUsername.Text.ToString().Trim();
                 user.password = etPassword.Text.ToString().Trim();
                 user.phoneno = etPhone.Text.ToString().Trim();
-                user.gender = spnGender.SelectedItem.ToString();                                                                                
+                user.gender = spnGender.SelectedItem.ToString();
+                progress.SetMessage("Updating Account.....");
                 RunOnUiThread(() =>
                 {
                     progress.Show();

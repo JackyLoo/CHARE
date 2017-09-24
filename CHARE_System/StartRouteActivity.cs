@@ -61,6 +61,11 @@ namespace CHARE_System
 
             iTripDetail = JsonConvert.DeserializeObject<TripDetails>(Intent.GetStringExtra("Trip"));
 
+            for (int i = 0; i < iTripDetail.TripPassengers.Count; i++)
+            {
+                Console.WriteLine("=== passenger 2" + iTripDetail.TripPassengers[i].origin);
+            }
+
             receiver = new GeofenBroadcastReceiver();
             receiver.SetListener(this);
             intentFilter = new IntentFilter("transition_change");
@@ -315,17 +320,20 @@ namespace CHARE_System
             else
             {                
                 strGoogleDirection = await MapHelper.DownloadStringAsync(iTripDetail, "Passenger");
+                button.Text = "Driver Arrive";
+                button.Enabled = true;                                    
+                button.Click += PickupByDriver;                
             }            
 
             var googleDirectionAPIRoute = JsonConvert.DeserializeObject<GoogleDirectionAPI>(strGoogleDirection);
-            string encodedPoints = googleDirectionAPIRoute.routes[0].overview_polyline.points;
-            var lstDecodedPoints = MapHelper.DecodePolylinePoint(encodedPoints);
-            var latLngPoints = lstDecodedPoints.ToArray();
+            string ePoints = googleDirectionAPIRoute.routes[0].overview_polyline.points;
+            var dPoints = MapHelper.DecodePolylinePoint(ePoints);
+            var latLngPoints = dPoints.ToArray();
             var polylineoption = new PolylineOptions();            
             polylineoption.InvokeColor(Android.Graphics.Color.SkyBlue);
             polylineoption.Geodesic(true);
             polylineoption.Add(latLngPoints);
-            mMap.AddPolyline(polylineoption);            
+            mMap.AddPolyline(polylineoption);
             DrawMarkers(iTripDetail);
             PopulateGeofenceList();
             CreateGeofences();
@@ -369,9 +377,15 @@ namespace CHARE_System
             Toast.MakeText(this, "Pickup Passenger", ToastLength.Short).Show();
         }
 
-        public void FinishCarpool(System.Object sender, EventArgs e)
+        public void PickupByDriver(System.Object sender, EventArgs e)
         {
-            if (iTripDetail.Member.Equals("Driver"))
+            button.Enabled = false;
+            Toast.MakeText(this, "Driver has pick me up.", ToastLength.Short).Show();
+        }
+
+        public void FinishCarpool(System.Object sender, EventArgs e)
+        {            
+            if (iTripDetail.Member.type.Equals("Driver"))
             {
                 int i = iTripDetail.TripPassengers.Count;                
 
@@ -518,6 +532,11 @@ namespace CHARE_System
                         button.Text = "Pickup Passenger";
                         button.Click += PickupPassenger;
                     }
+                }
+                else if(iTripDetail.Member.type.Equals("Passenger"))
+                {                                        
+                    button.Text = "Arrive";
+                    button.Click += FinishCarpool;                    
                 }
                 else
                 {

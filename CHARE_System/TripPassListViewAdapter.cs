@@ -122,6 +122,13 @@ namespace CHARE_System
                     intent.PutExtra("Trip", JsonConvert.SerializeObject(trips[position]));
                     context.StartActivity(intent);
                 }
+                else if (holder.mButton.Text.Equals("View Driver"))
+                {                    
+                    Intent intent = new Intent(context, typeof(ViewDriverProfileActivity));
+                    intent.AddFlags(ActivityFlags.ReorderToFront);
+                    intent.PutExtra("Trip", JsonConvert.SerializeObject(trips[position]));
+                    context.StartActivity(intent);
+                }
                 else if (holder.mButton.Text.Equals("Cancel Request"))
                 {                        
                     trips[position].Requests[0].status = "Cancelled";
@@ -146,6 +153,11 @@ namespace CHARE_System
                     // Condition = no passenger in the trip yet AND no passenger send request for this trip
                     if (holder.mButton.Text.Equals("View Driver"))
                         intent.PutExtra("Status", "Has Driver");                    
+                    else if (holder.mButton.Text.Equals("Cancel Request"))
+                        intent.PutExtra("Status", "Has Request");
+                    else if (holder.mButton.Text.Equals("Search Driver"))
+                        intent.PutExtra("Status", "No Driver No Request");
+
                     intent.PutExtra("Trip", JsonConvert.SerializeObject(trips[position]));
                     ((Activity)context).StartActivityForResult(intent, 0);
                 }                

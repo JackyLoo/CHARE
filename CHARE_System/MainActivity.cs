@@ -17,32 +17,34 @@ using Mikepenz.MaterialDrawer.Models;
 using Mikepenz.MaterialDrawer.Models.Interfaces;
 using Mikepenz.Typeface;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using static Android.Animation.Animator;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace CHARE_System
 {
-    [Activity(Label = "CHARE_App")]
-        
+    [Activity(Label = "CHARE")]
+
     public class MainActivity : ActionBarActivity, IOnMapReadyCallback, ILocationListener, Drawer.IOnDrawerItemClickListener, AccountHeader.IOnAccountHeaderListener,
         IDialogInterfaceOnClickListener, NetworkBroadcastReceiver.NetworkListener, IAnimatorListener
     {
+        private ProgressDialog progress;
+        private Android.Support.V7.Widget.Toolbar toolbar;
+
         // Network State Change Broadcast receiver & Listener
         private NetworkBroadcastReceiver receiver;
         private TextView tvNetworkNotification;
         private IntentFilter intentFilter;
 
-        private Member user;    
+        private Member user;
         private GoogleMap mMap;
         private Geocoder geocoder;
         private LatLng originLatLng;
         private LatLng destLatLng;
-        
+
         // Navigation Bar
         AccountHeader headerResult = null;
-                
+
         // ILocationListener : Variables for auto change camera to user location
         private LocationManager locationManager;
         private const long MIN_TIME = 400;
@@ -53,15 +55,19 @@ namespace CHARE_System
         private PlaceAutocompleteFragment originAutocompleteFragment;
         private PlaceAutocompleteFragment destAutocompleteFragment;
 
-        private string originTxt;        
+        private string originTxt;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.Main);
 
-            tvNetworkNotification = (TextView)FindViewById(Resource.Id.network_notification);
+            receiver = new NetworkBroadcastReceiver(this);
+            receiver.SetListener(this);
+            intentFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
+            RegisterReceiver(receiver, intentFilter);
 
+            tvNetworkNotification = (TextView)FindViewById(Resource.Id.network_notification);
             ConnectivityManager cm = (ConnectivityManager)this.GetSystemService(Context.ConnectivityService);
             if (cm.ActiveNetworkInfo == null)
             {
@@ -74,24 +80,12 @@ namespace CHARE_System
                 dialog.Show();
             }
             else
-            {
-                receiver = new NetworkBroadcastReceiver(this);
-                receiver.SetListener(this);
-                intentFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
-                RegisterReceiver(receiver, intentFilter);
-
+            {                
                 MapFragment mapFragment = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.googlemap);
                 mapFragment.GetMapAsync(this);
 
-                var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-                SetSupportActionBar(toolbar);
-
-                geocoder = new Geocoder(this);
-                locationManager = (LocationManager)GetSystemService(Context.LocationService);
-                //You can also use LocationManager.GPS_PROVIDER and LocationManager.PASSIVE_PROVIDER     
-                locationManager.RequestLocationUpdates(LocationManager.NetworkProvider, MIN_TIME, MIN_DISTANCE, this);
-                //You can also use LocationManager.GPS_PROVIDER and LocationManager.PASSIVE_PROVIDER                 
-                locationManager.RequestLocationUpdates(LocationManager.GpsProvider, MIN_TIME, MIN_DISTANCE, this);
+                toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+                SetSupportActionBar(toolbar);                
 
                 // Deserialize the member object
                 ISharedPreferences pref = GetSharedPreferences(GetString(Resource.String.PreferenceFileName), FileCreationMode.Private);
@@ -99,15 +93,11 @@ namespace CHARE_System
                 user = JsonConvert.DeserializeObject<Member>(member);
 
                 var profile = new ProfileDrawerItem();
-                profile.WithName(user.username);
-                //profile.WithSelectable(false);
-                //profile.WithEnabled(false);
-                
-                
+                profile.WithName(user.username);                
                 profile.WithIdentifier(100);
 
                 headerResult = new AccountHeaderBuilder()
-                    .WithActivity(this)                    
+                    .WithActivity(this)
                     .WithHeaderBackground(Resource.Drawable.profilebackground)
                     .WithSelectionListEnabledForSingleProfile(false)
                     .AddProfiles(profile)
@@ -118,14 +108,7 @@ namespace CHARE_System
                 var header = new PrimaryDrawerItem();
                 header.WithName(Resource.String.Drawer_Item_Trips);
                 header.WithIcon(GoogleMaterial.Icon.GmdDirectionsCar);
-                header.WithIdentifier(1);
-
-                /*
-                var secondaryDrawer = new SecondaryDrawerItem();
-                secondaryDrawer.WithName(Resource.String.Drawer_Item_About);
-                secondaryDrawer.WithIcon(GoogleMaterial.Icon.GmdInfo);
-                secondaryDrawer.WithIdentifier(2);
-                */
+                header.WithIdentifier(1);                
 
                 var logoutDrawer = new SecondaryDrawerItem();
                 logoutDrawer.WithName(Resource.String.Drawer_Item_Logout);
@@ -139,7 +122,7 @@ namespace CHARE_System
                     .WithAccountHeader(headerResult)
                     .AddDrawerItems(
                         header,
-                        new DividerDrawerItem(),                
+                        new DividerDrawerItem(),
                         logoutDrawer
                     )
                     .WithOnDrawerItemClickListener(this)
@@ -154,9 +137,26 @@ namespace CHARE_System
                     FragmentManager.FindFragmentById(Resource.Id.place_autocomplete_destination_fragment);
                 destAutocompleteFragment.SetHint("Enter the destination");
                 destAutocompleteFragment.PlaceSelected += OnDestinationSelected;
-            }          
-        }
 
+                progress = new ProgressDialog(this);
+                progress.Indeterminate = true;
+                progress.SetProgressStyle(ProgressDialogStyle.Spinner);
+                progress.SetMessage("Getting location...");
+                progress.SetCancelable(false);
+                RunOnUiThread(() =>
+                {
+                    progress.Show();
+                });
+
+                // Request Update request
+                locationManager = (LocationManager)GetSystemService(Context.LocationService);                
+                IList<string> providers = locationManager.AllProviders;
+                Criteria criteria = new Criteria();
+                string bestProvider = locationManager.GetBestProvider(criteria, true);                
+                locationManager.RequestLocationUpdates(bestProvider, MIN_TIME, MIN_DISTANCE, this);
+            }
+        }
+        
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
             base.OnActivityResult(requestCode, resultCode, data);
@@ -167,7 +167,7 @@ namespace CHARE_System
         }
 
         protected override void OnDestroy()
-        {
+        {            
             UnregisterReceiver(receiver);
             base.OnDestroy();
         }
@@ -204,32 +204,33 @@ namespace CHARE_System
         public void OnMapReady(GoogleMap googleMap)
         {
             mMap = googleMap;
-            mMap.MyLocationEnabled = true;
+            mMap.MyLocationEnabled = true;            
+            //GetUserLocation();
         }
         
         public void OnLocationChanged(Location location)
-        {
-            // Zoom camera to the device's location
-            LatLng latLng = new LatLng(location.Latitude, location.Longitude);
-            originLatLng = latLng;
-            CameraUpdate cameraUpdate = CameraUpdateFactory.NewLatLngZoom(latLng, 18);
-            // Move camera to user current location
-            mMap.AddMarker(new MarkerOptions().SetPosition(originLatLng).SetTitle("Origin"));
-            mMap.MoveCamera(cameraUpdate);
-
-            try
-            {                               
-                // Get current location address and set to origin textfield                                       
+        {            
+            if(mMap != null)
+            {
+                // Set current location address and set to origin textfield                                       
+                geocoder = new Geocoder(this);
                 IList<Address> addresses = geocoder.GetFromLocation(location.Latitude, location.Longitude, 1);
-                originTxt = addresses[0].SubLocality;                
+                originTxt = addresses[0].SubLocality;                                        
                 originAutocompleteFragment.SetText(addresses[0].GetAddressLine(0));
                 locationManager.RemoveUpdates(this);
-            }
-            catch (Exception e)
-            {
-                Toast.MakeText(this, "Error occur when requesting location.", ToastLength.Long).Show();
-                Toast.MakeText(this, e.ToString(), ToastLength.Long).Show();                
-            }
+
+                // Move camera to user current location
+                LatLng latLng = new LatLng(location.Latitude, location.Longitude);
+                originLatLng = latLng;
+                CameraUpdate cameraUpdate = CameraUpdateFactory.NewLatLngZoom(latLng, 18);                
+                mMap.AddMarker(new MarkerOptions().SetPosition(originLatLng).SetTitle("Origin"));
+                mMap.MoveCamera(cameraUpdate);
+
+                RunOnUiThread(() =>
+                {
+                    progress.Dismiss();
+                });
+            }            
         }   
 
         public void OnProviderDisabled(string provider){}
@@ -239,8 +240,7 @@ namespace CHARE_System
         public void OnStatusChanged(string provider, [GeneratedEnum] Availability status, Bundle extras){}
         
         public bool OnItemClick(View view, int position, IDrawerItem drawerItem)
-        {
-            Console.WriteLine("=== " + position);
+        {            
             if (drawerItem != null)
             {
                 Intent intent;
@@ -316,8 +316,6 @@ namespace CHARE_System
 
         public void OnAnimationRepeat(Animator animation){}
 
-        public void OnAnimationStart(Animator animation){}
-
-        
+        public void OnAnimationStart(Animator animation){}        
     }
 }

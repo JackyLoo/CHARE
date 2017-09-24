@@ -6,18 +6,14 @@ using Android.Widget;
 using CHARE_REST_API.JSON_Object;
 using CHARE_System.Class;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
 
 namespace CHARE_System
 {
     [Activity(Label = "Found Drivers")]
     public class SearchDriverListViewActivity : Activity
     {        
-        private ProgressDialog progress;
-        private HttpClient client;
+        private ProgressDialog progress;        
         private ListView listView;
         private List<TripDetails> listTrips;
         private TripDetails passTrip;
@@ -38,35 +34,31 @@ namespace CHARE_System
                 passTrip = JsonConvert.DeserializeObject<TripDetails>(Intent.GetStringExtra("Trip"));
                 listView = FindViewById<ListView>(Resource.Id.driver_listview);
 
-                client = new HttpClient();
-                client.BaseAddress = new Uri(GetString(Resource.String.RestAPIBaseAddress));
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
                 progress = new Android.App.ProgressDialog(this);
                 progress.Indeterminate = true;
                 progress.SetProgressStyle(Android.App.ProgressDialogStyle.Spinner);
                 progress.SetMessage("Looking for drivers.....");
                 progress.SetCancelable(false);
-
-                RunOnUiThread(() =>
-                {
-                    progress.Show();
-                });
-
+               
                 LoadDriverDetails(passTrip.TripPassengerID);
             }
         }
 
         async void LoadDriverDetails(int id)
-        {            
-            var models = await RESTClient.SearchTripDriversAsync(this, id);           
+        {
+            RunOnUiThread(() =>
+            {
+                progress.Show();
+            });
+
+            var models = await RESTClient.SearchTripDriversAsync(this, id);                       
+            listTrips = JsonConvert.DeserializeObject<List<TripDetails>>(models);
+            listView.Adapter = new SearchDriverListViewAdapter(this, listTrips, passTrip);
+
             RunOnUiThread(() =>
             {
                 progress.Dismiss();
             });
-            listTrips = JsonConvert.DeserializeObject<List<TripDetails>>(models);
-            listView.Adapter = new SearchDriverListViewAdapter(this, listTrips, passTrip);
         }
        
         override

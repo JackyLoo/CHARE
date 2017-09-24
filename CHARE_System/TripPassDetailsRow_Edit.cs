@@ -18,7 +18,7 @@ using static Android.App.TimePickerDialog;
 
 namespace CHARE_System
 {
-    [Activity(Label = "TripPassDetailsRow_Edit")]
+    [Activity(Label = "Trip")]
     public class TripPassDetailsRow_Edit : Activity, IOnMapReadyCallback, IOnTimeSetListener
     {
         Context context;
@@ -148,7 +148,14 @@ namespace CHARE_System
             txtviewDistance.Text = iTripDetail.distanceStr;
             tvArriveTime.Text = strTime;
             tvDay.Text = iTripDetail.days;
-            if (iTripDetail.femaleOnly.Equals("Yes"))
+
+            // Deserialize the member object
+            ISharedPreferences pref = GetSharedPreferences(GetString(Resource.String.PreferenceFileName), FileCreationMode.Private);
+            var member = pref.GetString(GetString(Resource.String.PreferenceSavedMember), "");
+            Member iMember = JsonConvert.DeserializeObject<Member>(member);
+            if (iMember.gender.Equals("Male"))
+                switchFemaleOnly.Enabled = false;
+            else if (iTripDetail.femaleOnly.Equals("Yes"))
                 switchFemaleOnly.Checked = true;
             else
                 switchFemaleOnly.Checked = false;
@@ -163,7 +170,7 @@ namespace CHARE_System
             {
                 if (Intent.GetStringExtra("Status").Equals("Has Driver"))
                 {
-                    switchFemaleOnly.Enabled = false;                                        
+                    switchFemaleOnly.Enabled = false;
                     originAutocompleteFragment.View.Visibility = ViewStates.Gone;
                     destAutocompleteFragment.View.Visibility = ViewStates.Gone;
                     memberLayout.Visibility = ViewStates.Visible;
@@ -176,12 +183,30 @@ namespace CHARE_System
                     button.Click += StartRoute;
 
                     // Change layout weight 
-                    upperContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FillParent, 0, 4.5f);
-                    lowerContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 5.5f);
+                    upperContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FillParent, 0, 4.0f);
+                    lowerContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 6.0f);
                     upperLayout.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 7.5f);
-                    lowerLayout.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 2.5f);                    
+                    lowerLayout.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 2.5f);
                 }
-                else
+                else if (Intent.GetStringExtra("Status").Equals("Has Request"))
+                {
+                    switchFemaleOnly.Enabled = false;
+                    // Hide button layout
+                    lowerLayout.Visibility = ViewStates.Gone;
+                    originAutocompleteFragment.View.Visibility = ViewStates.Gone;
+                    destAutocompleteFragment.View.Visibility = ViewStates.Gone;
+                    memberLayout.Visibility = ViewStates.Visible;
+                    originLayout.Visibility = ViewStates.Visible;
+                    destLayout.Visibility = ViewStates.Visible;
+                    tvDriver.Text = iTripDetail.Requests[0].status;
+                    tvOrigin.Text = iTripDetail.origin;
+                    tvDest.Text = iTripDetail.destination;
+
+                    // Change layout weight 
+                    upperContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FillParent, 0, 5.7f);
+                    lowerContainer.LayoutParameters = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MatchParent, 0, 4.3f);
+                }
+                else if (Intent.GetStringExtra("Status").Equals("No Driver No Request"))
                 {
                     originAutocompleteFragment.SetHint("Enter the origin");
                     originAutocompleteFragment.SetText(iTripDetail.origin);

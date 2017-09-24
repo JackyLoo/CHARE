@@ -23,12 +23,12 @@ namespace CHARE_System.Class
         private const string _GoogleAPIKey = "AIzaSyBxXCmp-C6i5LwwRSTuvzIjD9_roPjJ4EI";
 
             //?origin=3.2718236,101.6489234&destination=3.1161034,101.6392469&waypoints=optimize:true|3.209876,101.659176|3.302183,101.598181&key=AIzaSyBxXCmp-C6i5LwwRSTuvzIjD9_roPjJ4EI";";
-        public static List<LatLng> DecodePolylinePoint(string encodedPoints)
+        public static List<LatLng> DecodePolylinePoint(string ePoints)
         {
-            if (string.IsNullOrEmpty(encodedPoints))
+            if (string.IsNullOrEmpty(ePoints))
                 return null;
-            var poly = new List<LatLng>();
-            char[] polylinechars = encodedPoints.ToCharArray();
+            var polyLatLng= new List<LatLng>();
+            char[] polychars = ePoints.ToCharArray();
             int index = 0;
 
             int currentLat = 0;
@@ -37,19 +37,19 @@ namespace CHARE_System.Class
             int sum;
             int shifter;
 
-            while (index < polylinechars.Length)
+            while (index < polychars.Length)
             {
                 // calculate next latitude
                 sum = 0;
                 shifter = 0;
                 do
                 {
-                    next5bits = (int)polylinechars[index++] - 63;
+                    next5bits = (int)polychars[index++] - 63;
                     sum |= (next5bits & 31) << shifter;
                     shifter += 5;
-                } while (next5bits >= 32 && index < polylinechars.Length);
+                } while (next5bits >= 32 && index < polychars.Length);
 
-                if (index >= polylinechars.Length)
+                if (index >= polychars.Length)
                     break;
 
                 currentLat += (sum & 1) == 1 ? ~(sum >> 1) : (sum >> 1);
@@ -59,20 +59,20 @@ namespace CHARE_System.Class
                 shifter = 0;
                 do
                 {
-                    next5bits = (int)polylinechars[index++] - 63;
+                    next5bits = (int)polychars[index++] - 63;
                     sum |= (next5bits & 31) << shifter;
                     shifter += 5;
-                } while (next5bits >= 32 && index < polylinechars.Length);
+                } while (next5bits >= 32 && index < polychars.Length);
 
-                if (index >= polylinechars.Length && next5bits >= 32)
+                if (index >= polychars.Length && next5bits >= 32)
                     break;
 
                 currentLng += (sum & 1) == 1 ? ~(sum >> 1) : (sum >> 1);
                 LatLng p = new LatLng(Convert.ToDouble(currentLat) / 100000.0, Convert.ToDouble(currentLng) / 100000.0);
-                poly.Add(p);
+                polyLatLng.Add(p);
             }
 
-            return poly;
+            return polyLatLng;
         }
 
         public static async Task<string>  DownloadStringAsync(string strUri)
@@ -104,11 +104,13 @@ namespace CHARE_System.Class
             foreach (TripPassenger tp in trips.TripPassengers)
             {
                 waypoints += "|"+tp.originLatLng;
+                Console.WriteLine("=== waypoints " + waypoints);
             }
             
             string strUri = _GoogleDirectionAPIAddress + "?origin=" + trips.originLatLng + "&destination=" + trips.destinationLatLng + 
                 "&waypoints=optimize:true" + waypoints + "&key=" + _GoogleAPIKey;
-            
+
+            Console.WriteLine("=== uri " + strUri);
             WebClient webclient = new WebClient();
             string strResultData;
             try
@@ -130,11 +132,10 @@ namespace CHARE_System.Class
         }
 
         public static async Task<string> DownloadStringAsync(TripDetails trips, string type)
-        {
-            string waypoints = "";
-            
+        {                        
+
             string strUri = _GoogleDirectionAPIAddress + "?origin=" + trips.originLatLng + "&destination=" + trips.destinationLatLng +
-                "&key=" + _GoogleAPIKey;
+                "&waypoints=optimize:true&key=" + _GoogleAPIKey;
 
             WebClient webclient = new WebClient();
             string strResultData;

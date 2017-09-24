@@ -13,7 +13,7 @@ using System.Net.Http.Headers;
 
 namespace CHARE_System
 {
-    [Activity(Label = "RequestListViewActivity")]
+    [Activity(Label = "Request")]
     public class RequestListViewActivity : Activity
     {
         private ProgressDialog progress;

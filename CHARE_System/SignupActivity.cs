@@ -25,7 +25,8 @@ namespace CHARE_System
         private EditText etPassword;
         private EditText etConPassword;
         private EditText etPhone;
-
+        private TextView btnSignup;
+        private TextView tvLoginLink;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -56,7 +57,7 @@ namespace CHARE_System
             adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.signup_account_type, Resource.Layout.Custom_Spinner_Signup);
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spnType.Adapter = adapter;
-
+            spnType.ItemSelected += AccountTypeSelected;
 
             etUsername.AfterTextChanged += (sender, e) =>
             {
@@ -83,11 +84,19 @@ namespace CHARE_System
                     etPhone.SetError("Phone is required!", null);
             };
 
-            TextView btnSignup = FindViewById<TextView>(Resource.Id.signupbtn);
+            btnSignup = FindViewById<TextView>(Resource.Id.signupbtn);
             btnSignup.Click += SignupClick;
 
-            TextView tvLoginLink = FindViewById<TextView>(Resource.Id.loginlink);
+            tvLoginLink = FindViewById<TextView>(Resource.Id.loginlink);
             tvLoginLink.Click += LoginLinkClick;
+        }
+
+        private void AccountTypeSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            if (spnType.SelectedItem.ToString().Equals("Driver"))
+                btnSignup.Text = "Continue";
+            else
+                btnSignup.Text = "Signup";
         }
 
         private void LoginLinkClick(Object sender, EventArgs e)
